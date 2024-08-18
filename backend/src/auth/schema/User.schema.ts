@@ -66,6 +66,9 @@ export class User extends Document {
     @Prop()
     phone_number: string;
 
+    @Prop({ default: 1 })
+    role: number // 1 === user role, 0 === admin role
+
     @Prop({ type: Address })
     addresses: Address;
 
