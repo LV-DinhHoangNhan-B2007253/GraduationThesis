@@ -8,9 +8,9 @@ import { Document, Types } from "mongoose";
 
 export class Address {
     @Prop()
-    street: string;
+    addressDetail: string;
     @Prop()
-    city: string;
+    region: string;
 }
 
 @Schema()
@@ -54,34 +54,42 @@ export class CartItem {
 
 @Schema()
 export class User extends Document {
-    @Prop()
+    @Prop({ required: true })
     name: string;
 
-    @Prop({ unique: true })
+    @Prop({ default: '' })
+    avatarUrl: string
+
+    @Prop({ unique: true, required: true })
     email: string;
 
     @Prop()
     password: string;
 
-    @Prop()
+    @Prop({ default: '' })
     phone_number: string;
 
     @Prop({ default: 1 })
     role: number // 1 === user role, 0 === admin role
 
-    @Prop({ type: Address })
+    @Prop({
+        type: Address, default: {
+            addressDetail: '',
+            region: 'Viet Nam'
+        }
+    })
     addresses: Address;
 
-    @Prop({ type: [Types.ObjectId], ref: 'Product' })
+    @Prop({ type: [Types.ObjectId], ref: 'Product', default: [] })
     wishlist: Types.ObjectId[];
 
-    @Prop({ type: [CartItem] })
+    @Prop({ type: [CartItem], default: [] })
     cart: CartItem[];
 
-    @Prop({ type: [Types.ObjectId], ref: 'Order' })
+    @Prop({ type: [Types.ObjectId], ref: 'Order', default: [] })
     orders: Types.ObjectId[];
 
-    @Prop({ type: [Comment] })
+    @Prop({ type: [Comment], default: [] })
     comments: Comment[];
 }
 
