@@ -95,7 +95,7 @@ export class AuthService {
 
 
     // google auth
-    async validateGoogleUser(user: CreateUserDto): Promise<any> {
+    async validateSocialLoginUser(user: CreateUserDto): Promise<any> {
         try {
             const exsitedUser = await this.userModel.findOne({ email: user.email })
             if (exsitedUser) {

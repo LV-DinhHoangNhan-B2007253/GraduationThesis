@@ -11,7 +11,7 @@ import { UserController } from './controllers/user.controller';
 import { UserService } from './service/user.service';
 @Module({
     controllers: [AuthController, UserController],
-    providers: [AuthService, GoogleStrategy, UserService],
+    providers: [AuthService, GoogleStrategy, UserService,],
     imports: [
         MongooseModule.forFeature([
             { name: User.name, schema: UserSchema },

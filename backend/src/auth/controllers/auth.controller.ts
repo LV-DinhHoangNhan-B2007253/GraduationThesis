@@ -3,20 +3,11 @@ import { AuthService } from "../service/auth.service";
 import { GoogleAuthGuard } from "../guards/google-auth/google-auth.guard";
 import { CreateUserDto } from "../dtos/create-user.dto";
 import { userLoginDto } from "../dtos/login-user.dto";
-import { AuthGuard } from "../guards/auth.guard";
-import { log, timeStamp } from "console";
 
 
 @Controller('api/auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
-
-
-
-    // Get
-
-
-
 
     // Post
     @Post('/register')
@@ -42,11 +33,8 @@ export class AuthController {
     @Get('/google/callback')
     googleCallback(@Request() req) {
         const user: CreateUserDto = req.user
-        return this.authService.validateGoogleUser(user)
+        return this.authService.validateSocialLoginUser(user)
     }
-
-
-    // login with facebook
 
 
 }
