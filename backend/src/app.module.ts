@@ -5,6 +5,9 @@ import { ProductModule } from './product/product.module';
 import { CategoryModule } from './category/category.module';
 import { OrderModule } from './order/order.module';
 import { ChatModule } from './chat/chat.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { GoogleStrategy } from './auth/strategies/google.strategy';
+import googleOauthConfig from './auth/config/google-oauth-config';
 
 @Module({
   imports: [
@@ -17,6 +20,7 @@ import { ChatModule } from './chat/chat.module';
     CategoryModule,
     OrderModule,
     ChatModule,
+    MongooseModule.forRoot(process.env.HOST_DB),
   ],
 
   controllers: [],
