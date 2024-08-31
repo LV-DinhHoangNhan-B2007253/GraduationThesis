@@ -6,8 +6,6 @@ import { CategoryModule } from './category/category.module';
 import { OrderModule } from './order/order.module';
 import { ChatModule } from './chat/chat.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { GoogleStrategy } from './auth/strategies/google.strategy';
-import googleOauthConfig from './auth/config/google-oauth-config';
 
 @Module({
   imports: [

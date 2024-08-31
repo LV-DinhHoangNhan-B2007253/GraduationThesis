@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Request, UseGuards, UsePipes, ValidationPipe, } from "@nestjs/common";
+import { Body, Controller, Get, Post, Request, Res, UseGuards, UsePipes, ValidationPipe, } from "@nestjs/common";
 import { AuthService } from "../service/auth.service";
 import { GoogleAuthGuard } from "../guards/google-auth/google-auth.guard";
 import { CreateUserDto } from "../dtos/create-user.dto";
@@ -11,10 +11,11 @@ export class AuthController {
 
     // Post
     @Post('/register')
-    @UsePipes(new ValidationPipe())
-    Register(@Body() userRegister: CreateUserDto) {
-        return this.authService.Register(userRegister)
+    // @UsePipes(new ValidationPipe())
+    async Register(@Body() userRegister: CreateUserDto) {
+        const accessToken = await this.authService.Register(userRegister)
 
+        return accessToken
     }
 
     @Post('/login')
@@ -31,9 +32,12 @@ export class AuthController {
 
     @UseGuards(GoogleAuthGuard)
     @Get('/google/callback')
-    googleCallback(@Request() req) {
+    async googleCallback(@Request() req, @Res() res) {
         const user: CreateUserDto = req.user
-        return this.authService.validateSocialLoginUser(user)
+        const accessToken = await this.authService.validateSocialLoginUser(user);
+        res.redirect(`http://localhost:3000/callback?access_token=${accessToken}`);
+
+
     }
 
 
