@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../schema/User.schema';
@@ -7,6 +7,7 @@ import { CreateUserDto } from '../dtos/create-user.dto';
 import * as bcrypt from 'bcrypt';
 import { userLoginDto } from '../dtos/login-user.dto';
 import { JwtService } from '@nestjs/jwt';
+import { log } from 'console';
 
 
 @Injectable()
@@ -66,27 +67,28 @@ export class AuthService {
 
     async Register(userRegister: CreateUserDto): Promise<any> {
         try {
+
             const user = await this.userModel.findOne({ email: userRegister.email })
-
+            // check user: trả về lỗi
             if (user && (user.email === userRegister.email)) {
-                return new UnauthorizedException(
-                    'The account already exists, please choose another account name',
-                );
+                throw new HttpException('Email đã tồn tại', HttpStatus.BAD_REQUEST);
             }
-            const saltRound = parseInt(process.env.BCRYPT_SALT)
+            const saltRound = parseInt(process.env.BCRYPT_SALT, 10)
 
+            // nếu user chưa có -> tạo user -> trả về token
             const passHashed = await bcrypt.hash(userRegister.password, saltRound)
-            await this.userModel.create({
+            const saveUser = await this.userModel.create({
                 ...userRegister,
                 password: passHashed
             })
+            const data = await this.returnInfoAndToken(saveUser)
 
-            return { message: 'create account success' }
+            return { accessToken: data.accessToken }
 
         } catch (error) {
             console.log(error);
 
-            throw error('register failed');
+            throw new Error('register failed');
         }
 
     }
@@ -99,15 +101,15 @@ export class AuthService {
         try {
             const exsitedUser = await this.userModel.findOne({ email: user.email })
             if (exsitedUser) {
-                const data = this.returnInfoAndToken(exsitedUser)
-                return data
+                const data = await this.returnInfoAndToken(exsitedUser)
+                return data.accessToken
             }
 
             const saveUser = await this.userModel.create(user)
-            console.log(saveUser);
 
-            const data = this.returnInfoAndToken(saveUser)
-            return data
+
+            const data = await this.returnInfoAndToken(saveUser)
+            return data.accessToken
         } catch (error) {
             console.log(error);
 
