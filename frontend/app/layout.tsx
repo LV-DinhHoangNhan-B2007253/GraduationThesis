@@ -11,8 +11,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import ReduxProvider from "@/redux/provider";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { PersistGate } from "redux-persist/integration/react";
-import { persistor } from "@/redux/store";
+import ThemeSwitch from "@/components/ThemeSwitch";
 config.autoAddCss = false;
 
 // fonts
@@ -39,7 +38,7 @@ export default function RootLayout({
   return (
     <ReduxProvider>
       <html lang="en" className={basker.className}>
-        <body className={`bg-bg-light dark:bg-bg-dark `}>
+        <body className={`bg-light-bg dark:bg-dark-bg relative`}>
           <Providers>
             <Navbar />
             {children}
@@ -51,6 +50,7 @@ export default function RootLayout({
               pauseOnFocusLoss={false}
               limit={1}
             />
+            <ThemeSwitch />
           </Providers>
         </body>
       </html>

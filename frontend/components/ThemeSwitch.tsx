@@ -21,6 +21,7 @@ function ThemeSwitch() {
   }
   return (
     <Switch
+      className="absolute bottom-7 right-2 z-10"
       size="lg"
       color="default"
       onClick={handleSetTheme}
