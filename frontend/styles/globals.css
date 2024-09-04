@@ -5,4 +5,6 @@
 body{
     padding: 0 !important;
     margin: 0 !important;
+    overflow-y: auto !important; /* Cho phép thanh cuộn dọc */
+    overflow-x: hidden; /* Ẩn thanh cuộn ngang */
 }

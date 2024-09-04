@@ -12,6 +12,7 @@ import ReduxProvider from "@/redux/provider";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ThemeSwitch from "@/components/ThemeSwitch";
+import MainLayout from "@/layouts/MainLayout";
 config.autoAddCss = false;
 
 // fonts
@@ -40,8 +41,7 @@ export default function RootLayout({
       <html lang="en" className={basker.className}>
         <body className={`bg-light-bg dark:bg-dark-bg relative`}>
           <Providers>
-            <Navbar />
-            {children}
+            <MainLayout>{children}</MainLayout>
             <ToastContainer
               autoClose={2000}
               position="top-right"
@@ -50,7 +50,6 @@ export default function RootLayout({
               pauseOnFocusLoss={false}
               limit={1}
             />
-            <ThemeSwitch />
           </Providers>
         </body>
       </html>

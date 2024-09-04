@@ -5,15 +5,20 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from "redux-persist/lib/storage";
 
 
-const persistConfig = {
-    key: 'root',
+const userInfoPersistConfig = {
+    key: 'userInfo',
+    storage,
+};
+
+const userLoginStatePersistConfig = {
+    key: 'userLoginState',
     storage,
 };
 
 // Áp dụng persist cho các reducers
-const persistedUserInfoReducer = persistReducer(persistConfig, userInfoReducer);
+const persistedUserInfoReducer = persistReducer(userInfoPersistConfig, userInfoReducer);
 
-const persistedUserLoginState = persistReducer(persistConfig, isLoginStateReducer);
+const persistedUserLoginState = persistReducer(userLoginStatePersistConfig, isLoginStateReducer);
 
 export const store = configureStore({
     reducer: {

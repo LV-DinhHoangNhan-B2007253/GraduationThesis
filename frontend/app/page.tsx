@@ -3,7 +3,7 @@
 import Spinner from "@/components/Spinner";
 import { RootState } from "@/redux/store";
 import { useSelect } from "@nextui-org/react";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Home() {
@@ -14,9 +14,9 @@ export default function Home() {
   }, [userInfo]);
 
   return (
-    <Suspense fallback={<Spinner />}>
-      {/* Hiển thị thông tin người dùng */}
-      <p>{userInfo?._id}</p>
-    </Suspense>
+    <div className="min-h-screen">
+      <h1>{userInfo?._id}</h1>
+      <div>asdasdssd</div>
+    </div>
   );
 }

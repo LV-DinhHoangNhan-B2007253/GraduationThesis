@@ -11,7 +11,8 @@ function GoogleButton() {
   return (
     <button
       onClick={handleGoogleButton}
-      className="flex justify-start gap-2 items-center hover:text-dark-primary-text bg-light-btn-bg-second hover:bg-light-btn-hover dark:hover:text-light-primary-text dark:hover:bg-dark-bg-btn-hover transition-all p-2 hover:rounded-md dark:bg-dark-bg-btn"
+      className="flex justify-center gap-2 items-center hover:text-dark-primary-text bg-light-btn-bg-second hover:bg-light-btn-hover dark:hover:text-light-primary-text dark:hover:bg-dark-bg-btn-hover transition-all p-2 hover:rounded-md dark:bg-dark-bg-btn sm:w-full min-w-fit
+      "
     >
       <FontAwesomeIcon
         icon={faGoogle}

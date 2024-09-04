@@ -21,7 +21,7 @@ function Callback() {
       localStorage.setItem("accessToken", accessToken);
 
       // gọi api qua thunk và set info vào store, đặt trạng thái đăng nhập
-      dispatch(GetNSetUserInfo());
+      dispatch(GetNSetUserInfo()).unwrap();
       dispatch(setLogged());
 
       // Chuyển hướng đến trang chính hoặc trang khác
@@ -29,7 +29,7 @@ function Callback() {
     }
   }, [router, dispatch]);
 
-  return <div>Đang tải...</div>;
+  return <div className="bg-Loading-img w-full h-screen bg-center"></div>;
 }
 
 export default Callback;

@@ -21,8 +21,7 @@ function ThemeSwitch() {
   }
   return (
     <Switch
-      className="absolute bottom-7 right-2 z-10"
-      size="lg"
+      size="md"
       color="default"
       onClick={handleSetTheme}
       thumbIcon={() => (resolvedTheme === "light" ? <SunIcon /> : <MoonIcon />)}

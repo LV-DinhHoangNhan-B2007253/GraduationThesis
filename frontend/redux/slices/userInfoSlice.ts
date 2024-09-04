@@ -14,16 +14,17 @@ export const userInfoSlice = createSlice({
     initialState: {
         userInfo: null,
         loading: false,
-        error: null as string | null
+        error: null as string | null,
     } as UserState,
     reducers: {},
     extraReducers: (builder) => {
         // get info của user và sử lí state
-        builder.addCase(GetNSetUserInfo.pending, (state, action) => {
-            state.loading = false
+        builder.addCase(GetNSetUserInfo.pending, (state) => {
+            state.loading = true
+            state.error = null
         })
         builder.addCase(GetNSetUserInfo.fulfilled, (state, action) => {
-            state.loading = true
+            state.loading = false
             state.userInfo = action.payload
         })
         builder.addCase(GetNSetUserInfo.rejected, (state, action) => {

@@ -4,6 +4,10 @@ export interface IRegisterForm {
     password: string;
 }
 
+export interface ILoginFrom {
+    email: string;
+    password: string;
+}
 
 // types.ts
 export interface Address {

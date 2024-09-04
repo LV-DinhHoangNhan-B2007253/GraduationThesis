@@ -27,11 +27,15 @@ function Register() {
     event: React.FormEvent<HTMLInputElement> | any
   ) => {
     event.preventDefault();
-    const data = await RegisterUser(formData);
+    try {
+      const data = await RegisterUser(formData);
 
-    if (data?.accessToken) {
-      // Lưu token vào local storage và chuyển hướng
-      window.location.href = `http://localhost:3000/callback?access_token=${data.accessToken}`;
+      if (data && data.accessToken) {
+        // Lưu token vào local storage và chuyển hướng
+        window.location.href = `http://localhost:3000/callback?access_token=${data.accessToken}`;
+      }
+    } catch (error: any) {
+      toast.error(`Register failed ${error}`);
     }
   };
 
@@ -41,7 +45,7 @@ function Register() {
 
   return (
     <section className="h-screen bg-light-bg  flex justify-center items-center   dark:bg-dark-bg    ">
-      <div className=" shadow-md bg-light-modal-popup border border-light-element-border  sm:w-[600px] mx-3 py-20 container sm:mx-96 dark:bg-dark-modal-popup sm:px-5 rounded-md ">
+      <div className=" shadow-md bg-light-modal-popup border border-light-element-border  sm:min-w-[600px] mx-3 py-20 container sm:mx-96 dark:bg-dark-modal-popup sm:px-5 rounded-md ">
         <div>
           <h1 className="text-base text-light-primary-text dark:text-dark-primary-text font-bold text-center sm:text-3xl py-2">
             Create an account
@@ -54,7 +58,7 @@ function Register() {
           </p>
         </div>
         <form onSubmit={HandleSubmit} className="px-4">
-          <div className="py-1 px-2 my-2">
+          <div className="my-3">
             <label
               htmlFor="email"
               className="block w-fit hover:cursor-pointer text-light-primary-text hover:font-bold   dark:text-dark-primary-text text-small sm:text-base py-1"
@@ -71,7 +75,7 @@ function Register() {
               placeholder="your@gmail"
             />
           </div>
-          <div className="py-1 px-2 my-1">
+          <div className="my-3">
             <label
               htmlFor="name"
               className="block w-fit hover:cursor-pointer text-light-primary-text hover:font-bold   dark:text-dark-primary-text text-small sm:text-base py-1"
@@ -87,7 +91,7 @@ function Register() {
               className="py-2 px-2 text-small sm:text-base w-full rounded dark:focus:border-dark-active focus:border-light-active border-light-input-border placeholder:text-light-input-placeholder text-light-input-text outline-none border  dark:bg-dark-input-field dark:border-dark-input-border dark:placeholder:text-dark-input-placeholder dark:text-dark-input-text"
             />
           </div>
-          <div className="py-1 px-2 my-1">
+          <div className="my-3">
             <div className="flex justify-between items-center">
               <label
                 htmlFor="password"

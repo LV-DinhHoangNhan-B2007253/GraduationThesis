@@ -46,22 +46,38 @@ export class AuthService {
         try {
             const user = await this.userModel.findOne({ email: userLogin.email }).select(' -__v')
             if (!user) {
-                return new UnauthorizedException('This email is not registered')
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: 'Email does not exist'
+                }, HttpStatus.NOT_FOUND);
             }
 
             const checkPassword = await bcrypt.compareSync(userLogin.password, user.password)
             if (!checkPassword) {
-                return new UnauthorizedException('Password is not correct! pleas enter password again')
+                throw new HttpException({
+                    status: HttpStatus.UNAUTHORIZED,
+                    error: 'Incorrect password',
+                }, HttpStatus.UNAUTHORIZED);
             }
 
-            const { info, accessToken, refreshToken } = await this.returnInfoAndToken(user)
+            const { accessToken } = await this.returnInfoAndToken(user)
 
-            return { info, accessToken, refreshToken }
+            return { accessToken: accessToken }
 
 
         } catch (error) {
-            console.log(error);
 
+            console.error('Login error:', error);
+
+            // ném status và thông tin lỗi đã handle cho các case ở trên
+            if (error instanceof HttpException) {
+                throw error;
+            } else {
+                throw new HttpException({
+                    status: HttpStatus.INTERNAL_SERVER_ERROR,
+                    error: 'An unexpected error occurred',
+                }, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -71,7 +87,11 @@ export class AuthService {
             const user = await this.userModel.findOne({ email: userRegister.email })
             // check user: trả về lỗi
             if (user && (user.email === userRegister.email)) {
-                throw new HttpException('Email đã tồn tại', HttpStatus.BAD_REQUEST);
+
+                throw new HttpException({
+                    status: HttpStatus.CONFLICT,
+                    error: "Email already registered"
+                }, HttpStatus.CONFLICT)
             }
             const saltRound = parseInt(process.env.BCRYPT_SALT, 10)
 
@@ -86,9 +106,16 @@ export class AuthService {
             return { accessToken: data.accessToken }
 
         } catch (error) {
-            console.log(error);
+            console.log("Register Error:", error);
 
-            throw new Error('register failed');
+            if (error instanceof HttpException) {
+                throw error;
+            } else {
+                throw new HttpException({
+                    status: HttpStatus.INTERNAL_SERVER_ERROR,
+                    error: 'An unexpected error occurred',
+                }, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
 
     }

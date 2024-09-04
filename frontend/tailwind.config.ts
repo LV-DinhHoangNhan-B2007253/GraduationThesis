@@ -14,15 +14,17 @@ const config: Config = {
       backgroundImage: {
         "SignUp-light-bg": "url('/RegisterBgImage.jpg')",
         "SignUp-dark-bg": "url('/RegisDarkBg.jpg')",
+        "Loading-img": "url('/pageLoading.jpg')",
+        "PageNotFound-img": "url('/pageNotFound.jpg')"
       },
       colors: {
 
         // light
         "light-primary-text": "#333333",
 
-        "light-bg": "#ffffff",
+        "light-bg": "#FAFAFA",
 
-        'light-modal-popup': '#fffcf2',
+        'light-modal-popup': '#ffffff',
         'light-sidetab': '#ECECEC',
         'light-element-border': '#DDDDDD',
         'light-text-link-color': '#3A6EA5 ',
@@ -32,14 +34,14 @@ const config: Config = {
         'light-btn-hover': '#0069D9 ',
         'light-btn-text': '#FFFFFF',
 
-        'light-input-field': '#F8F8F8 ',
-        'light-input-border': '#CCD6DD',
+        'light-input-field': '#FFFFFF ',
+        'light-input-border': '#D1D8E0',
         'light-input-placeholder': '#A9A9A9',
         'light-input-text': '#333333',
 
         'light-modal-border': '#DDDDDD',
 
-        'light-navbar-bg': '#F8F8F8 ',
+        'light-navbar-bg': '#ffffff ',
         'light-navbar-text': '#333333',
         'light-navbar-hover': '#007BFF',
 
@@ -62,6 +64,7 @@ const config: Config = {
         'dark-sidetab': '#2F2F45',
         'dark-bg-btn': '#4B4B6A',
         'dark-bg-btn-hover': '#06B6D4',
+        'dark-btn-text': '#dddddd',
         // dark input
         'dark-input-field': '#2e2e3a',
         'dark-input-border': '#3B82F6',
