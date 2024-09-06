@@ -5,5 +5,5 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class CategoryService {
-    @InjectModel(Category.name) private userModel: Model<Category>
+    @InjectModel(Category.name) private CategoryModel: Model<Category>
 }

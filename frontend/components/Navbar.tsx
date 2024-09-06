@@ -17,7 +17,7 @@ function Navbar() {
   const { userInfo } = useSelector((state: RootState) => state.user);
 
   return (
-    <nav className=" fixed top-0 left-0 right-0  bg-light-navbar-bg text-light-navbar-text dark:bg-dark-navbar-bg dark:text-dark-navbar-text shadow-lg dark:shadow-lg  ">
+    <nav className="  bg-light-navbar-bg text-light-navbar-text dark:bg-dark-navbar-bg dark:text-dark-navbar-text shadow-lg dark:shadow-lg  ">
       {/* top nav */}
       <div className=" flex justify-between items-center w-full sm:px-20 px-5 py-4 sm:py-8 gap-3 sm:gap-0">
         {/* search */}
@@ -43,7 +43,7 @@ function Navbar() {
         <Link
           href={"/"}
           className="sm:block hidden text-light-primary-text text-2xl dark:text-dark-primary-text font-bold
-          hover:text-light-active hover:dark:text-dark-active transition-all
+          hover:text-light-active hover:dark:text-dark-active transition-all bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 bg-clip-text text-transparent
           "
         >
           AikaStore
@@ -78,7 +78,7 @@ function Navbar() {
                 <Tooltip content="Profile" color="foreground">
                   <Link href={"/auth/profile"}>
                     <Avatar
-                      src={userInfo?.avatarUrl || DefaultAvatar.toString()}
+                      src={userInfo?.avatarUrl || DefaultAvatar.src}
                       alt="profile avatar"
                       size="sm"
                     />

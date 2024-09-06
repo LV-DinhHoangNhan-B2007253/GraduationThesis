@@ -75,7 +75,7 @@ export class User extends Document {
     @Prop({
         type: Address, default: {
             addressDetail: '',
-            region: 'Viet Nam'
+            region: 'Vietnam'
         }
     })
     addresses: Address;

@@ -12,7 +12,7 @@ async function bootstrap() {
   // });
   app.enableCors({
     origin: 'http://localhost:3000', // Địa chỉ của client
-    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    methods: 'GET,POST,PUT,DELETE,PATCH,OPTIONS',
     allowedHeaders: 'Content-Type, Authorization',
   });
   app.use(json());

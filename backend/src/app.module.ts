@@ -6,6 +6,7 @@ import { CategoryModule } from './category/category.module';
 import { OrderModule } from './order/order.module';
 import { ChatModule } from './chat/chat.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CategoryItemModule } from './category-item/category-item.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     OrderModule,
     ChatModule,
     MongooseModule.forRoot(process.env.HOST_DB),
+    CategoryItemModule,
   ],
 
   controllers: [],
