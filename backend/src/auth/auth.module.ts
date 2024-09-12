@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { AuthController } from './controllers/auth.controller';
 import { AuthService } from './service/auth.service';
 import { UserSchema, User } from './schema/User.schema';
@@ -9,6 +9,7 @@ import { GoogleStrategy } from './strategies/google.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { UserController } from './controllers/user.controller';
 import { UserService } from './service/user.service';
+import { ProductModule } from 'src/product/product.module';
 @Module({
     controllers: [AuthController, UserController],
     providers: [AuthService, GoogleStrategy, UserService,],
@@ -21,6 +22,8 @@ import { UserService } from './service/user.service';
         JwtModule.register({
             secret: process.env.ACCESS_TOKEN_SECRET
         }),
+        forwardRef(() => ProductModule)
     ],
+    exports: [MongooseModule, UserService]
 })
 export class AuthModule { }

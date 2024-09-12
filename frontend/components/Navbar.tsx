@@ -17,7 +17,7 @@ function Navbar() {
   const { userInfo } = useSelector((state: RootState) => state.user);
 
   return (
-    <nav className="  bg-light-navbar-bg text-light-navbar-text dark:bg-dark-navbar-bg dark:text-dark-navbar-text shadow-lg dark:shadow-lg  ">
+    <nav className="  bg-light-navbar-bg text-light-navbar-text dark:bg-dark-navbar-bg dark:text-dark-navbar-text shadow-sm  ">
       {/* top nav */}
       <div className=" flex justify-between items-center w-full sm:px-20 px-5 py-4 sm:py-8 gap-3 sm:gap-0">
         {/* search */}

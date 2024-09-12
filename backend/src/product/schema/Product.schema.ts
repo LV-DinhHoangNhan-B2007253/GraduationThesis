@@ -15,8 +15,6 @@ export class Product extends Document {
     @Prop()
     sku: string;
 
-    @Prop()
-    type: string;
 
     @Prop({ type: Types.ObjectId, ref: 'Category' })
     category_id: Types.ObjectId;

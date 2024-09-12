@@ -11,8 +11,8 @@ export class CategoryItem extends Document {
     @Prop()
     name: string;
 
-    @Prop({ type: [Types.ObjectId], ref: 'Product' })
+    @Prop({ type: [Types.ObjectId], ref: 'Product', default: [] })
     products: Types.ObjectId[];
 }
 
-export const CategorySchema = SchemaFactory.createForClass(CategoryItem);
+export const CategoryItemSchema = SchemaFactory.createForClass(CategoryItem);

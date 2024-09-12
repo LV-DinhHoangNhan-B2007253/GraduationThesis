@@ -1,5 +1,7 @@
 "use client";
 import GoogleButton from "@/components/GoogleButton";
+import CustomerManagement from "@/components/management/CustomerManagement";
+import OrderManagement from "@/components/management/OrderManagement";
 import ProductManagement from "@/components/management/ProductManagement";
 import MainLayout from "@/layouts/MainLayout";
 import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
@@ -14,37 +16,33 @@ function Management() {
           size="lg"
           radius="lg"
           fullWidth={true}
-          color="secondary"
+          color="warning"
           classNames={{
             tabList:
               "gap-6 w-full bg-light-modal-popup dark:bg-dark-modal-popup ",
             cursor: "w-full",
             tab: " h-12",
-            tabContent: "group-data-[selected=true]:text-[#06b6d4]",
+            tabContent: "group-data-[selected=true]:text-[#ffffff]",
           }}
         >
-          <Tab key="photos" title="Photo" className="w-full">
+          <Tab key="productManagement" title="Product " className="w-full">
             <Card className="rounded-lg h-screen w-full bg-light-modal-popup dark:bg-dark-modal-popup">
               <CardBody className=" ">
                 <ProductManagement />
               </CardBody>
             </Card>
           </Tab>
-          <Tab key="music" title="Music">
-            <Card>
+          <Tab key="order" title="Order">
+            <Card className="rounded-lg h-screen w-full bg-light-modal-popup dark:bg-dark-modal-popup">
               <CardBody>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.
+                <OrderManagement />
               </CardBody>
             </Card>
           </Tab>
-          <Tab key="videos" title="Videos">
-            <Card>
+          <Tab key="customer" title="Customer ">
+            <Card className="rounded-lg h-screen w-full bg-light-modal-popup dark:bg-dark-modal-popup">
               <CardBody>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum.
+                <CustomerManagement />
               </CardBody>
             </Card>
           </Tab>

@@ -5,6 +5,9 @@ import "@/styles/globals.css";
 // components
 import Navbar from "@/components/Navbar";
 import Providers from "./provider";
+// slider
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 // faw icon
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";

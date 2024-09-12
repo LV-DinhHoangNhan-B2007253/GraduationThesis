@@ -9,18 +9,23 @@ import { Select, SelectItem, Tooltip } from "@nextui-org/react";
 import { ListRegion } from "@/constants";
 import { IUserUpdateInfo } from "@/interfaces/auth.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import ThemeSwitch from "@/components/ThemeSwitch";
+import {
+  faArrowRightFromBracket,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 import Spinner from "@/components/Spinner";
 import { toast } from "react-toastify";
 import { UpdateUserInfo } from "@/services/user.service";
-import { GetNSetUserInfo } from "@/redux/slices/userInfoSlice";
+import { GetNSetUserInfo, setNullInfo } from "@/redux/slices/userInfoSlice";
+import { removeLog } from "@/redux/slices/isLoginStateSlice";
+import { useRouter } from "next/navigation";
 
 function Profile() {
   const { isLogin } = useSelector((state: RootState) => state.userLoginState);
   const { userInfo } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
   const [isEdit, setIsEdit] = useState<boolean>(true);
+  const router = useRouter();
 
   const [userFormData, setUserFormData] = useState<IUserUpdateInfo>({
     name: userInfo?.name || "",
@@ -33,6 +38,7 @@ function Profile() {
 
   useEffect(() => {
     console.log("rerender");
+    console.log(userInfo?.avatarUrl);
   }, [userInfo]);
 
   const handleInputOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,6 +96,17 @@ function Profile() {
     }
   };
 
+  const handleLogout = async () => {
+    // clear token
+    localStorage.removeItem("accessToken");
+    // dispatch store
+    dispatch(setNullInfo());
+    // update login state
+    dispatch(removeLog());
+
+    router.push("/");
+  };
+
   return (
     <MainLayout>
       {isLogin ? (
@@ -102,7 +119,7 @@ function Profile() {
                 <div className="flex justify-between items-center py-4">
                   <div className="flex justify-between items-center gap-3">
                     <img
-                      src={userInfo?.avatarUrl || DefaultImage.src}
+                      src={`${userInfo?.avatarUrl}` || DefaultImage.src}
                       alt="Avatar"
                       className="w-[95px] rounded-full shadow-md"
                     />
@@ -252,6 +269,12 @@ function Profile() {
                     </p>
                   </div>
                 </div>
+                <button
+                  className="float-right p-2 hover:text-orange-500"
+                  onClick={handleLogout}
+                >
+                  <FontAwesomeIcon icon={faArrowRightFromBracket} size="1x" />
+                </button>
               </div>
             </div>
           </div>
