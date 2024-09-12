@@ -1,7 +1,6 @@
 'use client'
 import axios from './axios.service'
 import { ILoginFrom, IRegisterForm } from '@/interfaces/auth.interface';
-import { toast } from 'react-toastify';
 
 
 export const RegisterUser = async (formData: IRegisterForm): Promise<any> => {

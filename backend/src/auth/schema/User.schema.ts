@@ -48,7 +48,7 @@ export class CartItem {
     @Prop({ type: Types.ObjectId, ref: 'Product' })
     product_id: Types.ObjectId;
 
-    @Prop()
+    @Prop({ default: 1 })
     quantity: number;
 }
 
@@ -75,7 +75,7 @@ export class User extends Document {
     @Prop({
         type: Address, default: {
             addressDetail: '',
-            region: 'Viet Nam'
+            region: 'Vietnam'
         }
     })
     addresses: Address;

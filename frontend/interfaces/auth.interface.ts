@@ -13,7 +13,7 @@ export interface ILoginFrom {
 export interface Address {
     addressDetail: string;
     region: string;
-    _id: string;
+    _id?: string;
 }
 
 export interface UserInfo {
@@ -34,4 +34,10 @@ export interface UserState {
     userInfo: UserInfo | null;
     loading: boolean;
     error: string | null;
+}
+
+export interface IUserUpdateInfo {
+    name: string,
+    phone_number: string,
+    addresses: Address
 }

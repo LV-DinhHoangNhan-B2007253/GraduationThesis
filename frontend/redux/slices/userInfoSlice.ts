@@ -16,7 +16,11 @@ export const userInfoSlice = createSlice({
         loading: false,
         error: null as string | null,
     } as UserState,
-    reducers: {},
+    reducers: {
+        setNullInfo: (state) => {
+            state.userInfo = null
+        }
+    },
     extraReducers: (builder) => {
         // get info của user và sử lí state
         builder.addCase(GetNSetUserInfo.pending, (state) => {
@@ -36,5 +40,5 @@ export const userInfoSlice = createSlice({
 
 
 
-export const { } = userInfoSlice.actions
+export const { setNullInfo } = userInfoSlice.actions
 export default userInfoSlice.reducer    

@@ -5,6 +5,9 @@ import "@/styles/globals.css";
 // components
 import Navbar from "@/components/Navbar";
 import Providers from "./provider";
+// slider
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 // faw icon
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -28,7 +31,7 @@ const basker = Baskervville({
 export const metadata: Metadata = {
   title: "Furniture Store",
   description: "Furniture online store",
-  icons: "./icon.png",
+  icons: "/icon.png",
 };
 
 export default function RootLayout({
@@ -41,7 +44,7 @@ export default function RootLayout({
       <html lang="en" className={basker.className}>
         <body className={`bg-light-bg dark:bg-dark-bg relative`}>
           <Providers>
-            <MainLayout>{children}</MainLayout>
+            {children}
             <ToastContainer
               autoClose={2000}
               position="top-right"
