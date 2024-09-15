@@ -4,6 +4,7 @@ import { DeleteOneProduct } from "@/services/product.service";
 import { faDollar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useEffect } from "react";
 import Slider from "react-slick";
 import { toast } from "react-toastify";
 
@@ -33,6 +34,8 @@ function ProductCard({
     slidesToScroll: 1,
     arrows: false,
   };
+
+  useEffect(() => {}, [product]);
 
   return (
     <div className="grid grid-cols-8 gap-2 items-start bg-light-modal-popup dark:bg-dark-modal-popup rounded shadow px-2 py-1">

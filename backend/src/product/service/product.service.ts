@@ -7,6 +7,7 @@ import { CategoryItem } from 'src/category-item/schema/CategoryItem.schema';
 import * as path from 'path';
 import * as fs from 'fs';
 import { User } from 'src/auth/schema/User.schema';
+import { normalizeName } from 'src/utils/normalize.util';
 @Injectable()
 export class ProductService {
     constructor(@InjectModel(Product.name) private ProductModel: Model<Product>,
@@ -215,6 +216,21 @@ export class ProductService {
                     error: "Internal server error"
                 }, HttpStatus.INTERNAL_SERVER_ERROR)
             }
+        }
+    }
+
+    async SearchProduct(query: string): Promise<Product[]> {
+        try {
+            const qry = normalizeName(query)
+            const products = await this.ProductModel.find({
+                $or: [
+                    { name: { $regex: qry, $options: 'i' }, },
+                    { sku: { $regex: qry, $options: 'i' } }
+                ]
+            }).exec()
+            return products
+        } catch (error) {
+            console.log("Search Product Error", error);
         }
     }
 

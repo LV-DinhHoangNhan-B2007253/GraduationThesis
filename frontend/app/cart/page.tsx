@@ -17,7 +17,7 @@ function Cart() {
 
   const fetchProductData = async () => {
     try {
-      const res = await GetProductInWishList(userInfo?._id as string);
+      const res = await GetProductInCart(userInfo?._id as string);
       setProducts(res);
     } catch (error) {
       toast.error(`${error}`);

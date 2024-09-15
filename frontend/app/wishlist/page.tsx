@@ -3,7 +3,10 @@
 import { IProduct } from "@/interfaces/product.interface";
 import MainLayout from "@/layouts/MainLayout";
 import { RootState } from "@/redux/store";
-import { GetProductInCart } from "@/services/product.service";
+import {
+  GetProductInCart,
+  GetProductInWishList,
+} from "@/services/product.service";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -14,7 +17,7 @@ function WishList() {
 
   const fetchProductData = async () => {
     try {
-      const res = await GetProductInCart(userInfo?._id as string);
+      const res = await GetProductInWishList(userInfo?._id as string);
       setProducts(res);
     } catch (error) {
       toast.error(`${error}`);

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { ProductService } from '../service/product.service';
 import { createProductDto } from '../dtios/createProduct.dto';
 import { v4 as uuidv4 } from 'uuid';
@@ -47,5 +47,10 @@ export class ProductController {
     @Post('/wishlist/:userId/add/:productId')
     AddProductToWishList(@Param('userId') userId: string, @Param('productId') productId: string) {
         return this.productService.AddToWishList(userId, productId)
+    }
+
+    @Get('/search')
+    SearchProducts(@Query('q') query: string) {
+        return this.productService.SearchProduct(query)
     }
 }

@@ -161,8 +161,8 @@ function ProductDetail(props: any) {
               </div>
               <div className="flex justify-end w-full">
                 <Link href={"#"}>
-                  <button className="uppercase flex-1 text-center p-1 bg-green-900 dark:bg-dark-bg-btn text-light-btn-text dark:text-dark-btn-text hover:bg-green-800 transition-all my-3">
-                    Buy Now
+                  <button className="uppercase flex-1 text-center px-2 py-1  bg-green-900 dark:bg-dark-bg-btn text-light-btn-text dark:text-dark-btn-text hover:bg-green-800 transition-all my-3 rounded-sm">
+                    Shop Now
                   </button>
                 </Link>
               </div>

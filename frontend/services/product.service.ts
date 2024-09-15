@@ -131,3 +131,23 @@ export const GetProductInWishList = async (userId: string) => {
         }
     }
 }
+
+export const SearchProduct = async (query: string) => {
+    try {
+        const res = await axios.get(`/product/search?q=${query}`)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}
+
+const ReSponseError = (error: any) => {
+    if (error.response) {
+        // Trả thông điệp lỗi từ server
+        return Promise.reject(error.response.data.error);
+    } else if (error.request) {
+        return Promise.reject('No response received from server');
+    } else {
+        return Promise.reject(error.error);
+    }
+}

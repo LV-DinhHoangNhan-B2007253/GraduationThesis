@@ -1,6 +1,10 @@
 "use client";
 
-import { faFilter, faRefresh } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFilter,
+  faRefresh,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
@@ -15,23 +19,20 @@ import {
   Tabs,
   useDisclosure,
 } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import CreateAreaForm from "./form/CreateAreaForm";
 import CreateCategoryForm from "./form/CreateCategoryForm";
 import CreateProductForm from "./form/CreateProductForm";
 import ProductCard from "./card/ProductCard";
 import { IProduct } from "@/interfaces/product.interface";
 import { toast } from "react-toastify";
-import { GetAllProducts } from "@/services/product.service";
+import { GetAllProducts, SearchProduct } from "@/services/product.service";
 
 function ProductManagement() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [filter, setFilter] = useState<string>("all");
   const [products, setProducts] = useState<IProduct[]>([]);
-
-  const handleSelectFilter = async (e: any) => {
-    setFilter(e);
-  };
+  const [filterOption, setFilterOption] = useState<string>("all");
+  const [query, setQuery] = useState<string>("");
 
   const fetchProducts = async () => {
     try {
@@ -52,6 +53,44 @@ function ProductManagement() {
     fetchProducts();
   };
 
+  // filter product => switchcase => lọc sản phẩm set vào state
+
+  const filterProduct = (filterOptions: any) => {
+    let updatedProduct = [...products];
+
+    switch (filterOptions) {
+      case "az":
+        updatedProduct = updatedProduct.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        break;
+      case "za":
+        updatedProduct = updatedProduct.sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+        break;
+      case "all":
+      default:
+        updatedProduct = [...products];
+        break;
+    }
+    setProducts(updatedProduct);
+  };
+
+  const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const select = e.target.value;
+    setFilterOption(select);
+    filterProduct(select);
+  };
+  const handleSearch = async () => {
+    try {
+      const result = await SearchProduct(query);
+      setProducts(result);
+    } catch (error) {
+      toast.error(`${error}`);
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -61,19 +100,34 @@ function ProductManagement() {
       <div className="flex justify-between items-center">
         {/* create new product */}
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex justify-between items-center gap-2">
             <Button
-              onPress={onOpen}
+              onClick={onOpen}
               className="px-1 py-2 text-center rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border"
             >
               + New
             </Button>
+
             <Button
-              onPress={handleProductDeleted}
+              onClick={handleProductDeleted}
               className="px-1 py-2 text-center rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border"
             >
               <FontAwesomeIcon icon={faRefresh} />
             </Button>
+            <div className="flex justify-between items-center gap-2 ">
+              <input
+                type="text"
+                name="search"
+                className=" border  w-full px-1 py-2 rounded  bg-light-input-field text-light-input-text  border-light-input-border dark:text-dark-input-text dark:bg-dark-input-field dark:border-dark-input-border"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              <FontAwesomeIcon
+                icon={faSearch}
+                onClick={handleSearch}
+                className="p-3 text-center cursor-pointer rounded border border-light-input-border dark:border-dark-border hover:bg-dark-bg-btn-hover transition-all hover:text-white"
+              />
+            </div>
           </div>
           <Modal
             isOpen={isOpen}
@@ -145,14 +199,11 @@ function ProductManagement() {
           <select
             name="filter"
             id="filter"
-            value={filter}
+            value={filterOption}
             className="px-1 py-2 text-center rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border w-36 capitalize"
-            onChange={(e) => handleSelectFilter(e.target.value)}
+            onChange={handleFilterChange}
           >
             <option value="all">All</option>
-            <option value="area">area</option>
-            <option value="group">group</option>
-            <option value="status">status</option>
             <option value="az">a-z</option>
             <option value="za">z-a</option>
           </select>

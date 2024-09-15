@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Baskervville } from "next/font/google";
+import { Baskervville, Inria_Sans } from "next/font/google";
 // style
 import "@/styles/globals.css";
 // components
@@ -19,7 +19,7 @@ import MainLayout from "@/layouts/MainLayout";
 config.autoAddCss = false;
 
 // fonts
-const basker = Baskervville({
+const basker = Inria_Sans({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
