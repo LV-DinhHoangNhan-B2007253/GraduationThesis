@@ -22,9 +22,9 @@ export const CreateNewProduct = async (categoryId: string, createProductForm: an
 
 }
 
-export const GetAllProducts = async () => {
+export const GetAllProducts = async (page: number, limit: number) => {
     try {
-        const res = await axios.get('/product/getAll')
+        const res = await axios.get(`/product/getAll?page=${page}&limit=${limit}`)
         return res.data
     } catch (error) {
         console.log(error);

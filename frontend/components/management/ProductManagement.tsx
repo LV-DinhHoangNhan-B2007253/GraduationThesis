@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  faArrowLeft,
+  faArrowRight,
   faFilter,
   faRefresh,
   faSearch,
@@ -33,18 +35,34 @@ function ProductManagement() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [filterOption, setFilterOption] = useState<string>("all");
   const [query, setQuery] = useState<string>("");
-
+  const limit: number = 10;
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState(1);
   const fetchProducts = async () => {
     try {
-      let data = await GetAllProducts();
-      data = data.filter(
+      const data = await GetAllProducts(page, limit);
+      let total = data.totalProduct;
+      let pro = data.products;
+      pro = pro.filter(
         (product: IProduct, index: any, self: any) =>
           index === self.findIndex((p: IProduct) => p._id === product._id)
       );
-      setProducts(data);
-      console.log(data);
+      setProducts(pro);
+      setTotalPages(Math.ceil(total / limit));
+      // setTotalPages(total);
     } catch (error) {
       toast.error("Cannot get");
+    }
+  };
+  const handlePrevPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
     }
   };
 
@@ -93,7 +111,7 @@ function ProductManagement() {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [page]);
 
   return (
     <section>
@@ -208,6 +226,17 @@ function ProductManagement() {
             <option value="za">z-a</option>
           </select>
         </div>
+      </div>
+      <div className="flex justify-between items-center p-2 ">
+        <button onClick={handlePrevPage} disabled={page === 1}>
+          &lt; Previous
+        </button>
+        <span>
+          Page {page} of {totalPages}
+        </span>
+        <button onClick={handleNextPage} disabled={page === totalPages}>
+          Next &gt;
+        </button>
       </div>
       {/* product list */}
       <div>

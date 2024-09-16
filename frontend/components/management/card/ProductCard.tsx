@@ -44,6 +44,7 @@ function ProductCard({
           {product.images.map((img, index) => (
             <img
               src={`${img}`}
+              // loading="lazy"
               alt={`image-${index}`}
               key={index}
               className="w-full rounded  cursor-pointer object-cover h-full max-h-[100px] sm:max-h-[150px]"
