@@ -53,4 +53,16 @@ export const AddCategoryItem = async (categoryId: string, Item: string) => {
             return Promise.reject(error.error);
         }
     }
+
+
+
+}
+export const GetAreaAndCategoryLabel = async () => {
+    try {
+        const res = await axios.get('/category/get/category/item/label')
+        return res.data
+    } catch (error) {
+        console.log(error);
+
+    }
 }

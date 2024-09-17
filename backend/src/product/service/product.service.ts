@@ -82,11 +82,12 @@ export class ProductService {
         }
     }
 
-    async GetAllProduct(): Promise<Product[]> {
+    async GetAllProduct(page: number, limit: number): Promise<{ products: Product[], totalProduct: number }> {
         try {
-            const products = await this.ProductModel.find().exec()
-
-            return products
+            const skip = (page - 1) * limit;
+            const products = await this.ProductModel.find().skip(skip).limit(limit).exec()
+            const totalProduct = await this.ProductModel.countDocuments().exec()
+            return { products, totalProduct }
         } catch (error) {
             console.log("Get All product Error", error);
 

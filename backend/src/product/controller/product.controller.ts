@@ -26,8 +26,8 @@ export class ProductController {
     }
 
     @Get('/getAll')
-    GetAllProducts() {
-        return this.productService.GetAllProduct()
+    GetAllProducts(@Query('page') page: number = 1, @Query('limit') limit: number = 30) {
+        return this.productService.GetAllProduct(page, limit)
     }
     @Get('/get/:_id')
     GetProductById(@Param() productId) {

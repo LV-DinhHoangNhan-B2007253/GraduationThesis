@@ -8,6 +8,7 @@ import { CategoryItemService } from 'src/category-item/service/categoryItem.serv
 import { normalizeName } from "../../utils/normalize.util"
 import { ProductService } from 'src/product/service/product.service';
 import { FileService } from './file.service';
+import path from 'path';
 
 @Injectable()
 export class CategoryService {
@@ -95,6 +96,19 @@ export class CategoryService {
             return listCategory
         } catch (error) {
             console.log();
+        }
+    }
+
+    async getCategoryAndItemsLabels(): Promise<Category[]> {
+        try {
+            const data = await this.CategoryModel.find().populate({
+                path: 'categoryItem',
+                select: '_id name',
+            }).select('-__v').exec()
+            return data
+        } catch (error) {
+            console.log(error);
+
         }
     }
 

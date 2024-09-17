@@ -16,10 +16,8 @@ export default function Home() {
 
   return (
     <MainLayout>
-      <div className="min-h-screen">
-        <h1>{userInfo?._id}</h1>
-        <div>asdasdssd</div>
-      </div>
+      <section className="min-h-screen">section 1</section>
+      <section className="min-h-screen">section 2</section>
     </MainLayout>
   );
 }

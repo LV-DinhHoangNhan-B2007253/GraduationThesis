@@ -44,4 +44,9 @@ export class CategoryController {
     GetAllCategory() {
         return this.CategoryService.getAllCategory()
     }
+
+    @Get('/get/category/item/label')
+    GetCategoryAndItemLabel() {
+        return this.CategoryService.getCategoryAndItemsLabels()
+    }
 }
