@@ -8,6 +8,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { User } from 'src/auth/schema/User.schema';
 import { normalizeName } from 'src/utils/normalize.util';
+import { error, log } from 'console';
 @Injectable()
 export class ProductService {
     constructor(@InjectModel(Product.name) private ProductModel: Model<Product>,
@@ -235,5 +236,54 @@ export class ProductService {
         }
     }
 
+
+    async GetProductsByCategoryItem(categoryItemId: string): Promise<CategoryItem> {
+        try {
+            const data = await this.CategoryItemModel.findById(categoryItemId).populate('products')
+            if (!data) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "Cannot get Product"
+                }, HttpStatus.NOT_FOUND)
+            }
+            return data
+        } catch (error) {
+            console.log("Get product by categoryItem Error", error);
+            if (error instanceof HttpException) {
+                throw error
+            } else {
+                throw new HttpException({
+                    status: HttpStatus.INTERNAL_SERVER_ERROR,
+                    error: "server error"
+                }, HttpStatus.INTERNAL_SERVER_ERROR)
+            }
+        }
+    }
+
+    async GetRelatedProduct(productId: string): Promise<Product[]> {
+        try {
+            const product = await this.ProductModel.findById(productId).exec();
+
+            let relatedProducts: Product[] = [];
+
+            const priceRange = 0.1 * product.price;
+            relatedProducts = await this.ProductModel.aggregate([
+                {
+                    $match: {
+                        price: { $gte: product.price - priceRange, $lte: product.price + priceRange },
+                        _id: { $ne: product._id },
+                    },
+                },
+                {
+                    $sample: { size: 7 },
+                },
+            ]).exec();
+
+            return relatedProducts
+        } catch (error) {
+            console.log("Get related product Error", error);
+
+        }
+    }
 
 }

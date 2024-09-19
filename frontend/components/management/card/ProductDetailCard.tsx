@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import Slider from "react-slick";
 import { toast } from "react-toastify";
 
-function ProductCard({
+function ProductDetailCard({
   product,
   onProductDeleted,
 }: {
@@ -90,4 +90,4 @@ function ProductCard({
   );
 }
 
-export default ProductCard;
+export default ProductDetailCard;

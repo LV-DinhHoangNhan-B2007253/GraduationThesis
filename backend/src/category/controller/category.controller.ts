@@ -49,4 +49,10 @@ export class CategoryController {
     GetCategoryAndItemLabel() {
         return this.CategoryService.getCategoryAndItemsLabels()
     }
+
+    @Get('/getOne/category/item/label/:_id')
+    GetOneCategoryItemLabel(@Param() categoryId: string) {
+
+        return this.CategoryService.getOneCategoryAndItemsLabelsById(categoryId)
+    }
 }

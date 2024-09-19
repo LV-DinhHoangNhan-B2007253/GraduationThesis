@@ -53,4 +53,15 @@ export class ProductController {
     SearchProducts(@Query('q') query: string) {
         return this.productService.SearchProduct(query)
     }
+    @Get('/byCategory/:_id')
+
+    GetProductsByCategoryItem(@Param() categoryItemId: string) {
+        return this.productService.GetProductsByCategoryItem(categoryItemId)
+    }
+
+
+    @Get('/:_id/related')
+    GetRelatedProduct(@Param() productId: string) {
+        return this.productService.GetRelatedProduct(productId)
+    }
 }

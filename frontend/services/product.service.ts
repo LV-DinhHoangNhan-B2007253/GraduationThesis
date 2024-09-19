@@ -151,3 +151,22 @@ const ReSponseError = (error: any) => {
         return Promise.reject(error.error);
     }
 }
+
+
+export const GetProductByCategory = async (categoryId: string) => {
+    try {
+        const res = await axios.get(`/product/byCategory/${categoryId}`)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}
+
+export const GetRelatedProducts = async (productId: string) => {
+    try {
+        const res = await axios.get(`/product/${productId}/related`)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}

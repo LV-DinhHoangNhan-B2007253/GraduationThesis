@@ -73,18 +73,18 @@ function Navbar() {
   };
 
   return (
-    <nav className="  bg-light-navbar-bg text-light-navbar-text dark:bg-dark-navbar-bg dark:text-dark-navbar-text shadow-sm  ">
+    <nav className="shadow-sm bg-light-navbar-bg text-light-navbar-text dark:bg-dark-navbar-bg dark:text-dark-navbar-text">
       {/* top nav */}
-      <div className=" border-b border-gray-200 flex justify-between items-center w-full sm:px-20 px-5 py-4 sm:py-8 gap-3 sm:gap-0">
+      <div className="flex items-center justify-between w-full gap-3 px-5 py-4 border-b border-gray-200 sm:px-20 sm:py-8 sm:gap-0">
         {/* search */}
-        <div className="sm:hidden flex-1">
+        <div className="flex-1 sm:hidden">
           <ThemeSwitch />
         </div>
-        <div className="flex justify-between items-center  relative flex-1">
-          <label htmlFor="search" className="absolute flex items-center  ">
+        <div className="relative flex items-center justify-between flex-1">
+          <label htmlFor="search" className="absolute flex items-center ">
             <FontAwesomeIcon
               icon={faSearch}
-              className="text-gray-500 dark:text-gray-400 border-r-1  p-2 cursor-pointer hover:bg-blue-600 hover:text-white"
+              className="p-2 text-gray-500 cursor-pointer dark:text-gray-400 border-r-1 hover:bg-blue-600 hover:text-white"
             />
           </label>
           <input
@@ -92,31 +92,29 @@ function Navbar() {
             name="search"
             id="search"
             placeholder="search anything..."
-            className="border  border-light-input-border text-light-input-text px-10 py-1 dark:text-dark-input-text dark:border-dark-input-border rounded-sm"
+            className="px-10 py-1 border rounded-sm border-light-input-border text-light-input-text dark:text-dark-input-text dark:border-dark-input-border"
           />
         </div>
         {/* brand name */}
         <Link
           href={"/"}
-          className="sm:block hidden text-light-primary-text text-3xl font-mono font-thin uppercase tracking-widest dark:text-dark-primary-text
-          hover:text-light-active hover:dark:text-dark-active transition-all bg-gradient-to-r 
-          "
+          className="hidden font-mono text-3xl font-thin tracking-widest uppercase transition-all sm:block text-light-primary-text dark:text-dark-primary-text hover:text-light-active hover:dark:text-dark-active bg-gradient-to-r "
         >
           AikaStore
         </Link>
         {/* cart, wishlish, avatar */}
         <div className="flex-1">
           {isLogin ? (
-            <div className="flex justify-end items-center gap-4 ">
+            <div className="flex items-center justify-end gap-4 ">
               <div className="hidden sm:block">
                 <ThemeSwitch />
               </div>
-              <div className="sm:flex justify-between items-center  gap-4 hidden">
+              <div className="items-center justify-between hidden gap-4 sm:flex">
                 <Tooltip content="Cart" color="foreground">
                   <Link href={"/cart"}>
                     <FontAwesomeIcon
                       icon={faShoppingBag}
-                      className="text-pink-600 hover:text-pink-800 transition-all cursor-pointer text-2xl"
+                      className="text-2xl text-pink-600 transition-all cursor-pointer hover:text-pink-800"
                     />
                   </Link>
                 </Tooltip>
@@ -125,7 +123,7 @@ function Navbar() {
                     <FontAwesomeIcon
                       icon={faHeart}
                       color=""
-                      className="text-pink-600 hover:text-pink-800 transition-all cursor-pointer text-2xl"
+                      className="text-2xl text-pink-600 transition-all cursor-pointer hover:text-pink-800"
                     />
                   </Link>
                 </Tooltip>
@@ -143,11 +141,11 @@ function Navbar() {
               </div>
             </div>
           ) : (
-            <div className="flex justify-end items-center ">
+            <div className="flex items-center justify-end ">
               <div>
                 <Link
                   href={"/auth/login"}
-                  className=" border bg-light-btn-bg text-light-btn-text border-light-element-border dark:border-dark-input-border px-3 py-1 hover:bg-orange-500 dark:text-dark-btn-text dark:bg-dark-bg-btn rounded-md"
+                  className="px-3 py-1 border rounded-md bg-light-btn-bg text-light-btn-text border-light-element-border dark:border-dark-input-border hover:bg-orange-500 dark:text-dark-btn-text dark:bg-dark-bg-btn"
                 >
                   Login
                 </Link>
@@ -159,24 +157,25 @@ function Navbar() {
       {/* bottom nav */}
       <div>
         <div className="relative">
-          <ul className="mx-64  justify-between items-center flex-wrap  py-4 top-0 hidden sm:flex">
+          <ul className="top-0 flex-wrap items-center justify-between hidden py-4 mx-64 sm:flex">
             {area.map((i) => (
               // view area nav
               <li
                 key={i._id}
+                className="z-50"
                 onMouseEnter={() => handleMouseEnter(i.name)}
                 onMouseLeave={handleMouseOut}
               >
                 <Link
                   href={`/area/${i._id}`}
-                  className="p-5 uppercase text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500 transition-all text-base font-light tracking-wider"
+                  className="p-5 text-base font-light tracking-wider uppercase transition-all text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500"
                 >
                   {i.name}
                 </Link>
                 {hoveredCategory === i.name && (
                   // view sub nav
-                  <div className="flex justify-between px-8 py-2  absolute  top-12 left-0 right-0 min-h-36 bg-light-modal-popup dark:bg-dark-modal-popup w-full">
-                    <ul className="flex justify-start gap-10 flex-wrap">
+                  <div className="absolute left-0 right-0 flex justify-between w-full px-8 py-2 top-12 min-h-36 bg-light-modal-popup dark:bg-dark-modal-popup ">
+                    <ul className="flex flex-wrap justify-start gap-10">
                       {i.categoryItem.map((c) => (
                         <li key={c._id} className="">
                           <Link
@@ -207,14 +206,16 @@ function Navbar() {
             <div className="w-full h-fit">
               <Slider {...settings}>
                 {area.map((i) => (
-                  <p className="p-5 uppercase text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500 transition-all text-base font-light tracking-wider">
-                    {i.name}
-                  </p>
+                  <Link href={`/area/${i._id}`}>
+                    <p className="p-5 text-base font-light tracking-wider uppercase transition-all text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500">
+                      {i.name}
+                    </p>
+                  </Link>
                 ))}
               </Slider>
             </div>
             <div className="flex justify-end">
-              <button className="block sm:hidden text-center ">
+              <button className="block text-center sm:hidden ">
                 {!openPanel ? (
                   <FontAwesomeIcon
                     icon={faBars}
@@ -246,13 +247,13 @@ function Navbar() {
                     onMouseEnter={() => handleMouseEnter(i.name)}
                     onMouseLeave={handleMouseOut}
                   >
-                    <p className="p-5 uppercase text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500 transition-all text-base font-light tracking-wider">
+                    <p className="p-5 text-base font-light tracking-wider uppercase transition-all text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500">
                       {i.name}
                     </p>
                     {hoveredCategory === i.name && (
-                      <div className="absolute left-36 top-12 bottom-0 mt-2 bg-light-modal-popup dark:bg-dark-modal-popup w-full sm:w-64 lg:w-96 rounded shadow-lg">
-                        <div className="flex flex-col sm:flex-row justify-between px-4 py-2">
-                          <ul className="flex flex-col sm:flex-row gap-4 sm:gap-10">
+                      <div className="absolute bottom-0 w-full mt-2 rounded shadow-lg left-36 top-12 bg-light-modal-popup dark:bg-dark-modal-popup sm:w-64 lg:w-96">
+                        <div className="flex flex-col justify-between px-4 py-2 sm:flex-row">
+                          <ul className="flex flex-col gap-4 sm:flex-row sm:gap-10">
                             {i.categoryItem.map((c) => (
                               <li key={c._id} className="">
                                 <Link

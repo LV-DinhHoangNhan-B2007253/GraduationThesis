@@ -16,8 +16,8 @@ export class Product extends Document {
     sku: string;
 
 
-    @Prop({ type: Types.ObjectId, ref: 'Category' })
-    category_id: Types.ObjectId;
+    // @Prop({ type: Types.ObjectId, ref: 'Category' })
+    // category_id: Types.ObjectId;
 
     @Prop([String])
     images: string[];

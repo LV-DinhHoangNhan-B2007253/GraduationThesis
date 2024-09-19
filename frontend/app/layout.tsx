@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Baskervville, Inria_Sans } from "next/font/google";
+import { Baskervville, Gowun_Batang, Inria_Sans } from "next/font/google";
 // style
 import "@/styles/globals.css";
 // components
@@ -19,10 +19,10 @@ import MainLayout from "@/layouts/MainLayout";
 config.autoAddCss = false;
 
 // fonts
-const basker = Inria_Sans({
+const basker = Gowun_Batang({
   subsets: ["latin"],
   weight: "400",
-  style: ["normal", "italic"],
+  style: ["normal"],
   display: "swap",
   preload: true,
 });

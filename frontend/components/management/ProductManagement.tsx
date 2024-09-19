@@ -25,7 +25,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import CreateAreaForm from "./form/CreateAreaForm";
 import CreateCategoryForm from "./form/CreateCategoryForm";
 import CreateProductForm from "./form/CreateProductForm";
-import ProductCard from "./card/ProductCard";
+import ProductDetailCard from "./card/ProductDetailCard";
 import { IProduct } from "@/interfaces/product.interface";
 import { toast } from "react-toastify";
 import { GetAllProducts, SearchProduct } from "@/services/product.service";
@@ -100,6 +100,7 @@ function ProductManagement() {
     setFilterOption(select);
     filterProduct(select);
   };
+
   const handleSearch = async () => {
     try {
       const result = await SearchProduct(query);
@@ -115,35 +116,35 @@ function ProductManagement() {
 
   return (
     <section>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         {/* create new product */}
         <div>
-          <div className="flex justify-between items-center gap-2">
+          <div className="flex items-center justify-between gap-2">
             <Button
               onClick={onOpen}
-              className="px-1 py-2 text-center rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border"
+              className="px-1 py-2 text-center border rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border"
             >
               + New
             </Button>
 
             <Button
               onClick={handleProductDeleted}
-              className="px-1 py-2 text-center rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border"
+              className="px-1 py-2 text-center border rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border"
             >
               <FontAwesomeIcon icon={faRefresh} />
             </Button>
-            <div className="flex justify-between items-center gap-2 ">
+            <div className="flex items-center justify-between gap-2 ">
               <input
                 type="text"
                 name="search"
-                className=" border  w-full px-1 py-2 rounded  bg-light-input-field text-light-input-text  border-light-input-border dark:text-dark-input-text dark:bg-dark-input-field dark:border-dark-input-border"
+                className="w-full px-1 py-2 border rounded bg-light-input-field text-light-input-text border-light-input-border dark:text-dark-input-text dark:bg-dark-input-field dark:border-dark-input-border"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
               <FontAwesomeIcon
                 icon={faSearch}
                 onClick={handleSearch}
-                className="p-3 text-center cursor-pointer rounded border border-light-input-border dark:border-dark-border hover:bg-dark-bg-btn-hover transition-all hover:text-white"
+                className="p-3 text-center transition-all border rounded cursor-pointer border-light-input-border dark:border-dark-border hover:bg-dark-bg-btn-hover hover:text-white"
               />
             </div>
           </div>
@@ -158,7 +159,7 @@ function ProductManagement() {
               {(onClose) => (
                 <>
                   <ModalHeader className="flex flex-col gap-1">
-                    <p className="text-center w-full"> Add New Product</p>
+                    <p className="w-full text-center"> Add New Product</p>
                   </ModalHeader>
                   <ModalBody>
                     <div className="px-3">
@@ -179,21 +180,21 @@ function ProductManagement() {
                         }}
                       >
                         <Tab title="New Area" key="area">
-                          <Card className="rounded-lg w-full bg-light-modal-popup dark:bg-dark-modal-popup">
+                          <Card className="w-full rounded-lg bg-light-modal-popup dark:bg-dark-modal-popup">
                             <CardBody>
                               <CreateAreaForm />
                             </CardBody>
                           </Card>
                         </Tab>
                         <Tab title="New Category" key="category">
-                          <Card className="rounded-lg w-full bg-light-modal-popup dark:bg-dark-modal-popup">
+                          <Card className="w-full rounded-lg bg-light-modal-popup dark:bg-dark-modal-popup">
                             <CardBody>
                               <CreateCategoryForm />
                             </CardBody>
                           </Card>
                         </Tab>
                         <Tab title="New Product" key="product">
-                          <Card className="rounded-lg w-full bg-light-modal-popup dark:bg-dark-modal-popup">
+                          <Card className="w-full rounded-lg bg-light-modal-popup dark:bg-dark-modal-popup">
                             <CardBody>
                               <CreateProductForm />
                             </CardBody>
@@ -218,7 +219,7 @@ function ProductManagement() {
             name="filter"
             id="filter"
             value={filterOption}
-            className="px-1 py-2 text-center rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border w-36 capitalize"
+            className="px-1 py-2 text-center capitalize border rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border w-36"
             onChange={handleFilterChange}
           >
             <option value="all">All</option>
@@ -227,7 +228,7 @@ function ProductManagement() {
           </select>
         </div>
       </div>
-      <div className="flex justify-between items-center p-2 ">
+      <div className="flex items-center justify-between p-2 ">
         <button onClick={handlePrevPage} disabled={page === 1}>
           &lt; Previous
         </button>
@@ -242,7 +243,7 @@ function ProductManagement() {
       <div>
         {products.map((prod) => (
           <div className="my-2">
-            <ProductCard
+            <ProductDetailCard
               product={prod}
               key={prod._id}
               onProductDeleted={handleProductDeleted}

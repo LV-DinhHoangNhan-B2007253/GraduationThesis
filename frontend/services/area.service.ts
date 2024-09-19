@@ -66,3 +66,13 @@ export const GetAreaAndCategoryLabel = async () => {
 
     }
 }
+
+export const GetOneAreaAndCategoryLabel = async (categoryId: string) => {
+    try {
+        const res = await axios.get(`/category/getOne/category/item/label/${categoryId}`)
+        return res.data
+    } catch (error) {
+        console.log(error);
+
+    }
+}

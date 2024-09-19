@@ -19,6 +19,12 @@ export class CategoryService {
 
 
 
+    /**
+     * 
+     * @param createCategory category form
+     * @param bannerPath image bath
+     * @returns message: string
+     */
     async createCategory(createCategory: CreateCategoryDto, bannerPath: string): Promise<any> {
         try {
             const normalize = normalizeName(createCategory.name)
@@ -112,4 +118,20 @@ export class CategoryService {
         }
     }
 
+    async getOneCategoryAndItemsLabelsById(categoryId): Promise<Category> {
+        try {
+            const data = await this.CategoryModel.findById(categoryId).populate({
+                path: 'categoryItem',
+                populate: {
+                    path: 'products'
+                }
+            }).select('-__v').exec()
+            return data
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
 }
+

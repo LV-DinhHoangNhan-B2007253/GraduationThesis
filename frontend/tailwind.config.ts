@@ -15,7 +15,9 @@ const config: Config = {
         "SignUp-light-bg": "url('/RegisterBgImage.jpg')",
         "SignUp-dark-bg": "url('/RegisDarkBg.jpg')",
         "Loading-img": "url('/pageLoading.jpg')",
-        "PageNotFound-img": "url('/pageNotFound.jpg')"
+        "PageNotFound-img": "url('/pageNotFound.jpg')",
+        'Hero1': "url('/Hero1.webp')",
+        'Hero2': "url('/Hero2.webp')",
       },
       colors: {
 
@@ -49,7 +51,7 @@ const config: Config = {
         'light-card-shadow': 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
         'light-card-border': '#E0E0E0',
 
-        'light-footer-bg': '#F7F7F7 ',
+        'light-footer-bg': '#ffffff ',
         'light-footer-text': '#666666',
         'light-footer-link': '#007BFF',
         'light-active': '#3d405b',
