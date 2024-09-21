@@ -34,4 +34,21 @@ export class UserController {
     async getWishListProducts(@Param('userId') userId: string) {
         return this.userService.getWishlistProducts(userId);
     }
+
+    @Patch('/:userId/cart/remove/:productId')
+    RemoveProductInCart(@Param('userId') userId: string, @Param('productId') productId: string) {
+        return this.userService.removeProductInCart(userId, productId)
+    }
+
+
+    @Patch('/:userId/wishlist/remove/:productId')
+    RemoveProductInWishList(@Param('userId') userId: string, @Param('productId') productId: string) {
+        return this.userService.removeProductInWishList(userId, productId)
+    }
+
+
+    @Patch('/:userId/cart/update/:productId')
+    UpdateProductQuantityInCart(@Param('userId') userId: string, @Param('productId') productId: string, @Body() updateBody: { updateQuantity: number }) {
+        return this.userService.updateProductQuantityInCart(userId, productId, updateBody)
+    }
 }

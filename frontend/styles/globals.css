@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body{
     padding: 0 !important;
     margin: 0 !important;
     overflow-y: auto !important; /* Cho phép thanh cuộn dọc */
-    overflow-x: hidden; /* Ẩn thanh cuộn ngang */
+    overflow-x: hidden !important; /* Ẩn thanh cuộn ngang */
+    max-width: 100%;
+    box-sizing: border-box;
 }
+

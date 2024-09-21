@@ -1,7 +1,7 @@
 "use client";
 
 import Spinner from "@/components/Spinner";
-import { IProduct } from "@/interfaces/product.interface";
+import { IProduct, IUpdateProductForm } from "@/interfaces/product.interface";
 import MainLayout from "@/layouts/MainLayout";
 import { RootState } from "@/redux/store";
 import {
@@ -9,6 +9,7 @@ import {
   AddToWishList,
   GetOneProduct,
   GetRelatedProducts,
+  UpdateProductInfo,
 } from "@/services/product.service";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,9 +32,18 @@ function ProductDetail(props: any) {
     autoplaySpeed: 2000,
   };
   const productId = props.params.slug;
-  const [product, setProduct] = useState<IProduct>();
   const { userInfo } = useSelector((state: RootState) => state.user);
   const [relatedProduct, setRelatedProduct] = useState<IProduct[]>();
+  const [product, setProduct] = useState<IProduct>();
+  const [updateProductForm, setUpdateProductForm] =
+    useState<IUpdateProductForm>({
+      name: "",
+      price: 0,
+      description: "",
+      sku: "",
+      stock_quantity: 0,
+      isOutStanding: false,
+    });
 
   const fetchProductData = async () => {
     try {
@@ -42,6 +52,16 @@ function ProductDetail(props: any) {
 
       setProduct(res);
       setRelatedProduct(related);
+      if (res) {
+        setUpdateProductForm({
+          name: res.name,
+          price: res.price,
+          description: res.description,
+          sku: res.sku,
+          stock_quantity: res.stock_quantity,
+          isOutStanding: res.isOutStanding,
+        });
+      }
     } catch (error) {
       toast.error(`${error}`);
     }
@@ -62,6 +82,30 @@ function ProductDetail(props: any) {
       toast.success(`${res.message}`);
     } catch (error) {
       toast.warning(`${error}`);
+    }
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setUpdateProductForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleUpdateProduct = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const data = await UpdateProductInfo(productId, updateProductForm);
+      if (data) {
+        toast.success(`${data.message}`);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -101,7 +145,11 @@ function ProductDetail(props: any) {
                 <div className="border-b border-light-element-border dark:border-dark-card-border">
                   <div className="flex items-center justify-between">
                     <p>QTY: {product.stock_quantity}</p>
-                    <p>In stock</p>
+                    {product.stock_quantity >= 1 ? (
+                      <p>In stock</p>
+                    ) : (
+                      <p>Sold out</p>
+                    )}
                   </div>
                   <div>
                     <button
@@ -199,6 +247,108 @@ function ProductDetail(props: any) {
                 ))}
               </div>
             </div>
+            {/* edit product by admin */}
+            {userInfo?.role == 0 && (
+              <div className="mt-8">
+                <form onSubmit={handleUpdateProduct}>
+                  <table className="w-full table-auto border-collapse sm:block hidden ">
+                    <thead>
+                      <tr className="bg-light-modal-popup dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text">
+                        <th className="border px-4 py-2 text-left">Name</th>
+                        <th className="border px-4 py-2 text-left">Price</th>
+                        <th className="border px-4 py-2 text-left">Sku</th>
+                        <th className="border px-4 py-2 text-left">
+                          Description
+                        </th>
+
+                        <th className="border px-4 py-2 text-left">Quantity</th>
+                        <th className="border px-4 py-2 text-left">
+                          Set New Arrival
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">
+                          <input
+                            onChange={handleInputChange}
+                            type="text"
+                            name="name"
+                            id="updateName"
+                            required
+                            value={updateProductForm.name}
+                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none "
+                          />
+                        </td>
+                        <td className="border px-4 py-2 ">
+                          <input
+                            onChange={handleInputChange}
+                            type="text"
+                            name="price"
+                            id="updatePrice"
+                            required
+                            value={updateProductForm.price}
+                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                          />
+                        </td>
+                        <td className="border px-4 py-2">
+                          <input
+                            type="text"
+                            onChange={handleInputChange}
+                            name="sku"
+                            id="updateSku"
+                            required
+                            value={updateProductForm.sku}
+                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                          />
+                        </td>
+                        <td className="border px-4 py-2">
+                          <textarea
+                            onChange={handleInputChange}
+                            id="updateDesc"
+                            name="description"
+                            cols={40}
+                            rows={4}
+                            value={updateProductForm.description}
+                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                          />
+                        </td>
+                        <td className="border px-4 py-2">
+                          <input
+                            type="number"
+                            onChange={handleInputChange}
+                            name="stock_quantity"
+                            id="updateQuantity"
+                            min={0}
+                            value={updateProductForm.stock_quantity}
+                            required
+                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                          />
+                        </td>
+                        <td className="border px-4 py-2">
+                          <select
+                            name="isOutStanding"
+                            onChange={handleInputChange}
+                            id="isOutStanding"
+                            value={updateProductForm.isOutStanding ? 1 : 0}
+                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                          >
+                            <option value={1}>Yes</option>
+                            <option value={0}>No</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 text-center rounded-md bg-green-700 hover:bg-green-600 transition duration-300 text-white my-4"
+                  >
+                    Update
+                  </button>
+                </form>
+              </div>
+            )}
           </div>
         ) : (
           <Spinner />

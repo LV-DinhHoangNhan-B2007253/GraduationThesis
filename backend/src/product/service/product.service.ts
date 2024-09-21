@@ -2,13 +2,14 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Product } from '../schema/Product.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { createProductDto } from '../dtios/createProduct.dto';
+import { createProductDto } from '../dtos/createProduct.dto';
 import { CategoryItem } from 'src/category-item/schema/CategoryItem.schema';
 import * as path from 'path';
 import * as fs from 'fs';
 import { User } from 'src/auth/schema/User.schema';
-import { normalizeName } from 'src/utils/normalize.util';
+import { normalizeName, responseError } from 'src/utils/normalize.util';
 import { error, log } from 'console';
+import { updateProductDto } from '../dtos/updateProduct.dos';
 @Injectable()
 export class ProductService {
     constructor(@InjectModel(Product.name) private ProductModel: Model<Product>,
@@ -133,8 +134,6 @@ export class ProductService {
                     error: `Cannot Found Product`
                 }, HttpStatus.NOT_FOUND)
             }
-
-
             return foundProduct
         } catch (error) {
             console.log("Get one product error", error);
@@ -286,4 +285,33 @@ export class ProductService {
         }
     }
 
+
+    async UpdateProductInfo(updateProductBody: updateProductDto, productId: string) {
+        try {
+            const foundProduct = await this.ProductModel.findByIdAndUpdate(productId, updateProductBody)
+            if (!foundProduct) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "Product not found!"
+
+                }, HttpStatus.NOT_FOUND)
+            }
+            return { message: "Update success!" }
+        } catch (error) {
+            console.log("Update product Error: ", error);
+            responseError(error)
+        }
+    }
+
+    async getOutstandingProducts(): Promise<Product[] | []> {
+        try {
+            const products = await this.ProductModel
+                .find({ isOutStanding: true }) // Lấy các sản phẩm có isOutStanding là true
+                .exec();
+            return products;
+        } catch (error) {
+            console.log("get outstanding product Error", error);
+            responseError(error)
+        }
+    }
 }

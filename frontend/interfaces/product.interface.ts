@@ -21,3 +21,18 @@ export interface ICreateProduct {
     description: string
     stock_quantity: number
 }
+
+export interface ICartItem {
+    product_id: string,
+    quantity: number
+    _id: string
+}
+
+export interface IUpdateProductForm {
+    name: string | undefined,
+    price: number | undefined
+    description: string | undefined,
+    stock_quantity: number | undefined,
+    sku: string | undefined
+    isOutStanding: boolean
+}

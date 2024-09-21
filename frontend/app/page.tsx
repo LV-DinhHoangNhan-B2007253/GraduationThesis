@@ -40,6 +40,7 @@ export default function Home() {
     adaptiveHeight: true,
     autoplay: true,
     autoplaySpeed: 2000,
+    arrows: false,
     responsive: [
       {
         breakpoint: 640,
@@ -50,6 +51,7 @@ export default function Home() {
           dots: false,
           autoplay: true,
           autoplaySpeed: 2000,
+          arrows: false,
         },
       },
     ],

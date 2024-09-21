@@ -1,5 +1,4 @@
-import { Type } from "@nestjs/common"
-import { ObjectId } from "mongoose"
+
 
 export class createProductDto {
     name: string

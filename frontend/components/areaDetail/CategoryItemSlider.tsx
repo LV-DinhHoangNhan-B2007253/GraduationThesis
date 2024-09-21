@@ -11,7 +11,7 @@ function CategoryItemSlider({
   const settings = {
     dots: false,
     infinite: true,
-    speed: 200,
+    speed: 50,
     slidesToShow:
       (categoryList?.length ?? 0) < 4 ? categoryList?.length ?? 0 : 4,
     slidesToScroll: 1,

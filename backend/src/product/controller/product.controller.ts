@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { ProductService } from '../service/product.service';
-import { createProductDto } from '../dtios/createProduct.dto';
+import { createProductDto } from '../dtos/createProduct.dto';
 import { v4 as uuidv4 } from 'uuid';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { updateProductDto } from '../dtos/updateProduct.dos';
 
 @Controller('api/product')
 export class ProductController {
@@ -31,6 +32,7 @@ export class ProductController {
     }
     @Get('/get/:_id')
     GetProductById(@Param() productId) {
+
         return this.productService.GetOneProduct(productId)
     }
 
@@ -63,5 +65,15 @@ export class ProductController {
     @Get('/:_id/related')
     GetRelatedProduct(@Param() productId: string) {
         return this.productService.GetRelatedProduct(productId)
+    }
+    @Get('/outstanding')
+    GetOutStandingProduct() {
+        return this.productService.getOutstandingProducts()
+    }
+
+    @Patch('/update/:_id')
+    UpdateProductInfo(@Param() productId: string, @Body() updateProductBody: updateProductDto) {
+
+        return this.productService.UpdateProductInfo(updateProductBody, productId)
     }
 }

@@ -5,6 +5,7 @@ import {
   faBars,
   faBurger,
   faClose,
+  faHome,
   faSearch,
   faShoppingBag,
 } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +16,13 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import DefaultAvatar from "@/public/default-avatar.png";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { Accordion, AccordionItem, Avatar, Tooltip } from "@nextui-org/react";
+import {
+  Accordion,
+  AccordionItem,
+  Avatar,
+  button,
+  Tooltip,
+} from "@nextui-org/react";
 import ThemeSwitch from "./ThemeSwitch";
 import { GetAreaAndCategoryLabel } from "@/services/area.service";
 import SlidingPanel from "react-sliding-side-panel";
@@ -36,7 +43,7 @@ function Navbar() {
   const { isLogin } = useSelector((state: RootState) => state.userLoginState);
   const { userInfo } = useSelector((state: RootState) => state.user);
   const [area, setArea] = useState<INavbarArea[]>([]);
-  const [category, setCategory] = useState<INavbarCategory[]>([]);
+  // const [category, setCategory] = useState<INavbarCategory[]>([]);
   const [subNav, setSubNav] = useState<boolean>(false);
   const [hoveredCategory, setHoveredCategory] = useState<string>("");
   const [openPanel, setOpenPanel] = useState<boolean>(false);
@@ -69,31 +76,32 @@ function Navbar() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    arrows: true,
+    arrows: false,
   };
 
   return (
-    <nav className="shadow-sm bg-light-navbar-bg text-light-navbar-text dark:bg-dark-navbar-bg dark:text-dark-navbar-text">
+    <nav className="shadow-sm bg-light-navbar-bg text-light-navbar-text dark:bg-dark-navbar-bg dark:text-dark-navbar-text sticky z-[3000] top-0">
       {/* top nav */}
       <div className="flex items-center justify-between w-full gap-3 px-5 py-4 border-b border-gray-200 sm:px-20 sm:py-8 sm:gap-0">
         {/* search */}
-        <div className="flex-1 sm:hidden">
+        <div>
           <ThemeSwitch />
         </div>
-        <div className="relative flex items-center justify-between flex-1">
-          <label htmlFor="search" className="absolute flex items-center ">
-            <FontAwesomeIcon
-              icon={faSearch}
-              className="p-2 text-gray-500 cursor-pointer dark:text-gray-400 border-r-1 hover:bg-blue-600 hover:text-white"
-            />
-          </label>
-          <input
-            type="text"
-            name="search"
-            id="search"
-            placeholder="search anything..."
-            className="px-10 py-1 border rounded-sm border-light-input-border text-light-input-text dark:text-dark-input-text dark:border-dark-input-border"
-          />
+        {userInfo?.role === 0 && (
+          <Link
+            href={"/management"}
+            className="hidden sm:block text-sm text-light-text-link-color dark:text-dark-link hover:underline uppercase p-2 border border-gray-200 rounded"
+          >
+            Go to admin page
+          </Link>
+        )}
+        <div className="relative flex items-center sm:justify-center flex-1 justify-start">
+          <Link
+            href={"/"}
+            className=" font-mono sm:hidden sm:text-3xl text-2xl font-thin tracking-widest uppercase transition-all  text-light-primary-text dark:text-dark-primary-text hover:text-light-active hover:dark:text-dark-active bg-gradient-to-r "
+          >
+            <FontAwesomeIcon icon={faHome} />
+          </Link>
         </div>
         {/* brand name */}
         <Link
@@ -106,10 +114,7 @@ function Navbar() {
         <div className="flex-1">
           {isLogin ? (
             <div className="flex items-center justify-end gap-4 ">
-              <div className="hidden sm:block">
-                <ThemeSwitch />
-              </div>
-              <div className="items-center justify-between hidden gap-4 sm:flex">
+              <div className="items-center justify-between  gap-4 flex">
                 <Tooltip content="Cart" color="foreground">
                   <Link href={"/cart"}>
                     <FontAwesomeIcon

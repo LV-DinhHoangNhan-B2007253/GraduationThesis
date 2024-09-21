@@ -1,5 +1,7 @@
 "use client";
 
+import EmptyProductList from "@/components/EmptyProductList";
+import WishlistProductCard from "@/components/wishlist/WishlistProductCard";
 import { IProduct } from "@/interfaces/product.interface";
 import MainLayout from "@/layouts/MainLayout";
 import { RootState } from "@/redux/store";
@@ -13,32 +15,43 @@ import { toast } from "react-toastify";
 
 function WishList() {
   const { userInfo } = useSelector((state: RootState) => state.user);
-  const [products, setProducts] = useState<IProduct[]>();
+  const [productIdList, setProductIdList] = useState<string[]>();
 
   const fetchProductData = async () => {
     try {
       const res = await GetProductInWishList(userInfo?._id as string);
-      setProducts(res);
+      if (res) {
+        setProductIdList(res);
+      }
     } catch (error) {
       toast.error(`${error}`);
     }
   };
+  const updateCart = (productId: string) => {
+    setProductIdList((prevCart) =>
+      prevCart?.filter((item) => item.toString() !== productId)
+    );
+    // window.location.reload();
+  };
+
   useEffect(() => {
     fetchProductData();
-  }, [userInfo?._id]);
+  }, []);
   return (
     <MainLayout>
-      {products ? (
-        <div>
-          {products.map((item) => (
-            <div>
-              <p>{item.name}</p>
-              <p>{item.stock_quantity}</p>
-            </div>
+      {productIdList && productIdList.length > 0 ? (
+        <div className="min-h-[80%]">
+          {productIdList.map((id) => (
+            <WishlistProductCard
+              productId={id}
+              userId={userInfo?._id as string}
+              onDelete={updateCart}
+              key={id}
+            />
           ))}
         </div>
       ) : (
-        <p>empty</p>
+        <EmptyProductList />
       )}
     </MainLayout>
   );

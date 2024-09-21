@@ -170,3 +170,51 @@ export const GetRelatedProducts = async (productId: string) => {
         ReSponseError(error)
     }
 }
+
+// todo
+
+export const RemoveProductInCart = async (userId: string, productId: string) => {
+    try {
+        const res = await axios.patch(`/user/${userId}/cart/remove/${productId}`)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}
+
+export const RemoveProductInWishList = async (userId: string, productId: string) => {
+    try {
+        const res = await axios.patch(`/user/${userId}/wishlist/remove/${productId}`)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}
+
+export const UpdateProductQuantityInCart = async (userId: string, productId: string, updateBody: { updateQuantity: number }) => {
+    try {
+        const res = await axios.patch(`/user/${userId}/cart/update/${productId}`, updateBody)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}
+
+
+export const UpdateProductInfo = async (productId: string, updateProductForm: any) => {
+    try {
+        const res = await axios.patch(`/product/update/${productId}`, updateProductForm)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}
+
+export const GetOutStandingProducts = async () => {
+    try {
+        const res = await axios.get('/product/outstanding')
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}

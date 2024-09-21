@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { error } from 'console';
 import { Product } from 'src/product/schema/Product.schema';
+import { responseError } from 'src/utils/normalize.util';
 
 @Injectable()
 export class UserService {
@@ -55,17 +56,17 @@ export class UserService {
         }
     }
 
-    async getCartProducts(userId: string): Promise<Product[]> {
+    async getCartProducts(userId: string): Promise<any> {
         try {
-            const user = await this.userModel.findById(userId).populate('cart.product_id'); // Thay đổi 'productId' theo cách bạn lưu trữ sản phẩm trong giỏ hàng
+            const user = await this.userModel.findById(userId);
             if (!user) {
                 throw new HttpException({
                     status: HttpStatus.NOT_FOUND,
                     error: "User not found"
                 }, HttpStatus.NOT_FOUND)
             }
-            const productIds = user.cart.map(item => item.product_id); // Giả sử giỏ hàng lưu trữ sản phẩm bằng ObjectId
-            return this.productModel.find({ _id: { $in: productIds } }).exec();
+
+            return user.cart
         } catch (error) {
             if (error instanceof HttpException) {
                 throw error;
@@ -78,17 +79,16 @@ export class UserService {
         }
     }
 
-    async getWishlistProducts(userId: string): Promise<Product[]> {
+    async getWishlistProducts(userId: string): Promise<any> {
         try {
-            const user = await this.userModel.findById(userId).populate('wishlist');
+            const user = await this.userModel.findById(userId);
             if (!user) {
                 throw new HttpException({
                     status: HttpStatus.NOT_FOUND,
                     error: "User not found"
                 }, HttpStatus.NOT_FOUND)
             }
-            const productIds = user.wishlist;
-            return this.productModel.find({ _id: { $in: productIds } }).exec();
+            return user.wishlist
         } catch (error) {
             if (error instanceof HttpException) {
                 throw error;
@@ -98,6 +98,94 @@ export class UserService {
                     error: 'An unexpected error occurred',
                 }, HttpStatus.INTERNAL_SERVER_ERROR);
             }
+        }
+    }
+
+    async removeProductInCart(userId: string, productId: string): Promise<any> {
+        try {
+            const user = await this.userModel.findById(userId)
+            if (!user) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "user not found"
+                }, HttpStatus.NOT_FOUND)
+            }
+            user.cart = user.cart.filter(
+                (item) => item.product_id.toString() !== productId,
+            );
+            await user.save();
+            return { message: 'Removed!' };
+        } catch (error) {
+            console.log("remove product in cart Error", error);
+
+            responseError(error)
+        }
+    }
+
+    async removeProductInWishList(userId: string, productId: string): Promise<any> {
+        try {
+            const user = await this.userModel.findById(userId)
+            if (!user) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "user not found"
+                }, HttpStatus.NOT_FOUND)
+            }
+            user.wishlist = user.wishlist.filter(
+                (item) => item.toString() !== productId,
+            );
+            await user.save();
+            return { message: 'Removed!' };
+        } catch (error) {
+            console.log("remove product in cart Error", error);
+
+            responseError(error)
+        }
+    }
+
+    async updateProductQuantityInCart(userId: string, productId: string, updateBody: { updateQuantity: number }) {
+        try {
+            const user = await this.userModel.findById(userId)
+            if (!user) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "user not found"
+                }, HttpStatus.NOT_FOUND)
+            }
+            // Tìm sản phẩm trong giỏ hàng
+            const cartItemIndex = user.cart.findIndex(
+                (item) => item.product_id.toString() == productId
+            );
+
+
+
+            if (cartItemIndex == -1) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "Product not found in cart"
+                }, HttpStatus.NOT_FOUND);
+            }
+            // Cập nhật số lượng sản phẩm
+            // if (updateBody.updateQuantity <= 0) {
+            //     // Nếu số lượng <= 0, xóa sản phẩm khỏi giỏ hàng
+            //     user.cart.splice(cartItemIndex, 1);
+            // } else {
+            //     // Nếu số lượng > 0, cập nhật số lượng
+            //     user.cart[cartItemIndex].quantity = Number(updateBody.updateQuantity);
+            // }
+            user.cart[cartItemIndex].quantity = Number(updateBody.updateQuantity);
+
+            // Lưu thay đổi vào database
+            await user.save();
+            return {
+                message: updateBody.updateQuantity <= 0
+                    ? "Product removed from cart"
+                    : "Product quantity updated successfully",
+            };
+        } catch (error) {
+            console.log("Update product quantity in cart error", error);
+            responseError(error)
+
         }
     }
 }
