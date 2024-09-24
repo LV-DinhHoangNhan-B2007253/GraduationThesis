@@ -1,4 +1,5 @@
 'use client'
+import { EXPORT_DETAIL } from 'next/dist/shared/lib/constants';
 import axios from './axios.service'
 import { ILoginFrom, IRegisterForm } from '@/interfaces/auth.interface';
 
@@ -47,3 +48,12 @@ export const GetUserInfo = async () => {
 }
 
 
+export const GetOneUserById = async (userId: string) => {
+    try {
+        const res = await axios.get(`/user/getOne/${userId}`)
+        return res.data
+    } catch (error) {
+        console.log(error);
+
+    }
+}

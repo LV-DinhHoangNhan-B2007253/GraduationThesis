@@ -314,4 +314,31 @@ export class ProductService {
             responseError(error)
         }
     }
+
+    // handle with product quantitu
+    async minusProductQuantity(productId: string, minusQuantity: number): Promise<boolean> {
+        try {
+            let product = await this.ProductModel.findById(productId)
+            if (!product) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "Cannot found product"
+                }, HttpStatus.NOT_FOUND)
+            }
+            if (product.stock_quantity < minusQuantity) {
+                throw new HttpException({
+                    status: HttpStatus.BAD_REQUEST,
+                    error: `Cannot minus quantity this product bescause instock just have ${product.stock_quantity}  product!`
+                }, HttpStatus.BAD_REQUEST)
+
+            }
+            product.stock_quantity = product.stock_quantity - minusQuantity
+            await product.save()
+            return true
+        } catch (error) {
+            console.log("Minus product quantity Error", error);
+            responseError(error)
+
+        }
+    }
 }

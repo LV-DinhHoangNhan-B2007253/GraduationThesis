@@ -151,9 +151,12 @@ function ProductManagement() {
           <Modal
             isOpen={isOpen}
             onOpenChange={onOpenChange}
-            placement="center"
+            placement="auto"
             size="5xl"
             scrollBehavior="inside"
+            style={{
+              marginTop: "250px",
+            }}
           >
             <ModalContent>
               {(onClose) => (
@@ -228,7 +231,7 @@ function ProductManagement() {
           </select>
         </div>
       </div>
-      <div className="flex items-center justify-between p-2 sticky z-[2000] top-0 bg-light-modal-popup dark:bg-dark-modal-popup ">
+      <div className="flex items-center justify-between p-2  bg-light-modal-popup dark:bg-dark-modal-popup ">
         <button onClick={handlePrevPage} disabled={page === 1}>
           &lt; Previous
         </button>

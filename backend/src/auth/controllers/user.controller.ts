@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Param, Patch, Req, Request, UseGuards } from '@nestjs/common';
 import { UserService } from '../service/user.service';
 import { AuthGuard } from '../guards/auth.guard';
-import { ProductService } from 'src/product/service/product.service';
 
 @Controller('api/user')
 export class UserController {
@@ -15,6 +14,11 @@ export class UserController {
     GetUserInfoById(@Request() req) {
 
         const userId = req.user.id
+        return this.userService.getUserInfoById(userId)
+    }
+
+    @Get('/getOne/:_id')
+    GetOneUser(@Param() userId: string) {
         return this.userService.getUserInfoById(userId)
     }
 

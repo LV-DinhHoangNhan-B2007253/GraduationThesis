@@ -27,6 +27,8 @@ export class UserService {
 
         }
     }
+
+
     async UpdateUserInformation(userId, updateForm): Promise<any> {
         try {
             const updatedUser = await this.userModel.findByIdAndUpdate(
@@ -186,6 +188,35 @@ export class UserService {
             console.log("Update product quantity in cart error", error);
             responseError(error)
 
+        }
+    }
+
+    // xóa sản phẩm trong giỏ hàng khi user đã mua hàng => tạo order thành công
+
+    async removeProductsFromCart(userId: string, productIds: string[], session: any = null): Promise<any> {
+        try {
+            const user = await this.userModel.findById(userId).session(session);
+            if (!user) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "User not found",
+                }, HttpStatus.NOT_FOUND);
+            }
+
+            // Lọc giỏ hàng để loại bỏ các sản phẩm đã mua
+            user.cart = user.cart.filter(
+                (item) => !productIds.includes(item.product_id.toString()),
+            );
+
+            // Lưu lại giỏ hàng sau khi xóa các sản phẩm đã mua
+            await user.save({ session });
+            return { message: 'Products removed from cart successfully' };
+        } catch (error) {
+            console.log("Error removing products from cart:", error);
+            throw new HttpException({
+                status: HttpStatus.INTERNAL_SERVER_ERROR,
+                error: error.message || 'Failed to remove products from cart',
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

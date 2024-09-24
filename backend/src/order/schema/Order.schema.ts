@@ -11,6 +11,7 @@ export class OrderedProduct {
 
     @Prop()
     price_at_purchase: number;
+
 }
 
 @Schema()
@@ -24,11 +25,15 @@ export class Order extends Document {
     @Prop()
     total_price: number;
 
-    @Prop()
+    @Prop({ enum: ['pending', 'delivery', 'shipped', 'canceled'], default: 'pending' })
     status: string; // đã thanh toán || chưa thanh toán 
 
-    @Prop()
+    @Prop({ default: Date.now })
     order_date: Date;
+
+    @Prop()
+    shipping_address: string;
+
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

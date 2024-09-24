@@ -12,6 +12,6 @@ import { UserService } from 'src/auth/service/user.service';
   controllers: [ProductController],
   providers: [ProductService, CategoryItemService, UserService],
   imports: [MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]), forwardRef(() => CategoryItemModule), forwardRef(() => AuthModule)],
-  exports: [MongooseModule]
+  exports: [MongooseModule, ProductService]
 })
 export class ProductModule { }

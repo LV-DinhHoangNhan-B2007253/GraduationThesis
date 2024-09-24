@@ -47,6 +47,8 @@ function Navbar() {
   const [subNav, setSubNav] = useState<boolean>(false);
   const [hoveredCategory, setHoveredCategory] = useState<string>("");
   const [openPanel, setOpenPanel] = useState<boolean>(false);
+  // hover avatar
+  const [toggleAvtNav, setToggleAvtNav] = useState<boolean>(false);
 
   const handleMouseEnter = (categoryName: string) => {
     setHoveredCategory(categoryName);
@@ -56,6 +58,7 @@ function Navbar() {
     setHoveredCategory("");
     setSubNav(false);
   };
+
   const fetchData = async () => {
     try {
       const data = await GetAreaAndCategoryLabel();
@@ -133,16 +136,36 @@ function Navbar() {
                   </Link>
                 </Tooltip>
               </div>
-              <div>
-                <Tooltip content="Profile" color="foreground">
-                  <Link href={"/auth/profile"}>
-                    <Avatar
-                      src={userInfo?.avatarUrl || DefaultAvatar.src}
-                      alt="profile avatar"
-                      size="sm"
-                    />
-                  </Link>
-                </Tooltip>
+              <div className="relative">
+                <Avatar
+                  src={userInfo?.avatarUrl || DefaultAvatar.src}
+                  alt="profile avatar"
+                  size="sm"
+                  onClick={() => setToggleAvtNav(!toggleAvtNav)}
+                  className="hover:cursor-pointer"
+                />
+                <ul
+                  className={`absolute min-w-[150px] top-10 right-0 px-3 py-2 ${
+                    toggleAvtNav ? "block" : "hidden"
+                  } z-[4000] bg-light-modal-popup dark:bg-dark-modal-popup rounded-md border border-gray-200`}
+                >
+                  <li className="w-fit border-b border-gray-100 my-2">
+                    <Link
+                      href={"/auth/profile"}
+                      className="px-1 py-1 w-full hover:underline"
+                    >
+                      Profile
+                    </Link>
+                  </li>
+                  <li className="w-fit border-b border-gray-100 my-2">
+                    <Link
+                      href={"/order/myOrder"}
+                      className="px-1 py-1 w-full hover:underline"
+                    >
+                      My Oder
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           ) : (

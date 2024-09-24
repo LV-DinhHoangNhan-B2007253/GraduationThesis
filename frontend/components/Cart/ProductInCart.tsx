@@ -84,7 +84,7 @@ function ProductInCart({
   return (
     <div className="flex-1">
       <div className="flex justify-between gap-2 items-center">
-        <div className="flex gap-2 flex-1">
+        <div className="flex gap-2 flex-1 items-center">
           <img
             src={`${product?.images[0]}`}
             alt="Product Image"
@@ -131,12 +131,15 @@ function ProductInCart({
           <button onClick={handleDeleteProductInCart}>
             <FontAwesomeIcon
               icon={faTrashCan}
-              className="text-small sm:text-2xl hover:text-red-500"
+              className="text-small sm:text-2xl hover:text-red-500 text-gray-400"
             />
           </button>
-          <button className="px-4 py-2 rounded text-white dark:text-dark-primary-text text-center hover:cursor-pointer uppercase text-small sm:text-base  bg-orange-600 hover:bg-orange-500 transition duration-400">
+          <Link
+            href={`/order/createOrder?orderInfo=${product?._id}-${cartItem.quantity}`}
+            className="px-4 py-2 rounded text-white dark:text-dark-primary-text text-center hover:cursor-pointer uppercase text-small sm:text-base  bg-orange-600 hover:bg-orange-500 transition duration-400"
+          >
             Buy now
-          </button>
+          </Link>
         </div>
       </div>
     </div>

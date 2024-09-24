@@ -13,8 +13,20 @@ import {
 } from "@/services/product.service";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Accordion, AccordionItem, Tooltip } from "@nextui-org/react";
+import {
+  Accordion,
+  AccordionItem,
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Tooltip,
+  useDisclosure,
+} from "@nextui-org/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Slider from "react-slick";
@@ -35,6 +47,10 @@ function ProductDetail(props: any) {
   const { userInfo } = useSelector((state: RootState) => state.user);
   const [relatedProduct, setRelatedProduct] = useState<IProduct[]>();
   const [product, setProduct] = useState<IProduct>();
+  const [orderQuantity, setOrderQuantity] = useState<number>(1);
+  const router = useRouter();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const [updateProductForm, setUpdateProductForm] =
     useState<IUpdateProductForm>({
       name: "",
@@ -109,6 +125,17 @@ function ProductDetail(props: any) {
     }
   };
 
+  const handleCreateOrder = () => {
+    if (orderQuantity > Number(product?.stock_quantity)) {
+      toast.warn(
+        "The quantity purchased has exceeded the quantity of available products"
+      );
+    } else if (orderQuantity === 0) {
+      toast.warn("Please select purchase quantity");
+    } else {
+      router.push(`/order/createOrder?orderInfo=${productId}-${orderQuantity}`);
+    }
+  };
   useEffect(() => {
     fetchProductData();
   }, []);
@@ -162,7 +189,10 @@ function ProductDetail(props: any) {
                       onClick={handleAddToWishList}
                       className="flex items-center justify-center w-full gap-3"
                     >
-                      <FontAwesomeIcon icon={faHeart} />
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="hover:text-pink-700"
+                      />
                       <p className="p-1 hover:text-light-text-link-color dark:hover:text-dark-link hover:underline">
                         Add to wishlist
                       </p>
@@ -215,11 +245,60 @@ function ProductDetail(props: any) {
                   </Accordion>
                 </div>
                 <div className="flex justify-end w-full">
-                  <Link href={"#"}>
+                  <Button
+                    onPress={onOpen}
+                    className="flex-1 px-2 py-1 my-3 text-center uppercase transition-all bg-green-900 rounded-sm dark:bg-dark-bg-btn text-light-btn-text dark:text-dark-btn-text hover:bg-green-800"
+                  >
+                    Shop Now
+                  </Button>
+                  <Modal
+                    isOpen={isOpen}
+                    onOpenChange={onOpenChange}
+                    isDismissable={false}
+                    isKeyboardDismissDisabled={true}
+                    placement="center"
+                  >
+                    <ModalContent>
+                      {(onClose) => (
+                        <>
+                          <ModalHeader className="flex flex-col gap-1">
+                            Enter Product Quantity
+                          </ModalHeader>
+                          <ModalBody>
+                            <input
+                              type="number"
+                              value={orderQuantity}
+                              onChange={(e) =>
+                                setOrderQuantity(Number(e.target.value))
+                              }
+                              className="text-center p-3 border border-light-input-border dark:border-dark-input-border text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field rounded-md"
+                            />
+                          </ModalBody>
+                          <ModalFooter>
+                            <Button
+                              color="danger"
+                              variant="light"
+                              onPress={onClose}
+                            >
+                              Cancel
+                            </Button>
+                            <Button
+                              color="primary"
+                              onPress={onClose}
+                              onClick={handleCreateOrder}
+                            >
+                              Order
+                            </Button>
+                          </ModalFooter>
+                        </>
+                      )}
+                    </ModalContent>
+                  </Modal>
+                  {/* <Link href={`/order/createOrder?orderInfo=${productId}-${1}`}>
                     <button className="flex-1 px-2 py-1 my-3 text-center uppercase transition-all bg-green-900 rounded-sm dark:bg-dark-bg-btn text-light-btn-text dark:text-dark-btn-text hover:bg-green-800">
                       Shop Now
                     </button>
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
