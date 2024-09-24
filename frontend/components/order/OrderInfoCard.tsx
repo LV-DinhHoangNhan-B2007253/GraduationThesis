@@ -82,6 +82,7 @@ function OrderInfoCard({
       <ProdutOfOrderCard orderProducts={order.products} />
 
       <div className="flex justify-around items-center px-4 py-2 flex-wrap capitalize text-light-primary-text dark:text-dark-primary-text text-small sm:text-base">
+        <p>Order Code: {order._id}</p>
         <p>Order Date: {new Date(order.order_date).toLocaleString()}</p>
         <p>Total Price: {order.total_price}</p>
         <p>Status: {status}</p>

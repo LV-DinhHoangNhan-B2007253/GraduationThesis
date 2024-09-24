@@ -17,6 +17,33 @@ export class OrderService {
     ) { }
 
 
+    async GetAllOrder(): Promise<Order[]> {
+        try {
+            const orders = await this.OrderModel.find().exec()
+            return orders
+        } catch (error) {
+            console.log("Get all orders Error", error);
+
+            responseError(error)
+        }
+    }
+
+    async GetOneOrder(orderId: string): Promise<Order> {
+        try {
+            const order = await this.OrderModel.findById(orderId)
+            if (!order) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "Order ID not found"
+                }, HttpStatus.NOT_FOUND)
+            }
+            return order
+        } catch (error) {
+            console.log("Get one order by id Error", error);
+            responseError(error)
+        }
+    }
+
     async CreateOrder(createOrderForm: createOrderDto) {
         const session = await this.OrderModel.db.startSession(); // Sử dụng session để đảm bảo tính toàn vẹn giao dịch
         session.startTransaction();

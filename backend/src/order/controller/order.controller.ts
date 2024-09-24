@@ -10,6 +10,10 @@ export class OrderController {
     CreateOrder(@Body() createOrderForm: createOrderDto) {
         return this.orderService.CreateOrder(createOrderForm)
     }
+    @Get('/get/:_id')
+    GetOneOrderById(@Param() orderId: string) {
+        return this.orderService.GetOneOrder(orderId)
+    }
 
     @Get('/find/:userId')
     FindOrderOfUser(@Param('userId') userId: string) {
@@ -19,5 +23,10 @@ export class OrderController {
     UpdateOrderStatus(@Param() orderId: string, @Body() updateOrderStatus: { status: string }) {
 
         return this.orderService.UpdateOrderStatus(orderId, updateOrderStatus)
+    }
+
+    @Get('/getAll')
+    GetAllOrder() {
+        return this.orderService.GetAllOrder()
     }
 }
