@@ -41,6 +41,7 @@ export class UserService {
                     status: HttpStatus.NOT_FOUND
                 }, HttpStatus.NOT_FOUND)
             }
+            console.log(updateForm);
 
             return { message: "Update Success" }
 
@@ -218,5 +219,14 @@ export class UserService {
                 error: error.message || 'Failed to remove products from cart',
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    // hàm đơn
+    async findUser(userId): Promise<boolean> {
+        const user = this.userModel.findById(userId)
+        if (!user) {
+            return false
+        }
+        return true
     }
 }

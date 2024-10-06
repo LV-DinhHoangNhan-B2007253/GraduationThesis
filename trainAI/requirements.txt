@@ -1,0 +1,10 @@
+selenium
+pandas
+beautifulsoup4
+requests
+scikit-learn
+transformers
+flask
+flask_cors
+underthesea
+torch

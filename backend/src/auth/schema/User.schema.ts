@@ -1,47 +1,14 @@
 import { Prop, Schema, SchemaFactory, } from "@nestjs/mongoose";
 
 import { Document, Types } from "mongoose";
+import { Address } from "./UserAdress.schema";
 
 @Schema({
     timestamps: false
 })
 
-export class Address {
-    @Prop()
-    addressDetail: string;
-    @Prop()
-    region: string;
-}
 
-@Schema()
-export class Reply {
-    @Prop({ type: Types.ObjectId, ref: 'User' })
-    user_id: Types.ObjectId;
 
-    @Prop()
-    reply_text: string;
-
-    @Prop()
-    date: Date;
-}
-
-@Schema()
-export class Comment {
-    @Prop({ type: Types.ObjectId, ref: 'Product' })
-    product_id: Types.ObjectId;
-
-    @Prop()
-    comment_text: string;
-
-    @Prop()
-    rating: number;
-
-    @Prop()
-    date: Date;
-
-    @Prop({ type: [Reply] })
-    replies: Reply[];
-}
 
 @Schema()
 export class CartItem {
@@ -69,15 +36,10 @@ export class User extends Document {
     @Prop({ default: '' })
     phone_number: string;
 
-    @Prop({ default: 1 })
-    role: number // 1 === user role, 0 === admin role
+    @Prop({ enum: ['user', 'owner', 'admin'], default: 'user' })
+    role: string
 
-    @Prop({
-        type: Address, default: {
-            addressDetail: '',
-            region: 'Vietnam'
-        }
-    })
+    @Prop({ type: Address, default: null })
     addresses: Address;
 
     @Prop({ type: [Types.ObjectId], ref: 'Product', default: [] })
@@ -86,11 +48,6 @@ export class User extends Document {
     @Prop({ type: [CartItem], default: [] })
     cart: CartItem[];
 
-    @Prop({ type: [Types.ObjectId], ref: 'Order', default: [] })
-    orders: Types.ObjectId[];
-
-    @Prop({ type: [Comment], default: [] })
-    comments: Comment[];
 }
 
 

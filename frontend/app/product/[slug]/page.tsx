@@ -327,104 +327,111 @@ function ProductDetail(props: any) {
               </div>
             </div>
             {/* edit product by admin */}
-            {userInfo?.role == 0 && (
+            {userInfo?.role == "owner" && (
               <div className="mt-8">
-                <form onSubmit={handleUpdateProduct}>
-                  <table className="w-full table-auto border-collapse sm:block hidden ">
-                    <thead>
-                      <tr className="bg-light-modal-popup dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text">
-                        <th className="border px-4 py-2 text-left">Name</th>
-                        <th className="border px-4 py-2 text-left">Price</th>
-                        <th className="border px-4 py-2 text-left">Sku</th>
-                        <th className="border px-4 py-2 text-left">
-                          Description
-                        </th>
+                <form
+                  onSubmit={handleUpdateProduct}
+                  className="w-full flex justify-center items-center"
+                >
+                  <div>
+                    <table className="w-full table-auto border-collapse sm:block hidden ">
+                      <thead>
+                        <tr className="bg-light-modal-popup dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text">
+                          <th className="border px-4 py-2 text-left">Name</th>
+                          <th className="border px-4 py-2 text-left">Price</th>
+                          <th className="border px-4 py-2 text-left">Sku</th>
+                          <th className="border px-4 py-2 text-left">
+                            Description
+                          </th>
 
-                        <th className="border px-4 py-2 text-left">Quantity</th>
-                        <th className="border px-4 py-2 text-left">
-                          Set New Arrival
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">
-                          <input
-                            onChange={handleInputChange}
-                            type="text"
-                            name="name"
-                            id="updateName"
-                            required
-                            value={updateProductForm.name}
-                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none "
-                          />
-                        </td>
-                        <td className="border px-4 py-2 ">
-                          <input
-                            onChange={handleInputChange}
-                            type="text"
-                            name="price"
-                            id="updatePrice"
-                            required
-                            value={updateProductForm.price}
-                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                          />
-                        </td>
-                        <td className="border px-4 py-2">
-                          <input
-                            type="text"
-                            onChange={handleInputChange}
-                            name="sku"
-                            id="updateSku"
-                            required
-                            value={updateProductForm.sku}
-                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                          />
-                        </td>
-                        <td className="border px-4 py-2">
-                          <textarea
-                            onChange={handleInputChange}
-                            id="updateDesc"
-                            name="description"
-                            cols={40}
-                            rows={4}
-                            value={updateProductForm.description}
-                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                          />
-                        </td>
-                        <td className="border px-4 py-2">
-                          <input
-                            type="number"
-                            onChange={handleInputChange}
-                            name="stock_quantity"
-                            id="updateQuantity"
-                            min={0}
-                            value={updateProductForm.stock_quantity}
-                            required
-                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                          />
-                        </td>
-                        <td className="border px-4 py-2">
-                          <select
-                            name="isOutStanding"
-                            onChange={handleInputChange}
-                            id="isOutStanding"
-                            value={updateProductForm.isOutStanding ? 1 : 0}
-                            className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                          >
-                            <option value={1}>Yes</option>
-                            <option value={0}>No</option>
-                          </select>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <button
-                    type="submit"
-                    className="px-4 py-2 text-center rounded-md bg-green-700 hover:bg-green-600 transition duration-300 text-white my-4"
-                  >
-                    Update
-                  </button>
+                          <th className="border px-4 py-2 text-left">
+                            Quantity
+                          </th>
+                          <th className="border px-4 py-2 text-left">
+                            Set New Arrival
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="border px-4 py-2 w-1/4">
+                            <input
+                              onChange={handleInputChange}
+                              type="text"
+                              name="name"
+                              id="updateName"
+                              required
+                              value={updateProductForm.name}
+                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none "
+                            />
+                          </td>
+                          <td className="border px-4 py-2 ">
+                            <input
+                              onChange={handleInputChange}
+                              type="text"
+                              name="price"
+                              id="updatePrice"
+                              required
+                              value={updateProductForm.price}
+                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                            />
+                          </td>
+                          <td className="border px-4 py-2">
+                            <input
+                              type="text"
+                              onChange={handleInputChange}
+                              name="sku"
+                              id="updateSku"
+                              required
+                              value={updateProductForm.sku}
+                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                            />
+                          </td>
+                          <td className="border px-4 py-2">
+                            <textarea
+                              onChange={handleInputChange}
+                              id="updateDesc"
+                              name="description"
+                              cols={40}
+                              rows={4}
+                              value={updateProductForm.description}
+                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                            />
+                          </td>
+                          <td className="border px-4 py-2">
+                            <input
+                              type="number"
+                              onChange={handleInputChange}
+                              name="stock_quantity"
+                              id="updateQuantity"
+                              min={0}
+                              value={updateProductForm.stock_quantity}
+                              required
+                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                            />
+                          </td>
+                          <td className="border px-4 py-2">
+                            <select
+                              name="isOutStanding"
+                              onChange={handleInputChange}
+                              id="isOutStanding"
+                              value={updateProductForm.isOutStanding ? 1 : 0}
+                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                            >
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button
+                      type="submit"
+                      className="px-4 py-2 text-center rounded-md bg-green-700 hover:bg-green-600 transition duration-300 text-white my-4"
+                    >
+                      Update
+                    </button>
+                  </div>
                 </form>
               </div>
             )}

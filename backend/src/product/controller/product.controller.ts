@@ -11,6 +11,14 @@ import { updateProductDto } from '../dtos/updateProduct.dos';
 export class ProductController {
     constructor(private readonly productService: ProductService) { }
 
+
+    // đồng bộ các trường dữ liệu sau khi sửa
+    @Patch('/syncData')
+    SyncData() {
+        return this.productService.migrateProducts()
+    }
+
+
     @Post('/:_id/create')
     @UseInterceptors(FilesInterceptor('images', 10, {
         storage: diskStorage({

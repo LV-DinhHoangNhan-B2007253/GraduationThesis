@@ -9,6 +9,7 @@ export class UserController {
         // private readonly productService: ProductService
     ) { }
 
+    // GIỮ
     @UseGuards(AuthGuard)
     @Get('/getProfile')
     GetUserInfoById(@Request() req) {

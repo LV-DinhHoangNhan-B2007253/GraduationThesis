@@ -9,6 +9,7 @@ import { userLoginDto } from "../dtos/login-user.dto";
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
 
+    // GIỮ
     // Post
     @Post('/register')
     // @UsePipes(new ValidationPipe())
@@ -18,11 +19,13 @@ export class AuthController {
         return accessToken
     }
 
+    // GIỮ
     @Post('/login')
     Login(@Body() loginInfo: userLoginDto) {
         return this.authService.Login(loginInfo)
     }
 
+    // GIỮ
     // login with google
     @UseGuards(GoogleAuthGuard)
     @Get('/google/login')
@@ -30,6 +33,7 @@ export class AuthController {
     }
 
 
+    // GIỮ
     @UseGuards(GoogleAuthGuard)
     @Get('/google/callback')
     async googleCallback(@Request() req, @Res() res) {

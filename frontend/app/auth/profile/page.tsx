@@ -5,7 +5,7 @@ import Link from "next/link";
 import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DefaultImage from "@/public/default-avatar.png";
-import { Select, SelectItem, Tooltip } from "@nextui-org/react";
+import { Select, SelectItem, Tooltip, user } from "@nextui-org/react";
 import { ListRegion } from "@/constants";
 import { IUserUpdateInfo } from "@/interfaces/auth.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,6 +19,7 @@ import { UpdateUserInfo } from "@/services/user.service";
 import { GetNSetUserInfo, setNullInfo } from "@/redux/slices/userInfoSlice";
 import { removeLog } from "@/redux/slices/isLoginStateSlice";
 import { useRouter } from "next/navigation";
+import { GetDistrict, GetProvince, GetWard } from "@/services/location.service";
 
 function Profile() {
   const { isLogin } = useSelector((state: RootState) => state.userLoginState);
@@ -31,49 +32,118 @@ function Profile() {
     name: userInfo?.name || "",
     phone_number: userInfo?.phone_number || "",
     addresses: {
-      region: userInfo?.addresses.region || "",
-      addressDetail: userInfo?.addresses.addressDetail || "",
+      detail: userInfo?.addresses?.detail || "",
+      district: {
+        district_id: userInfo?.addresses?.district?.district_name || "",
+        district_name: userInfo?.addresses?.district?.district_name || "",
+      },
+      province: {
+        province_id: userInfo?.addresses?.province?.province_id || "",
+        province_name: userInfo?.addresses?.province?.province_name || "",
+      },
+      ward: {
+        ward_id: userInfo?.addresses?.ward?.ward_id || "",
+        ward_name: userInfo?.addresses?.ward?.ward_name || "",
+      },
     },
   });
+  // address
 
-  useEffect(() => {
-    console.log("rerender");
-    console.log(userInfo?.avatarUrl);
-  }, [userInfo]);
+  const [provinces, setProvinces] = useState<any[]>([]); // Giả sử bạn sẽ lấy danh sách tỉnh từ API
+  const [districts, setDistricts] = useState<any[]>([]);
+  const [wards, setWards] = useState<any[]>([]);
 
-  const handleInputOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    if (name.startsWith("addresses.")) {
-      const addressField = name.split(".")[1];
-      setUserFormData((prevState) => ({
-        ...prevState,
-        addresses: {
-          ...prevState.addresses,
-          [addressField]: value,
-        },
-      }));
-    } else {
-      setUserFormData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
+  const fetchProvinces = async () => {
+    // Gọi API để lấy danh sách tỉnh
+    const response = await GetProvince();
+    setProvinces(response);
   };
 
-  const handleSelectionChange = (selectedKey: any) => {
-    const selectedKeyArray = Array.isArray(selectedKey)
-      ? selectedKey
-      : Array.from(selectedKey);
+  const fetchDistricts = async (provinceId: string) => {
+    // Gọi API để lấy danh sách huyện theo tỉnh
+    const data = await GetDistrict(provinceId);
+    setDistricts(data);
+  };
 
-    const firstSelectedKey = selectedKeyArray[0];
+  const fetchWards = async (districtId: string) => {
+    // Gọi API để lấy danh sách xã theo huyện
+    const data = await GetWard(districtId);
+    setWards(data);
+  };
 
+  const handleProvinceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedProvinceId = e.target.value;
+    setUserFormData((prev) => ({
+      ...prev,
+      addresses: {
+        ...prev.addresses,
+        province: {
+          province_id: selectedProvinceId,
+          province_name: e.target.options[e.target.selectedIndex].text,
+        },
+        district: {
+          district_id: "",
+          district_name: "",
+        },
+        ward: {
+          ward_id: "",
+          ward_name: "",
+        },
+      },
+    }));
+    fetchDistricts(selectedProvinceId);
+  };
+  const handleDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedDistrictId = e.target.value;
+    setUserFormData((prev) => ({
+      ...prev,
+      addresses: {
+        ...prev.addresses,
+        district: {
+          district_id: selectedDistrictId,
+          district_name: e.target.options[e.target.selectedIndex].text,
+        },
+        ward: {
+          ward_id: "",
+          ward_name: "",
+        },
+      },
+    }));
+    fetchWards(selectedDistrictId);
+  };
+
+  const handleWardChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedWardId = e.target.value;
+    setUserFormData((prev) => ({
+      ...prev,
+      addresses: {
+        ...prev.addresses,
+        ward: {
+          ward_id: selectedWardId,
+          ward_name: e.target.options[e.target.selectedIndex].text,
+        },
+      },
+    }));
+  };
+
+  const handleAddressDetailChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const detail = e.target.value;
+    setUserFormData((prev) => ({
+      ...prev,
+      addresses: {
+        ...prev.addresses,
+        detail: detail,
+      },
+    }));
+  };
+
+  const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setUserFormData((prevState) => ({
       ...prevState,
-      addresses: {
-        ...prevState.addresses,
-        region: firstSelectedKey,
-      },
+      [name]: value,
     }));
   };
 
@@ -107,6 +177,9 @@ function Profile() {
     router.push("/");
   };
 
+  useEffect(() => {
+    fetchProvinces();
+  }, []);
   return (
     <MainLayout>
       {isLogin ? (
@@ -119,7 +192,7 @@ function Profile() {
                 <div className="flex justify-between items-center py-4">
                   <div className="flex justify-between items-center gap-3">
                     <img
-                      src={`${userInfo?.avatarUrl}` || DefaultImage.src}
+                      src={userInfo?.avatarUrl || DefaultImage.src}
                       alt="Avatar"
                       className="w-[95px] rounded-full shadow-md"
                     />
@@ -138,6 +211,7 @@ function Profile() {
                   </Tooltip>
                 </div>
                 {/* form */}
+
                 <form
                   action="#"
                   className="sm:grid grid-cols-2 gap-6 items-end"
@@ -166,7 +240,7 @@ function Profile() {
                       Name
                     </label>
                     <input
-                      onChange={handleInputOnchange}
+                      onChange={handleInputOnChange}
                       type="text"
                       id="name"
                       name="name"
@@ -187,7 +261,7 @@ function Profile() {
                       Phone
                     </label>
                     <input
-                      onChange={handleInputOnchange}
+                      onChange={handleInputOnChange}
                       type="text"
                       id="phone"
                       name="phone_number"
@@ -195,55 +269,144 @@ function Profile() {
                       className={`w-full border-2 ${
                         isEdit
                           ? " border-light-input-border dark:border-dark-input-border"
-                          : "border-purple-600"
+                          : "border-orange-600"
                       } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
                       readOnly={isEdit}
                     />
                   </div>
+                  {/* Address Selection */}
                   <div className="col-span-1 my-2 sm:my-0">
-                    <div
+                    <label
+                      htmlFor="province"
+                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text"
+                    >
+                      Province
+                    </label>
+                    <select
+                      id="province"
                       className={`w-full border-2 ${
                         isEdit
                           ? " border-light-input-border dark:border-dark-input-border"
-                          : "border-cyan-600"
-                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none  rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                          : "border-orange-600"
+                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                      value={userFormData.addresses.province.province_id}
+                      onChange={handleProvinceChange}
+                      disabled={isEdit}
                     >
-                      <Select
-                        aria-label="none"
-                        size="md"
-                        defaultSelectedKeys={[`${userInfo?.addresses.region}`]}
-                        className="w-full text-white"
-                        onSelectionChange={(key) => handleSelectionChange(key)}
-                      >
-                        {ListRegion.map((item) => (
-                          <SelectItem key={item} value={item}>
-                            {item}
-                          </SelectItem>
-                        ))}
-                      </Select>
-                    </div>
+                      {userFormData.addresses.province.province_id &&
+                      userFormData.addresses.province.province_id != "" ? (
+                        <option
+                          value={userFormData.addresses.province.province_id}
+                        >
+                          {userFormData.addresses.province.province_name}
+                        </option>
+                      ) : (
+                        <option value="">Select Province</option>
+                      )}
+                      {provinces?.map((province) => (
+                        <option
+                          key={province.province_id}
+                          value={province.province_id}
+                        >
+                          {province.province_name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                  <div className="col-span-2 my-2 sm:my-0">
+                  <div className="col-span-1 my-2 sm:my-0">
+                    <label
+                      htmlFor="district"
+                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text"
+                    >
+                      District
+                    </label>
+                    <select
+                      id="district"
+                      className={`w-full border-2 ${
+                        isEdit
+                          ? " border-light-input-border dark:border-dark-input-border"
+                          : "border-orange-600"
+                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                      value={userFormData.addresses.district.district_id}
+                      onChange={handleDistrictChange}
+                      disabled={isEdit || districts.length === 0}
+                    >
+                      {userFormData.addresses.district.district_id &&
+                      userFormData.addresses.district.district_id != "" ? (
+                        <option
+                          value={userFormData.addresses.district.district_id}
+                        >
+                          {userFormData.addresses.district.district_name}
+                        </option>
+                      ) : (
+                        <option value="">Select District</option>
+                      )}
+
+                      {districts?.map((district) => (
+                        <option
+                          key={district.district_id}
+                          value={district.district_id}
+                        >
+                          {district.district_name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="col-span-1 my-2 sm:my-0">
+                    <label
+                      htmlFor="ward"
+                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text"
+                    >
+                      Ward
+                    </label>
+                    <select
+                      id="ward"
+                      className={`w-full border-2 ${
+                        isEdit
+                          ? " border-light-input-border dark:border-dark-input-border"
+                          : "border-orange-600"
+                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                      value={userFormData.addresses.ward.ward_id}
+                      onChange={handleWardChange}
+                      disabled={isEdit || wards.length === 0}
+                    >
+                      {userFormData.addresses.ward.ward_id &&
+                      userFormData.addresses.ward.ward_id != "" ? (
+                        <option value={userFormData.addresses.ward.ward_id}>
+                          {userFormData.addresses.ward.ward_name}
+                        </option>
+                      ) : (
+                        <option value="">Select Ward</option>
+                      )}
+                      {wards?.map((ward) => (
+                        <option key={ward.ward_id} value={ward.ward_id}>
+                          {ward.ward_name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="col-span-1 my-2 sm:my-0">
                     <label
                       htmlFor="detail"
-                      className="block w-fit  text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text "
+                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text"
                     >
                       Address Detail
                     </label>
                     <input
-                      onChange={handleInputOnchange}
                       type="text"
                       id="detail"
-                      name="addresses.addressDetail"
-                      defaultValue={userInfo?.addresses.addressDetail}
+                      name="detail"
+                      defaultValue={userFormData.addresses.detail}
+                      onChange={handleAddressDetailChange}
                       className={`w-full border-2 ${
                         isEdit
                           ? " border-light-input-border dark:border-dark-input-border"
-                          : "border-indigo-600"
+                          : "border-orange-600"
                       } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
                       readOnly={isEdit}
                     />
                   </div>
+
                   <Tooltip content="Save profile">
                     <button
                       onClick={handleSubmitForm}
@@ -269,12 +432,35 @@ function Profile() {
                     </p>
                   </div>
                 </div>
-                <button
-                  className="float-right p-2 hover:text-orange-500"
-                  onClick={handleLogout}
-                >
-                  <FontAwesomeIcon icon={faArrowRightFromBracket} size="1x" />
-                </button>
+                <div>
+                  {userInfo?.role === "owner" ? (
+                    <button
+                      onClick={() => {
+                        router.push("/shop/management");
+                      }}
+                      className="underline hover:text-orange-500"
+                    >
+                      My Shop
+                    </button>
+                  ) : (
+                    userInfo?.role === "admin" && (
+                      <button
+                        onClick={() => {
+                          router.push("/admin");
+                        }}
+                        className="underline hover:text-orange-500"
+                      >
+                        Supper Admin Page
+                      </button>
+                    )
+                  )}
+                  <button
+                    className="float-right p-2 hover:text-orange-500"
+                    onClick={handleLogout}
+                  >
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} size="1x" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

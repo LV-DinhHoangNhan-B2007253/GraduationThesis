@@ -28,6 +28,12 @@ export class Order extends Document {
     @Prop({ enum: ['pending', 'delivery', 'shipped', 'canceled'], default: 'pending' })
     status: string; // đã thanh toán || chưa thanh toán 
 
+    @Prop({ enum: ['unpaid', 'paid'], default: 'unpaid' })
+    payment_status: string; // Trạng thái thanh toán
+
+    @Prop({ enum: ['cash', 'vnpay', 'momo', 'zalopay'], required: true })
+    payment_method: string; // Phương thức thanh toán
+
     @Prop({ default: Date.now })
     order_date: Date;
 

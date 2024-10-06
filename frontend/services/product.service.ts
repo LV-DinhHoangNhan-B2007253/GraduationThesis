@@ -141,7 +141,7 @@ export const SearchProduct = async (query: string) => {
     }
 }
 
-const ReSponseError = (error: any) => {
+export const ReSponseError = (error: any) => {
     if (error.response) {
         // Trả thông điệp lỗi từ server
         return Promise.reject(error.response.data.error);

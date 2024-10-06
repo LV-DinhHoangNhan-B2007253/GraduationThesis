@@ -18,6 +18,8 @@ const config: Config = {
         "PageNotFound-img": "url('/pageNotFound.jpg')",
         'Hero1': "url('/Hero1.webp')",
         'Hero2': "url('/Hero2.webp')",
+        'CreateShopBg': "url('/shop_signup_bg.jpg')",
+
       },
       colors: {
 

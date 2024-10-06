@@ -10,8 +10,9 @@ import { JwtModule } from '@nestjs/jwt';
 import { UserController } from './controllers/user.controller';
 import { UserService } from './service/user.service';
 import { ProductModule } from 'src/product/product.module';
+import { AddressController } from './controllers/address.controller';
 @Module({
-    controllers: [AuthController, UserController],
+    controllers: [AuthController, UserController, AddressController],
     providers: [AuthService, GoogleStrategy, UserService,],
     imports: [
         MongooseModule.forFeature([

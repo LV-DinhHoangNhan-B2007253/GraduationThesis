@@ -1,3 +1,5 @@
+import { Address } from "./adress.interface";
+
 export interface IRegisterForm {
     email: string;
     name: string;
@@ -9,20 +11,13 @@ export interface ILoginFrom {
     password: string;
 }
 
-// types.ts
-export interface Address {
-    addressDetail: string;
-    region: string;
-    _id?: string;
-}
-
 export interface UserInfo {
     _id: string;
     name: string;
     avatarUrl: string;
     email: string;
     phone_number: string;
-    role: number;
+    role: string;
     addresses: Address;
     wishlist: any[];
     orders: any[];
@@ -31,9 +26,9 @@ export interface UserInfo {
 }
 
 export interface UserState {
-    userInfo: UserInfo | null;
+    userInfo: UserInfo | undefined;
     loading: boolean;
-    error: string | null;
+    error: string | undefined;
 }
 
 export interface IUserUpdateInfo {

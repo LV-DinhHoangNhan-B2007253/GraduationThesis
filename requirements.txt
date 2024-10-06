@@ -1,0 +1,17 @@
+selenium
+beautifulsoup4
+requests
+scikit-learn
+transformers
+flask
+underthesea
+torch
+Flask-Cors      # Hỗ trợ CORS nếu cần thiết
+scikit-learn    # Để sử dụng mô hình máy học
+numpy           # Thư viện toán học
+pandas    
+flask_restful 
+joblib
+fastapi
+uvicorn
+

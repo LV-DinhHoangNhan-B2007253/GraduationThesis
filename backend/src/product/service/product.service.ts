@@ -341,4 +341,35 @@ export class ProductService {
 
         }
     }
+
+    //đồng bộ dữ liệu khi thay đổi schema
+
+    async migrateProducts() {
+        const products = await this.ProductModel.find();
+
+        for (const product of products) {
+            // Kiểm tra và thêm giá trị mặc định cho các trường mới nếu chưa có
+            if (product.averageRating === undefined) {
+                product.averageRating = 0; // Giá trị mặc định
+            }
+            if (product.ratingCount === undefined) {
+                product.ratingCount = 0; // Giá trị mặc định
+            }
+            if (product.comments === undefined) {
+                product.comments = []; // Giá trị mặc định
+            }
+            if (product.sold_quantity === undefined) {
+                product.sold_quantity = 0
+            }
+            if (product.shop_owner_id === undefined) {
+                product.shop_owner_id = null
+            }
+            if (product.promotion === undefined) {
+                product.promotion = []
+            }
+
+            await product.save(); // Lưu bản ghi đã cập nhật
+            return "oke"
+        }
+    }
 }

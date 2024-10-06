@@ -8,6 +8,7 @@ import { ChatModule } from './chat/chat.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CategoryItemModule } from './category-item/category-item.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { ShopModule } from './shop/shop.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { MulterModule } from '@nestjs/platform-express';
     MulterModule.register({
       dest: './uploads',
     }),
+    ShopModule,
   ],
 
   controllers: [],

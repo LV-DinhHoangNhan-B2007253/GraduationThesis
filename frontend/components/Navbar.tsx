@@ -87,18 +87,28 @@ function Navbar() {
       {/* top nav */}
       <div className="flex items-center justify-between w-full gap-3 px-5 py-4 border-b border-gray-200 sm:px-20 sm:py-8 sm:gap-0">
         {/* search */}
-        <div>
+        <div className="flex gap-2">
           <ThemeSwitch />
+          {userInfo?.role === "owner" ? (
+            <Link
+              href={"/shop/management"}
+              className="hidden sm:block text-sm text-light-text-link-color dark:text-dark-link hover:underline uppercase p-2 border border-gray-200 rounded"
+            >
+              My Shop
+            </Link>
+          ) : (
+            userInfo?.role === "admin" && (
+              <Link
+                href={"/admin"}
+                className="hidden sm:block text-sm text-light-text-link-color dark:text-dark-link hover:underline uppercase p-2 border border-gray-200 rounded"
+              >
+                Admin Panel
+              </Link>
+            )
+          )}
         </div>
-        {userInfo?.role === 0 && (
-          <Link
-            href={"/management"}
-            className="hidden sm:block text-sm text-light-text-link-color dark:text-dark-link hover:underline uppercase p-2 border border-gray-200 rounded"
-          >
-            Go to admin page
-          </Link>
-        )}
-        <div className="relative flex items-center sm:justify-center flex-1 justify-start">
+
+        <div className="relative flex items-center sm:justify-center sm:hidden flex-1 sm:flex-none justify-start">
           <Link
             href={"/"}
             className=" font-mono sm:hidden sm:text-3xl text-2xl font-thin tracking-widest uppercase transition-all  text-light-primary-text dark:text-dark-primary-text hover:text-light-active hover:dark:text-dark-active bg-gradient-to-r "
@@ -109,12 +119,12 @@ function Navbar() {
         {/* brand name */}
         <Link
           href={"/"}
-          className="hidden font-mono text-3xl font-thin tracking-widest uppercase transition-all sm:block text-light-primary-text dark:text-dark-primary-text hover:text-light-active hover:dark:text-dark-active bg-gradient-to-r "
+          className="hidden font-mono text-3xl font-thin tracking-widest uppercase transition-all sm:block text-light-primary-text dark:text-dark-primary-text hover:text-light-active hover:dark:text-dark-active bg-gradient-to-r w-fit "
         >
           AikaStore
         </Link>
         {/* cart, wishlish, avatar */}
-        <div className="flex-1">
+        <div className="">
           {isLogin ? (
             <div className="flex items-center justify-end gap-4 ">
               <div className="items-center justify-between  gap-4 flex">
