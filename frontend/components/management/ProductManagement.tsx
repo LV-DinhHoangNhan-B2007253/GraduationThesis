@@ -28,7 +28,13 @@ import CreateProductForm from "./form/CreateProductForm";
 import ProductDetailCard from "./card/ProductDetailCard";
 import { IProduct } from "@/interfaces/product.interface";
 import { toast } from "react-toastify";
-import { GetAllProducts, SearchProduct } from "@/services/product.service";
+import {
+  GetAllProducts,
+  GetShopProductsWithPage,
+  SearchProduct,
+} from "@/services/product.service";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 function ProductManagement() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -38,9 +44,18 @@ function ProductManagement() {
   const limit: number = 10;
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState(1);
+  const { userInfo } = useSelector((state: RootState) => state.user);
+
   const fetchProducts = async () => {
     try {
-      const data = await GetAllProducts(page, limit);
+      // const data = await GetAllProducts(page, limit);
+      const data = await GetShopProductsWithPage(
+        userInfo?.shop_id as string,
+        page,
+        limit
+      );
+      console.log(data);
+
       let total = data.totalProduct;
       let pro = data.products;
       pro = pro.filter(
@@ -199,7 +214,9 @@ function ProductManagement() {
                         <Tab title="New Product" key="product">
                           <Card className="w-full rounded-lg bg-light-modal-popup dark:bg-dark-modal-popup">
                             <CardBody>
-                              <CreateProductForm />
+                              {userInfo?.shop_id && (
+                                <CreateProductForm shop_id={userInfo.shop_id} />
+                              )}
                             </CardBody>
                           </Card>
                         </Tab>

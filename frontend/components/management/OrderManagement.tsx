@@ -1,15 +1,19 @@
 "use client";
 
 import { IOrder } from "@/interfaces/order.interface";
-import { GetAllOrder } from "@/services/order.service";
+import { GetAllOrder, GetOrdersByShop } from "@/services/order.service";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 function OrderManagement() {
+  const { userInfo } = useSelector((state: RootState) => state.user);
+
   const [orders, setOrders] = useState<IOrder[]>([]);
   const [filteredOrders, setFilteredOrders] = useState<IOrder[]>([]);
   const [searchQuery, setSearchQuery] = useState(""); // Tìm kiếm mã đơn hàng
@@ -24,7 +28,7 @@ function OrderManagement() {
 
   const fetchOrderData = async () => {
     try {
-      const data = await GetAllOrder();
+      const data = await GetOrdersByShop(userInfo?.shop_id as string);
       setOrders(data);
     } catch (error) {
       toast.error(`${error}`);

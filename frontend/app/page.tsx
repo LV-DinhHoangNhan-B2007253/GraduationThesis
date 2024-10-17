@@ -62,7 +62,11 @@ export default function Home() {
       <section className="min-h-screen">
         <OutStandingHero />
       </section>
-      <section className="min-h-screen sm:py-[80px] py-10 sm:px-[64px] px-2">
+      <section
+        className="min-h-screen sm:py-[80px] py-10 sm:px-[64px] px-2"
+        data-aos="fade-up"
+        data-aos-anchor-placement="top-bottom"
+      >
         <h1 className="uppercase text-base sm:text-6xl text-center pb-4 mb-6">
           A CELEBRATION Of Personal <em>Style</em>
         </h1>
@@ -70,7 +74,7 @@ export default function Home() {
           {areas ? (
             <Slider {...areaSliderSetting}>
               {areas.map((area) => (
-                <AreaHomeCard areaItem={area} />
+                <AreaHomeCard areaItem={area} key={area._id} />
               ))}
             </Slider>
           ) : (

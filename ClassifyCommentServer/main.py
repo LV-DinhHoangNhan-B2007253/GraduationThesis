@@ -1,8 +1,17 @@
 from fastapi import FastAPI
 from .models import CommentInput
 from .prediction import predict
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
+# Thêm middleware CORS
+# Cấu hình CORS để cho phép tất cả
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Cho phép tất cả các origin
+    allow_credentials=True,
+    allow_methods=["*"],  # Cho phép tất cả các phương thức HTTP
+    allow_headers=["*"],  # Cho phép tất cả các headers
+)
 
 @app.post("/predict")
 def classify_comments(input_data: CommentInput):

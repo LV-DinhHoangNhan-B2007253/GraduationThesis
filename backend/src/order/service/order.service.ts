@@ -1,19 +1,22 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Order } from '../schema/Order.schema';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { createOrderDto } from '../dtos/createOrder.dto';
 import { responseError } from 'src/utils/normalize.util';
 import { ProductService } from 'src/product/service/product.service';
 import { UserService } from 'src/auth/service/user.service';
 import { error } from 'console';
+import { NotifyService } from 'src/notifycation/services/notify.service';
 
 @Injectable()
 export class OrderService {
     constructor(
         @InjectModel(Order.name) private OrderModel: Model<Order>,
         private readonly productService: ProductService,
-        private readonly userService: UserService
+        private readonly userService: UserService,
+        private readonly NotifyService: NotifyService
+
     ) { }
 
 
@@ -24,6 +27,17 @@ export class OrderService {
         } catch (error) {
             console.log("Get all orders Error", error);
 
+            responseError(error)
+        }
+    }
+
+    // lấy danh sách các đơn hàng của 1 shop theo id
+    async GetOrdersByShop(shopId: string): Promise<Order[]> {
+        try {
+            const orders = await this.OrderModel.find({ shop_id: shopId }).exec()
+            return orders
+        } catch (error) {
+            console.log("Get all orders Error", error);
             responseError(error)
         }
     }
@@ -111,6 +125,17 @@ export class OrderService {
                 }, HttpStatus.NOT_FOUND);
             }
             order.status = updateOrderStatus.status
+            if (updateOrderStatus.status === 'shipped') {
+                order.payment_status = 'paid'
+                const products = order.products;
+                for (const product of products) {
+                    await this.productService.increaseSoldQuantity(product.product_id.toString());
+                }
+
+            } else {
+
+                order.payment_status = 'unpaid'
+            }
             await order.save()
             return { message: "Updated Order Status" }
         } catch (error) {

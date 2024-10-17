@@ -6,11 +6,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ProductService } from 'src/product/service/product.service';
 import { ProductModule } from 'src/product/product.module';
 import { AuthModule } from 'src/auth/auth.module';
+import { NotifycationModule } from 'src/notifycation/notifycation.module';
 
 
 @Module({
   controllers: [OrderController],
   providers: [OrderService,],
-  imports: [MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]), forwardRef(() => ProductModule), forwardRef(() => AuthModule)]
+  imports: [MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]), forwardRef(() => ProductModule), forwardRef(() => AuthModule), NotifycationModule]
 })
 export class OrderModule { }

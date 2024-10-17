@@ -41,7 +41,7 @@ export class Product extends Document {
     @Prop({ type: [Types.ObjectId], ref: 'Comment', default: [] })
     comments: Types.ObjectId[]; // Danh sách bình luận của sản phẩm
 
-    @Prop({ type: Types.ObjectId, ref: 'Shop' })
+    @Prop({ type: Types.ObjectId, })
     shop_owner_id: Types.ObjectId
 
     // chương trình khuyến mãi 

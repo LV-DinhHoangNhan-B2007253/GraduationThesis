@@ -2,17 +2,16 @@ import { configureStore } from "@reduxjs/toolkit";
 import userInfoReducer from './slices/userInfoSlice'
 import isLoginStateReducer from "./slices/isLoginStateSlice";
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from "redux-persist/lib/storage";
-
+import sessionStorage from 'redux-persist/es/storage/session';
 
 const userInfoPersistConfig = {
     key: 'userInfo',
-    storage,
+    storage: sessionStorage
 };
 
 const userLoginStatePersistConfig = {
     key: 'userLoginState',
-    storage,
+    storage: sessionStorage
 };
 
 // Áp dụng persist cho các reducers

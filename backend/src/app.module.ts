@@ -9,6 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CategoryItemModule } from './category-item/category-item.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ShopModule } from './shop/shop.module';
+import { NotifycationModule } from './notifycation/notifycation.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ShopModule } from './shop/shop.module';
       dest: './uploads',
     }),
     ShopModule,
+    NotifycationModule,
   ],
 
   controllers: [],

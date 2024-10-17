@@ -49,9 +49,9 @@ function OrderProductCard({ productId, qty, price }: OrderProductCardProps) {
           <p>x{qty}</p>
         </div>
       </div>
-      <p className="text-right  my-2">
+      {/* <p className="text-right  my-2">
         Total: <span className="text-orange-500">{Number(price * qty)}$</span>
-      </p>
+      </p> */}
     </div>
   );
 }

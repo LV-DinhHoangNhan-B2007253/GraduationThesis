@@ -1,10 +1,11 @@
 import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { User } from '../schema/User.schema';
-import { Model } from 'mongoose';
+import { Model, ObjectId, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { error } from 'console';
 import { Product } from 'src/product/schema/Product.schema';
 import { responseError } from 'src/utils/normalize.util';
+import { Shop } from 'src/shop/schemas/Shop.schema';
 
 @Injectable()
 export class UserService {
@@ -228,5 +229,21 @@ export class UserService {
             return false
         }
         return true
+    }
+    // cập nhật shopId cho chủ shop khi tạo ra shop mới
+    async UpdateShopIdForOwner(shop_id: Types.ObjectId, userId: string): Promise<void> {
+
+        await this.userModel.findByIdAndUpdate(userId, { shop_id: shop_id, role: 'owner' })
+        return
+    }
+
+    async getShopOwnerInfoByShopId(shop_id) {
+        try {
+            const ShopId = new Types.ObjectId(shop_id)
+            return await this.userModel.findOne({ shop_id: Shop })
+        } catch (error) {
+            console.log("Get Shop Owner Info errror", error);
+            responseError(error)
+        }
     }
 }

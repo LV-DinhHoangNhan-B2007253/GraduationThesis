@@ -1,6 +1,7 @@
 'use client'
 import { IUserUpdateInfo } from '@/interfaces/auth.interface'
 import axios from './axios.service'
+import { ReSponseError } from './product.service'
 
 export const UpdateUserInfo = async (userForm: IUserUpdateInfo) => {
     try {
@@ -15,5 +16,14 @@ export const UpdateUserInfo = async (userForm: IUserUpdateInfo) => {
         } else {
             return Promise.reject(error.error);
         }
+    }
+}
+
+export const GetUserInfoById = async (userId: string) => {
+    try {
+        const res = await axios.get(`/user/getOne/${userId}`)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
     }
 }

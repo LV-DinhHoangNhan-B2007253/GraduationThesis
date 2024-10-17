@@ -10,25 +10,25 @@ import { Document, Types } from "mongoose";
 
 @Schema()
 export class Promotion extends Document {
-    @Prop({ required: true })
+    @Prop()
     title: string; // tên chương trình
 
-    @Prop({ required: true })
+    @Prop()
     description: string; // mô tả chương trình
 
-    @Prop({ required: true })
+    @Prop()
     discountType: string; // loại khuyến mãi (percentage, fixed, etc.)
 
     @Prop({ default: '' })
     promotion_banner: string; //banner khuyến mãi
 
-    @Prop({ required: true })
+    @Prop()
     startDate: Date; // ngày bắt đầu
 
-    @Prop({ required: true })
+    @Prop()
     endDate: Date; // ngày kết thúc
 
-    @Prop({ type: [String], required: true }) // danh sách ID sản phẩm áp dụng
+    @Prop({ type: [String], default: [] }) // danh sách ID sản phẩm áp dụng
     products: string[];
 
 }

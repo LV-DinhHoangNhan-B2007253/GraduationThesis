@@ -8,11 +8,12 @@ import { CategoryItemService } from 'src/category-item/service/categoryItem.serv
 import { AuthModule } from 'src/auth/auth.module';
 import { UserService } from 'src/auth/service/user.service';
 import { Comment, CommentSchema } from './schema/ProductComment.schema';
-import { CommentController } from './controller/comment.controller';
+import { ProductReview } from './controller/comment.controller';
+import { ProductReviewService } from './service/comment.service';
 
 @Module({
-  controllers: [ProductController, CommentController],
-  providers: [ProductService, CategoryItemService, UserService],
+  controllers: [ProductController, ProductReview],
+  providers: [ProductService, CategoryItemService, UserService, ProductReviewService],
   imports: [
     MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
     MongooseModule.forFeature([{ name: Comment.name, schema: CommentSchema }]), forwardRef(() => CategoryItemModule), forwardRef(() => AuthModule)

@@ -18,6 +18,7 @@ function Callback() {
 
     if (accessToken) {
       // Lưu token vào localStorage hoặc bất kỳ nơi lưu trữ nào khác
+      // localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("accessToken", accessToken);
 
       // gọi api qua thunk và set info vào store, đặt trạng thái đăng nhập

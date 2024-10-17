@@ -79,9 +79,28 @@ export class ProductController {
         return this.productService.getOutstandingProducts()
     }
 
+    @Get('/byShop/:ownerId')
+    GetProductsByOwner(@Query('page') page: number = 1, @Query('limit') limit: number = 30, @Param('ownerId') ownerId: string) {
+        return this.productService.GetProductByOwnerIdWithPage(page, limit, ownerId)
+    }
+
     @Patch('/update/:_id')
     UpdateProductInfo(@Param() productId: string, @Body() updateProductBody: updateProductDto) {
 
         return this.productService.UpdateProductInfo(updateProductBody, productId)
     }
+
+    @Get('/get/shop/:shop_id')
+    GetAllProductsOfShop(@Param('shop_id') shop_id: string) {
+        return this.productService.getAllProductOfShop(shop_id)
+    }
+
+    // trả về thông tin sản phẩm cho trang analyze ở client, đã chuẩn hóa đầy đủ các trường cần thiết
+
+    @Get('/get/analyze/:productId')
+    GetAnalyzeProductInfo(@Param('productId') productId: string) {
+        return this.productService.getAnalyzeProductInfo(productId)
+    }
+
+
 }

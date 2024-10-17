@@ -17,6 +17,9 @@ export class Comment extends Document {
 
     @Prop({ default: 0, min: 0, max: 5 })
     rating: number; // Đánh giá (0-5 sao)
+
+    @Prop({ default: [] })
+    review_img: string[]
 }
 
 export const CommentSchema = SchemaFactory.createForClass(Comment);

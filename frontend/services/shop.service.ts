@@ -20,3 +20,19 @@ export const CreateShop = async (userId: string, createShopForm: FormData) => {
         }
     }
 }
+
+export const GetShopInfoByUserId = async (shop_id: string) => {
+    try {
+        const res = await axios.get(`shop/${shop_id}`)
+        return res.data
+    } catch (error: any) {
+        if (error.response) {
+            // Trả thông điệp lỗi từ server
+            return Promise.reject(error.response.data.error);
+        } else if (error.request) {
+            return Promise.reject('No response received from server');
+        } else {
+            return Promise.reject(error.error);
+        }
+    }
+}

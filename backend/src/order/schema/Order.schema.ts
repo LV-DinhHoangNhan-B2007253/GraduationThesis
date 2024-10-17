@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Type } from 'class-transformer';
 import { Document, Types } from 'mongoose';
 
 @Schema()
@@ -25,7 +26,7 @@ export class Order extends Document {
     @Prop()
     total_price: number;
 
-    @Prop({ enum: ['pending', 'delivery', 'shipped', 'canceled'], default: 'pending' })
+    @Prop({ enum: ['pending', 'delivery', 'shipped', 'canceled', 'reviewed'], default: 'pending' })
     status: string; // đã thanh toán || chưa thanh toán 
 
     @Prop({ enum: ['unpaid', 'paid'], default: 'unpaid' })
@@ -40,6 +41,8 @@ export class Order extends Document {
     @Prop()
     shipping_address: string;
 
+    @Prop({ type: Types.ObjectId })
+    shop_id: Types.ObjectId
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

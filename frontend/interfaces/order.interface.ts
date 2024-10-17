@@ -11,5 +11,12 @@ export interface IOrder {
     status: string
     order_date: Date
     shipping_address: string
-    products: IOrderedProduct[]
+    products: IOrderedProduct[],
+    shop_id: string,
+    payment_method: string
+}
+
+export interface IPlaceOrderInfo {
+    products: IOrderedProduct[],
+    shop_id: string
 }

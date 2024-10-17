@@ -1,7 +1,8 @@
 "use client";
 
 import MainLayout from "@/layouts/MainLayout";
-import { RootState } from "@/redux/store";
+import { GetNSetUserInfo } from "@/redux/slices/userInfoSlice";
+import { AppDispatch, RootState } from "@/redux/store";
 import { CreateShop } from "@/services/shop.service";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -9,12 +10,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { stat } from "fs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 function CreateNewShop() {
   const { userInfo } = useSelector((state: RootState) => state.user);
-
+  const dispatch = useDispatch<AppDispatch>();
   const [createShopForm, setCreateShopForm] = useState<ICreateShopForm>({
     name: "",
     description: "",
@@ -89,6 +90,7 @@ function CreateNewShop() {
       if (response) {
         toast.success(`${response.message}`);
         // Redirect or clear form after success
+        dispatch(GetNSetUserInfo()).unwrap();
       }
     } catch (error: any) {
       toast.error(`Error: ${error}`);
@@ -167,6 +169,7 @@ function CreateNewShop() {
                   required
                   name="name"
                   id="name"
+                  tabIndex={1}
                   onChange={handleInputChange}
                   className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"
                 />
@@ -182,6 +185,7 @@ function CreateNewShop() {
                   type="email"
                   name="shopMail"
                   required
+                  tabIndex={2}
                   id="shopMail"
                   onChange={handleInputChange}
                   className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"
@@ -199,6 +203,7 @@ function CreateNewShop() {
                   name="shopPhone"
                   id="shopPhone"
                   required
+                  tabIndex={3}
                   onChange={handleInputChange}
                   className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"
                 />
@@ -215,6 +220,7 @@ function CreateNewShop() {
                   name="shopLocation"
                   id="shopLocation"
                   required
+                  tabIndex={4}
                   onChange={handleInputChange}
                   className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"
                 />
@@ -229,6 +235,7 @@ function CreateNewShop() {
                 <textarea
                   name="description"
                   required
+                  tabIndex={5}
                   id="description"
                   onChange={handleInputChange}
                   className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"

@@ -1,5 +1,6 @@
 "use client";
 
+import ProductReviewCard from "@/components/review/ProductReviewCard";
 import Spinner from "@/components/Spinner";
 import { IProduct, IUpdateProductForm } from "@/interfaces/product.interface";
 import MainLayout from "@/layouts/MainLayout";
@@ -11,7 +12,9 @@ import {
   GetRelatedProducts,
   UpdateProductInfo,
 } from "@/services/product.service";
+import { GetShopInfoByUserId } from "@/services/shop.service";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Accordion,
@@ -47,6 +50,7 @@ function ProductDetail(props: any) {
   const { userInfo } = useSelector((state: RootState) => state.user);
   const [relatedProduct, setRelatedProduct] = useState<IProduct[]>();
   const [product, setProduct] = useState<IProduct>();
+  const [shopInfo, setShopInfo] = useState<IShop | null>(null);
   const [orderQuantity, setOrderQuantity] = useState<number>(1);
   const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -68,6 +72,7 @@ function ProductDetail(props: any) {
 
       setProduct(res);
       setRelatedProduct(related);
+
       if (res) {
         setUpdateProductForm({
           name: res.name,
@@ -77,12 +82,19 @@ function ProductDetail(props: any) {
           stock_quantity: res.stock_quantity,
           isOutStanding: res.isOutStanding,
         });
+        fetchShopInfo(res.shop_owner_id);
       }
     } catch (error) {
       toast.error(`${error}`);
     }
   };
 
+  const fetchShopInfo = async (shop_id: string) => {
+    try {
+      const data = await GetShopInfoByUserId(shop_id);
+      setShopInfo(data);
+    } catch (error) {}
+  };
   const handleAddToCart = async () => {
     try {
       const res = await AddToCart(userInfo?._id as string, productId);
@@ -302,6 +314,44 @@ function ProductDetail(props: any) {
                 </div>
               </div>
             </div>
+            {/* shop info */}
+            <div className="mt-16 flex justify-start gap-4 bg-light-modal-popup p-6 dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text text-sm sm:text-base">
+              <div className="w-[100px] ">
+                <img
+                  src={shopInfo?.logoUrl}
+                  alt="Shop Logo"
+                  className="rounded-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col justify-around gap-2">
+                <p className=" font-bold">{shopInfo?.name}</p>
+                <p className="font-light">
+                  {shopInfo?.isActive ? "Online" : "Offline"}
+                  <span className="mx-2">
+                    <FontAwesomeIcon
+                      icon={faCircle}
+                      color={shopInfo?.isActive ? "green" : "red"}
+                    />
+                  </span>
+                </p>
+                <div className="flex justify-start gap-4">
+                  <button className="capitalize p-2 border border-orange-500 bg-orange-100 text-orange-600">
+                    Chat Now
+                  </button>
+                  <Link href={`/shop/${shopInfo?._id}`}>
+                    <button className="capitalize p-2 border border-gray-300 bg-light-btn-bg dark:bg-dark-bg-btn dark:text-dark-btn-text text-light-btn-text">
+                      View Shop
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            {/* review */}
+            <div className="sm:mx-24 mt-10 ">
+              {product.comments.map((reviewId) => (
+                <ProductReviewCard reviewId={reviewId} />
+              ))}
+            </div>
             {/* related product */}
             <div className="mt-[100px]">
               <h2 className="py-10 text-2xl sm:text-4xl">Related</h2>
@@ -327,114 +377,125 @@ function ProductDetail(props: any) {
               </div>
             </div>
             {/* edit product by admin */}
-            {userInfo?.role == "owner" && (
-              <div className="mt-8">
-                <form
-                  onSubmit={handleUpdateProduct}
-                  className="w-full flex justify-center items-center"
-                >
-                  <div>
-                    <table className="w-full table-auto border-collapse sm:block hidden ">
-                      <thead>
-                        <tr className="bg-light-modal-popup dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text">
-                          <th className="border px-4 py-2 text-left">Name</th>
-                          <th className="border px-4 py-2 text-left">Price</th>
-                          <th className="border px-4 py-2 text-left">Sku</th>
-                          <th className="border px-4 py-2 text-left">
-                            Description
-                          </th>
+            {userInfo?.role == "owner" &&
+              userInfo.shop_id === product.shop_owner_id && (
+                <div className="mt-8">
+                  <form
+                    onSubmit={handleUpdateProduct}
+                    className="w-full flex justify-center items-center"
+                  >
+                    <div>
+                      <table className="w-full table-auto border-collapse sm:block hidden ">
+                        <thead>
+                          <tr className="bg-light-modal-popup dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text">
+                            <th className="border px-4 py-2 text-left">Name</th>
+                            <th className="border px-4 py-2 text-left">
+                              Price
+                            </th>
+                            <th className="border px-4 py-2 text-left">Sku</th>
+                            <th className="border px-4 py-2 text-left">
+                              Description
+                            </th>
 
-                          <th className="border px-4 py-2 text-left">
-                            Quantity
-                          </th>
-                          <th className="border px-4 py-2 text-left">
-                            Set New Arrival
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className="border px-4 py-2 w-1/4">
-                            <input
-                              onChange={handleInputChange}
-                              type="text"
-                              name="name"
-                              id="updateName"
-                              required
-                              value={updateProductForm.name}
-                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none "
-                            />
-                          </td>
-                          <td className="border px-4 py-2 ">
-                            <input
-                              onChange={handleInputChange}
-                              type="text"
-                              name="price"
-                              id="updatePrice"
-                              required
-                              value={updateProductForm.price}
-                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                            />
-                          </td>
-                          <td className="border px-4 py-2">
-                            <input
-                              type="text"
-                              onChange={handleInputChange}
-                              name="sku"
-                              id="updateSku"
-                              required
-                              value={updateProductForm.sku}
-                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                            />
-                          </td>
-                          <td className="border px-4 py-2">
-                            <textarea
-                              onChange={handleInputChange}
-                              id="updateDesc"
-                              name="description"
-                              cols={40}
-                              rows={4}
-                              value={updateProductForm.description}
-                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                            />
-                          </td>
-                          <td className="border px-4 py-2">
-                            <input
-                              type="number"
-                              onChange={handleInputChange}
-                              name="stock_quantity"
-                              id="updateQuantity"
-                              min={0}
-                              value={updateProductForm.stock_quantity}
-                              required
-                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                            />
-                          </td>
-                          <td className="border px-4 py-2">
-                            <select
-                              name="isOutStanding"
-                              onChange={handleInputChange}
-                              id="isOutStanding"
-                              value={updateProductForm.isOutStanding ? 1 : 0}
-                              className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                            >
-                              <option value={1}>Yes</option>
-                              <option value={0}>No</option>
-                            </select>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <button
-                      type="submit"
-                      className="px-4 py-2 text-center rounded-md bg-green-700 hover:bg-green-600 transition duration-300 text-white my-4"
+                            <th className="border px-4 py-2 text-left">
+                              Quantity
+                            </th>
+                            <th className="border px-4 py-2 text-left">
+                              Set New Arrival
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">
+                              <input
+                                onChange={handleInputChange}
+                                type="text"
+                                name="name"
+                                id="updateName"
+                                required
+                                value={updateProductForm.name}
+                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none "
+                              />
+                            </td>
+                            <td className="border px-4 py-2 ">
+                              <input
+                                onChange={handleInputChange}
+                                type="text"
+                                name="price"
+                                id="updatePrice"
+                                required
+                                value={updateProductForm.price}
+                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                              />
+                            </td>
+                            <td className="border px-4 py-2">
+                              <input
+                                type="text"
+                                onChange={handleInputChange}
+                                name="sku"
+                                id="updateSku"
+                                required
+                                value={updateProductForm.sku}
+                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                              />
+                            </td>
+                            <td className="border px-4 py-2">
+                              <textarea
+                                onChange={handleInputChange}
+                                id="updateDesc"
+                                name="description"
+                                cols={40}
+                                rows={4}
+                                value={updateProductForm.description}
+                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                              />
+                            </td>
+                            <td className="border px-4 py-2">
+                              <input
+                                type="number"
+                                onChange={handleInputChange}
+                                name="stock_quantity"
+                                id="updateQuantity"
+                                min={0}
+                                value={updateProductForm.stock_quantity}
+                                required
+                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                              />
+                            </td>
+                            <td className="border px-4 py-2">
+                              <select
+                                name="isOutStanding"
+                                onChange={handleInputChange}
+                                id="isOutStanding"
+                                value={updateProductForm.isOutStanding ? 1 : 0}
+                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
+                              >
+                                <option value={1}>Yes</option>
+                                <option value={0}>No</option>
+                              </select>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <button
+                        type="submit"
+                        className="px-4 py-2 text-center rounded-md bg-green-700 hover:bg-green-600 transition duration-300 text-white my-4"
+                      >
+                        Update
+                      </button>
+                    </div>
+                  </form>
+                  <div className="w-full">
+                    <Link
+                      href={`/product/analyze/${productId}`}
+                      className="px-4 py-2 text-center rounded-md bg-cyan-800 hover:bg-green-600 transition duration-300 text-white my-4 w-full block"
                     >
-                      Update
-                    </button>
+                      Analyze
+                    </Link>
                   </div>
-                </form>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         ) : (
           <Spinner />

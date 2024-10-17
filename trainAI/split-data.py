@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 # Đường dẫn đến file CSV
-file_path = 'D:\\RefactorThesis\\GraduationThesis\\trainAI\\raw-data.csv'
+file_path = 'D:\\GraduationThesis\\trainAI\\raw-data.csv'
 
 # Đọc file CSV
 data = pd.read_csv(file_path, header=None, on_bad_lines='skip')
@@ -24,7 +24,7 @@ train_data = pd.DataFrame({'review': X_train, 'label': y_train})
 test_data = pd.DataFrame({'review': X_test, 'label': y_test})
 
 # Lưu tập huấn luyện và tập kiểm tra vào file CSV
-train_data.to_csv('D:\\RefactorThesis\\GraduationThesis\\trainAI\\train_data.csv', index=False)
-test_data.to_csv('D:\\RefactorThesis\\GraduationThesis\\trainAI\\test_data.csv', index=False)
+train_data.to_csv('D:\\GraduationThesis\\trainAI\\train_data.csv', index=False)
+test_data.to_csv('D:\\GraduationThesis\\trainAI\\test_data.csv', index=False)
 
 print("Tập dữ liệu đã được chia và lưu thành công!")

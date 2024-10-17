@@ -17,6 +17,9 @@ export class CartItem {
 
     @Prop({ default: 1 })
     quantity: number;
+
+    @Prop()
+    shop_owner_id: Types.ObjectId
 }
 
 @Schema()
@@ -48,6 +51,8 @@ export class User extends Document {
     @Prop({ type: [CartItem], default: [] })
     cart: CartItem[];
 
+    @Prop({ type: Types.ObjectId, default: null })
+    shop_id: Types.ObjectId
 }
 
 

@@ -436,23 +436,30 @@ function Profile() {
                   {userInfo?.role === "owner" ? (
                     <button
                       onClick={() => {
-                        router.push("/shop/management");
+                        router.push("/shop/dashboard");
                       }}
                       className="underline hover:text-orange-500"
                     >
                       My Shop
                     </button>
+                  ) : userInfo?.role === "admin" ? (
+                    <button
+                      onClick={() => {
+                        router.push("/admin");
+                      }}
+                      className="underline hover:text-orange-500"
+                    >
+                      Supper Admin Page
+                    </button>
                   ) : (
-                    userInfo?.role === "admin" && (
-                      <button
-                        onClick={() => {
-                          router.push("/admin");
-                        }}
-                        className="underline hover:text-orange-500"
-                      >
-                        Supper Admin Page
-                      </button>
-                    )
+                    <button
+                      onClick={() => {
+                        router.push("/shop/create");
+                      }}
+                      className="underline hover:text-orange-500"
+                    >
+                      Start Business
+                    </button>
                   )}
                   <button
                     className="float-right p-2 hover:text-orange-500"

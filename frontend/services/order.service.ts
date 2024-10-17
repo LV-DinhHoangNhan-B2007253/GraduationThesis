@@ -1,13 +1,14 @@
 import { ReturnError } from '@/app/utils/ReturnError.util'
 import axios from './axios.service'
 import { exportTraceState } from 'next/dist/trace'
+import { ReSponseError } from './product.service'
 
 export const CreateOrder = async (createOrderForm: any) => {
     try {
         const res = await axios.post('/order/create', createOrderForm)
         return res.data
     } catch (error) {
-
+        ReSponseError(error)
     }
 }
 
@@ -34,6 +35,17 @@ export const UpdateOrderStatus = async (orderId: string, status: string) => {
 export const GetAllOrder = async () => {
     try {
         const res = await axios.get('/order/getAll')
+        return res.data
+    } catch (error) {
+        ReturnError(error)
+    }
+}
+
+
+
+export const GetOrdersByShop = async (shopId: string) => {
+    try {
+        const res = await axios.get(`/order/byShop/${shopId}`)
         return res.data
     } catch (error) {
         ReturnError(error)

@@ -8,4 +8,5 @@ export class createProductDto {
     price: number
     description: string
     stock_quantity: number
+    shop_owner_id: string
 }

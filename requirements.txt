@@ -6,9 +6,9 @@ transformers
 flask
 underthesea
 torch
-Flask-Cors      # Hỗ trợ CORS nếu cần thiết
-scikit-learn    # Để sử dụng mô hình máy học
-numpy           # Thư viện toán học
+Flask-Cors      
+scikit-learn   
+numpy          
 pandas    
 flask_restful 
 joblib

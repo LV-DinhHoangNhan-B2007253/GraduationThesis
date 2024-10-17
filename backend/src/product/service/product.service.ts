@@ -14,16 +14,19 @@ import { updateProductDto } from '../dtos/updateProduct.dos';
 export class ProductService {
     constructor(@InjectModel(Product.name) private ProductModel: Model<Product>,
         @InjectModel(CategoryItem.name) private CategoryItemModel: Model<CategoryItem>,
-        @InjectModel(User.name) private UserModel: Model<User>
+        @InjectModel(User.name) private UserModel: Model<User>,
+
     ) { }
 
     async CreateNewProduct(categoryItemId: string, createProductForm: createProductDto, images: string[]): Promise<any> {
         try {
 
+            console.log(createProductForm);
 
             const newProduct = new this.ProductModel({
                 ...createProductForm,
                 images: images,
+                shop_owner_id: new Types.ObjectId(createProductForm.shop_owner_id)
             });
             await newProduct.save()
 
@@ -158,7 +161,11 @@ export class ProductService {
                     error: "User Not Found"
                 }, HttpStatus.NOT_FOUND)
             }
+
+            const product = await this.ProductModel.findById(productId)
+
             const existingCartItem = user.cart.find(item => item.product_id.toString() === productId);
+
             if (existingCartItem) {
                 // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng
                 existingCartItem.quantity += 1;
@@ -167,6 +174,7 @@ export class ProductService {
                 user.cart.push({
                     quantity: 1,
                     product_id: new Types.ObjectId(productId),
+                    shop_owner_id: product.shop_owner_id
                 });
             }
             await user.save(); // Lưu cập nhật vào database
@@ -286,6 +294,22 @@ export class ProductService {
     }
 
 
+    async GetProductByOwnerIdWithPage(page: number, limit: number, ownerId: string): Promise<{ products: Product[], totalProduct: number }> {
+        try {
+            const skip = (page - 1) * limit;
+            const products = await this.ProductModel.find({ shop_owner_id: new Types.ObjectId(ownerId) }).skip(skip).limit(limit).exec()
+            const totalProduct = await this.ProductModel.countDocuments({
+                shop_owner_id: new Types.ObjectId(ownerId),
+            }).exec();
+            console.log(products.length);
+
+            return { products, totalProduct }
+        } catch (error) {
+            console.log("Get All product Error", error);
+
+        }
+    }
+
     async UpdateProductInfo(updateProductBody: updateProductDto, productId: string) {
         try {
             const foundProduct = await this.ProductModel.findByIdAndUpdate(productId, updateProductBody)
@@ -315,6 +339,28 @@ export class ProductService {
         }
     }
 
+    async getAllProductOfShop(shop_id: string): Promise<Product[]> {
+        try {
+            const products = await this.ProductModel.find({ shop_owner_id: new Types.ObjectId(shop_id) })
+            return products
+        } catch (error) {
+            console.log("Get all product of shop error", error)
+
+        }
+    }
+
+    async increaseSoldQuantity(product_id: string) {
+        try {
+            await this.ProductModel.findOneAndUpdate(
+                { _id: new Types.ObjectId(product_id) },
+                { $inc: { sold_quantity: 1 } }  // Sử dụng $inc để tăng sold_quantity
+            );
+        } catch (error) {
+            console.log("Increase sold quantity error", error);
+            responseError(error);
+        }
+    }
+
     // handle with product quantitu
     async minusProductQuantity(productId: string, minusQuantity: number): Promise<boolean> {
         try {
@@ -341,6 +387,9 @@ export class ProductService {
 
         }
     }
+
+
+
 
     //đồng bộ dữ liệu khi thay đổi schema
 
@@ -372,4 +421,52 @@ export class ProductService {
             return "oke"
         }
     }
+
+
+    async getAnalyzeProductInfo(productId: string) {
+        try {
+            // Tìm sản phẩm và populate thông tin từ Comment
+            const product = await this.ProductModel.findById(new Types.ObjectId(productId))
+                .populate({
+                    path: 'comments', // Liên kết với comment
+                    model: 'Comment', // Chỉ định model Comment
+                    select: 'content rating', // Lấy các trường content và rating
+                })
+                .exec();
+
+            if (!product) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "Cannot found Product"
+                }, HttpStatus.NOT_FOUND)
+            }
+
+            // Trích xuất nội dung bình luận
+            const extractedComments = product.comments.map((comment: any) => comment.content);
+
+            // Tính số lượng đánh giá theo từng số sao
+            const ratingDistribution = product.comments.reduce((acc: any, comment: any) => {
+                const rating = comment.rating;
+                acc[rating] = (acc[rating] || 0) + 1; // Tăng số lượng đánh giá theo số sao
+                return acc;
+            }, {});
+
+            // Dữ liệu cần trả về
+            return {
+                _id: product._id,
+                name: product.name,
+                sku: product.sku,
+                sold_quantity: product.sold_quantity,
+                averageRating: product.averageRating,
+                ratingCount: product.ratingCount,
+                comments: extractedComments, // Mảng comment
+                ratingDistribution: ratingDistribution,
+                instock: product.stock_quantity // Phân phối số lượt đánh giá theo sao
+            };
+        } catch (error) {
+            console.error('Error fetching product details:', error);
+            throw new Error('Error fetching product details');
+        }
+    }
+
 }

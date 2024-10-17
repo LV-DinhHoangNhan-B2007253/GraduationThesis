@@ -11,6 +11,8 @@ import { faPhoneSquare } from "@fortawesome/free-solid-svg-icons";
 import { faRocketchat } from "@fortawesome/free-brands-svg-icons";
 import { toast } from "react-toastify";
 import { UpdateOrderStatus } from "@/services/order.service";
+import { stat } from "fs";
+import MakeRating from "./MakeRating";
 
 function OrderInfoCard({
   order,
@@ -23,6 +25,9 @@ function OrderInfoCard({
 }) {
   const [userOrder, setUserOrder] = useState<UserInfo>();
   const [status, setStatus] = useState<string>(order.status);
+
+  // opent rating panel
+  const [isOpenRating, setIsOpenRating] = useState<boolean>(false);
 
   const fetchUserInfo = async () => {
     try {
@@ -51,8 +56,19 @@ function OrderInfoCard({
       const cancelStatus = "canceled";
       setStatus(cancelStatus);
       const data = await UpdateOrderStatus(order._id, cancelStatus);
-      console.log(data.message);
       toast.success("Cancel success");
+    } catch (error) {
+      toast.error(`${error}`);
+    }
+  };
+
+  const handleSendReview = async () => {
+    try {
+      const reviewedStatus = "reviewed";
+      setStatus(reviewedStatus);
+      setIsOpenRating(false);
+      const data = await UpdateOrderStatus(order._id, reviewedStatus);
+      toast.success("Thanks for your review");
     } catch (error) {
       toast.error(`${error}`);
     }
@@ -87,7 +103,7 @@ function OrderInfoCard({
         <p>Total Price: {order.total_price}</p>
         <p>Status: {status}</p>
       </div>
-      {status === "pending" && userAction === true && (
+      {status === "pending" && userAction === true ? (
         <div className="flex justify-end items-center my-4">
           <button
             onClick={handleUserCancelOrder}
@@ -96,7 +112,60 @@ function OrderInfoCard({
             Cacel Order
           </button>
         </div>
+      ) : status === "shipped" && userAction === true ? (
+        <div className="flex justify-end items-center my-4">
+          <button
+            onClick={() => setIsOpenRating(true)}
+            className="px-4 py-2 text-center bg-green-700  transition duration-300 ease-in-out text-white uppercase hover:bg-green-500"
+          >
+            Rating
+          </button>
+        </div>
+      ) : status === "canceled" && userAction === true ? (
+        <div className="flex justify-end items-center my-4">
+          <button
+            // onClick={handleUserCancelOrder}
+            className="px-4 py-2 text-center bg-gray-700  transition duration-300 ease-in-out text-white uppercase cursor-not-allowed"
+          >
+            Canceled
+          </button>
+        </div>
+      ) : status === "reviewed" && userAction === true ? (
+        <div className="flex justify-end items-center my-4">
+          <button
+            // onClick={handleUserCancelOrder}
+            className="px-4 py-2 text-center bg-gray-700  transition duration-300 ease-in-out text-white uppercase cursor-not-allowed"
+          >
+            Reviewed
+          </button>
+        </div>
+      ) : (
+        userAction === true && (
+          <div className="flex justify-end items-center my-4">
+            <button
+              // onClick={handleUserCancelOrder}
+              className="px-4 py-2 text-center bg-gray-500  transition duration-300 ease-in-out text-white uppercase cursor-not-allowed"
+            >
+              Delivery
+            </button>
+          </div>
+        )
       )}
+      <div className={`${isOpenRating ? "block" : "hidden"}`}>
+        {order.products.map((pro) => (
+          <MakeRating
+            productId={pro.product_id}
+            key={pro.product_id}
+            userId={order.user_id}
+          />
+        ))}
+        <button
+          onClick={handleSendReview}
+          className="w-full py-2 text-center text-base tracking-widest font-bold underline hover:tracking-[0.2em] transition-all duration-100"
+        >
+          send
+        </button>
+      </div>
       {asAdmin && (
         <div className="flex items-center justify-end gap-14 px-4 py-2 mt-2">
           <select

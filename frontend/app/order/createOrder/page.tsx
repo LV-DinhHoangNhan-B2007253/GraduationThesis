@@ -1,18 +1,22 @@
 "use client";
 import OrderProductCard from "@/components/order/OrderProductCard";
-import { IOrderedProduct } from "@/interfaces/order.interface";
+import PlaceOrder from "@/components/order/PlaceOrder";
+import { IOrderedProduct, IPlaceOrderInfo } from "@/interfaces/order.interface";
 import MainLayout from "@/layouts/MainLayout";
 import { RootState } from "@/redux/store";
 import { CreateOrder } from "@/services/order.service";
 import { GetOneProduct } from "@/services/product.service";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import {
+  faCheck,
+  faClose,
+  faL,
   faLocation,
   faLocationDot,
+  faPen,
   faSquarePhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Main } from "next/document";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -20,69 +24,69 @@ import { useSelector } from "react-redux";
 const CreateOrderPage = () => {
   const { userInfo } = useSelector((state: RootState) => state.user);
   const searchParams = useSearchParams();
-  const [orderList, setOrderList] = useState<IOrderedProduct[]>([]);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [address, setAddress] = useState<string>();
-  const router = useRouter();
+  // const [orderList, setOrderList] = useState<IOrderedProduct[]>([]);
+  // const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [address, setAddress] = useState<string | undefined>("");
+  // const router = useRouter();
+  const [groupedOrders, setGroupedOrders] = useState<IPlaceOrderInfo[]>([]);
 
-  const handleCreateOrder = async () => {
-    const orderedProduct = orderList.map((order) => ({
-      product_id: order.product_id,
-      quantity: order.quantity,
-      price_at_purchase: order.price_at_purchase,
-    }));
-
-    const orderData = {
-      user_id: userInfo?._id,
-      products: orderedProduct,
-      total_price: totalPrice,
-      shipping_address: address,
-    };
-
-    try {
-      // Gọi API để tạo đơn hàng
-      const response = await CreateOrder(orderData);
-      const confirm = window.confirm(`${response.message}`);
-      if (confirm) {
-        router.push("/");
-      }
-    } catch (error) {
-      console.error("Error creating order:", error);
-    }
-  };
+  // address input state
+  const [isDisableAddress, setIsDisableAddress] = useState<boolean>(true);
 
   useEffect(() => {
-    // Lấy dữ liệu order từ search params
     const orderInfo = searchParams.get("orderInfo");
-
-    // Kiểm tra và xử lý chuỗi orderInfo nếu có
     if (orderInfo) {
       const parsedOrderList = orderInfo.split(",").map(async (item) => {
         const [product_id, qty] = item.split("-");
         const quantity = Number(qty);
 
-        // Gọi API để lấy thông tin sản phẩm và giá hiện tại
-        const productData = await GetOneProduct(product_id); // Gọi hàm để lấy giá của sản phẩm
-        const price_at_purchase = productData.price; // Giả sử giá của sản phẩm nằm trong `price`
+        const productData = await GetOneProduct(product_id);
+        const price_at_purchase = productData.price;
+        const shop_owner_id = productData.shop_owner_id;
 
-        return { product_id, quantity, price_at_purchase };
+        return { product_id, quantity, price_at_purchase, shop_owner_id };
       });
 
+      // nhận vào parsed orderList ở bên trên sau khi lấy đầy đủ thông tin -> nhóm các sản phẩm nằm vào cùng 1 shop theo id của shop, sau đó set vào state
       Promise.all(parsedOrderList).then((resolvedOrderList) => {
-        setOrderList(resolvedOrderList);
+        const groupedOrders: Record<string, IOrderedProduct[]> = {};
+
+        resolvedOrderList.forEach((order) => {
+          // lấy shop_id của mỗi sản phẩm
+          const { shop_owner_id } = order;
+          // nếu mà nhóm với shop_id này chưa có thì sẽ tạo mới với giá trị là []
+          if (!groupedOrders[shop_owner_id]) {
+            groupedOrders[shop_owner_id] = [];
+          }
+          // push các sản phẩm có cùng shop_id vào nhóm
+          groupedOrders[shop_owner_id].push({
+            product_id: order.product_id,
+            quantity: order.quantity,
+            price_at_purchase: order.price_at_purchase,
+          });
+        });
+
+        // Tạo đơn hàng cho mỗi shop
+        const ordersArray: IPlaceOrderInfo[] = Object.entries(
+          groupedOrders
+        ).map(([shop_id, products]) => ({
+          shop_id,
+          products,
+        }));
+
+        setGroupedOrders(ordersArray); // Cập nhật trạng thái groupedOrders
       });
     }
   }, [searchParams]);
 
   useEffect(() => {
-    // Tính tổng giá khi orderList thay đổi
-    const total = orderList.reduce(
-      (acc, order) => acc + Number(order.price_at_purchase) * order.quantity,
-      0
+    const add = userInfo?.addresses.detail.concat(
+      " - " + userInfo.addresses.ward.ward_name + "-",
+      userInfo.addresses.district.district_name + "-",
+      userInfo.addresses.province.province_name
     );
-    setTotalPrice(total);
-    setAddress(userInfo?.addresses.addressDetail);
-  }, [orderList]);
+    setAddress(add);
+  }, []);
 
   return (
     <MainLayout>
@@ -96,7 +100,7 @@ const CreateOrderPage = () => {
             <FontAwesomeIcon icon={faLocationDot} />
             <p className="capitalize">delivery address</p>
           </div>
-          <div className="flex justify-start items-center gap-4 sm:gap-8 py-4">
+          <div className="flex items-center py-4 gap-4 sm:gap-8">
             <div className="font-bold text-black dark:text-dark-primary-text text-sm sm:text-base min-w-[150px]">
               <p className="capitalize my-3 ">
                 <span className="mx-2 ">
@@ -111,49 +115,48 @@ const CreateOrderPage = () => {
                 {userInfo?.phone_number}
               </p>
             </div>
-            <div className="">
-              <p className="text-wrap">
-                {userInfo?.addresses.addressDetail} -{" "}
-                {userInfo?.addresses.region}
-              </p>
+            <div className="flex-1 flex items-center gap-2">
+              <input
+                className={`border border-light-input-border dark:border-dark-input-border w-full p-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text ${
+                  !isDisableAddress
+                    ? "outline-blue-500 outline"
+                    : "outline-none"
+                } rounded`}
+                type="text"
+                name="shipAddress"
+                id="shipAddress"
+                defaultValue={address}
+                onChange={(e) => setAddress(e.target.value)}
+                disabled={isDisableAddress ? true : false}
+              />
+              {isDisableAddress ? (
+                <FontAwesomeIcon
+                  icon={faPen}
+                  className="text-sm sm:text-base cursor-pointer hover:text-blue-700 p-2  text-center"
+                  onClick={() => setIsDisableAddress(!isDisableAddress)}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  className="text-sm sm:text-base cursor-pointer hover:text-blue-700 p-2  text-center"
+                  onClick={() => setIsDisableAddress(!isDisableAddress)}
+                />
+              )}
             </div>
           </div>
         </div>
-        {/* list */}
-        <ul>
-          {orderList.map((order) => (
-            <li key={order.product_id}>
-              <OrderProductCard
-                productId={order.product_id}
-                qty={order.quantity}
-                key={order.product_id}
-                price={Number(order.price_at_purchase)}
+        {/* list order */}
+        <div>
+          {groupedOrders.map((order) => (
+            <div className="bg-light-modal-popup dark:bg-dark-modal-popup my-4">
+              <PlaceOrder
+                order={order}
+                key={order.shop_id}
+                userInfo={userInfo}
+                address={address}
               />
-            </li>
-          ))}
-        </ul>
-        {/* bottom price and order button */}
-        <div className="grid grid-cols-4 bg-[#fffefb] dark:bg-dark-card-bg px-2 sm:px-6 py-4 sm:py-8">
-          <div className="col-span-1 col-start-4 flex justify-between items-center">
-            <p className="text-sm  sm:text-base font-bold">Total Price</p>
-            <p className="text-base sm:text-3xl text-orange-600 font-bold">
-              {totalPrice}
-              <span className="text-small sm:text-xl">$</span>
-            </p>
-          </div>
-          <div className="col-span-4 mt-3 px-5 border-t border-gray-50">
-            <div className="py-5  flex justify-between items-center">
-              <p className=" flex-1">
-                Clicking "Place Order" means you agree to abide by our terms
-              </p>
-              <button
-                onClick={handleCreateOrder}
-                className="text-center bg-orange-600 px-8 py-2 rounded font-bold text-white hover:bg-orange-400 hover:rounded-md"
-              >
-                Place Order
-              </button>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </MainLayout>

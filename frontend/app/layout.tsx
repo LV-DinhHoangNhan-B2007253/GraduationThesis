@@ -16,6 +16,7 @@ import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import MainLayout from "@/layouts/MainLayout";
+import { AOSInit } from "@/components/aos";
 config.autoAddCss = false;
 
 // fonts
@@ -42,6 +43,7 @@ export default function RootLayout({
   return (
     <ReduxProvider>
       <html lang="en" className={basker.className}>
+        <AOSInit />
         <body className={`bg-light-bg dark:bg-dark-bg relative`}>
           <Providers>
             {children}

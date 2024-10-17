@@ -9,4 +9,6 @@ export class createOrderDto {
     products: orderedProduct[]
     total_price: number
     shipping_address: string
+    payment_method: string
+    shop_id: string
 }

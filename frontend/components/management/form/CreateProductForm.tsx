@@ -3,14 +3,17 @@
 import { IArea } from "@/interfaces/area.interface";
 import { ICategory } from "@/interfaces/category.interface";
 import { ICreateProduct } from "@/interfaces/product.interface";
+import { RootState } from "@/redux/store";
 import { GetAllArea } from "@/services/area.service";
 import { GetAllCategory, GetCategoryItems } from "@/services/category.service";
 import { CreateNewProduct } from "@/services/product.service";
-import { image } from "@nextui-org/react";
+import { image, useSelect } from "@nextui-org/react";
+import { Root } from "postcss";
 import { ChangeEvent, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import { toast } from "react-toastify";
-function CreateProductForm() {
+function CreateProductForm({ shop_id }: { shop_id: string }) {
   let settings = {
     customPaging: function (i: number) {
       return (
@@ -42,6 +45,7 @@ function CreateProductForm() {
     sku: "",
     price: 0,
     stock_quantity: 0,
+    shop_owner_id: "",
   });
 
   const handleSelectArea = async (e: ChangeEvent<HTMLSelectElement>) => {
@@ -58,7 +62,7 @@ function CreateProductForm() {
     }
   };
 
-  const getData = async () => {
+  const getCategoryItemsData = async () => {
     try {
       const areas = await GetAllArea();
       setArea(areas);
@@ -103,11 +107,23 @@ function CreateProductForm() {
     productData.append("price", formData.price.toString());
     productData.append("description", formData.description);
     productData.append("stock_quantity", formData.stock_quantity.toString());
+    productData.append("shop_owner_id", formData.shop_owner_id);
+
+    // if (userInfo?.shop_owner_id) {
+    //   console.log("Appended shop_owner_id:", userInfo.shop_owner_id);
+    // } else {
+    //   console.error("shop_owner_id is missing.");
+    // }
 
     // Append multiple images
     formData.images.forEach((image) => {
       productData.append("images", image);
     });
+
+    productData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+
     try {
       const res = await CreateNewProduct(categoryId, productData);
       if (res && res.message) {
@@ -119,8 +135,14 @@ function CreateProductForm() {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    getCategoryItemsData();
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      shop_owner_id: shop_id, // Cập nhật shop_owner_id
+    }));
+  }, [shop_id]);
+  console.log(shop_id);
+  
 
   return (
     <section>

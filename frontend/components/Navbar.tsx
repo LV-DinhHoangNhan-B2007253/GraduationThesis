@@ -91,7 +91,7 @@ function Navbar() {
           <ThemeSwitch />
           {userInfo?.role === "owner" ? (
             <Link
-              href={"/shop/management"}
+              href={`/shop/${userInfo.shop_id}`}
               className="hidden sm:block text-sm text-light-text-link-color dark:text-dark-link hover:underline uppercase p-2 border border-gray-200 rounded"
             >
               My Shop

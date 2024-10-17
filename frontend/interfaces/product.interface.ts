@@ -8,8 +8,12 @@ export interface IProduct {
     price: number,
     stock_quantity: number
     isOutStanding: boolean
-    comment: IComment[]
+    comments: string[]
     description: string
+    averageRating: number
+    ratingCount: number
+    sold_quantity: number
+    shop_owner_id: string
 
 }
 
@@ -20,12 +24,19 @@ export interface ICreateProduct {
     price: number
     description: string
     stock_quantity: number
+    shop_owner_id: string
 }
 
 export interface ICartItem {
     product_id: string,
     quantity: number
-    _id: string
+    _id: string,
+    shop_owner_id: string
+}
+
+export interface IShopGroup {
+    shop_owner_id: string;
+    products: ICartItem[];
 }
 
 export interface IUpdateProductForm {
@@ -35,4 +46,17 @@ export interface IUpdateProductForm {
     stock_quantity: number | undefined,
     sku: string | undefined
     isOutStanding: boolean
+}
+
+
+export interface IAnalyzeProduct {
+    _id: string;
+    name: string;
+    sku: string;
+    sold_quantity: number;
+    averageRating: number;
+    ratingCount: number;
+    comments: string[]; // Mảng chỉ chứa nội dung bình luận
+    ratingDistribution: { [key: number]: number };
+    instock: number // Đếm số lượng đánh giá theo từng số sao
 }

@@ -56,4 +56,9 @@ export class UserController {
     UpdateProductQuantityInCart(@Param('userId') userId: string, @Param('productId') productId: string, @Body() updateBody: { updateQuantity: number }) {
         return this.userService.updateProductQuantityInCart(userId, productId, updateBody)
     }
+
+    @Get('/owner/shop/:shop_id')
+    GetShopOwnerInfo(@Param('shop_id') shop_id) {
+        return this.userService.getShopOwnerInfoByShopId(shop_id)
+    }
 }

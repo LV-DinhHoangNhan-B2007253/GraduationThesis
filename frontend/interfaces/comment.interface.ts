@@ -1,16 +1,18 @@
-interface Reply {
+
+
+export interface ICreateReview {
     user_id: string
-    reply_text: string
-    date: Date
+    product_id: string
+    content: string
+    rating: number
+    review_img: File[]
 }
 
-
-
-
 export interface IComment {
-    product_id: string
-    comment_text: string
-    rating: number
+    user_name: string,
+    user_avatar: string,
+    content: string,
+    rating: number,
+    review_img: string[]
     date: Date
-    replies: Reply[]
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, UploadedFile, UploadedFiles, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UploadedFiles, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ShopService } from '../services/ShopService.service';
 import { CreateShopDto, } from '../dtos/createShop.dto';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
@@ -51,5 +51,10 @@ export class ShopController {
         const bannerFilePath = bannerFile ? `http://localhost:3001/uploads/shop/banner/${bannerFile.filename}` : null;
 
         return this.ShopService.CreateNewShop(logoFilePath, bannerFilePath, createShopForm, userId);
+    }
+
+    @Get('/:userId')
+    GetShopByOwner(@Param('userId') userId: string) {
+        return this.ShopService.GetShopInfoByUserId(userId)
     }
 }

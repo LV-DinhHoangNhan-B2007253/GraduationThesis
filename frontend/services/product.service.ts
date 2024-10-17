@@ -218,3 +218,46 @@ export const GetOutStandingProducts = async () => {
         ReSponseError(error)
     }
 }
+
+
+// shop with products
+export const GetShopProductsWithPage = async (shopId: string, page: number, limit: number) => {
+
+
+    try {
+        const res = await axios.get(`/product/byShop/${shopId}?page=${page}&limit=${limit}`)
+        return res.data
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+
+export const GetAllProductsOfShop = async (shop_id: string) => {
+    try {
+        const res = await axios.get(`/product/get/shop/${shop_id}`)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}
+
+export const getCommentOfProduct = async (reviewId: string) => {
+    try {
+        const res = await axios.get(`/review/get/reviewId/${reviewId}`)
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}
+
+export const getAnalyzeProductData = async (productId: string) => {
+    try {
+        const res = await axios.get(`/product/get/analyze/${productId}`)
+        return res.data
+    } catch (error) {
+        console.log(error);
+
+        ReSponseError(error)
+    }
+}

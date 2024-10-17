@@ -7,6 +7,7 @@ import { responseError } from 'src/utils/normalize.util';
 import { UserService } from 'src/auth/service/user.service';
 import { find } from 'rxjs';
 import { error } from 'console';
+import { Type } from 'class-transformer';
 
 @Injectable()
 export class ShopService {
@@ -61,10 +62,29 @@ export class ShopService {
             });
 
             await newShop.save();
+            await this.UserService.UpdateShopIdForOwner(newShop._id, userId)
             return { message: "Tạo shop thành công" };
         } catch (error) {
             console.log("Lỗi khi tạo shop mới", error);
             responseError(error);
+        }
+    }
+
+    async GetShopInfoByUserId(shop_id: string): Promise<Shop> {
+        try {
+            const Shop_id = new Types.ObjectId(shop_id)
+
+            const shop = await this.ShopModel.findOne({ _id: Shop_id })
+            if (!shop) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "cannot found shop"
+                }, HttpStatus.NOT_FOUND)
+            }
+            return shop
+        } catch (error) {
+            console.log("Get shop Error", error);
+            responseError(error)
         }
     }
 }

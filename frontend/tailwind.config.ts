@@ -57,6 +57,8 @@ const config: Config = {
         'light-footer-text': '#666666',
         'light-footer-link': '#007BFF',
         'light-active': '#3d405b',
+        'light-sidebar-btn': "#231942",
+        'light-sidebar-btn-text': '#ffffff',
 
 
         // dark text  
@@ -93,7 +95,12 @@ const config: Config = {
         // dark footer
         'dark-footer-bg': '#1A1A40',
         'dark-footer-text': '#A1A1AA',
-        'dark-footer-link': '#22D3EE'
+        'dark-footer-link': '#22D3EE',
+        'dark-sidebar-btn': "#edf2f4",
+        'dark-sidebar-btn-text': "#000000",
+
+        // price text and chung
+        'price-text': "#EE4D2D",
 
 
       },

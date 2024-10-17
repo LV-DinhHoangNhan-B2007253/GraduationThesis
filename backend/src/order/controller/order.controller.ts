@@ -29,4 +29,9 @@ export class OrderController {
     GetAllOrder() {
         return this.orderService.GetAllOrder()
     }
+
+    @Get('/byShop/:shopId')
+    GetOrdersByShop(@Param('shopId') shopId: string) {
+        return this.orderService.GetOrdersByShop(shopId)
+    }
 }
