@@ -130,6 +130,8 @@ export class ProductService {
 
     async GetOneProduct(productId: string,): Promise<Product> {
         try {
+
+
             const foundProduct = await this.ProductModel.findById(productId)
             if (!foundProduct) {
                 throw new HttpException({

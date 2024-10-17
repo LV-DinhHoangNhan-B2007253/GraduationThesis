@@ -10,6 +10,9 @@ import { Document, Types } from "mongoose";
 
 @Schema()
 export class Promotion extends Document {
+    @Prop({ type: Types.ObjectId, ref: 'Shop', })
+    shop_id: Types.ObjectId
+
     @Prop()
     title: string; // tên chương trình
 
@@ -19,17 +22,17 @@ export class Promotion extends Document {
     @Prop()
     discountType: string; // loại khuyến mãi (percentage, fixed, etc.)
 
-    @Prop({ default: '' })
+    @Prop()
     promotion_banner: string; //banner khuyến mãi
 
-    @Prop()
-    startDate: Date; // ngày bắt đầu
+    @Prop({ default: Date.now() })
+    startDate: string; // ngày bắt đầu
 
     @Prop()
-    endDate: Date; // ngày kết thúc
+    endDate: string; // ngày kết thúc
 
-    @Prop({ type: [String], default: [] }) // danh sách ID sản phẩm áp dụng
-    products: string[];
+    @Prop({ type: [Types.ObjectId], ref: 'Product', default: [] }) // danh sách ID sản phẩm áp dụng
+    products: Types.ObjectId[];
 
 }
 

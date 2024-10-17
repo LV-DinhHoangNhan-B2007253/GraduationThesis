@@ -5,10 +5,13 @@ import { Shop, ShopSchema } from './schemas/Shop.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from 'src/auth/auth.module';
 import { Promotion, PromotionSchema } from './schemas/Promotion.schema';
+import { PromotionService } from './services/Promotion.service';
+import { PromotionController } from './controllers/Promotion.controller';
+import { ProductModule } from 'src/product/product.module';
 
 @Module({
-  controllers: [ShopController],
-  providers: [ShopService],
-  imports: [MongooseModule.forFeature([{ name: Shop.name, schema: ShopSchema },]), MongooseModule.forFeature([{ name: Promotion.name, schema: PromotionSchema },]), AuthModule,]
+  controllers: [ShopController, PromotionController],
+  providers: [ShopService, PromotionService,],
+  imports: [MongooseModule.forFeature([{ name: Shop.name, schema: ShopSchema },]), MongooseModule.forFeature([{ name: Promotion.name, schema: PromotionSchema },]), AuthModule, ProductModule]
 })
 export class ShopModule { }

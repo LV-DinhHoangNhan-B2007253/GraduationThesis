@@ -39,7 +39,7 @@ function AnalyzeProduct(props: any) {
     <div className="w-full  min-h-screen p-5 ">
       {product ? (
         <>
-          <button onClick={() => router.back}>
+          <button onClick={() => router.back()}>
             <FontAwesomeIcon
               icon={faArrowLeft}
               className="font-light text-2xl px-2 my-3"

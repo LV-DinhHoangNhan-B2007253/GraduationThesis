@@ -81,7 +81,7 @@ function ProductManagement() {
     }
   };
 
-  const handleProductDeleted = () => {
+  const handleRefetchProduct = () => {
     // Re-fetch the product list after deletion
     fetchProducts();
   };
@@ -143,7 +143,7 @@ function ProductManagement() {
             </Button>
 
             <Button
-              onClick={handleProductDeleted}
+              onClick={handleRefetchProduct}
               className="px-1 py-2 text-center border rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border"
             >
               <FontAwesomeIcon icon={faRefresh} />
@@ -266,7 +266,7 @@ function ProductManagement() {
             <ProductDetailCard
               product={prod}
               key={prod._id}
-              onProductDeleted={handleProductDeleted}
+              onProductDeleted={handleRefetchProduct}
             />
           </div>
         ))}

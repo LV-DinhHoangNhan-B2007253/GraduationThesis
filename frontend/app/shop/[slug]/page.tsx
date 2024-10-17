@@ -4,8 +4,10 @@ import ShopProductCard from "@/components/shop/ShopProductCard";
 import ShopSaleList from "@/components/shop/ShopSaleList";
 import { IUser } from "@/interfaces/auth.interface";
 import { IProduct } from "@/interfaces/product.interface";
+import { IPromotion } from "@/interfaces/promotion.interface";
 import MainLayout from "@/layouts/MainLayout";
 import { GetAllProductsOfShop } from "@/services/product.service";
+import { GetPromotionsOfShop } from "@/services/promotion.service";
 import { GetShopInfoByUserId } from "@/services/shop.service";
 import { GetUserInfoById } from "@/services/user.service";
 import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +22,7 @@ function ShopInfo(props: any) {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [recommentProducts, setRecommentProducts] = useState<IProduct[]>([]);
   const [shopOwner, setShopOwner] = useState<IUser | null>(null);
+  const [promotionList, setPromotionList] = useState<IPromotion[]>([]);
 
   //   dữ liệu cần lấy: thông tin shop, thông tin sản phẩm của shop, thanh điều hướng gồm: nổi bật (khuyến mãi, các sản phẩm ngẫu nhiểu), mục tât cả sản phẩm.
 
@@ -50,6 +53,9 @@ function ShopInfo(props: any) {
       setProducts(products);
       const shuffle_products = getRandomProducts(products, 6);
       setRecommentProducts(shuffle_products);
+      // promotion of shop
+      const promotions = await GetPromotionsOfShop(ShopId);
+      setPromotionList(promotions);
       //   shuffle products
     } catch (error) {
       console.log(error);
@@ -140,8 +146,19 @@ function ShopInfo(props: any) {
         </section>
 
         <section id="sale">
+          <h1 className="text-base sm:text-2xl text-light-primary-text dark:text-dark-primary-text mt-6 tracking-widest font-light">
+            Our Programs
+          </h1>
           {/* promotions  */}
-          <ShopSaleList />
+          {promotionList.map((promo) => (
+            <Link href={`/shop/promotion/${promo._id}`}>
+              <img
+                src={`${promo.promotion_banner}`}
+                alt="Promotion banner"
+                className="w-full h-[500px] object-cover"
+              />
+            </Link>
+          ))}
         </section>
 
         <section id="all">

@@ -80,10 +80,10 @@ const CreateOrderPage = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    const add = userInfo?.addresses.detail.concat(
-      " - " + userInfo.addresses.ward.ward_name + "-",
-      userInfo.addresses.district.district_name + "-",
-      userInfo.addresses.province.province_name
+    const add = userInfo?.addresses?.detail?.concat(
+      " - " + userInfo.addresses.ward?.ward_name + "-",
+      userInfo.addresses.district?.district_name + "-",
+      userInfo.addresses.province?.province_name
     );
     setAddress(add);
   }, []);
