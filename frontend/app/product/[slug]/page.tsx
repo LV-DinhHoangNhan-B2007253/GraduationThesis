@@ -1,5 +1,6 @@
 "use client";
 
+import ChatBox from "@/components/chat/ChatBox";
 import ProductReviewCard from "@/components/review/ProductReviewCard";
 import Spinner from "@/components/Spinner";
 import { IProduct, IUpdateProductForm } from "@/interfaces/product.interface";
@@ -54,6 +55,8 @@ function ProductDetail(props: any) {
   const [orderQuantity, setOrderQuantity] = useState<number>(1);
   const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  // toggle chat
+  const [isChatbox, setIsChatBox] = useState<boolean>(false);
 
   const [updateProductForm, setUpdateProductForm] =
     useState<IUpdateProductForm>({
@@ -160,11 +163,12 @@ function ProductDetail(props: any) {
             <div className="sm:grid sm:grid-cols-12 sm:gap-4 sm:h-3/4 ">
               <div className="sm:col-span-7 ">
                 <Slider {...settings} className="h-[300px] sm:h-full">
-                  {product.images.map((img) => (
+                  {product.images.map((img, index) => (
                     <img
+                      key={index}
                       src={`${img}`}
                       alt="Product Image"
-                      className="w-full sm:h-full h-[400px]  object-cover rounded-md cursor-pointer"
+                      className="w-full sm:h-[500px] h-[400px]  object-cover rounded-md cursor-pointer"
                     />
                   ))}
                 </Slider>
@@ -335,7 +339,10 @@ function ProductDetail(props: any) {
                   </span>
                 </p>
                 <div className="flex justify-start gap-4">
-                  <button className="capitalize p-2 border border-orange-500 bg-orange-100 text-orange-600">
+                  <button
+                    className="capitalize p-2 border border-orange-500 bg-orange-100 text-orange-600"
+                    onClick={() => setIsChatBox(true)}
+                  >
                     Chat Now
                   </button>
                   <Link href={`/shop/${shopInfo?._id}`}>
@@ -348,18 +355,18 @@ function ProductDetail(props: any) {
             </div>
             {/* review */}
             <div className="sm:mx-24 mt-10 ">
-              {product.comments.map((reviewId) => (
-                <ProductReviewCard reviewId={reviewId} />
+              {product.comments.map((reviewId, index) => (
+                <ProductReviewCard reviewId={reviewId} key={index} />
               ))}
             </div>
             {/* related product */}
             <div className="mt-[100px]">
               <h2 className="py-10 text-2xl sm:text-4xl">Related</h2>
               <div className="flex justify-around gap-4 overflow-x-auto">
-                {relatedProduct?.map((r) => (
+                {relatedProduct?.map((r, index) => (
                   <div
                     className="flex flex-col justify-between w-1/3 gap-2 sm:w-1/4 shrink-0"
-                    key={r._id}
+                    key={index}
                   >
                     <Link href={`/product/${r._id}`}>
                       <img
@@ -376,6 +383,19 @@ function ProductDetail(props: any) {
                 ))}
               </div>
             </div>
+
+            {/* chat */}
+            {isChatbox ? (
+              <div className="fixed bottom-0 right-5 z-20 bg-light-modal-popup p-4">
+                <ChatBox
+                  senderId={userInfo?._id}
+                  receiverId={shopInfo?.owner}
+                />
+                <button onClick={() => setIsChatBox(false)}>close</button>
+              </div>
+            ) : (
+              <></>
+            )}
             {/* edit product by admin */}
             {userInfo?.role == "owner" &&
               userInfo.shop_id === product.shop_owner_id && (

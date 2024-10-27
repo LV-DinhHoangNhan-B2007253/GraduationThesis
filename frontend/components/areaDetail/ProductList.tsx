@@ -116,9 +116,9 @@ function ProductList({ productList }: { productList: IProduct[] | undefined }) {
         {/* product list */}
         {currentProduct
           ?.slice(indexOfFirstProduct, indexOfLastProduct)
-          .map((product) => (
-            <div className="col-span-1 ">
-              <ProductCard product={product} key={product._id} />
+          .map((product, index) => (
+            <div className="col-span-1 " key={index}>
+              <ProductCard product={product} key={index} />
             </div>
           ))}
       </div>

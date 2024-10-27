@@ -261,3 +261,14 @@ export const getAnalyzeProductData = async (productId: string) => {
         ReSponseError(error)
     }
 }
+
+// recomment products 
+
+export const getRecommendedProducts = async () => {
+    try {
+        const res = await axios.get('/product/recomment')
+        return res.data
+    } catch (error) {
+        ReSponseError(error)
+    }
+}

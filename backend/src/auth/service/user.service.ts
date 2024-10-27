@@ -246,4 +246,17 @@ export class UserService {
             responseError(error)
         }
     }
+
+    // chat gateway
+    async getUserRole(userId: string) {
+        try {
+            const user = await this.getUserInfoById(userId)
+            const role = user.role
+            return role
+        } catch (error) {
+            console.log("Get user role error", error);
+            responseError(error)
+
+        }
+    }
 }

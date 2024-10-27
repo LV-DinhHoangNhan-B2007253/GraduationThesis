@@ -1,3 +1,4 @@
+import { Type } from "@nestjs/common";
 import { Prop, Schema, SchemaFactory, } from "@nestjs/mongoose";
 
 import mongoose, { Document, Types } from "mongoose";
@@ -16,6 +17,10 @@ export class Category extends Document {
 
     @Prop({ default: '' })
     banner: string
+
+
+
+
 }
 
 export const CategorySchema = SchemaFactory.createForClass(Category);

@@ -5,11 +5,7 @@ import Link from "next/link";
 
 function ProductCard({ product }: { product: IProduct | undefined }) {
   return (
-    <div
-      className="pb-5   bg-light-modal-popup dark:bg-dark-modal-popup rounded shadow-md w-full sm:h-[430px] h-[400px] "
-      data-aos="fade-up"
-      data-aos-anchor-placement="bottom-bottom"
-    >
+    <div className="pb-5   bg-light-modal-popup dark:bg-dark-modal-popup rounded shadow-md w-full sm:h-[430px] h-[400px] ">
       <Link href={`/product/${product?._id}`}>
         <img
           src={`${product?.images[0]}`}

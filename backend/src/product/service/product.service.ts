@@ -10,11 +10,13 @@ import { User } from 'src/auth/schema/User.schema';
 import { normalizeName, responseError } from 'src/utils/normalize.util';
 import { error, log } from 'console';
 import { updateProductDto } from '../dtos/updateProduct.dos';
+import { ClassifyService } from 'src/common/classify.service';
 @Injectable()
 export class ProductService {
     constructor(@InjectModel(Product.name) private ProductModel: Model<Product>,
         @InjectModel(CategoryItem.name) private CategoryItemModel: Model<CategoryItem>,
         @InjectModel(User.name) private UserModel: Model<User>,
+        private readonly ClassifyService: ClassifyService
 
     ) { }
 
@@ -400,23 +402,14 @@ export class ProductService {
 
         for (const product of products) {
             // Kiểm tra và thêm giá trị mặc định cho các trường mới nếu chưa có
-            if (product.averageRating === undefined) {
-                product.averageRating = 0; // Giá trị mặc định
+            if (product.goodCount === undefined) {
+                product.goodCount = 0; // Giá trị mặc định
             }
-            if (product.ratingCount === undefined) {
-                product.ratingCount = 0; // Giá trị mặc định
+            if (product.neutralCount === undefined) {
+                product.neutralCount = 0; // Giá trị mặc định
             }
-            if (product.comments === undefined) {
-                product.comments = []; // Giá trị mặc định
-            }
-            if (product.sold_quantity === undefined) {
-                product.sold_quantity = 0
-            }
-            if (product.shop_owner_id === undefined) {
-                product.shop_owner_id = null
-            }
-            if (product.promotion === undefined) {
-                product.promotion = []
+            if (product.badCount === undefined) {
+                product.badCount = 0; // Giá trị mặc định
             }
 
             await product.save(); // Lưu bản ghi đã cập nhật
@@ -469,6 +462,56 @@ export class ProductService {
             console.error('Error fetching product details:', error);
             throw new Error('Error fetching product details');
         }
+    }
+
+    // lay san pham recommnet
+    async getRecommendedProducts(): Promise<Product[]> {
+        // Tìm sản phẩm có goodCount lớn hơn 0
+        const recommendedProducts = await this.ProductModel
+            .find({ goodCount: { $gt: 0 } }) // Điều kiện: goodCount > 0
+            .sort({ goodCount: -1 }) // Sắp xếp theo goodCount giảm dần
+            .limit(6) // Lấy tối đa 6 sản phẩm
+            .exec();
+
+        let productsToReturn = [...recommendedProducts];
+
+        // Nếu số lượng sản phẩm tìm được ít hơn 6, tìm thêm sản phẩm
+        if (productsToReturn.length < 6) {
+            const remainingCount = 6 - productsToReturn.length;
+
+            const additionalProducts = await this.ProductModel
+                .find({
+                    sold_quantity: { $gt: 0 }, // Điều kiện: sold_quantity > 0
+                    ratingCount: { $gt: 0 }, // Điều kiện: ratingCount > 0
+                    _id: { $nin: productsToReturn.map(p => p._id) } // Loại trừ các sản phẩm đã tìm thấy
+                })
+                .sort({ sold_quantity: -1 }) // Sắp xếp theo số lượt bán giảm dần
+                .limit(remainingCount) // Lấy số sản phẩm còn thiếu
+                .exec();
+
+            productsToReturn = productsToReturn.concat(additionalProducts);
+        }
+
+        // Nếu vẫn chưa đủ 6 sản phẩm, lấy thêm từ toàn bộ sản phẩm
+        if (productsToReturn.length < 6) {
+            const remainingCount = 6 - productsToReturn.length;
+
+            const finalProducts = await this.ProductModel
+                .find({ _id: { $nin: productsToReturn.map(p => p._id) } }) // Lấy sản phẩm không có trong productsToReturn
+                .limit(remainingCount) // Lấy số sản phẩm còn thiếu
+                .exec();
+
+            productsToReturn = productsToReturn.concat(finalProducts);
+        }
+
+        // Trả về danh sách sản phẩm đã tìm được
+        return productsToReturn;
+    }
+
+
+    async test() {
+        const res = await this.ClassifyService.hello()
+        return res
     }
 
 }

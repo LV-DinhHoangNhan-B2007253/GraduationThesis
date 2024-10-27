@@ -10,13 +10,17 @@ import { UserService } from 'src/auth/service/user.service';
 import { Comment, CommentSchema } from './schema/ProductComment.schema';
 import { ProductReview } from './controller/comment.controller';
 import { ProductReviewService } from './service/comment.service';
+import { CommonModule } from 'src/common/common.module';
+import { ClassifyService } from 'src/common/classify.service';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   controllers: [ProductController, ProductReview],
-  providers: [ProductService, CategoryItemService, UserService, ProductReviewService],
+  providers: [ProductService, CategoryItemService, UserService, ProductReviewService, ClassifyService],
   imports: [
     MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
-    MongooseModule.forFeature([{ name: Comment.name, schema: CommentSchema }]), forwardRef(() => CategoryItemModule), forwardRef(() => AuthModule)
+    MongooseModule.forFeature([{ name: Comment.name, schema: CommentSchema }]), forwardRef(() => CategoryItemModule), forwardRef(() => AuthModule,), forwardRef(() => CommonModule),
+    HttpModule
   ],
   exports: [MongooseModule, ProductService]
 })

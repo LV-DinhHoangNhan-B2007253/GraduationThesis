@@ -1,3 +1,3 @@
-export class createCategoryItemDto {
-    readonly name: string
-}
+// export class createCategoryItemDto {
+//     readonly name: string
+// }

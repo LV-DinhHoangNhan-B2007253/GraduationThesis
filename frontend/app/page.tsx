@@ -1,25 +1,31 @@
 "use client";
 
+import ProductCard from "@/components/areaDetail/ProductCard";
 import OutStandingHero from "@/components/homeSections/OutStandingHero";
 import AreaHomeCard from "@/components/management/card/AreaHomeCard";
 import Spinner from "@/components/Spinner";
 import { IArea } from "@/interfaces/area.interface";
 import { ICategory } from "@/interfaces/category.interface";
+import { IProduct } from "@/interfaces/product.interface";
 import MainLayout from "@/layouts/MainLayout";
 import { RootState } from "@/redux/store";
 import { GetAllArea } from "@/services/area.service";
+import { getRecommendedProducts } from "@/services/product.service";
 import { useSelect } from "@nextui-org/react";
 import { Suspense, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Slider from "react-slick";
 
 export default function Home() {
-  const { userInfo } = useSelector((state: RootState) => state.user);
+  // const { userInfo } = useSelector((state: RootState) => state.user);
   const [areas, setAreas] = useState<IArea[]>();
+  const [recommentedProducts, setRecommentedProduct] = useState<IProduct[]>();
 
   const fetchData = async () => {
     try {
       const res = await GetAllArea();
+      const recommentProducts = await getRecommendedProducts();
+      setRecommentedProduct(recommentProducts);
       setAreas(res);
     } catch (error) {
       console.log(error);
@@ -59,7 +65,7 @@ export default function Home() {
 
   return (
     <MainLayout>
-      <section className="min-h-screen">
+      <section className="h-screen">
         <OutStandingHero />
       </section>
       <section
@@ -82,6 +88,19 @@ export default function Home() {
           )}
         </div>
       </section>
+      {/* search */}
+      {/* recomment product */}
+      {/* product list component */}
+      {/* see all button */}
+      {recommentedProducts && (
+        <div className=" grid grid-cols-6  gap-1">
+          {recommentedProducts.map((product) => (
+            <div key={product._id} className="col-span-1">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      )}
     </MainLayout>
   );
 }

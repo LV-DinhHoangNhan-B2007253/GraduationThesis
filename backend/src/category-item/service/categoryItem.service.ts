@@ -1,26 +1,35 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CategoryItem } from '../schema/CategoryItem.schema';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { createCategoryItemDto } from 'src/category/dtos/create-item.dto';
+import { Model, Types } from 'mongoose';
 import { normalizeName } from "../../utils/normalize.util"
+import { ProductService } from 'src/product/service/product.service';
+import { createCategoryItemDto } from '../dtos/createCategoryItem.dto';
 
 @Injectable()
 export class CategoryItemService {
-    constructor(@InjectModel(CategoryItem.name) private readonly ItemModel: Model<CategoryItem>) { }
+    constructor(@InjectModel(CategoryItem.name) private readonly ItemModel: Model<CategoryItem>,
+        private readonly productService: ProductService
+    ) { }
 
-    async createCategoryItem(item: createCategoryItemDto): Promise<CategoryItem> {
+    async createCategoryItem(createCategoryItemForm: createCategoryItemDto, bannerPath: string,): Promise<CategoryItem> {
         try {
-            const normalize = normalizeName(item.name)
-            const foundItem = await this.ItemModel.findOne({ name: normalize })
+            const { name, shop_creator_id } = createCategoryItemForm
+            const normalize = normalizeName(name)
+            const foundItem = await this.ItemModel.findOne({ name: normalize, shop_creator_id: new Types.ObjectId(shop_creator_id) })
             if (foundItem) {
                 throw new HttpException({
                     status: HttpStatus.CREATED,
-                    error: `this '${item.name}' category existed!`
+                    error: `this '${createCategoryItemForm.name}' category existed!`
                 }, HttpStatus.CREATED)
             }
-            const res = new this.ItemModel(item)
-            return res.save()
+            const newCategory = new this.ItemModel({
+                ...createCategoryItemForm,
+                banner: bannerPath,
+                shop_creator_id: new Types.ObjectId(shop_creator_id)
+            })
+            await newCategory.save()
+            return newCategory
         } catch (error) {
             console.log("Create category item error", error);
             if (error instanceof HttpException) {

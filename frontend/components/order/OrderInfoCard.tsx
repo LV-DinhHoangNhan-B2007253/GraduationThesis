@@ -13,6 +13,10 @@ import { toast } from "react-toastify";
 import { UpdateOrderStatus } from "@/services/order.service";
 import { stat } from "fs";
 import MakeRating from "./MakeRating";
+import ChatBox from "../chat/ChatBox";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import useChat from "@/hooks/useChat.hook";
 
 function OrderInfoCard({
   order,
@@ -25,10 +29,15 @@ function OrderInfoCard({
 }) {
   const [userOrder, setUserOrder] = useState<UserInfo>();
   const [status, setStatus] = useState<string>(order.status);
+  const { userInfo } = useSelector((state: RootState) => state.user);
 
   // opent rating panel
   const [isOpenRating, setIsOpenRating] = useState<boolean>(false);
-
+  const [isChatbox, setIsChatBox] = useState<boolean>(false);
+  // const { joinRoom } = useChat({
+  //   senderId: userInfo?._id,
+  //   receiverId: userOrder?._id,
+  // });
   const fetchUserInfo = async () => {
     try {
       const data = await GetOneUserById(order.user_id);
@@ -73,6 +82,12 @@ function OrderInfoCard({
       toast.error(`${error}`);
     }
   };
+
+  // useEffect(() => {
+  //   if (isChatbox && userOrder) {
+  //     joinRoom();
+  //   }
+  // }, [isChatbox, userOrder, joinRoom]);
 
   useEffect(() => {
     if (asAdmin === true) {
@@ -182,9 +197,19 @@ function OrderInfoCard({
             <option value="pending">pending</option>
           </select>
           <FontAwesomeIcon
+            onClick={() => setIsChatBox(true)}
             icon={faRocketchat}
             className="textbase sm:text-2xl hover:text-blue-600 hover:cursor-pointer"
           />
+
+          <div className="fixed bottom-0 right-5 z-20 bg-light-modal-popup p-4">
+            {isChatbox && (
+              <div>
+                <ChatBox senderId={userInfo?._id} receiverId={userOrder?._id} />
+                <button onClick={() => setIsChatBox(false)}>close</button>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

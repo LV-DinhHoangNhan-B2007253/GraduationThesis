@@ -13,7 +13,10 @@ export interface IProduct {
     averageRating: number
     ratingCount: number
     sold_quantity: number
-    shop_owner_id: string
+    shop_owner_id: string,
+    goodCount: number,
+    neutralCount: number,
+    badCount: number
 
 }
 

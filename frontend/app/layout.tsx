@@ -37,14 +37,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <ReduxProvider>
-      <html lang="en" className={basker.className}>
-        <AOSInit />
-        <body className={`bg-light-bg dark:bg-dark-bg relative`}>
+    <html lang="en" className={basker.className}>
+      <body className={`bg-light-bg dark:bg-dark-bg relative`}>
+        <ReduxProvider>
+          <AOSInit />
           <Providers>
             {children}
             <ToastContainer
@@ -56,8 +56,8 @@ export default function RootLayout({
               limit={1}
             />
           </Providers>
-        </body>
-      </html>
-    </ReduxProvider>
+        </ReduxProvider>
+      </body>
+    </html>
   );
 }

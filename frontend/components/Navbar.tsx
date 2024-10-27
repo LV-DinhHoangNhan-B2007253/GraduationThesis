@@ -27,6 +27,7 @@ import ThemeSwitch from "./ThemeSwitch";
 import { GetAreaAndCategoryLabel } from "@/services/area.service";
 import SlidingPanel from "react-sliding-side-panel";
 import Slider from "react-slick";
+import NotificationBell from "./NotiBell";
 interface INavbarCategory {
   _id: string;
   name: string;
@@ -177,6 +178,7 @@ function Navbar() {
                   </li>
                 </ul>
               </div>
+              <NotificationBell />
             </div>
           ) : (
             <div className="flex items-center justify-end ">
@@ -196,10 +198,10 @@ function Navbar() {
       <div>
         <div className="relative">
           <ul className="top-0 flex-wrap items-center justify-between hidden py-4 mx-64 sm:flex">
-            {area.map((i) => (
+            {area.map((i, index) => (
               // view area nav
               <li
-                key={i._id}
+                key={index}
                 className="z-50"
                 onMouseEnter={() => handleMouseEnter(i.name)}
                 onMouseLeave={handleMouseOut}
@@ -214,8 +216,8 @@ function Navbar() {
                   // view sub nav
                   <div className="absolute left-0 right-0 flex justify-between w-full px-8 py-2 top-12 min-h-36 bg-light-modal-popup dark:bg-dark-modal-popup ">
                     <ul className="flex flex-wrap justify-start gap-10">
-                      {i.categoryItem.map((c) => (
-                        <li key={c._id} className="">
+                      {i.categoryItem.map((c, index) => (
+                        <li key={index} className="">
                           <Link
                             href={`/category/${c._id}`}
                             className="capitalize text-small hover:text-light-active dark:hover:text-dark-active hover:underline"
@@ -243,8 +245,8 @@ function Navbar() {
           <div className={`sm:hidden block`}>
             <div className="w-full h-fit">
               <Slider {...settings}>
-                {area.map((i) => (
-                  <Link href={`/area/${i._id}`}>
+                {area.map((i, index) => (
+                  <Link href={`/area/${i._id}`} key={index}>
                     <p className="p-5 text-base font-light tracking-wider uppercase transition-all text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500">
                       {i.name}
                     </p>
@@ -279,9 +281,9 @@ function Navbar() {
           >
             <div>
               <ul>
-                {area.map((i) => (
+                {area.map((i, index) => (
                   <li
-                    key={i._id}
+                    key={index}
                     onMouseEnter={() => handleMouseEnter(i.name)}
                     onMouseLeave={handleMouseOut}
                   >
@@ -292,8 +294,8 @@ function Navbar() {
                       <div className="absolute bottom-0 w-full mt-2 rounded shadow-lg left-36 top-12 bg-light-modal-popup dark:bg-dark-modal-popup sm:w-64 lg:w-96">
                         <div className="flex flex-col justify-between px-4 py-2 sm:flex-row">
                           <ul className="flex flex-col gap-4 sm:flex-row sm:gap-10">
-                            {i.categoryItem.map((c) => (
-                              <li key={c._id} className="">
+                            {i.categoryItem.map((c, index) => (
+                              <li key={index} className="">
                                 <Link
                                   href={`/category/${c._id}`}
                                   className="capitalize text-small hover:text-light-active dark:hover:text-dark-active hover:underline"
