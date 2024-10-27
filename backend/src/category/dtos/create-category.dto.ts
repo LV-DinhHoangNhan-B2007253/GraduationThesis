@@ -1,8 +1,8 @@
-import { IsString } from "class-validator";
+// import { IsString } from "class-validator";
 
-export class CreateCategoryDto {
-    @IsString()
-    name: string;
-    categoryItem: [];
+// export class CreateCategoryDto {
+//     @IsString()
+//     name: string;
+//     categoryItem: [];
 
-}
+// }

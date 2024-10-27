@@ -30,18 +30,17 @@ def augment_data(comments, labels):
         augmented_comments.append(comment)  # Giữ lại comment gốc
         augmented_labels.append(label)       # Giữ lại nhãn gốc
         
-        # Tăng cường comment
         words = comment.split()
         # Nếu comment có nhiều hơn 1 từ
         if len(words) > 1:
-            # Thay thế ngẫu nhiên một từ với từ đồng nghĩa (có thể tùy chỉnh để thêm logic thay thế từ đồng nghĩa)
+            # Thay thế ngẫu nhiên một từ với từ đồng nghĩa 
             idx = random.randint(0, len(words) - 1)
-            words[idx] = words[idx]  # Thay thế bằng chính nó, có thể thêm logic ở đây
+            words[idx] = words[idx]  # Thay thế bằng chính nó,
             augmented_comments.append(' '.join(words))  # Thêm comment đã thay đổi
-            augmented_labels.append(label)  # Giữ lại nhãn tương ứng
+            augmented_labels.append(label)  # Giữ lại nhãn 
     return augmented_comments, augmented_labels
 
-# Áp dụng chuẩn hóa và tokenization cho dữ liệu
+#  chuẩn hóa và tokenization cho dữ liệu
 df['review'] = df['review'].apply(clean_comment).apply(tokenizer)
 X_train = df['review'].tolist()
 y_train = df['label'].tolist()
@@ -52,11 +51,11 @@ augmented_reviews, augmented_labels = augment_data(X_train, y_train)
 # Tạo DataFrame mới với dữ liệu đã tăng cường
 augmented_df = pd.DataFrame({'review': augmented_reviews, 'label': augmented_labels})
 
-# Tách dữ liệu
+# Tách
 X_test = test_data['review'].apply(clean_comment).apply(tokenizer).tolist()
 y_test = test_data['label'].tolist()
 
-# Chuyển đổi dữ liệu bằng TF-IDF
+# Chuyển đổi TF-IDF
 def embedding(X_train, X_test):
     emb = TfidfVectorizer(min_df=5, max_df=0.8, max_features=3000, sublinear_tf=True)
     emb.fit(X_train)

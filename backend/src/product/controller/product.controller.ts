@@ -102,5 +102,10 @@ export class ProductController {
         return this.productService.getAnalyzeProductInfo(productId)
     }
 
+    @Get('/recomment')
+    async GetRecommentProducts() {
+        return this.productService.getRecommendedProducts()
+    }
 
+    // test các chức năng
 }

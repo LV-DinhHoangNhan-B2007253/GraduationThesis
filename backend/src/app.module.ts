@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config'
 import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
-import { CategoryModule } from './category/category.module';
+// import { CategoryModule } from './category/category.module';
 import { OrderModule } from './order/order.module';
 import { ChatModule } from './chat/chat.module';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -10,6 +10,7 @@ import { CategoryItemModule } from './category-item/category-item.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ShopModule } from './shop/shop.module';
 import { NotifycationModule } from './notifycation/notifycation.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { NotifycationModule } from './notifycation/notifycation.module';
     }),
     AuthModule,
     ProductModule,
-    CategoryModule,
+    // CategoryModule,
     OrderModule,
     ChatModule,
     MongooseModule.forRoot(process.env.HOST_DB),
@@ -29,6 +30,7 @@ import { NotifycationModule } from './notifycation/notifycation.module';
     }),
     ShopModule,
     NotifycationModule,
+    CommonModule,
   ],
 
   controllers: [],

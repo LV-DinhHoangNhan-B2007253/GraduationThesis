@@ -47,6 +47,22 @@ export class Product extends Document {
     // chương trình khuyến mãi 
     @Prop({ type: [Types.ObjectId], ref: 'Promotion', default: [] })
     promotion: Types.ObjectId[]
+    // 27-10-2024
+    // bổ sung số lượng đánh giá theo good, neutral, bad
+    @Prop({ default: 0 })
+    goodCount: number
+
+    @Prop({ default: 0 })
+    neutralCount: number
+
+    @Prop({ default: 0 })
+    badCount: number
+
+
+    // loại của sản phẩm -> dùng hỗ trợ cho việc tìm kiếm
+
+    @Prop({ required: true })
+    type: string
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

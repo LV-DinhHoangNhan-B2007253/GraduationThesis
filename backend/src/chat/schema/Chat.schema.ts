@@ -6,6 +6,9 @@ export class Message {
     @Prop({ type: Types.ObjectId, ref: 'User' })
     sender_id: Types.ObjectId;
 
+    @Prop({ type: Types.ObjectId, ref: 'User' })
+    receiver_id: Types.ObjectId;
+
     @Prop()
     message_text: string;
 
@@ -18,7 +21,7 @@ export class Chat extends Document {
     @Prop({ type: [Types.ObjectId], ref: 'User' })
     participants: Types.ObjectId[];
 
-    @Prop({ type: [Message] })
+    @Prop({ type: [Message], ref: 'Message' })
     messages: Message[];
 }
 

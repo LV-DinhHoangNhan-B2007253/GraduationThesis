@@ -32,8 +32,12 @@ function CategoryItemSlider({
   };
   return (
     <Slider {...settings} className="sm:h-[250px] h-[100px] sm:mx-10 mx-1">
-      {categoryList?.map((item) => (
-        <CategoryItemCard name={item.name} categoryId={item._id} />
+      {categoryList?.map((item, index) => (
+        <CategoryItemCard
+          name={item.name}
+          categoryId={item._id}
+          key={item._id}
+        />
       ))}
     </Slider>
   );
