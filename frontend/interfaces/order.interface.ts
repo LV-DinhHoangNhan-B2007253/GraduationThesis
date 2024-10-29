@@ -14,6 +14,7 @@ export interface IOrder {
     products: IOrderedProduct[],
     shop_id: string,
     payment_method: string
+    payment_status: string
 }
 
 export interface IPlaceOrderInfo {

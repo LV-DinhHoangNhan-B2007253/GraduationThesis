@@ -1,32 +1,33 @@
 "use client";
 
 import ProductCard from "@/components/areaDetail/ProductCard";
-import OutStandingHero from "@/components/homeSections/OutStandingHero";
-import AreaHomeCard from "@/components/management/card/AreaHomeCard";
-import Spinner from "@/components/Spinner";
-import { IArea } from "@/interfaces/area.interface";
+import CategoryList from "@/components/category/CategoryList";
+import ShopProductCard from "@/components/shop/ShopProductCard";
 import { ICategory } from "@/interfaces/category.interface";
 import { IProduct } from "@/interfaces/product.interface";
 import MainLayout from "@/layouts/MainLayout";
-import { RootState } from "@/redux/store";
-import { GetAllArea } from "@/services/area.service";
-import { getRecommendedProducts } from "@/services/product.service";
-import { useSelect } from "@nextui-org/react";
+import { GetAllCategory } from "@/services/category.service";
+import {
+  GetAllProducts,
+  getRecommendedProducts,
+} from "@/services/product.service";
+import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import Slider from "react-slick";
 
 export default function Home() {
   // const { userInfo } = useSelector((state: RootState) => state.user);
-  const [areas, setAreas] = useState<IArea[]>();
   const [recommentedProducts, setRecommentedProduct] = useState<IProduct[]>();
+  const [products, setProducts] = useState<IProduct[]>();
+  const [categories, setCategories] = useState<ICategory[]>();
 
   const fetchData = async () => {
     try {
-      const res = await GetAllArea();
       const recommentProducts = await getRecommendedProducts();
       setRecommentedProduct(recommentProducts);
-      setAreas(res);
+      const productList = await GetAllProducts();
+      setProducts(productList);
+      const categoryList = await GetAllCategory();
+      setCategories(categoryList);
     } catch (error) {
       console.log(error);
     }
@@ -37,70 +38,54 @@ export default function Home() {
   }, []);
   // slider setting
 
-  const areaSliderSetting = {
-    dots: false,
-    infinite: true,
-    speed: 200,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          autoplay: true,
-          autoplaySpeed: 2000,
-          arrows: false,
-        },
-      },
-    ],
-  };
-
   return (
     <MainLayout>
-      <section className="h-screen">
-        <OutStandingHero />
-      </section>
-      <section
-        className="min-h-screen sm:py-[80px] py-10 sm:px-[64px] px-2"
-        data-aos="fade-up"
-        data-aos-anchor-placement="top-bottom"
-      >
-        <h1 className="uppercase text-base sm:text-6xl text-center pb-4 mb-6">
-          A CELEBRATION Of Personal <em>Style</em>
-        </h1>
-        <div>
-          {areas ? (
-            <Slider {...areaSliderSetting}>
-              {areas.map((area) => (
-                <AreaHomeCard areaItem={area} key={area._id} />
+      <div className="sm:mx-40 py-2 mx-1">
+        {/* recomment */}
+        {recommentedProducts && (
+          <section className="sm:mb-14 mb-4">
+            <h1 className="tracking-widest my-5 uppercase font-bold text-base sm:text-2xl">
+              Top Products
+            </h1>
+            <div className=" grid sm:grid-cols-4 grid-cols-2  gap-2 ">
+              {recommentedProducts.map((product) => (
+                <div key={product._id} className="col-span-1">
+                  <ProductCard product={product} />
+                </div>
               ))}
-            </Slider>
-          ) : (
-            <Spinner />
-          )}
-        </div>
-      </section>
-      {/* search */}
-      {/* recomment product */}
-      {/* product list component */}
-      {/* see all button */}
-      {recommentedProducts && (
-        <div className=" grid grid-cols-6  gap-1">
-          {recommentedProducts.map((product) => (
-            <div key={product._id} className="col-span-1">
-              <ProductCard product={product} />
             </div>
-          ))}
-        </div>
-      )}
+          </section>
+        )}
+        {/* categories */}
+        {categories && (
+          <div>
+            <CategoryList categories={categories} />
+          </div>
+        )}
+        {/* all product */}
+        {products && (
+          <section>
+            <h1 className="tracking-widest my-5 uppercase font-bold text-base sm:text-2xl text-center py-4 bg-light-modal-popup dark:bg-dark-modal-popup text-orange-600 border-b-4 border-orange-700">
+              daily discover
+            </h1>
+            <div className="grid sm:grid-cols-6 grid-cols-4 gap-2">
+              {products.slice(0, 24).map((pro) => (
+                <div key={pro.sku} className="col-span-1  my-2  max-h-[400px]">
+                  <ShopProductCard product={pro} />
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center items-center">
+              <Link
+                href={"/product/all"}
+                className="w-1/3 mt-4 block text-center font-light tracking-widest hover:underline transition-all duration-200 py-3 bg-light-modal-popup dark:bg-dark-modal-popup"
+              >
+                View all
+              </Link>
+            </div>
+          </section>
+        )}
+      </div>
     </MainLayout>
   );
 }

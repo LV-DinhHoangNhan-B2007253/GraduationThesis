@@ -1,15 +1,12 @@
 "use client";
 
 import { IOrder } from "@/interfaces/order.interface";
-import { GetAllOrder, GetOrdersByShop } from "@/services/order.service";
+import { GetOrdersByShop } from "@/services/order.service";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Spinner from "../Spinner";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import OrderItem from "../shop/order/OrderItem";
 
 function OrderManagement() {
   const { userInfo } = useSelector((state: RootState) => state.user);
@@ -34,6 +31,7 @@ function OrderManagement() {
       toast.error(`${error}`);
     }
   };
+
   const getStatusClass = (status: string) => {
     switch (status) {
       case "pending":
@@ -63,13 +61,13 @@ function OrderManagement() {
     // Lọc theo trạng thái hoặc ngày
     switch (filter) {
       case "most-recent":
-        updatedOrders = updatedOrders.sort(
+        updatedOrders.sort(
           (a, b) =>
             new Date(b.order_date).getTime() - new Date(a.order_date).getTime()
         );
         break;
       case "oldest":
-        updatedOrders = updatedOrders.sort(
+        updatedOrders.sort(
           (a, b) =>
             new Date(a.order_date).getTime() - new Date(b.order_date).getTime()
         );
@@ -107,7 +105,7 @@ function OrderManagement() {
 
   return (
     <div className="px-2">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-4">
         <div>
           <input
             type="text"
@@ -132,30 +130,33 @@ function OrderManagement() {
           </select>
         </div>
       </div>
-      <div>
+      <div className="overflow-x-auto">
         {filteredOrders.length > 0 ? (
-          <div className="text-light-primary-text dark:text-dark-primary-text text-small sm:text-base">
-            {filteredOrders.map((order) => (
-              <Link
-                key={order._id}
-                href={`/order/${order._id}`}
-                className="flex justify-between items-center px-4 py-3 bg-light-card-bg dark:bg-dark-card-bg my-2 border border-light-card-border dark:border-dark-card-border hover:bg-light-modal-popup dark:hover:bg-dark-modal-popup transition-all duration-300 hover:shadow-md hover:scale-105"
-              >
-                <p>
-                  Code:{" "}
-                  <span className="underline decoration-indigo-500">
-                    {order._id}
-                  </span>
-                </p>
-                <div className="flex items-center gap-4 justify-between min-w-[200px]">
-                  <p className="font-bold">Status:</p>
-                  <p className={`font-bold ${getStatusClass(order.status)}`}>
-                    {order.status}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <table className="min-w-full border-collapse border border-gray-200">
+            <thead>
+              <tr className="bg-gray-100 dark:bg-gray-800">
+                <th className="border border-gray-300 p-2 text-left">
+                  Order Code
+                </th>
+                <th className="border border-gray-300 p-2 text-left">Status</th>
+                <th className="border border-gray-300 p-2 text-left">
+                  Payment Status
+                </th>
+                <th className="border border-gray-300 p-2 text-left">
+                  Payment Method
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredOrders.map((order) => (
+                <OrderItem
+                  key={order._id}
+                  order={order}
+                  getStatusClass={getStatusClass}
+                />
+              ))}
+            </tbody>
+          </table>
         ) : (
           <div className="flex justify-center items-center flex-col py-10">
             <p className="text-gray-500 dark:text-gray-400 text-lg">

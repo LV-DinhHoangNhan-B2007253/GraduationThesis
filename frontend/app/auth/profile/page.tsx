@@ -20,6 +20,7 @@ import { GetNSetUserInfo, setNullInfo } from "@/redux/slices/userInfoSlice";
 import { removeLog } from "@/redux/slices/isLoginStateSlice";
 import { useRouter } from "next/navigation";
 import { GetDistrict, GetProvince, GetWard } from "@/services/location.service";
+import SpinnerLoader from "@/components/Spinner";
 
 function Profile() {
   const { isLogin } = useSelector((state: RootState) => state.userLoginState);
@@ -183,7 +184,7 @@ function Profile() {
   return (
     <MainLayout>
       {isLogin ? (
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<SpinnerLoader/>}>
           <div className="flex justify-center">
             <div className=" bg-light-modal-popup dark:bg-dark-modal-popup sm:max-w-[80%] max-w-[95%] w-full rounded-lg">
               <div className="w-full h-8 sm:h-16 bg-gradient-to-r  from-emerald-400 to-cyan-400 rounded-t-lg"></div>

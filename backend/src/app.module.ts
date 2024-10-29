@@ -6,7 +6,7 @@ import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { ChatModule } from './chat/chat.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CategoryItemModule } from './category-item/category-item.module';
+import { CategoryModule } from './category/category.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ShopModule } from './shop/shop.module';
 import { NotifycationModule } from './notifycation/notifycation.module';
@@ -24,7 +24,7 @@ import { CommonModule } from './common/common.module';
     OrderModule,
     ChatModule,
     MongooseModule.forRoot(process.env.HOST_DB),
-    CategoryItemModule,
+    CategoryModule,
     MulterModule.register({
       dest: './uploads',
     }),

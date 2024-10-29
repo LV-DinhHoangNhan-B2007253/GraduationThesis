@@ -3,7 +3,7 @@ import { Product } from '../schema/Product.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { createProductDto } from '../dtos/createProduct.dto';
-import { CategoryItem } from 'src/category-item/schema/CategoryItem.schema';
+import { Category, } from 'src/category/schema/Category.schema';
 import * as path from 'path';
 import * as fs from 'fs';
 import { User } from 'src/auth/schema/User.schema';
@@ -11,16 +11,19 @@ import { normalizeName, responseError } from 'src/utils/normalize.util';
 import { error, log } from 'console';
 import { updateProductDto } from '../dtos/updateProduct.dos';
 import { ClassifyService } from 'src/common/classify.service';
+import { ShopService } from 'src/shop/services/ShopService.service';
 @Injectable()
 export class ProductService {
     constructor(@InjectModel(Product.name) private ProductModel: Model<Product>,
-        @InjectModel(CategoryItem.name) private CategoryItemModel: Model<CategoryItem>,
+        @InjectModel(Category.name) private CategoryModel: Model<Category>,
         @InjectModel(User.name) private UserModel: Model<User>,
-        private readonly ClassifyService: ClassifyService
+        private readonly ClassifyService: ClassifyService,
+        // private readonly shopService: ShopService,
+
 
     ) { }
 
-    async CreateNewProduct(categoryItemId: string, createProductForm: createProductDto, images: string[]): Promise<any> {
+    async CreateNewProduct(categoryId: string, createProductForm: createProductDto, images: string[]): Promise<any> {
         try {
 
             console.log(createProductForm);
@@ -33,7 +36,7 @@ export class ProductService {
             await newProduct.save()
 
             // Cập nhật CategoryItem
-            const cateFound = await this.CategoryItemModel.findById(categoryItemId);
+            const cateFound = await this.CategoryModel.findById(categoryId);
             if (!cateFound) {
                 throw new HttpException({
                     status: HttpStatus.NOT_FOUND,
@@ -89,7 +92,7 @@ export class ProductService {
         }
     }
 
-    async GetAllProduct(page: number, limit: number): Promise<{ products: Product[], totalProduct: number }> {
+    async GetAllProductWithPage(page: number, limit: number): Promise<{ products: Product[], totalProduct: number }> {
         try {
             const skip = (page - 1) * limit;
             const products = await this.ProductModel.find().skip(skip).limit(limit).exec()
@@ -100,6 +103,19 @@ export class ProductService {
 
         }
     }
+
+    async GetAllProduct(): Promise<Product[]> {
+        try {
+            const products = this.ProductModel.find()
+            return products
+        } catch (error) {
+            console.log("Get All product Error", error);
+
+        }
+    }
+
+
+
     async DeleteOneProduct(productId: string,) {
         try {
             const product = await this.ProductModel.findById(new Types.ObjectId(productId))
@@ -248,9 +264,9 @@ export class ProductService {
     }
 
 
-    async GetProductsByCategoryItem(categoryItemId: string): Promise<CategoryItem> {
+    async GetProductsByCategoryItem(categoryItemId: string): Promise<Category> {
         try {
-            const data = await this.CategoryItemModel.findById(categoryItemId).populate('products')
+            const data = await this.CategoryModel.findById(categoryItemId).populate('products')
             if (!data) {
                 throw new HttpException({
                     status: HttpStatus.NOT_FOUND,
@@ -316,7 +332,10 @@ export class ProductService {
 
     async UpdateProductInfo(updateProductBody: updateProductDto, productId: string) {
         try {
-            const foundProduct = await this.ProductModel.findByIdAndUpdate(productId, updateProductBody)
+            const foundProduct = await this.ProductModel.findByIdAndUpdate(productId, updateProductBody, {
+                new: true,
+                runValidators: true
+            })
             if (!foundProduct) {
                 throw new HttpException({
                     status: HttpStatus.NOT_FOUND,
@@ -324,7 +343,7 @@ export class ProductService {
 
                 }, HttpStatus.NOT_FOUND)
             }
-            return { message: "Update success!" }
+            return { message: "Update success!", product: foundProduct }
         } catch (error) {
             console.log("Update product Error: ", error);
             responseError(error)
@@ -470,14 +489,14 @@ export class ProductService {
         const recommendedProducts = await this.ProductModel
             .find({ goodCount: { $gt: 0 } }) // Điều kiện: goodCount > 0
             .sort({ goodCount: -1 }) // Sắp xếp theo goodCount giảm dần
-            .limit(6) // Lấy tối đa 6 sản phẩm
+            .limit(4) // Lấy tối đa 6 sản phẩm
             .exec();
 
         let productsToReturn = [...recommendedProducts];
 
         // Nếu số lượng sản phẩm tìm được ít hơn 6, tìm thêm sản phẩm
-        if (productsToReturn.length < 6) {
-            const remainingCount = 6 - productsToReturn.length;
+        if (productsToReturn.length < 4) {
+            const remainingCount = 4 - productsToReturn.length;
 
             const additionalProducts = await this.ProductModel
                 .find({
@@ -493,8 +512,8 @@ export class ProductService {
         }
 
         // Nếu vẫn chưa đủ 6 sản phẩm, lấy thêm từ toàn bộ sản phẩm
-        if (productsToReturn.length < 6) {
-            const remainingCount = 6 - productsToReturn.length;
+        if (productsToReturn.length < 4) {
+            const remainingCount = 4 - productsToReturn.length;
 
             const finalProducts = await this.ProductModel
                 .find({ _id: { $nin: productsToReturn.map(p => p._id) } }) // Lấy sản phẩm không có trong productsToReturn
@@ -509,9 +528,45 @@ export class ProductService {
     }
 
 
+    // các truy vấn sử dụng cho category
+    async getProductById(productId: string) {
+        // lấy các sản phẩm của 1 danh mục
+        try {
+            const product_id = new Types.ObjectId(productId)
+            const product = await this.ProductModel.findById(product_id)
+            if (!product) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "product not found"
+                }, HttpStatus.NOT_FOUND)
+            }
+            return product
+        } catch (error) {
+            console.log("get product by id error", error);
+            responseError(error)
+        }
+    }
+
+
+
+    async getProductByNameOrType(query: string) {
+        try {
+            const products = await this.ProductModel.find({
+                $or: [{ name: new RegExp(query, 'i') }, { type: new RegExp(query, 'i') }]
+            });
+            return products
+        } catch (error) {
+            console.log('find product by name or type');
+
+        }
+    }
+
+
+
     async test() {
         const res = await this.ClassifyService.hello()
         return res
     }
 
 }
+

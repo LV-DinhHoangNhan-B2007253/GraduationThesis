@@ -11,12 +11,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { SearchProduct } from "@/services/product.service";
 import { toast } from "react-toastify";
+import ShopProductCard from "../shop/ShopProductCard";
 
 function ProductList({ productList }: { productList: IProduct[] | undefined }) {
   const [currentProduct, setCurrentProducts] = useState<IProduct[]>([]);
   const [query, setQuery] = useState<string>("");
   const [filterOption, setFilterOption] = useState<string>("all");
-  const productPerPage = 16;
+  const productPerPage = 24;
   const [originalProductList, setOriginalProductList] = useState<IProduct[]>(
     []
   );
@@ -112,13 +113,13 @@ function ProductList({ productList }: { productList: IProduct[] | undefined }) {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-2 my-4 sm:grid-cols-4 sm:gap-6">
+      <div className="grid grid-cols-4 gap-2 my-4 sm:grid-cols-6 sm:gap-6">
         {/* product list */}
         {currentProduct
           ?.slice(indexOfFirstProduct, indexOfLastProduct)
           .map((product, index) => (
             <div className="col-span-1 " key={index}>
-              <ProductCard product={product} key={index} />
+              <ShopProductCard product={product} key={index} />
             </div>
           ))}
       </div>

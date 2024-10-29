@@ -1,5 +1,7 @@
 export interface ICategory {
-    _id?: string
+    _id: string
     name: string
-    products?: []
+    products: string[]
+    banner: string,
+    shop_creator_id: string
 }

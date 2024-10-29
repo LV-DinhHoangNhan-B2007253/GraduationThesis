@@ -53,7 +53,7 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4 my-4 max-w-xl mx-auto">
+    <div className="bg-white shadow-lg rounded-lg p-4 my-1 wf ">
       <div className="flex items-start">
         {/* Avatar và thông tin người dùng */}
         <div className="flex-shrink-0">
@@ -92,13 +92,13 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
 
           {/* Hình ảnh review nếu có */}
           {review.review_img && review.review_img.length > 0 && (
-            <div className="mt-4 grid grid-cols-3 gap-2">
+            <div className="mt-4 grid grid-cols-10 items-center gap-1">
               {review.review_img.map((img, index) => (
                 <img
                   key={index}
                   src={img}
                   alt={`Review image ${index}`}
-                  className="w-full h-24 object-cover rounded-lg"
+                  className="col-span-2 sm:col-span-1  w-full object-cover rounded-lg h-full "
                 />
               ))}
             </div>

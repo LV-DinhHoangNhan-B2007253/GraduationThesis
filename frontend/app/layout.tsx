@@ -9,6 +9,8 @@ import Providers from "./provider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // faw icon
+// loader
+//
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import ReduxProvider from "@/redux/provider";

@@ -1,11 +1,14 @@
 "use client";
 
+import CategoryCard from "@/components/category/CategoryCard";
 import ShopProductCard from "@/components/shop/ShopProductCard";
 import ShopSaleList from "@/components/shop/ShopSaleList";
 import { IUser } from "@/interfaces/auth.interface";
+import { ICategory } from "@/interfaces/category.interface";
 import { IProduct } from "@/interfaces/product.interface";
 import { IPromotion } from "@/interfaces/promotion.interface";
 import MainLayout from "@/layouts/MainLayout";
+import { GetCategoryAndProductByShopId } from "@/services/category.service";
 import { GetAllProductsOfShop } from "@/services/product.service";
 import { GetPromotionsOfShop } from "@/services/promotion.service";
 import { GetShopInfoByUserId } from "@/services/shop.service";
@@ -23,6 +26,7 @@ function ShopInfo(props: any) {
   const [recommentProducts, setRecommentProducts] = useState<IProduct[]>([]);
   const [shopOwner, setShopOwner] = useState<IUser | null>(null);
   const [promotionList, setPromotionList] = useState<IPromotion[]>([]);
+  const [categories, setCategories] = useState<ICategory[]>();
 
   //   dữ liệu cần lấy: thông tin shop, thông tin sản phẩm của shop, thanh điều hướng gồm: nổi bật (khuyến mãi, các sản phẩm ngẫu nhiểu), mục tât cả sản phẩm.
 
@@ -47,10 +51,15 @@ function ShopInfo(props: any) {
     try {
       // get shop info
       const data = await GetShopInfoByUserId(shop_id);
+      setShopInfo(data);
       //   get product of shop
       const products = await GetAllProductsOfShop(shop_id);
-      setShopInfo(data);
       setProducts(products);
+      // categories
+      const categoryList = await GetCategoryAndProductByShopId(ShopId);
+      if (categoryList) {
+        setCategories(categoryList.categories);
+      }
       const shuffle_products = getRandomProducts(products, 6);
       setRecommentProducts(shuffle_products);
       // promotion of shop
@@ -114,6 +123,7 @@ function ShopInfo(props: any) {
             </div>
           </div>
         </section>
+        {/* nav */}
         <div className="flex justify-around items-center gap-5 text-light-primary-text dark:text-dark-primary-text mt-3 px-2 py-2 bg-light-modal-popup dark:bg-dark-modal-popup backdrop-blur-md ">
           <Link className="hover:text-blue-800 hover:underline" href={"#home"}>
             Home
@@ -137,27 +147,44 @@ function ShopInfo(props: any) {
             You may also be interested in
           </h1>
           <div className="grid grid-cols-6 gap-2">
-            {recommentProducts.map((product) => (
-              <div className="col-span-2 sm:col-span-1">
+            {recommentProducts.map((product, index) => (
+              <div className="col-span-2 sm:col-span-1" key={index}>
                 <ShopProductCard product={product} key={product._id} />
               </div>
             ))}
           </div>
         </section>
-
+        <>
+          {categories && (
+            <section>
+              <h1 className="text-base sm:text-2xl text-light-primary-text dark:text-dark-primary-text mt-6 tracking-widest font-light ">
+                Categories
+              </h1>
+              <div className="grid grid-cols-8 my-3">
+                {categories.map((cate, index) => (
+                  <div key={index} className="col-span-1">
+                    <CategoryCard category={cate} />
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+        </>
         <section id="sale">
           <h1 className="text-base sm:text-2xl text-light-primary-text dark:text-dark-primary-text mt-6 tracking-widest font-light">
             Our Programs
           </h1>
           {/* promotions  */}
-          {promotionList.map((promo) => (
-            <Link href={`/shop/promotion/${promo._id}`}>
-              <img
-                src={`${promo.promotion_banner}`}
-                alt="Promotion banner"
-                className="w-full h-[500px] object-cover"
-              />
-            </Link>
+          {promotionList.map((promo, index) => (
+            <div key={promo._id} className="my-2">
+              <Link href={`/shop/promotion/${promo._id}`}>
+                <img
+                  src={`${promo.promotion_banner}`}
+                  alt="Promotion banner"
+                  className="w-full h-[500px] object-cover"
+                />
+              </Link>
+            </div>
           ))}
         </section>
 
@@ -165,9 +192,12 @@ function ShopInfo(props: any) {
           <h1 className="text-base sm:text-2xl text-light-primary-text dark:text-dark-primary-text mt-6 tracking-widest font-light">
             All Products
           </h1>
-          <div className="grid grid-cols-6 gap-1">
-            {products.map((pro) => (
-              <div className="col-span-2 sm:col-span-2 my-2" data-aos="fade-up">
+          <div className="grid grid-cols-4 gap-1">
+            {products.map((pro, index) => (
+              <div
+                className="col-span-1 sm:col-span-1 my-2"
+                key={pro._id.toString()}
+              >
                 <ShopProductCard product={pro} key={pro.sku} />
               </div>
             ))}

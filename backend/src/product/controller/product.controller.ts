@@ -34,10 +34,18 @@ export class ProductController {
         return this.productService.CreateNewProduct(categoryItemId, createProductForm, imagePaths)
     }
 
-    @Get('/getAll')
-    GetAllProducts(@Query('page') page: number = 1, @Query('limit') limit: number = 30) {
-        return this.productService.GetAllProduct(page, limit)
+    @Get('/getAll/withPage')
+    GetAllProductsWithPage(@Query('page') page: number = 1, @Query('limit') limit: number = 30) {
+        return this.productService.GetAllProductWithPage(page, limit)
     }
+
+
+
+    @Get('/getAll')
+    GetAllProducts() {
+        return this.productService.GetAllProduct()
+    }
+
     @Get('/get/:_id')
     GetProductById(@Param() productId) {
 
@@ -63,8 +71,9 @@ export class ProductController {
     SearchProducts(@Query('q') query: string) {
         return this.productService.SearchProduct(query)
     }
-    @Get('/byCategory/:_id')
 
+
+    @Get('/byCategory/:_id')
     GetProductsByCategoryItem(@Param() categoryItemId: string) {
         return this.productService.GetProductsByCategoryItem(categoryItemId)
     }
