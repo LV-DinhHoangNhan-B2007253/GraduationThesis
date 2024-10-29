@@ -4,5 +4,4 @@ export class updateProductDto {
     description: string
     stock_quantity: number
     sku: string
-    isOutStanding: boolean
 }

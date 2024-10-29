@@ -12,7 +12,9 @@ function PromotionCard({ promo }: { promo: IPromotion }) {
 
   // Hàm để cập nhật thông tin từ input
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setEditPromo((prev) => ({
@@ -62,114 +64,122 @@ function PromotionCard({ promo }: { promo: IPromotion }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-light-modal-popup dark:bg-dark-modal-popup"
+      className="bg-light-modal-popup dark:bg-dark-modal-popup p-2"
     >
-      {/* Hiển thị banner và cho phép thay đổi */}
-      <img
-        src={
-          typeof editPromo.promotion_banner === "string"
-            ? editPromo.promotion_banner
-            : URL.createObjectURL(editPromo.promotion_banner)
-        }
-        alt="Promotion banner"
-        className="w-full h-[300px] object-cover rounded-t-md"
-      />
-      <input
-        type="file"
-        name="promotion_banner"
-        onChange={handleFileChange}
-        className="my-2"
-      />
+      <div className="flex">
+        <div>
+          {/* Hiển thị banner và cho phép thay đổi */}
+          <img
+            src={
+              typeof editPromo.promotion_banner === "string"
+                ? editPromo.promotion_banner
+                : URL.createObjectURL(editPromo.promotion_banner)
+            }
+            alt="Promotion banner"
+            className="w-full h-[300px] object-cover rounded-t-md"
+          />
+          <input
+            type="file"
+            name="promotion_banner"
+            onChange={handleFileChange}
+            className="my-2"
+          />
+        </div>
 
-      {/* Chỉnh sửa thông tin title */}
-      <div className="flex flex-col gap-2 px-2">
-        <label htmlFor="title" className="font-bold">
-          Title:
-        </label>
-        <input
-          type="text"
-          name="title"
-          value={editPromo.title}
-          onChange={handleChange}
-          className="border p-2 rounded w-full"
-          required
-        />
-      </div>
+        <div className="grid grid-cols-2 flex-1 grid-rows-3 overflow-y-auto">
+          {/* Chỉnh sửa thông tin title */}
+          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
+            <label htmlFor="title" className="font-bold">
+              Title:
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={editPromo.title}
+              onChange={handleChange}
+              className="border p-2 rounded w-full h-full"
+              required
+            />
+          </div>
 
-      {/* Chỉnh sửa thông tin description */}
-      <div className="flex flex-col gap-2 px-2 my-2">
-        <label htmlFor="description" className="font-bold">
-          Description:
-        </label>
-        <textarea
-          name="description"
-          value={editPromo.description}
-          onChange={handleChange}
-          className="border p-2 rounded w-full"
-          required
-        />
-      </div>
+          {/* Chỉnh sửa thông tin description */}
+          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
+            <label htmlFor="description" className="font-bold">
+              Description:
+            </label>
+            <textarea
+              name="description"
+              value={editPromo.description}
+              onChange={handleChange}
+              className="border p-2 rounded w-full h-full "
+              required
+            />
+          </div>
 
-      {/* Chỉnh sửa discountType */}
-      <div className="flex flex-col gap-2 px-2 my-2">
-        <label htmlFor="discountType" className="font-bold">
-          Discount Type:
-        </label>
-        <input
-          type="text"
-          name="discountType"
-          value={editPromo.discountType}
-          onChange={handleChange}
-          className="border p-2 rounded w-full"
-          required
-        />
-      </div>
+          {/* Chỉnh sửa ngày bắt đầu */}
+          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
+            <label htmlFor="startDate" className="font-bold">
+              Start Date:
+            </label>
+            <input
+              type="text"
+              name="startDate"
+              value={editPromo.startDate.split("-").reverse().join("/")} // Giá trị ngày là dạng chuỗi
+              onChange={handleChange}
+              className="border p-2 rounded w-full"
+              required
+            />
+          </div>
 
-      {/* Chỉnh sửa ngày bắt đầu */}
-      <div className="flex flex-col gap-2 px-2 my-2">
-        <label htmlFor="startDate" className="font-bold">
-          Start Date:
-        </label>
-        <input
-          type="date"
-          name="startDate"
-          value={editPromo.startDate} // Giá trị ngày là dạng chuỗi
-          onChange={handleChange}
-          className="border p-2 rounded w-full"
-          required
-        />
-      </div>
+          {/* Chỉnh sửa ngày kết thúc */}
+          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
+            <label htmlFor="endDate" className="font-bold">
+              End Date:
+            </label>
+            <input
+              type="text"
+              name="endDate"
+              value={editPromo.endDate.split("-").reverse().join("/")} // Giá trị ngày là dạng chuỗi
+              onChange={handleChange}
+              className="border p-2 rounded w-full"
+              required
+            />
+          </div>
+          {/* Chỉnh sửa discountType */}
+          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
+            <label htmlFor="discountType" className="font-bold">
+              Discount Type:
+            </label>
 
-      {/* Chỉnh sửa ngày kết thúc */}
-      <div className="flex flex-col gap-2 px-2 my-2">
-        <label htmlFor="endDate" className="font-bold">
-          End Date:
-        </label>
-        <input
-          type="date"
-          name="endDate"
-          value={editPromo.endDate} // Giá trị ngày là dạng chuỗi
-          onChange={handleChange}
-          className="border p-2 rounded w-full"
-          required
-        />
-      </div>
-
-      {/* Nút submit */}
-      <div className="flex justify-end px-2 mt-4">
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Save Changes
-        </button>
-        <button
-          type="button" // Thay vì type="submit" để không gửi form
-          onClick={handleDeletePromotion} // Gọi hàm xóa
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2"
-        >
-          Delete Promotion
-        </button>
+            <select
+              name="discountType"
+              value={editPromo.discountType}
+              onChange={handleChange}
+              className="border p-2 rounded mt-4 w-full"
+            >
+              <option value="percentage">Percentage</option>
+              <option value="fixed">Fixed</option>
+            </select>
+          </div>
+          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
+            <div className="flex justify-end px-2 mt-4 items-end">
+              <button
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              >
+                Save Changes
+              </button>
+              <button
+                type="button" // Thay vì type="submit" để không gửi form
+                onClick={handleDeletePromotion} // Gọi hàm xóa
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2"
+              >
+                Delete Promotion
+              </button>
+            </div>
+          </div>
+          {/* Nút submit */}
+        </div>
       </div>
     </form>
   );

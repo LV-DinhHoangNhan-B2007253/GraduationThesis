@@ -8,6 +8,7 @@ import { UserService } from 'src/auth/service/user.service';
 import { find } from 'rxjs';
 import { error } from 'console';
 import { Type } from 'class-transformer';
+import { query } from 'express';
 
 @Injectable()
 export class ShopService {
@@ -85,6 +86,17 @@ export class ShopService {
         } catch (error) {
             console.log("Get shop Error", error);
             responseError(error)
+        }
+    }
+
+
+    async GetShopInfoByName(shopName: string) {
+        try {
+            const shop = await this.ShopModel.findOne({ name: new RegExp(shopName, 'i') })
+            return shop
+        } catch (error) {
+            console.log("find shop by name error", error);
+
         }
     }
 }

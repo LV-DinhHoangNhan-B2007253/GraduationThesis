@@ -28,6 +28,7 @@ export interface ICreateProduct {
     description: string
     stock_quantity: number
     shop_owner_id: string
+    type: string
 }
 
 export interface ICartItem {

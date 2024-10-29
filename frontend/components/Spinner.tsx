@@ -1,7 +1,13 @@
 "use client";
 
-function Spinner() {
-  return <div>Spinner.....loading...</div>;
+import { Spinner } from "@nextui-org/react";
+
+function SpinnerLoader() {
+  return (
+    <div className="w-full flex justify-center items-center h-full">
+      <Spinner />
+    </div>
+  );
 }
 
-export default Spinner;
+export default SpinnerLoader;

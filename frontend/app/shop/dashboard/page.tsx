@@ -1,13 +1,15 @@
 "use client";
+import ChatWindow from "@/components/chat/ChatWindow";
 import OrderManagement from "@/components/management/OrderManagement";
-import ProductManagement from "@/components/management/ProductManagement";
-import NotificationManageShop from "@/components/shop/NotificationManageShop";
-import OrderManageShop from "@/components/shop/OrderManageShop";
-import ProductManageShop from "@/components/shop/ProductManageShop";
-import PromotionManageShop from "@/components/shop/PromotionManageShop";
-import StorageManagementShop from "@/components/shop/StorageManagementShop";
+import CategoryManageShop from "@/components/shop/CategoryManageShop";
+import NotificationManageShop from "@/components/shop/dashboardScreen/NotificationManageShop";
+import OrderManageShop from "@/components/shop/dashboardScreen/OrderManageShop";
+import ProductManageShop from "@/components/shop/dashboardScreen/ProductManageShop";
+import PromotionManageShop from "@/components/shop/dashboardScreen/PromotionManageShop";
+import StorageManagementShop from "@/components/shop/dashboardScreen/StorageManagementShop";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import MainLayout from "@/layouts/MainLayout";
+import { faFacebookMessenger } from "@fortawesome/free-brands-svg-icons";
 import {
   faArrowAltCircleLeft,
   faBell,
@@ -30,16 +32,18 @@ function ShopDashboard() {
     switch (activeTab) {
       case "product":
         // return <ProductManageShop />;
-        return <ProductManagement />;
+        return <ProductManageShop />;
       case "order":
         // return <OrderManageShop />;
         return <OrderManagement />;
       case "promotion":
         return <PromotionManageShop />;
-      case "notification":
-        return <NotificationManageShop />;
+      case "chat":
+        return <ChatWindow />;
       case "storage":
         return <StorageManagementShop />;
+      case "category":
+        return <CategoryManageShop />;
       default:
         return;
     }
@@ -62,7 +66,7 @@ function ShopDashboard() {
         </div>
         <ThemeSwitch />
       </div>
-      <div className="grid grid-cols-12 gap-1">
+      <div className="grid grid-cols-12 gap-1 ">
         <nav className=" col-span-1 sm:col-span-2 bg-light-card-bg dark:bg-dark-card-bg min-h-screen px-1">
           <button
             className="flex items-center gap-2 px-3 py-2 my-2 justify-start  bg-light-sidebar-btn text-light-sidebar-btn-text dark:bg-dark-sidebar-btn dark:text-dark-sidebar-btn-text text-sm sm:text-base rounded-md w-full hover:opacity-85 hover:scale-105 duration-200 transition-all hover:translate-x-2"
@@ -102,15 +106,15 @@ function ShopDashboard() {
           </button>
           <button
             className="flex items-center gap-2 px-3 py-2 my-2 justify-start  bg-light-sidebar-btn text-light-sidebar-btn-text dark:bg-dark-sidebar-btn dark:text-dark-sidebar-btn-text text-sm sm:text-base rounded-md w-full hover:opacity-85 hover:scale-105 duration-200 transition-all hover:translate-x-2"
-            onClick={() => setActiveTab("notification")}
+            onClick={() => setActiveTab("chat")}
           >
             <span>
               <FontAwesomeIcon
-                icon={faBell}
+                icon={faFacebookMessenger}
                 className="text-sm sm:text-base w-[20px]"
               />
             </span>
-            <p className="hidden sm:block">Notification</p>
+            <p className="hidden sm:block">Chat</p>
           </button>
           <button
             className="flex items-center gap-2 px-3 py-2 my-2 justify-start  bg-light-sidebar-btn text-light-sidebar-btn-text dark:bg-dark-sidebar-btn dark:text-dark-sidebar-btn-text text-sm sm:text-base rounded-md w-full hover:opacity-85 hover:scale-105 duration-200 transition-all hover:translate-x-2"
@@ -124,8 +128,23 @@ function ShopDashboard() {
             </span>
             <p className="hidden sm:block">Storage</p>
           </button>
+          {/* category */}
+          <button
+            className="flex items-center gap-2 px-3 py-2 my-2 justify-start  bg-light-sidebar-btn text-light-sidebar-btn-text dark:bg-dark-sidebar-btn dark:text-dark-sidebar-btn-text text-sm sm:text-base rounded-md w-full hover:opacity-85 hover:scale-105 duration-200 transition-all hover:translate-x-2"
+            onClick={() => setActiveTab("category")}
+          >
+            <span>
+              <FontAwesomeIcon
+                icon={faDatabase}
+                className="text-sm sm:text-base w-[20px]"
+              />
+            </span>
+            <p className="hidden sm:block">Category</p>
+          </button>
         </nav>
-        <div className="sm:col-span-10 col-span-full">{renderComponent()}</div>
+        <div className="sm:col-span-10 col-span-full h-screen   ">
+          {renderComponent()}
+        </div>
       </div>
     </div>
   );

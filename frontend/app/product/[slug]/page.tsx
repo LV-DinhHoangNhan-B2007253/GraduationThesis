@@ -2,6 +2,7 @@
 
 import ChatBox from "@/components/chat/ChatBox";
 import ProductReviewCard from "@/components/review/ProductReviewCard";
+import SpinnerLoader from "@/components/Spinner";
 import Spinner from "@/components/Spinner";
 import { IProduct, IUpdateProductForm } from "@/interfaces/product.interface";
 import MainLayout from "@/layouts/MainLayout";
@@ -54,7 +55,7 @@ function ProductDetail(props: any) {
   const [shopInfo, setShopInfo] = useState<IShop | null>(null);
   const [orderQuantity, setOrderQuantity] = useState<number>(1);
   const router = useRouter();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   // toggle chat
   const [isChatbox, setIsChatBox] = useState<boolean>(false);
 
@@ -128,17 +129,17 @@ function ProductDetail(props: any) {
     }));
   };
 
-  const handleUpdateProduct = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const data = await UpdateProductInfo(productId, updateProductForm);
-      if (data) {
-        toast.success(`${data.message}`);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleUpdateProduct = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   try {
+  //     const data = await UpdateProductInfo(productId, updateProductForm);
+  //     if (data) {
+  //       toast.success(`${data.message}`);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handleCreateOrder = () => {
     if (orderQuantity > Number(product?.stock_quantity)) {
@@ -160,6 +161,7 @@ function ProductDetail(props: any) {
       <section className="w-full px-4 sm:min-h-screen">
         {product ? (
           <div className="w-full">
+            {/* product info */}
             <div className="sm:grid sm:grid-cols-12 sm:gap-4 sm:h-3/4 ">
               <div className="sm:col-span-7 ">
                 <Slider {...settings} className="h-[300px] sm:h-full">
@@ -318,46 +320,49 @@ function ProductDetail(props: any) {
                 </div>
               </div>
             </div>
-            {/* shop info */}
-            <div className="mt-16 flex justify-start gap-4 bg-light-modal-popup p-6 dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text text-sm sm:text-base">
-              <div className="w-[100px] ">
-                <img
-                  src={shopInfo?.logoUrl}
-                  alt="Shop Logo"
-                  className="rounded-full object-cover"
-                />
-              </div>
-              <div className="flex flex-col justify-around gap-2">
-                <p className=" font-bold">{shopInfo?.name}</p>
-                <p className="font-light">
-                  {shopInfo?.isActive ? "Online" : "Offline"}
-                  <span className="mx-2">
-                    <FontAwesomeIcon
-                      icon={faCircle}
-                      color={shopInfo?.isActive ? "green" : "red"}
-                    />
-                  </span>
-                </p>
-                <div className="flex justify-start gap-4">
-                  <button
-                    className="capitalize p-2 border border-orange-500 bg-orange-100 text-orange-600"
-                    onClick={() => setIsChatBox(true)}
-                  >
-                    Chat Now
-                  </button>
-                  <Link href={`/shop/${shopInfo?._id}`}>
-                    <button className="capitalize p-2 border border-gray-300 bg-light-btn-bg dark:bg-dark-bg-btn dark:text-dark-btn-text text-light-btn-text">
-                      View Shop
+            {/* shop info + comment wrapper */}
+            <div className="sm:mx-20">
+              {/* shop info */}
+              <div className="mt-16 flex justify-start gap-4 bg-light-modal-popup p-6 dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text text-sm sm:text-base">
+                <div className="w-[100px] ">
+                  <img
+                    src={shopInfo?.logoUrl}
+                    alt="Shop Logo"
+                    className="rounded-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-around gap-2">
+                  <p className=" font-bold">{shopInfo?.name}</p>
+                  <p className="font-light">
+                    {shopInfo?.isActive ? "Online" : "Offline"}
+                    <span className="mx-2">
+                      <FontAwesomeIcon
+                        icon={faCircle}
+                        color={shopInfo?.isActive ? "green" : "red"}
+                      />
+                    </span>
+                  </p>
+                  <div className="flex justify-start gap-4">
+                    <button
+                      className="capitalize p-2 border border-orange-500 bg-orange-100 text-orange-600"
+                      onClick={() => setIsChatBox(true)}
+                    >
+                      Chat Now
                     </button>
-                  </Link>
+                    <Link href={`/shop/${shopInfo?._id}`}>
+                      <button className="capitalize p-2 border border-gray-300 bg-light-btn-bg dark:bg-dark-bg-btn dark:text-dark-btn-text text-light-btn-text">
+                        View Shop
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* review */}
-            <div className="sm:mx-24 mt-10 ">
-              {product.comments.map((reviewId, index) => (
-                <ProductReviewCard reviewId={reviewId} key={index} />
-              ))}
+              {/* review */}
+              <div className="">
+                {product.comments.map((reviewId, index) => (
+                  <ProductReviewCard reviewId={reviewId} key={index} />
+                ))}
+              </div>
             </div>
             {/* related product */}
             <div className="mt-[100px]">
@@ -400,112 +405,6 @@ function ProductDetail(props: any) {
             {userInfo?.role == "owner" &&
               userInfo.shop_id === product.shop_owner_id && (
                 <div className="mt-8">
-                  <form
-                    onSubmit={handleUpdateProduct}
-                    className="w-full flex justify-center items-center"
-                  >
-                    <div>
-                      <table className="w-full table-auto border-collapse sm:block hidden ">
-                        <thead>
-                          <tr className="bg-light-modal-popup dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text">
-                            <th className="border px-4 py-2 text-left">Name</th>
-                            <th className="border px-4 py-2 text-left">
-                              Price
-                            </th>
-                            <th className="border px-4 py-2 text-left">Sku</th>
-                            <th className="border px-4 py-2 text-left">
-                              Description
-                            </th>
-
-                            <th className="border px-4 py-2 text-left">
-                              Quantity
-                            </th>
-                            <th className="border px-4 py-2 text-left">
-                              Set New Arrival
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td className="border px-4 py-2 w-1/4">
-                              <input
-                                onChange={handleInputChange}
-                                type="text"
-                                name="name"
-                                id="updateName"
-                                required
-                                value={updateProductForm.name}
-                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none "
-                              />
-                            </td>
-                            <td className="border px-4 py-2 ">
-                              <input
-                                onChange={handleInputChange}
-                                type="text"
-                                name="price"
-                                id="updatePrice"
-                                required
-                                value={updateProductForm.price}
-                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                              />
-                            </td>
-                            <td className="border px-4 py-2">
-                              <input
-                                type="text"
-                                onChange={handleInputChange}
-                                name="sku"
-                                id="updateSku"
-                                required
-                                value={updateProductForm.sku}
-                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                              />
-                            </td>
-                            <td className="border px-4 py-2">
-                              <textarea
-                                onChange={handleInputChange}
-                                id="updateDesc"
-                                name="description"
-                                cols={40}
-                                rows={4}
-                                value={updateProductForm.description}
-                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                              />
-                            </td>
-                            <td className="border px-4 py-2">
-                              <input
-                                type="number"
-                                onChange={handleInputChange}
-                                name="stock_quantity"
-                                id="updateQuantity"
-                                min={0}
-                                value={updateProductForm.stock_quantity}
-                                required
-                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                              />
-                            </td>
-                            <td className="border px-4 py-2">
-                              <select
-                                name="isOutStanding"
-                                onChange={handleInputChange}
-                                id="isOutStanding"
-                                value={updateProductForm.isOutStanding ? 1 : 0}
-                                className="w-full border rounded px-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text py-3 outline-none"
-                              >
-                                <option value={1}>Yes</option>
-                                <option value={0}>No</option>
-                              </select>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <button
-                        type="submit"
-                        className="px-4 py-2 text-center rounded-md bg-green-700 hover:bg-green-600 transition duration-300 text-white my-4"
-                      >
-                        Update
-                      </button>
-                    </div>
-                  </form>
                   <div className="w-full">
                     <Link
                       href={`/product/analyze/${productId}`}
@@ -518,7 +417,7 @@ function ProductDetail(props: any) {
               )}
           </div>
         ) : (
-          <Spinner />
+          <SpinnerLoader />
         )}
       </section>
     </MainLayout>

@@ -1,58 +1,50 @@
-// import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
-// import { CategoryService } from '../service/category.service';
-// import { CreateCategoryDto } from '../dtos/create-category.dto';
-// import { createCategoryItemDto } from '../dtos/create-item.dto';
-// import { FileInterceptor } from '@nestjs/platform-express';
-// import { diskStorage } from 'multer';
-// import { extname } from 'path';
-// import { v4 as uuidv4 } from 'uuid';
-// @Controller('api/category')
-// export class CategoryController {
-//     constructor(
-//         private readonly CategoryService: CategoryService,
-//     ) { }
+import { Body, Controller, Get, Param, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { CategoryService } from '../service/category.service';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
+import { v4 as uuidv4 } from 'uuid';
+import { createCategoryItemDto } from '../dtos/createCategoryItem.dto';
+import { query } from 'express';
+@Controller('api/category')
+export class CategoryController {
+    constructor(private readonly CategoryService: CategoryService) { }
+
+    @Get('/getAll')
+    GetAllCategoryItems() {
+        return this.CategoryService.getAllCategoryItems()
+    }
 
 
+    @Post('/create')
+    @UseInterceptors(FileInterceptor('banner', {
+        storage: diskStorage({
+            destination: './uploads/banners'
+            , filename: (req, file, cb) => {
+                const uniqueFilename = `${uuidv4()}${extname(file.originalname)}`;
+                cb(null, uniqueFilename);
+            }
+        })
+    }))
+    async CreateNewCategory(@UploadedFile() banner: Express.Multer.File, @Body() createCategoryForm: createCategoryItemDto) {
 
-//     @Post('/create')
-//     @UseInterceptors(FileInterceptor('banner', {
-//         storage: diskStorage({
-//             destination: './uploads/banners'
-//             , filename: (req, file, cb) => {
-//                 const uniqueFilename = `${uuidv4()}${extname(file.originalname)}`;
-//                 cb(null, uniqueFilename);
-//             }
-//         })
-//     }))
-//     async CreateNewCategory(@UploadedFile() banner: Express.Multer.File, @Body() createCategory: CreateCategoryDto) {
+        const bannerPath = banner ? `http://localhost:3001/uploads/banners/${banner.filename}` : '';
+        return this.CategoryService.createCategoryItem(createCategoryForm, bannerPath,)
+    }
+    // lấy các sản phẩm của 1 danh mục theo id
+    @Get('/get/:categoryId')
+    async GetProductsByCategory(@Param('categoryId') categoryId: string) {
+        return this.CategoryService.getProductsByCategory(categoryId)
+    }
 
-//         const bannerPath = banner ? `http://localhost:3001/uploads/banners/${banner.filename}` : '';
-//         return this.CategoryService.createCategory(createCategory, bannerPath)
-//     }
+    @Get('/shop/:shopId')
+    async GetCategoryAndProductsByShop(@Param('shopId') shopId: string) {
+        return this.CategoryService.getCategorAndProductOfShop(shopId)
+    }
 
-//     // @Post('/add/categoryItem/:_id')
-//     // AddCategoryItem(@Param() categoryId: string, @Body() item: createCategoryItemDto) {
-//     //     return this.CategoryService.addCategoryItem(categoryId, item)
-//     // }
-
-//     @Get('/:_id/items')
-//     GetCategoryItems(@Param() categoryId: string) {
-//         return this.CategoryService.getCategoryItem(categoryId)
-//     }
-
-//     @Get('/getAll')
-//     GetAllCategory() {
-//         return this.CategoryService.getAllCategory()
-//     }
-
-//     @Get('/get/category/item/label')
-//     GetCategoryAndItemLabel() {
-//         return this.CategoryService.getCategoryAndItemsLabels()
-//     }
-
-//     @Get('/getOne/category/item/label/:_id')
-//     GetOneCategoryItemLabel(@Param() categoryId: string) {
-
-//         return this.CategoryService.getOneCategoryAndItemsLabelsById(categoryId)
-//     }
-// }
+    @Get('/search')
+    async GetShopInfoNProductsBySearch(@Query('query') query: string) {
+        return this.CategoryService.getProductsByQuery(query)
+        // return query
+    }
+}

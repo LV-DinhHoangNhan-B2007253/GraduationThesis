@@ -2,92 +2,65 @@
 
 import { RootState } from "@/redux/store";
 import {
-  faBars,
-  faBurger,
-  faClose,
   faHome,
   faSearch,
   faShoppingBag,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import DefaultAvatar from "@/public/default-avatar.png";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import {
-  Accordion,
-  AccordionItem,
-  Avatar,
-  button,
-  Tooltip,
-} from "@nextui-org/react";
+import { Avatar, Tooltip } from "@nextui-org/react";
 import ThemeSwitch from "./ThemeSwitch";
-import { GetAreaAndCategoryLabel } from "@/services/area.service";
-import SlidingPanel from "react-sliding-side-panel";
-import Slider from "react-slick";
 import NotificationBell from "./NotiBell";
-interface INavbarCategory {
-  _id: string;
-  name: string;
-}
+import { useRouter } from "next/navigation";
+// interface INavbarCategory {
+//   _id: string;
+//   name: string;
+// }
 
-interface INavbarArea {
-  _id: string;
-  name: string;
-  categoryItem: INavbarCategory[];
-  banner: string;
-}
+// interface INavbarArea {
+//   _id: string;
+//   name: string;
+//   categoryItem: INavbarCategory[];
+//   banner: string;
+// }
 
 function Navbar() {
   const { isLogin } = useSelector((state: RootState) => state.userLoginState);
   const { userInfo } = useSelector((state: RootState) => state.user);
-  const [area, setArea] = useState<INavbarArea[]>([]);
-  // const [category, setCategory] = useState<INavbarCategory[]>([]);
-  const [subNav, setSubNav] = useState<boolean>(false);
-  const [hoveredCategory, setHoveredCategory] = useState<string>("");
-  const [openPanel, setOpenPanel] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const router = useRouter();
+
   // hover avatar
   const [toggleAvtNav, setToggleAvtNav] = useState<boolean>(false);
 
-  const handleMouseEnter = (categoryName: string) => {
-    setHoveredCategory(categoryName);
-    setSubNav(true);
-  };
-  const handleMouseOut = () => {
-    setHoveredCategory("");
-    setSubNav(false);
-  };
-
-  const fetchData = async () => {
-    try {
-      const data = await GetAreaAndCategoryLabel();
-      setArea(data);
-      // setCategory(data[0].categoryItem);
-    } catch (error) {
-      console.log("Navbar call api error", error);
+  const handleSearch = () => {
+    if (searchQuery.trim() === "") {
+      console.log("search null");
+      return;
     }
+    router.push(`search?q=${searchQuery}`);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  let settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: false,
-  };
+  useEffect(() => {}, []);
 
   return (
     <nav className="shadow-sm bg-light-navbar-bg text-light-navbar-text dark:bg-dark-navbar-bg dark:text-dark-navbar-text sticky z-[3000] top-0">
+      {/* home icon */}
+      <div className="hidden sm:block text-center pt-2">
+        <Link
+          href={"/"}
+          className="text-3xl py-2 font-mono font-bold uppercase tracking-widest hover:tracking-[.3em] transition-all duration-300 text-gray-600 dark:text-dark-primary-text"
+        >
+          Homee
+        </Link>
+      </div>
       {/* top nav */}
       <div className="flex items-center justify-between w-full gap-3 px-5 py-4 border-b border-gray-200 sm:px-20 sm:py-8 sm:gap-0">
-        {/* search */}
+        {/* toggle switch */}
         <div className="flex gap-2">
           <ThemeSwitch />
           {userInfo?.role === "owner" ? (
@@ -109,6 +82,7 @@ function Navbar() {
           )}
         </div>
 
+        {/* home icon */}
         <div className="relative flex items-center sm:justify-center sm:hidden flex-1 sm:flex-none justify-start">
           <Link
             href={"/"}
@@ -117,13 +91,23 @@ function Navbar() {
             <FontAwesomeIcon icon={faHome} />
           </Link>
         </div>
-        {/* brand name */}
-        <Link
-          href={"/"}
-          className="hidden font-mono text-3xl font-thin tracking-widest uppercase transition-all sm:block text-light-primary-text dark:text-dark-primary-text hover:text-light-active hover:dark:text-dark-active bg-gradient-to-r w-fit "
-        >
-          AikaStore
-        </Link>
+        {/* search bar */}
+        <div className="sm:block hidden">
+          <div className="flex items-center gap-0">
+            <input
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              type="text"
+              className=" border  w-full sm:min-w-[500px] px-3 py-2 rounded-l-md bg-light-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border dark:bg-dark-input-field "
+            />
+            <button
+              onClick={handleSearch}
+              className="border px-3 py-2 text-center font-light border-light-input-border dark:border-dark-input-border rounded-r-md "
+            >
+              <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
+            </button>
+          </div>
+        </div>
         {/* cart, wishlish, avatar */}
         <div className="">
           {isLogin ? (
@@ -195,124 +179,18 @@ function Navbar() {
         </div>
       </div>
       {/* bottom nav */}
-      <div>
-        <div className="relative">
-          <ul className="top-0 flex-wrap items-center justify-between hidden py-4 mx-64 sm:flex">
-            {area.map((i, index) => (
-              // view area nav
-              <li
-                key={index}
-                className="z-50"
-                onMouseEnter={() => handleMouseEnter(i.name)}
-                onMouseLeave={handleMouseOut}
-              >
-                <Link
-                  href={`/area/${i._id}`}
-                  className="p-5 text-base font-light tracking-wider uppercase transition-all text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500"
-                >
-                  {i.name}
-                </Link>
-                {hoveredCategory === i.name && (
-                  // view sub nav
-                  <div className="absolute left-0 right-0 flex justify-between w-full px-8 py-2 top-12 min-h-36 bg-light-modal-popup dark:bg-dark-modal-popup ">
-                    <ul className="flex flex-wrap justify-start gap-10">
-                      {i.categoryItem.map((c, index) => (
-                        <li key={index} className="">
-                          <Link
-                            href={`/category/${c._id}`}
-                            className="capitalize text-small hover:text-light-active dark:hover:text-dark-active hover:underline"
-                          >
-                            {c.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="">
-                      <img
-                        src={`${i.banner}`}
-                        alt="Banner"
-                        className="object-cover transform hover:scale-x-105 transition duration-400  max-w-[400px] min-w-36 rounded"
-                      />
-                    </div>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="relative">
-          <div className={`sm:hidden block`}>
-            <div className="w-full h-fit">
-              <Slider {...settings}>
-                {area.map((i, index) => (
-                  <Link href={`/area/${i._id}`} key={index}>
-                    <p className="p-5 text-base font-light tracking-wider uppercase transition-all text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500">
-                      {i.name}
-                    </p>
-                  </Link>
-                ))}
-              </Slider>
-            </div>
-            <div className="flex justify-end">
-              <button className="block text-center sm:hidden ">
-                {!openPanel ? (
-                  <FontAwesomeIcon
-                    icon={faBars}
-                    size="1x"
-                    className="p-2"
-                    onClick={() => setOpenPanel(true)}
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    icon={faClose}
-                    size="1x"
-                    className="p-2"
-                    onClick={() => setOpenPanel(false)}
-                  />
-                )}
-              </button>
-            </div>
-          </div>
-          <div
-            className={`bg-light-modal-popup dark:bg-dark-modal-popup rounded shadow ${
-              openPanel ? "block" : "hidden"
-            }`}
+      <div className="flex sm:hidden justify-center items-center bg-light-navbar-bg dark:bg-dark-navbar-bg py-3">
+        <div className="flex items-center gap-1">
+          <input
+            type="text"
+            className=" border  w-3/4 sm:min-w-[500px] px-3 py-2 rounded-l-md bg-light-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border dark:bg-dark-input-field "
+          />
+          <button
+            onClick={handleSearch}
+            className="border px-3 py-2 text-center font-light border-light-input-border dark:border-dark-input-border rounded-r-md "
           >
-            <div>
-              <ul>
-                {area.map((i, index) => (
-                  <li
-                    key={index}
-                    onMouseEnter={() => handleMouseEnter(i.name)}
-                    onMouseLeave={handleMouseOut}
-                  >
-                    <p className="p-5 text-base font-light tracking-wider uppercase transition-all text-light-navbar-text dark:text-dark-navbar-text hover:text-orange-500">
-                      {i.name}
-                    </p>
-                    {hoveredCategory === i.name && (
-                      <div className="absolute bottom-0 w-full mt-2 rounded shadow-lg left-36 top-12 bg-light-modal-popup dark:bg-dark-modal-popup sm:w-64 lg:w-96">
-                        <div className="flex flex-col justify-between px-4 py-2 sm:flex-row">
-                          <ul className="flex flex-col gap-4 sm:flex-row sm:gap-10">
-                            {i.categoryItem.map((c, index) => (
-                              <li key={index} className="">
-                                <Link
-                                  href={`/category/${c._id}`}
-                                  className="capitalize text-small hover:text-light-active dark:hover:text-dark-active hover:underline"
-                                >
-                                  {c.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+            <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
+          </button>
         </div>
       </div>
       {/* place holder */}

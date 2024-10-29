@@ -1,5 +1,6 @@
 "use client";
 
+import SpinnerLoader from "@/components/Spinner";
 import { setLogged } from "@/redux/slices/isLoginStateSlice";
 import { GetNSetUserInfo } from "@/redux/slices/userInfoSlice";
 import { AppDispatch } from "@/redux/store";
@@ -30,7 +31,11 @@ function Callback() {
     }
   }, [router, dispatch]);
 
-  return <div className="bg-Loading-img w-full h-screen bg-center"></div>;
+  return (
+    <div className=" w-full h-screen ">
+      <SpinnerLoader />
+    </div>
+  );
 }
 
 export default Callback;

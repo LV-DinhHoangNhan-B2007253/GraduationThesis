@@ -1,6 +1,8 @@
 "use client";
 
 import ClassifyComment from "@/components/shop/ClassifyComment";
+import SpinnerLoader from "@/components/Spinner";
+import Spinner from "@/components/Spinner";
 import { IAnalyzeProduct } from "@/interfaces/product.interface";
 import { getAnalyzeProductData } from "@/services/product.service";
 import {
@@ -134,9 +136,7 @@ function AnalyzeProduct(props: any) {
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-500">
-          Loading product information...
-        </div>
+        <SpinnerLoader />
       )}
     </div>
   );

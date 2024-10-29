@@ -1,137 +1,166 @@
-// import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-// import { Category } from '../schema/Category.schema';
-// import { InjectModel } from '@nestjs/mongoose';
-// import { Model, Types } from 'mongoose';
-// import { CreateCategoryDto } from '../dtos/create-category.dto';
-// import { CategoryItemService } from 'src/category-item/service/categoryItem.service';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Category, } from '../schema/Category.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, Types } from 'mongoose';
+import { normalizeName } from "../../utils/normalize.util"
+import { ProductService } from 'src/product/service/product.service';
+import { createCategoryItemDto } from '../dtos/createCategoryItem.dto';
+import { error, log } from 'console';
+import { Product } from 'src/product/schema/Product.schema';
+import { ShopService } from 'src/shop/services/ShopService.service';
 
-// import { normalizeName } from "../../utils/normalize.util"
-// import { ProductService } from 'src/product/service/product.service';
-// import { FileService } from './file.service';
-// import path from 'path';
+@Injectable()
+export class CategoryService {
+    constructor(@InjectModel(Category.name) private readonly CategoryModel: Model<Category>,
+        private readonly productService: ProductService,
+        private readonly shopService: ShopService,
 
-// @Injectable()
-// export class CategoryService {
-//     constructor(@InjectModel(Category.name) private CategoryModel: Model<Category>,
-//         private readonly CategoryItemService: CategoryItemService,
-//         private readonly ProductService: ProductService,
-//     ) { }
+    ) { }
+
+    async createCategoryItem(createCategoryItemForm: createCategoryItemDto, bannerPath: string,): Promise<Category> {
+        try {
+            const { name, shop_creator_id } = createCategoryItemForm
+            const normalize = normalizeName(name)
+            const foundItem = await this.CategoryModel.findOne({ name: normalize, shop_creator_id: new Types.ObjectId(shop_creator_id) })
+            if (foundItem) {
+                throw new HttpException({
+                    status: HttpStatus.CREATED,
+                    error: `this '${createCategoryItemForm.name}' category existed!`
+                }, HttpStatus.CREATED)
+            }
+            const newCategory = new this.CategoryModel({
+                ...createCategoryItemForm,
+                banner: bannerPath,
+                shop_creator_id: new Types.ObjectId(shop_creator_id)
+            })
+            await newCategory.save()
+            return newCategory
+        } catch (error) {
+            console.log("Create category item error", error);
+            if (error instanceof HttpException) {
+                throw error
+            } else {
+                throw new HttpException({
+                    status: HttpStatus.INTERNAL_SERVER_ERROR,
+                    error: "Internal server error"
+                }, HttpStatus.INTERNAL_SERVER_ERROR)
+            }
+        }
+    }
+
+    async getAllCategoryItems(): Promise<Category[]> {
+        try {
+            const data = await this.CategoryModel.find().select("-__v").exec()
+            return data
+        } catch (error) {
+            console.log("Get all categoryItems Error", error);
+
+            throw new HttpException({
+                status: HttpStatus.INTERNAL_SERVER_ERROR,
+                error: "Internal server error"
+            }, HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+    }
+
+    async getProductsByCategory(categoryId: string) {
+        try {
+            const category = await this.CategoryModel.findById(categoryId)
+            if (!category) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "category not found"
+                }, HttpStatus.NOT_FOUND)
+            }
+            const { products } = category
+            const productList = Promise.all(
+                products.map((productId) => this.productService.getProductById(productId.toString()))
+            )
+
+            return productList
+        } catch (error) {
+            console.log("get product by category error", error);
+            throw new HttpException({
+                status: HttpStatus.INTERNAL_SERVER_ERROR,
+                error: "Error getting products by category"
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // lấy danh mục và sản danh sách sản phẩm của 1 shop
+    async getCategorAndProductOfShop(shopId: string) {
+        try {
+            const shop_creatorId = new Types.ObjectId(shopId)
+            const categories = await this.CategoryModel.find({ shop_creator_id: shop_creatorId })
+
+            if (!categories) {
+                throw new HttpException({
+                    status: HttpStatus.NOT_FOUND,
+                    error: "category not found"
+                }, HttpStatus.NOT_FOUND)
+            }
+
+            // Khởi tạo mảng sản phẩm để lưu trữ tất cả sản phẩm của các danh mục
+            let products: Product[] = [];
+
+            // Dùng Promise.all để xử lý bất đồng bộ cho từng danh mục và sản phẩm liên quan
+            await Promise.all(
+                categories.map(async (category) => {
+                    const categoryProducts = await Promise.all(
+                        category.products.map((productId) => this.productService.getProductById(productId.toString()))
+                    );
+                    products = products.concat(categoryProducts);
+                })
+            );
+
+            return { categories, products };
+        } catch (error) {
+
+        }
+    }
 
 
 
-//     /**
-//      *
-//      * @param createCategory category form
-//      * @param bannerPath image bath
-//      * @returns message: string
-//      */
-//     async createCategory(createCategory: CreateCategoryDto, bannerPath: string): Promise<any> {
-//         try {
-//             const normalize = normalizeName(createCategory.name)
-//             const foundCategory = await this.CategoryModel.findOne({ name: normalize })
-//             if (foundCategory) {
-//                 throw new HttpException({
-//                     status: HttpStatus.CONFLICT,
-//                     error: `This '${createCategory.name}' area existed!`
-//                 }, HttpStatus.CONFLICT)
-//             }
-//             await this.CategoryModel.create({ ...createCategory, banner: bannerPath });
-//             return { message: `Create '${createCategory.name}' area Success` }
-//         } catch (error) {
-//             console.log("Create new area error", error);
-//             if (error instanceof HttpException) {
-//                 throw error
-//             } else {
 
-//                 throw new HttpException({
-//                     status: HttpStatus.INTERNAL_SERVER_ERROR,
-//                     error: "Internal server error"
-//                 }, HttpStatus.INTERNAL_SERVER_ERROR)
-//             }
-//         }
-//     }
+    async getProductsByQuery(query: string) {
+        try {
+            let shopInfo = null;
+            let products = [];
 
-//     // async addCategoryItem(categoryId: string, Item): Promise<any> {
-//     //     try {
-//     //         const foundCategory = await this.CategoryModel.findById(categoryId)
-//     //         if (!foundCategory) {
-//     //             throw new HttpException({
-//     //                 status: HttpStatus.NOT_FOUND,
-//     //                 error: `this category id:  '${categoryId}'  not found!'`
-//     //             }, HttpStatus.NOT_FOUND)
-//     //         }
-//     //         const newCategoryItem = await this.CategoryItemService.createCategoryItem(Item)
-//     //         foundCategory.categoryItem.push(new Types.ObjectId(newCategoryItem._id as string))
-//     //         await foundCategory.save()
-//     //         return { message: `Add ${newCategoryItem.name} category success` }
-//     //     } catch (error) {
-//     //         console.log("addCategoryItem error", error);
-//     //         if (error instanceof HttpException) {
-//     //             throw error
-//     //         } else {
+            const shop = await this.shopService.GetShopInfoByName(query);
+            if (shop) {
+                shopInfo = shop;
+                const categories = await this.CategoryModel.find({ shop_creator_id: shop._id });
 
-//     //             throw new HttpException({
-//     //                 status: HttpStatus.INTERNAL_SERVER_ERROR,
-//     //                 error: "Internal server error"
-//     //             }, HttpStatus.INTERNAL_SERVER_ERROR)
-//     //         }
-//     //     }
-//     // }
+                products = await Promise.all(
+                    categories.flatMap((category) =>
+                        category.products
+                            .filter((productId) => Types.ObjectId.isValid(productId)) // Chỉ lấy các productId hợp lệ
+                            .map((productId) => this.productService.getProductById(productId.toString()))
+                    )
+                );
+                // return await this.getCategorAndProductOfShop(shop._id.toString())
+            } else {
+                const category = await this.CategoryModel.findOne({ name: new RegExp(query, 'i') });
 
-//     async getCategoryItem(categoryId: string): Promise<any> {
-//         try {
+                if (category) {
+                    products = await Promise.all(
+                        category.products
+                            .filter((productId) => Types.ObjectId.isValid(productId)) // Chỉ lấy các productId hợp lệ
+                            .map((productId) => this.productService.getProductById(productId.toString()))
+                    );
+                } else {
+                    products = await this.productService.getProductByNameOrType(query);
+                }
+            }
 
+            return { shopInfo, products };
+        } catch (error) {
+            console.log("get products by query error", error.message);
+            throw new HttpException({
+                status: HttpStatus.INTERNAL_SERVER_ERROR,
+                error: "Error getting products by query"
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-//             const Items = await this.CategoryModel.findById(categoryId).populate('categoryItem').exec()
-//             if (!Items) {
-//                 throw new HttpException({
-//                     status: HttpStatus.NOT_FOUND,
-//                     error: "items not found"
-//                 }, HttpStatus.NOT_FOUND)
-//             }
-//             return Items.categoryItem
-//         } catch (error) {
-//             console.log(error);
-
-//         }
-//     }
-
-//     async getAllCategory(): Promise<Category[]> {
-//         try {
-//             const listCategory = await this.CategoryModel.find()
-//             return listCategory
-//         } catch (error) {
-//             console.log();
-//         }
-//     }
-
-//     async getCategoryAndItemsLabels(): Promise<Category[]> {
-//         try {
-//             const data = await this.CategoryModel.find().populate({
-//                 path: 'categoryItem',
-//                 select: '_id name',
-//             }).select('-__v').exec()
-//             return data
-//         } catch (error) {
-//             console.log(error);
-
-//         }
-//     }
-
-//     async getOneCategoryAndItemsLabelsById(categoryId): Promise<Category> {
-//         try {
-//             const data = await this.CategoryModel.findById(categoryId).populate({
-//                 path: 'categoryItem',
-//                 populate: {
-//                     path: 'products'
-//                 }
-//             }).select('-__v').exec()
-//             return data
-//         } catch (error) {
-//             console.log(error);
-
-//         }
-//     }
-
-// }
-
+}

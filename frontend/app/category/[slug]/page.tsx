@@ -34,9 +34,16 @@ function ProductsByCategory(props: any) {
         <h1 className="py-4 text-2xl tracking-widest uppercase sm:text-6xl text-light-primary-text dark:text-dark-primary-text ">
           {categoryProducts?.name} Furniture
         </h1>
-        <section className="min-h-screen">
-          <ProductList productList={products} />
-        </section>
+        {products?.length !== 0 ? (
+          <section className="min-h-screen">
+            <ProductList productList={products} />
+          </section>
+        ) : (
+          <div className="flex justify-center items-center flex-col gap-3 p-4 w-full h-screen bg-light-modal-popup dark:bg-dark-modal-popup my-2">
+            <p className="font-bold text-3xl">Oops!</p>
+            <p className="font-mono">Nothing here</p>
+          </div>
+        )}
       </div>
     </MainLayout>
   );
