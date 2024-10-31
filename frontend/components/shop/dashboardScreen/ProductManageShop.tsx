@@ -85,7 +85,7 @@ function ProductManageShop() {
   const closeForm = () => setIsOpenCreateForm(false);
 
   return (
-    <div>
+    <div className="max-h-full overflow-y-auto">
       {products ? (
         // search and filter
         <div className="relative z-10">
@@ -155,7 +155,7 @@ function ProductManageShop() {
             </div>
           </div>
           {/* product table */}
-          <div className="w-full max-h-screen overflow-y-auto">
+          <div className="w-full h-full overflow-y-auto">
             <ProductTable products={products} />
           </div>
         </div>

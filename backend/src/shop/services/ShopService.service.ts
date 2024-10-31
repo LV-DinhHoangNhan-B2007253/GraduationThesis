@@ -92,11 +92,19 @@ export class ShopService {
 
     async GetShopInfoByName(shopName: string) {
         try {
-            const shop = await this.ShopModel.findOne({ name: new RegExp(shopName, 'i') })
+            const shop = await this.ShopModel.findOne({
+                name: { $regex: shopName, $options: 'i' } // Tìm kiếm không phân biệt hoa thường
+            });
+            if (!shop) {
+                return null
+            }
             return shop
         } catch (error) {
             console.log("find shop by name error", error);
-
+            throw new HttpException({
+                status: HttpStatus.INTERNAL_SERVER_ERROR,
+                error: "Error finding shop by name"
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

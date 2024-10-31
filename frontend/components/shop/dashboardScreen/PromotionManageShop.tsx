@@ -182,7 +182,7 @@ function PromotionManageShop() {
   };
 
   return (
-    <div>
+    <div className="max-h-full overflow-y-auto">
       <div className="flex items-center justify-between gap-2">
         <Button
           onPress={onOpen}

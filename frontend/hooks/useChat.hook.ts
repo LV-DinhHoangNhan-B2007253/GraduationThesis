@@ -1,12 +1,12 @@
 
-import { IMessage, ISendMessage } from "@/interfaces/chat.interface";
+import { IMessage, ISendMessage, ISingleMess } from "@/interfaces/chat.interface";
 import { useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
 
 function useChat({ senderId, receiverId }: { senderId: string | undefined, receiverId: string | undefined }) {
     // chat log
-    const [messagese, setMessagese] = useState<IMessage[]>([])
+    const [messagese, setMessagese] = useState<ISingleMess[]>([])
     // 
     const [message, setMessage] = useState('')
     // const socket: Socket = io("http://localhost:3002")
@@ -15,33 +15,20 @@ function useChat({ senderId, receiverId }: { senderId: string | undefined, recei
     const socketRef = useRef<Socket | null>(null);
 
 
-    // const sendMessage = (message: ISendMessage) => {
 
-    //     socket.emit('sendMessage', message)
-    //     setMessage('')
-    // }
     const sendMessage = (message: ISendMessage) => {
         if (socketRef.current) {
             socketRef.current.emit('sendMessage', message);
             setMessage('');
         }
     };
-    // const joinRoom = () => {
-    //     if (senderId && receiverId) {
-    //         socket.emit('joinRoom', { senderId, receiverId });
 
-    //         socket.on('chatHistory', (history: IMessage[]) => {
-    //             setMessagese(history); // Ghi đè bằng lịch sử chat từ server
-    //             console.log('Received chat history:', history);
-    //         });
-    //     }
-    // };
     const joinRoom = () => {
         if (senderId && receiverId && socketRef.current) {
             socketRef.current.emit('joinRoom', { senderId, receiverId });
 
             // Nhận lịch sử chat từ server
-            socketRef.current.on('chatHistory', (history: IMessage[]) => {
+            socketRef.current.on('chatHistory', (history: ISingleMess[]) => {
                 setMessagese(history);
                 console.log('Received chat history:', history);
             });
@@ -57,7 +44,7 @@ function useChat({ senderId, receiverId }: { senderId: string | undefined, recei
                 socketRef.current.emit('joinRoom', { senderId, receiverId });
 
                 // Nhận lịch sử chat từ server
-                socketRef.current.on('chatHistory', (history: IMessage[]) => {
+                socketRef.current.on('chatHistory', (history: ISingleMess[]) => {
                     setMessagese(history);
                     console.log('Received chat history:', history);
                 });
@@ -65,13 +52,7 @@ function useChat({ senderId, receiverId }: { senderId: string | undefined, recei
 
             // Lắng nghe sự kiện nhận tin nhắn
             socketRef.current.on('receiveMessage', (res) => {
-                // const formattedMessage = {
-                //     ...res,
-                //     sender_id: {
-                //         ...res.sender_id,
-                //         id: res.sender_id && res.sender_id._id ? res.sender_id._id.toString() : "",
-                //     },
-                // };
+
                 setMessagese((prevMessages) => [...prevMessages, res]);
             });
         }

@@ -2,19 +2,9 @@
 
 import { ICategory } from "@/interfaces/category.interface";
 import { ICreateProduct } from "@/interfaces/product.interface";
-import { RootState } from "@/redux/store";
-import {
-  GetAllCategory,
-  GetCategoryAndProductByShopId,
-  GetCategoryItems,
-} from "@/services/category.service";
+import { GetCategoryAndProductByShopId } from "@/services/category.service";
 import { CreateNewProduct } from "@/services/product.service";
-import { image, useSelect } from "@nextui-org/react";
-import { log } from "console";
-import { Root } from "postcss";
-import { ChangeEvent, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import Slider from "react-slick";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 function CreateProductForm({
   shop_id,
@@ -45,6 +35,7 @@ function CreateProductForm({
       if (response) {
         setCategories(response.categories);
       }
+      console.log(categories);
     } catch (error) {
       console.log(error);
     }

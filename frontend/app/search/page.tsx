@@ -14,17 +14,22 @@ import { useEffect, useState } from "react";
 function SearhPage() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
-  const [shop, setShop] = useState<IShop>();
+  const [shop, setShop] = useState<IShop | null>();
   const [products, setProduct] = useState<IProduct[]>();
 
   const fetchSearcResult = async () => {
-    try {
-      const data = await searchProductAndShop(query as string);
-      setProduct(data.products);
-      setShop(data.shopInfo);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+    if (query) {
+      try {
+        const data = await searchProductAndShop(query);
+        setProduct(data.products);
+        setShop(data.shopInfo);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setProduct([]); // Reset sản phẩm khi không có query
+      setShop(null); // Reset cửa hàng khi không có query
     }
   };
 
@@ -34,8 +39,8 @@ function SearhPage() {
 
   return (
     <MainLayout>
-      {shop || products?.length !== 0 ? (
-        <div className="min-h-screen sm:mx-48 mx-2">
+      {shop || (products && products?.length > 0) ? (
+        <div className=" sm:mx-48 mx-2">
           {/* shop */}
           {shop && (
             <section className=" sm:mt-10 my-4 py-4 px-6 bg-light-modal-popup dark:bg-dark-modal-popup shadow rounded flex justify-between items-center">
@@ -72,8 +77,8 @@ function SearhPage() {
           )}
         </div>
       ) : (
-        <div className="min-h-screen flex justify-center items-center">
-          <img src="emptycart.png" alt="Empty" className="rounded shadow-md" />
+        <div className="flex justify-center items-center">
+          <img src="/emptycart.png" alt="" />
         </div>
       )}
     </MainLayout>

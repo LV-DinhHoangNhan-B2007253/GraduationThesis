@@ -47,7 +47,7 @@ export class ProductController {
     }
 
     @Get('/get/:_id')
-    GetProductById(@Param() productId) {
+    GetProductById(@Param() productId: string) {
 
         return this.productService.GetOneProduct(productId)
     }

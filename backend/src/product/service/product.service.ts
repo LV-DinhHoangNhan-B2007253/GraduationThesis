@@ -12,6 +12,7 @@ import { error, log } from 'console';
 import { updateProductDto } from '../dtos/updateProduct.dos';
 import { ClassifyService } from 'src/common/classify.service';
 import { ShopService } from 'src/shop/services/ShopService.service';
+import { of } from 'rxjs';
 @Injectable()
 export class ProductService {
     constructor(@InjectModel(Product.name) private ProductModel: Model<Product>,
@@ -146,7 +147,7 @@ export class ProductService {
         }
     }
 
-    async GetOneProduct(productId: string,): Promise<Product> {
+    async GetOneProduct(productId: string): Promise<Product> {
         try {
 
 
@@ -532,7 +533,24 @@ export class ProductService {
     async getProductById(productId: string) {
         // lấy các sản phẩm của 1 danh mục
         try {
+            // console.log("Received productId:", productId);
+
+
+            // Kiểm tra nếu productId là một ObjectId hợp lệ (24 ký tự hex)
+            if (!Types.ObjectId.isValid(productId)) {
+                console.log("Invalid ObjectId format:", productId);
+                throw new HttpException(
+                    {
+                        status: HttpStatus.BAD_REQUEST,
+                        error: "ID sản phẩm không hợp lệ",
+                    },
+                    HttpStatus.BAD_REQUEST
+                );
+            }
+
+
             const product_id = new Types.ObjectId(productId)
+
             const product = await this.ProductModel.findById(product_id)
             if (!product) {
                 throw new HttpException({
@@ -543,8 +561,19 @@ export class ProductService {
             return product
         } catch (error) {
             console.log("get product by id error", error);
-            responseError(error)
+            if (error instanceof HttpException) {
+                throw error;
+            } else {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.INTERNAL_SERVER_ERROR,
+                        error: "Lỗi khi lấy sản phẩm theo ID",
+                    },
+                    HttpStatus.INTERNAL_SERVER_ERROR
+                );
+            }
         }
+
     }
 
 

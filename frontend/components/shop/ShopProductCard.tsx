@@ -10,7 +10,9 @@ function ShopProductCard({ product }: { product: IProduct }) {
     >
       <div className="w-full max-h-[150px]">
         <img
-          src={product.images[0]}
+          src={
+            product.images && product.images.length > 0 ? product.images[0] : ""
+          }
           alt="Product Image"
           className="object-cover w-full h-full"
         />

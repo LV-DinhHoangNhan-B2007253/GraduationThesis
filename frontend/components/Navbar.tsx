@@ -2,6 +2,7 @@
 
 import { RootState } from "@/redux/store";
 import {
+  faBell,
   faHome,
   faSearch,
   faShoppingBag,
@@ -16,17 +17,6 @@ import { Avatar, Tooltip } from "@nextui-org/react";
 import ThemeSwitch from "./ThemeSwitch";
 import NotificationBell from "./NotiBell";
 import { useRouter } from "next/navigation";
-// interface INavbarCategory {
-//   _id: string;
-//   name: string;
-// }
-
-// interface INavbarArea {
-//   _id: string;
-//   name: string;
-//   categoryItem: INavbarCategory[];
-//   banner: string;
-// }
 
 function Navbar() {
   const { isLogin } = useSelector((state: RootState) => state.userLoginState);
@@ -162,7 +152,10 @@ function Navbar() {
                   </li>
                 </ul>
               </div>
-              <NotificationBell />
+              {/* <NotificationBell /> */}
+              <Link href={"/chat"}>
+                <FontAwesomeIcon icon={faBell} />
+              </Link>
             </div>
           ) : (
             <div className="flex items-center justify-end ">

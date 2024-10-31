@@ -104,7 +104,7 @@ function OrderManagement() {
   }, []);
 
   return (
-    <div className="px-2">
+    <div className="px-2 max-h-full overflow-y-auto">
       <div className="flex justify-between items-center mb-4">
         <div>
           <input

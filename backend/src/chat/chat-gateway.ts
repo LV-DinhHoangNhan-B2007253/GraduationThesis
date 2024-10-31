@@ -37,6 +37,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
         const chatHistory = await this.chatService.getChatHistory(senderId, receiverId);
 
+
         this.server.to(roomId).emit('chatHistory', chatHistory);
 
     }

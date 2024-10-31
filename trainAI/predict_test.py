@@ -1,7 +1,7 @@
 import pandas as pd
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
-
+from sklearn.metrics import classification_report, accuracy_score
 # Hàm để dự đoán label cho mảng comment
 def predict_comments(comments):
     # Tải mô hình và vectorizer đã lưu
@@ -14,6 +14,9 @@ def predict_comments(comments):
     # Dự đoán label cho các comments
     predictions = model.predict(comments_tfidf)
     print(predictions)
+    print('REPORT')
+    print(classification_report(comments_tfidf,predictions))
+    print('accuracy',accuracy_score(comments_tfidf,predictions))
     # Xuất kết quả
     results = pd.DataFrame({
         'comment': comments,

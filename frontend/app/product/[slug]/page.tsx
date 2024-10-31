@@ -391,12 +391,17 @@ function ProductDetail(props: any) {
 
             {/* chat */}
             {isChatbox ? (
-              <div className="fixed bottom-0 right-5 z-20 bg-light-modal-popup p-4">
+              <div className="fixed bottom-0 right-1 z-20 bg-light-modal-popup p-4 shadow-2xl border border-light-card-border dark:border-dark-border rounded-sm">
+                <button
+                  className="w-full text-right hover:text-red-500"
+                  onClick={() => setIsChatBox(false)}
+                >
+                  X
+                </button>
                 <ChatBox
                   senderId={userInfo?._id}
                   receiverId={shopInfo?.owner}
                 />
-                <button onClick={() => setIsChatBox(false)}>close</button>
               </div>
             ) : (
               <></>

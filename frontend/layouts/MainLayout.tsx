@@ -18,14 +18,16 @@ function MainLayout({ children }: { children: React.ReactNode }) {
       <Footer />
       {/* toggle chat window */}
       {isOpenChatWindow ? (
-        <div className=" bottom-2 right-0 z-[1000] mr-2 mb-2 top-3/4 backdrop-blur-md rounded shadow-md left-1/2 fixed ">
+        <div className=" bottom-2 right-0 z-[1000] mr-2 mb-2 top-3/4 backdrop-blur-md rounded shadow-md left-1/2 fixed h-[500px] overflow-y-auto">
           <button
             onClick={() => setIsOpenChatWindow(false)}
             className="px-2 py-1 w-full text-right"
           >
             <span className="hover:text-red-400 hover:font-bold ">X</span>
           </button>
-          <ChatWindow />
+          <div className="h-[400px]">
+            <ChatWindow />
+          </div>
         </div>
       ) : (
         <div className="fixed bottom-2 right-0 z-[1000] mr-2 mb-2">

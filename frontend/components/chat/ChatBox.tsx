@@ -34,11 +34,7 @@ function ChatBox({
     }
   };
 
-  useEffect(() => {
-    console.log("Messages:", messagese); // Log messages to see state updates
-    console.log("Sender ID:", senderId);
-    console.log("Receiver ID:", receiverId);
-  }, [messagese]);
+  useEffect(() => {}, [messagese]);
 
   return (
     <div>
@@ -47,19 +43,19 @@ function ChatBox({
           <div
             key={index}
             className={`flex mb-2 ${
-              msg.sender_id?._id?.toString() === senderId?.toString()
+              msg.sender_id === senderId?.toString()
                 ? "justify-end"
                 : "justify-start"
             }`}
           >
             <div
               className={`p-2 rounded-lg max-w-xs ${
-                msg.sender_id?._id?.toString() === senderId?.toString()
+                msg.sender_id === senderId?.toString()
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-black"
               }`}
             >
-              <p className="font-semibold">{msg.sender_id.name}</p>
+              <p className="font-semibold">{msg.sender_name}</p>
               <p>{msg.message_text}</p>
               <span className="text-xs text-gray-500">
                 {new Date(msg.timestamp).toLocaleTimeString()}
