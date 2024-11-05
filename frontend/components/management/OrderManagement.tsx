@@ -110,23 +110,23 @@ function OrderManagement() {
           <input
             type="text"
             name="search"
-            placeholder="order code"
+            placeholder="Tìm theo mã đơn hàng"
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-1 py-2 border rounded bg-light-input-field text-light-input-text border-light-input-border dark:text-dark-input-text dark:bg-dark-input-field dark:border-dark-input-border"
+            className="w-full px-2 py-2 border rounded bg-input text-input-text"
           />
         </div>
         <div>
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value as any)}
-            className="border p-2 mb-4"
+            className="border p-2 mb-4 bg-input text-input-text"
           >
-            <option value="most-recent">Most Recent</option>
-            <option value="oldest">Oldest</option>
-            <option value="status-pending">Pending</option>
-            <option value="status-delivery">Delivery</option>
-            <option value="status-canceled">Canceled</option>
-            <option value="status-shipped">Shipped</option>
+            <option value="most-recent">Mới nhất</option>
+            <option value="oldest">Cũ nhất</option>
+            <option value="status-pending">Chờ xác nhận</option>
+            <option value="status-delivery">Đang giao</option>
+            <option value="status-canceled">Bị hủy</option>
+            <option value="status-shipped">Đã giao</option>
           </select>
         </div>
       </div>
@@ -136,14 +136,14 @@ function OrderManagement() {
             <thead>
               <tr className="bg-gray-100 dark:bg-gray-800">
                 <th className="border border-gray-300 p-2 text-left">
-                  Order Code
+                  Mã đơn hàng
                 </th>
                 <th className="border border-gray-300 p-2 text-left">Status</th>
                 <th className="border border-gray-300 p-2 text-left">
-                  Payment Status
+                  Trạng thái thanh toán
                 </th>
                 <th className="border border-gray-300 p-2 text-left">
-                  Payment Method
+                  Phương thức thanh toán
                 </th>
               </tr>
             </thead>
@@ -160,7 +160,7 @@ function OrderManagement() {
         ) : (
           <div className="flex justify-center items-center flex-col py-10">
             <p className="text-gray-500 dark:text-gray-400 text-lg">
-              No orders found
+              Không có đơn hàng
             </p>
           </div>
         )}

@@ -472,11 +472,12 @@ export class ProductService {
                 name: product.name,
                 sku: product.sku,
                 sold_quantity: product.sold_quantity,
-                averageRating: product.averageRating,
                 ratingCount: product.ratingCount,
                 comments: extractedComments, // Mảng comment
-                ratingDistribution: ratingDistribution,
-                instock: product.stock_quantity // Phân phối số lượt đánh giá theo sao
+                instock: product.stock_quantity, // Phân phối số lượt đánh giá theo sao,
+                goodCount: product.goodCount,
+                badCount: product.badCount,
+                neutralCount: product.neutralCount,
             };
         } catch (error) {
             console.error('Error fetching product details:', error);
@@ -592,10 +593,7 @@ export class ProductService {
 
 
 
-    async test() {
-        const res = await this.ClassifyService.hello()
-        return res
-    }
+
 
 }
 

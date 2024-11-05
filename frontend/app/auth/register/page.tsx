@@ -44,16 +44,19 @@ function Register() {
   };
 
   return (
-    <section className="h-screen bg-light-bg  flex justify-center items-center   dark:bg-dark-bg    ">
-      <div className=" shadow-md bg-light-modal-popup border border-light-element-border  sm:min-w-[600px] mx-3 py-20 container sm:mx-96 dark:bg-dark-modal-popup sm:px-5 rounded-md ">
+    <section className="h-screen flex justify-center items-center    ">
+      <div className=" shadow-md   sm:min-w-[600px] mx-3 py-20 container sm:mx-96 sm:px-5 rounded-md  bg-card-bg">
         <div>
-          <h1 className="text-base text-light-primary-text dark:text-dark-primary-text font-bold text-center sm:text-3xl py-2">
-            Create an account
+          <h1 className="text-base  font-bold text-center sm:text-3xl py-2 text-heading">
+            Tạo tài khoản
           </h1>
-          <p className="text-small sm:text-base text-center text-light-primary-text dark:text-dark-primary-text  ">
-            Already accout?
-            <Link href={"/auth/login"} className=" underline font-bold mx-2">
-              Login now{" "}
+          <p className="text-small sm:text-base text-center text-secondary-500  ">
+            Đã có tài khoản?
+            <Link
+              href={"/auth/login"}
+              className=" underline font-bold mx-2 hover:text-accent"
+            >
+              Đăng nhập ngay{" "}
             </Link>
           </p>
         </div>
@@ -61,9 +64,9 @@ function Register() {
           <div className="my-3">
             <label
               htmlFor="email"
-              className="block w-fit hover:cursor-pointer text-light-primary-text hover:font-bold   dark:text-dark-primary-text text-small sm:text-base py-1"
+              className="block w-fit hover:cursor-pointer hover:font-bold    text-small sm:text-base py-1 text-label"
             >
-              Email
+              Địa chỉ email
             </label>
             <input
               type="email"
@@ -71,14 +74,14 @@ function Register() {
               id="email"
               onChange={handleOnchange}
               required={true}
-              className="py-2 px-2 text-small sm:text-base w-full rounded dark:focus:border-dark-active focus:border-light-active border-light-input-border placeholder:text-light-input-placeholder text-light-input-text outline-none border  dark:bg-dark-input-field dark:border-dark-input-border dark:placeholder:text-dark-input-placeholder dark:text-dark-input-text"
-              placeholder="your@gmail"
+              className="py-2 px-2 text-small sm:text-base w-full rounded  outline-none border  bg-input text-input-text mt-1"
+              placeholder="nguyenvana@gmail.com"
             />
           </div>
           <div className="my-3">
             <label
               htmlFor="name"
-              className="block w-fit hover:cursor-pointer text-light-primary-text hover:font-bold   dark:text-dark-primary-text text-small sm:text-base py-1"
+              className="block w-fit hover:cursor-pointer hover:font-bold    text-small sm:text-base py-1 text-label"
             >
               Your name
             </label>
@@ -88,14 +91,14 @@ function Register() {
               id="name"
               onChange={handleOnchange}
               required={true}
-              className="py-2 px-2 text-small sm:text-base w-full rounded dark:focus:border-dark-active focus:border-light-active border-light-input-border placeholder:text-light-input-placeholder text-light-input-text outline-none border  dark:bg-dark-input-field dark:border-dark-input-border dark:placeholder:text-dark-input-placeholder dark:text-dark-input-text"
+              className="py-2 px-2 text-small sm:text-base w-full rounded  outline-none border  bg-input text-input-text mt-1"
             />
           </div>
           <div className="my-3">
             <div className="flex justify-between items-center">
               <label
                 htmlFor="password"
-                className="block w-fit hover:cursor-pointer text-light-primary-text hover:font-bold   dark:text-dark-primary-text text-small sm:text-base py-1"
+                className="block w-fit hover:cursor-pointer hover:font-bold    text-small sm:text-base py-1 text-label"
               >
                 Password
               </label>
@@ -113,22 +116,20 @@ function Register() {
               id="password"
               onChange={handleOnchange}
               required={true}
-              className="py-2 px-2 text-small sm:text-base w-full rounded dark:focus:border-dark-active focus:border-light-active border-light-input-border placeholder:text-light-input-placeholder text-light-input-text outline-none border  dark:bg-dark-input-field dark:border-dark-input-border dark:placeholder:text-dark-input-placeholder dark:text-dark-input-text"
+              className="py-2 px-2 text-small sm:text-base w-full rounded  outline-none border  bg-input text-input-text mt-1"
             />
           </div>
 
           <button
             type="submit"
-            className="my-4 text-center w-full py-1 px-2 text-small sm:text-base tracking-widest border border-light-element-border bg-light-btn-bg hover:bg-light-btn-hover text-light-btn-text dark:border-dark-border hover:text-dark-primary-text dark:hover:text-light-primary-text dark:hover:bg-dark-bg-btn-hover transition-all "
+            className="my-4 text-center w-full py-2 px-2 text-small sm:text-base tracking-widest border  transition-all bg-primary-500 hover:bg-secondary-500 rounded-md"
           >
-            Register
+            Xác nhận đăng ký
           </button>
         </form>
         <div className="flex items-center">
           <div className="flex-grow border-t border-light-card-border dark:border-dark-border"></div>
-          <span className="px-4 text-light-primary-text dark:text-dark-primary-text">
-            Or
-          </span>
+          <span className="px-4 text-label">hoặc</span>
           <div className="flex-grow border-t  border-light-card-border dark:border-dark-border"></div>
         </div>
         <div className="flex justify-center mt-4">

@@ -15,6 +15,7 @@ import ProductTable from "../table/ProductTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 import CreateProductForm from "../form/CreateProductForm";
+import ListCardSekelecton from "@/components/skelecton/ListCardSekelecton";
 
 function ProductManageShop() {
   const { userInfo } = useSelector((state: RootState) => state.user);
@@ -137,14 +138,14 @@ function ProductManageShop() {
                 onClick={() => setIsOpenCreateForm(true)}
                 className="text-center p-3 bg-light-modal-popup dark:bg-dark-modal-popup rounded hover:cursor-pointer hover:bg-orange-400 min-w-[50px] shadow"
               >
-                New +
+                Thêm +
               </button>
             </div>
             {/* create produc form */}
             <div
               className={`${
                 isOpenCreateForm
-                  ? "block absolute left-10 right-2 bottom-10 bg-light-modal-popup dark:bg-dark-modal-popup shadow-lg rounded z-20 top-10 px-5"
+                  ? "block absolute left-10 right-2 bottom-10 bg-card-bg shadow-lg rounded z-[200] top-10 px-5 max-h-[100vh]"
                   : "hidden"
               }  `}
             >
@@ -160,7 +161,7 @@ function ProductManageShop() {
           </div>
         </div>
       ) : (
-        <p className="text-center p-20">Waiting...</p>
+        <ListCardSekelecton />
       )}
     </div>
   );

@@ -3,6 +3,56 @@
 @tailwind utilities;
 
 
+
+
+@layer base {
+    :root {
+      --text: #0d1406;
+      --background: #f8fcf3;
+      --primary: #7fc846;
+      --secondary: #91deda;
+      --accent: #76b4d6;
+      --navbar:#fbfbfe;
+      --border-bottom-color:rgba(0, 0, 0, 0.1);
+      --heading:#38040e;
+      --input:#f6f5f2;
+      --input-text:#8e7b6d;
+      --label:#040316;
+      --button-primary:#e9f5db;
+      --button-warning:#fec23e;
+      --button-danger:#e5383b;
+      --button-success:#6fffe9;
+      --primary-border:#e9ecef;
+      --card-bg:#f8f9fa;
+      --product-card:#edf2f4;
+    }
+    .dark {
+      --text: #f2f9eb;
+      --background: #080c03;
+      --primary: #6fb937;
+      --secondary: #216e6a;
+      --accent: #296889;
+      --navbar:#010104;
+      --heading:#b5e2fa;
+      --input:#22223b;
+      --input-text:#a8a09c;
+      --label:#eae9fc;
+      --button-primary:#161a1d;
+      --button-warning:#d88232;
+      --button-danger:#912f40;
+      --button-success:#1b9aaa;
+      --primary-border:#212529;
+      --card-bg:#1b263b;
+      --product-card:#2b2d42;
+      --border-bottom-color:#343a40;
+
+    }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body{
     padding: 0 !important;
     margin: 0 !important;
@@ -12,3 +62,23 @@ body{
     box-sizing: border-box;
 }
 
+::-webkit-input-placeholder {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+}
+:-moz-placeholder {
+  font-style: italic;  
+  font-weight: 300;
+  font-size: 12px;
+}
+::-moz-placeholder {
+  font-style: italic;  
+  font-weight: 300;
+  font-size: 12px;
+}
+:-ms-input-placeholder {  
+  font-style: italic; 
+  font-weight: 300;
+  font-size: 12px;
+}

@@ -80,7 +80,7 @@ function ProductRow({ product }: { product: IProduct }) {
 
   return (
     <>
-      <tr className="hover:bg-gray-100">
+      <tr className="hover:opacity-90 cursor-pointer bg-card-bg border-b border-borderb">
         <td className="px-4 py-2 whitespace-nowrap">
           <img
             src={product.images[0]}
@@ -88,7 +88,7 @@ function ProductRow({ product }: { product: IProduct }) {
             className="h-12 w-12 object-cover rounded-md"
           />
         </td>
-        <td className="px-4 py-2 text-sm font-medium text-gray-900 max-w-[100px] truncate">
+        <td className="px-4 py-2 text-sm font-medium text-heading max-w-[100px] truncate">
           {product.name}
         </td>
         <td className="px-4 py-2 text-sm text-gray-500 max-w-[70px] truncate">
@@ -108,18 +108,18 @@ function ProductRow({ product }: { product: IProduct }) {
             onClick={handleEditClick}
             className="text-indigo-600 hover:text-indigo-900"
           >
-            {isEditing ? "Close" : "Edit"}
+            {isEditing ? "Xong" : "Chỉnh sửa"}
           </button>
 
           <button
             onClick={deleteProduct}
             className="text-red-600 hover:text-indigo-900"
           >
-            Delete
+            Xóa
           </button>
           <Link href={`/product/analyze/${product._id}`}>
             <button className="text-green-600 hover:text-indigo-900">
-              Analyze
+              Thống kê
             </button>
           </Link>
         </td>
@@ -131,65 +131,66 @@ function ProductRow({ product }: { product: IProduct }) {
             isEditing ? "translate-y-0" : "-translate-y-20"
           }`}
         >
-          <td colSpan={7} className="p-4 bg-gray-50">
+          <td
+            colSpan={7}
+            className="p-4 bg-card-bg rounded border border-primary-border"
+          >
             <div className="grid gap-4 grid-cols-2">
               <div>
-                <label className="text-sm font-semibold text-gray-600">
-                  Name
+                <label className="text-sm font-semibold text-label">
+                  Tên sản phẩm
                 </label>
                 <input
                   type="text"
                   name="name"
                   value={editData.name}
                   onChange={handleChange}
-                  className="w-full mt-1 p-2 border rounded"
+                  className="w-full mt-1 p-2 border rounded bg-input text-input-text"
                 />
               </div>
               <div>
-                <label className="text-sm font-semibold text-gray-600">
-                  SKU
-                </label>
+                <label className="text-sm font-semibold text-label">SKU</label>
                 <input
                   type="text"
                   name="sku"
                   value={editData.sku}
                   onChange={handleChange}
-                  className="w-full mt-1 p-2 border rounded"
+                  className="w-full mt-1 p-2 border rounded bg-input text-input-text"
                 />
               </div>
               <div>
-                <label className="text-sm font-semibold text-gray-600">
-                  In Stock
+                <label className="text-sm font-semibold text-label">
+                  Số lượng
                 </label>
                 <input
                   type="number"
                   name="stock_quantity"
                   value={editData.stock_quantity}
                   onChange={handleChange}
-                  className="w-full mt-1 p-2 border rounded"
+                  className="w-full mt-1 p-2 border rounded bg-input text-input-text"
                 />
               </div>
               <div>
-                <label className="text-sm font-semibold text-gray-600">
-                  Price
+                <label className="text-sm font-semibold text-label">
+                  Đơn giá
                 </label>
                 <input
                   type="number"
                   name="price"
                   value={editData.price}
                   onChange={handleChange}
-                  className="w-full mt-1 p-2 border rounded"
+                  className="w-full mt-1 p-2 border rounded bg-input text-input-text"
                 />
               </div>
               <div className="col-span-2">
-                <label className="text-sm font-semibold text-gray-600">
-                  Description
+                <label className="text-sm font-semibold text-label">
+                  Mô tả
                 </label>
                 <textarea
                   name="description"
                   value={editData.description}
                   onChange={handleChange}
-                  className="w-full mt-1 p-2 border rounded"
+                  className="w-full mt-1 p-2 border rounded bg-input text-input-text"
                   rows={3}
                 />
               </div>
@@ -197,15 +198,15 @@ function ProductRow({ product }: { product: IProduct }) {
             <div className="mt-4 flex justify-end gap-2">
               <button
                 onClick={handleSave}
-                className="bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600"
+                className="bg-button-success text-white py-1 px-4 rounded hover:bg-accent"
               >
-                Save
+                Lưu
               </button>
               <button
                 onClick={handleCancel}
-                className="bg-gray-300 py-1 px-4 rounded hover:bg-gray-400"
+                className="bg-button-warning py-1 px-4 rounded hover:bg-accent"
               >
-                Cancel
+                Hủy
               </button>
             </div>
           </td>

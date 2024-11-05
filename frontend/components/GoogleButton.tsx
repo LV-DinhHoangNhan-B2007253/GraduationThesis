@@ -11,7 +11,7 @@ function GoogleButton() {
   return (
     <button
       onClick={handleGoogleButton}
-      className="flex justify-center gap-2 items-center hover:text-dark-primary-text bg-light-btn-bg-second hover:bg-light-btn-hover dark:hover:text-light-primary-text dark:hover:bg-dark-bg-btn-hover transition-all p-2 hover:rounded-md dark:bg-dark-bg-btn sm:w-full min-w-fit
+      className="flex justify-center gap-2 items-center transition-all p-2 hover:rounded-md sm:w-full min-w-fit bg-secondary-400 hover:bg-secondary-600
       "
     >
       <FontAwesomeIcon
@@ -20,7 +20,7 @@ function GoogleButton() {
         className="block"
         color="#f9c74f"
       />
-      <p className="block"> Continue With Google</p>
+      <p className="block"> Tiếp tụic bằng tài khoản Google</p>
     </button>
   );
 }

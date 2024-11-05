@@ -7,6 +7,7 @@ import {
   UpdateProductQuantityInCart,
 } from "@/services/product.service";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -97,9 +98,9 @@ function ProductInCart({
           </Link>
         </div>
         <p className="flex-1">
-          Unit price:{" "}
+          Đơn giá:{" "}
           <span className="text-small sm:text-base font-bold">
-            {product?.price}$
+            {product?.price.toLocaleString()}$
           </span>
         </p>
         <div className="flex justify-around items-center gap-1 ">
@@ -124,22 +125,22 @@ function ProductInCart({
         </div>
         <div className="flex-1">
           <p className="text-small sm:text-base text-orange-600">
-            {(product?.price as number) * cartItem.quantity}$
+            {((product?.price as number) * cartItem.quantity).toLocaleString()}$
           </p>
         </div>
         <div className=" flex items-center gap-4">
-          <button onClick={handleDeleteProductInCart}>
-            <FontAwesomeIcon
-              icon={faTrashCan}
-              className="text-small sm:text-2xl hover:text-red-500 text-gray-400"
-            />
-          </button>
           <Link
             href={`/order/createOrder?orderInfo=${product?._id}-${cartItem.quantity}`}
-            className="px-4 py-2 rounded text-white dark:text-dark-primary-text text-center hover:cursor-pointer uppercase text-small sm:text-base  bg-orange-600 hover:bg-orange-500 transition duration-400"
+            className="px-4 py-2 rounded text-center hover:cursor-pointer uppercase text-sm sm:text-base  bg-button-success hover:bg-secondary-300 transition duration-400"
           >
-            Buy now
+            Mua ngay
           </Link>
+          <button onClick={handleDeleteProductInCart}>
+            <FontAwesomeIcon
+              icon={faXmark}
+              className="text-small sm:text-xl hover:text-red-500 text-gray-400"
+            />
+          </button>
         </div>
       </div>
     </div>

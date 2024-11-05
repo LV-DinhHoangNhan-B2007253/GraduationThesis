@@ -184,10 +184,10 @@ function Profile() {
   return (
     <MainLayout>
       {isLogin ? (
-        <Suspense fallback={<SpinnerLoader/>}>
-          <div className="flex justify-center">
-            <div className=" bg-light-modal-popup dark:bg-dark-modal-popup sm:max-w-[80%] max-w-[95%] w-full rounded-lg">
-              <div className="w-full h-8 sm:h-16 bg-gradient-to-r  from-emerald-400 to-cyan-400 rounded-t-lg"></div>
+        <Suspense fallback={<SpinnerLoader />}>
+          <div className="flex justify-center mt-1">
+            <div className="  sm:max-w-[80%] max-w-[95%] w-full rounded-lg">
+              <div className="w-full h-8 sm:h-16 bg-gradient-to-r  from-gray-600 to-gray-950 rounded-t-lg"></div>
               <div className="px-4 sm:pb-12 pb-4">
                 {/* top  prpfile */}
                 <div className="flex justify-between items-center py-4">
@@ -202,12 +202,12 @@ function Profile() {
                       <p className="font-light">{userInfo?.email}</p>
                     </div>
                   </div>
-                  <Tooltip content="Press To Edit Information">
+                  <Tooltip content="Nhấn để thay đổi thông tin ">
                     <button
                       onClick={handleEditProfile}
-                      className=" text-xs bg-light-btn-bg dark:bg-dark-bg-btn px-4 py-1 border border-light-card-border dark:border-dark-border text-light-btn-text dark:text-dark-btn-text rounded-lg text-center  hover:bg-light-btn-hover dark:hover:bg-dark-bg-btn-hover"
+                      className=" text-xs uppercase  px-4 py-1 rounded-lg text-center  bg-button-primary hover:bg-secondary-300 transition-all duration-200"
                     >
-                      {isEdit ? "EDIT" : "DONE"}
+                      {isEdit ? "Chỉnh sửa" : "Xong"}
                     </button>
                   </Tooltip>
                 </div>
@@ -220,25 +220,25 @@ function Profile() {
                   <div className="col-span-1 my-2 sm:my-0">
                     <label
                       htmlFor="email"
-                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text"
+                      className="block w-fit  text-sm sm:text-base cursor-pointer text-label font-light italic"
                     >
-                      Email
+                      Địa chỉ email
                     </label>
                     <input
                       type="text"
                       name="email"
                       id="email"
                       defaultValue={userInfo?.email}
-                      className="w-full border-2 border-light-input-border dark:border-dark-input-border text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active"
+                      className="w-full outline-none py-3 px-4 rounded-md focus:shadow-lg bg-input text-input-text"
                       readOnly={true}
                     />
                   </div>
                   <div className="col-span-1 my-2 sm:my-0">
                     <label
                       htmlFor="name"
-                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text "
+                      className="block w-fit  text-sm sm:text-base cursor-pointer text-label font-light italic "
                     >
-                      Name
+                      Tên
                     </label>
                     <input
                       onChange={handleInputOnChange}
@@ -246,20 +246,18 @@ function Profile() {
                       id="name"
                       name="name"
                       defaultValue={userInfo?.name}
-                      className={`w-full border-2 ${
-                        isEdit
-                          ? " border-light-input-border dark:border-dark-input-border"
-                          : "border-orange-600"
-                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                      className={`w-full ${
+                        isEdit ? "border-none" : "border border-borderb"
+                      }  outline-none py-3 px-4 rounded-md focus:shadow-lg bg-input text-input-text`}
                       readOnly={isEdit}
                     />
                   </div>
                   <div className="col-span-1 my-2 sm:my-0">
                     <label
                       htmlFor="phone"
-                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text "
+                      className="block w-fit  text-sm sm:text-base cursor-pointer text-label font-light italic "
                     >
-                      Phone
+                      Số điện thoại
                     </label>
                     <input
                       onChange={handleInputOnChange}
@@ -267,11 +265,9 @@ function Profile() {
                       id="phone"
                       name="phone_number"
                       defaultValue={userInfo?.phone_number}
-                      className={`w-full border-2 ${
-                        isEdit
-                          ? " border-light-input-border dark:border-dark-input-border"
-                          : "border-orange-600"
-                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                      className={`w-full ${
+                        isEdit ? "border-none" : "border border-borderb"
+                      }  outline-none py-3 px-4 rounded-md focus:shadow-lg bg-input text-input-text`}
                       readOnly={isEdit}
                     />
                   </div>
@@ -279,17 +275,15 @@ function Profile() {
                   <div className="col-span-1 my-2 sm:my-0">
                     <label
                       htmlFor="province"
-                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text"
+                      className="block w-fit  text-sm sm:text-base cursor-pointer text-label font-light italic"
                     >
-                      Province
+                      Tỉnh/Thành phố
                     </label>
                     <select
                       id="province"
-                      className={`w-full border-2 ${
-                        isEdit
-                          ? " border-light-input-border dark:border-dark-input-border"
-                          : "border-orange-600"
-                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                      className={`w-full ${
+                        isEdit ? "border-none" : "border border-borderb"
+                      }  outline-none py-3 px-4 rounded-md focus:shadow-lg bg-input text-input-text`}
                       value={userFormData.addresses.province.province_id}
                       onChange={handleProvinceChange}
                       disabled={isEdit}
@@ -302,7 +296,7 @@ function Profile() {
                           {userFormData.addresses.province.province_name}
                         </option>
                       ) : (
-                        <option value="">Select Province</option>
+                        <option value="">Chọn Tỉnh/Thành phố</option>
                       )}
                       {provinces?.map((province) => (
                         <option
@@ -317,17 +311,15 @@ function Profile() {
                   <div className="col-span-1 my-2 sm:my-0">
                     <label
                       htmlFor="district"
-                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text"
+                      className="block w-fit  text-sm sm:text-base cursor-pointer text-label font-light italic"
                     >
-                      District
+                      Huyện
                     </label>
                     <select
                       id="district"
-                      className={`w-full border-2 ${
-                        isEdit
-                          ? " border-light-input-border dark:border-dark-input-border"
-                          : "border-orange-600"
-                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                      className={`w-full ${
+                        isEdit ? "border-none" : "border border-borderb"
+                      }  outline-none py-3 px-4 rounded-md focus:shadow-lg bg-input text-input-text`}
                       value={userFormData.addresses.district.district_id}
                       onChange={handleDistrictChange}
                       disabled={isEdit || districts.length === 0}
@@ -340,7 +332,7 @@ function Profile() {
                           {userFormData.addresses.district.district_name}
                         </option>
                       ) : (
-                        <option value="">Select District</option>
+                        <option value="">Chọn Huyện</option>
                       )}
 
                       {districts?.map((district) => (
@@ -356,17 +348,15 @@ function Profile() {
                   <div className="col-span-1 my-2 sm:my-0">
                     <label
                       htmlFor="ward"
-                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text"
+                      className="block w-fit  text-sm sm:text-base cursor-pointer text-label font-light italic"
                     >
-                      Ward
+                      Xã
                     </label>
                     <select
                       id="ward"
-                      className={`w-full border-2 ${
-                        isEdit
-                          ? " border-light-input-border dark:border-dark-input-border"
-                          : "border-orange-600"
-                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                      className={`w-full ${
+                        isEdit ? "border-none" : "border border-borderb"
+                      }  outline-none py-3 px-4 rounded-md focus:shadow-lg bg-input text-input-text`}
                       value={userFormData.addresses.ward.ward_id}
                       onChange={handleWardChange}
                       disabled={isEdit || wards.length === 0}
@@ -377,7 +367,7 @@ function Profile() {
                           {userFormData.addresses.ward.ward_name}
                         </option>
                       ) : (
-                        <option value="">Select Ward</option>
+                        <option value="">Chọn Xã</option>
                       )}
                       {wards?.map((ward) => (
                         <option key={ward.ward_id} value={ward.ward_id}>
@@ -389,9 +379,9 @@ function Profile() {
                   <div className="col-span-1 my-2 sm:my-0">
                     <label
                       htmlFor="detail"
-                      className="block w-fit text-light-primary-text font-light text-small sm:text-base cursor-pointer dark:text-dark-primary-text"
+                      className="block w-fit  text-sm sm:text-base cursor-pointer text-label font-light italic"
                     >
-                      Address Detail
+                      Địa chỉ cụ thể
                     </label>
                     <input
                       type="text"
@@ -399,11 +389,9 @@ function Profile() {
                       name="detail"
                       defaultValue={userFormData.addresses.detail}
                       onChange={handleAddressDetailChange}
-                      className={`w-full border-2 ${
-                        isEdit
-                          ? " border-light-input-border dark:border-dark-input-border"
-                          : "border-orange-600"
-                      } text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field outline-none py-2 px-4 rounded-md focus:shadow-lg focus:border-light-active dark:focus:border-dark-active`}
+                      className={`w-full ${
+                        isEdit ? "border-none" : "border border-borderb"
+                      }  outline-none py-3 px-4 rounded-md focus:shadow-lg bg-input text-input-text`}
                       readOnly={isEdit}
                     />
                   </div>
@@ -413,13 +401,13 @@ function Profile() {
                       onClick={handleSubmitForm}
                       aria-label="submit"
                       type="submit"
-                      className="sm:col-start-2 sm:col-span-1 w-[30%] sm:w-full text-center bg-light-btn-bg dark:bg-dark-bg text-light-btn-text dark:text-dark-btn-text py-2 rounded-md hover:bg-orange-400 transition-all hover:translate-x-3  cursor-pointer"
+                      className="sm:col-start-2 sm:col-span-1 w-[30%] sm:w-full text-center  py-2 rounded-md hover:bg-secondary-500 transition-all hover:translate-x-3  cursor-pointer bg-button-primary"
                     >
-                      Save
+                      Lưu
                     </button>
                   </Tooltip>
                 </form>
-                <div className="flex justify-start gap-3 items-center">
+                <div className="flex justify-start gap-3 items-center sm:mt-10 mt-2">
                   <FontAwesomeIcon
                     icon={faEnvelope}
                     className="text-blue-500 p-3 text-xl rounded-full bg-blue-200"
@@ -427,9 +415,6 @@ function Profile() {
                   <div>
                     <p className="text-small sm:text-base text-light-primary-text dark:text-dark-primary-text">
                       {userInfo?.email}
-                    </p>
-                    <p className="text-gray-500 text-xs font-light">
-                      1 Month ago
                     </p>
                   </div>
                 </div>
@@ -439,31 +424,31 @@ function Profile() {
                       onClick={() => {
                         router.push("/shop/dashboard");
                       }}
-                      className="underline hover:text-orange-500"
+                      className="underline hover:text-accent uppercase text-primary-400"
                     >
-                      My Shop
+                      Quản lí cửa hàng
                     </button>
                   ) : userInfo?.role === "admin" ? (
                     <button
                       onClick={() => {
                         router.push("/admin");
                       }}
-                      className="underline hover:text-orange-500"
+                      className="underline hover:text-accent uppercase text-primary-400"
                     >
-                      Supper Admin Page
+                      Trang của quản trị viên
                     </button>
                   ) : (
                     <button
                       onClick={() => {
                         router.push("/shop/create");
                       }}
-                      className="underline hover:text-orange-500"
+                      className="underline hover:text-accent uppercase text-primary-400"
                     >
                       Start Business
                     </button>
                   )}
                   <button
-                    className="float-right p-2 hover:text-orange-500"
+                    className="float-right p-2 hover:text-accent"
                     onClick={handleLogout}
                   >
                     <FontAwesomeIcon icon={faArrowRightFromBracket} size="1x" />

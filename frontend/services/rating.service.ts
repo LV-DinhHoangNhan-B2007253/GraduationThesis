@@ -20,7 +20,7 @@ export const CreateProductRating = async (ratingForm: any) => {
 // classi comments
 export const ClassifyComments = async (comments: any) => {
     try {
-        const res = await fastService.post('/predict', { comments })
+        const res = await fastService.post('/predict/logistic', { comments })
         console.log(res.data);
         return res.data
     } catch (error) {
@@ -28,3 +28,18 @@ export const ClassifyComments = async (comments: any) => {
 
     }
 }
+
+
+export const ClassifyCommentWithMethod = async (comments: any, method: string) => {
+    try {
+        // method: svm,knn,logistic,random_forest
+        const res = await fastService.post(`/predict/${method}`, { comments })
+        console.log(res.data);
+        return res.data
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+
+

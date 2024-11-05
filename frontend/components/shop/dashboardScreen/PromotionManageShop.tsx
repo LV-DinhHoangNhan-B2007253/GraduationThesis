@@ -1,6 +1,7 @@
 "use client";
 
 import PromotionCard from "@/components/management/card/PromotionCard";
+import ListCardSekelecton from "@/components/skelecton/ListCardSekelecton";
 import { IProduct } from "@/interfaces/product.interface";
 import { IPromotion } from "@/interfaces/promotion.interface";
 import { RootState } from "@/redux/store";
@@ -188,7 +189,7 @@ function PromotionManageShop() {
           onPress={onOpen}
           className="px-1 py-2 text-center border rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border"
         >
-          + New
+          + Tạo quảng cáo mới
         </Button>
 
         <Button
@@ -211,7 +212,7 @@ function PromotionManageShop() {
             ))}
           </div>
         ) : (
-          <>w</>
+          <ListCardSekelecton />
         )}
       </div>
 

@@ -1,7 +1,7 @@
 import { IChat, IMessage } from "@/interfaces/chat.interface";
 import { RootState } from "@/redux/store";
 import { GetChatsByUserId } from "@/services/chat.service";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import ChatPanel from "./ChatPanel";
 
@@ -32,14 +32,14 @@ function ChatWindow() {
   };
   //
   return (
-    <div className="h-full  text-center  grid grid-cols-12 backdrop-blur-md gap-4 px-1">
+    <div className="grid grid-cols-12 h-full max-h-[85vh] min-h-[85vh] gap-1">
       {/* Phần danh sách người dùng chat */}
-      <div className="overflow-y-auto col-span-3 bg-light-modal-popup dark:bg-dark-modal-popup shadow-lg rounded-md h-full">
+      <div className="col-span-3 bg-secondary-300/15 overflow-y-auto h-full">
         {chats &&
           chats.map((chat) => (
             <div
               key={chat.receiverInfo._id}
-              className="flex items-center p-2 gap-2 cursor-pointer hover:opacity-80 bg-emerald-300 mb-1 dark:bg-emerald-700"
+              className="flex items-center gap-1 w-full bg-secondary-200 px-2 py-1 mb-1 hover:bg-secondary-400 cursor-pointer rounded-sm"
               onClick={() => handleChatSelect(chat)}
             >
               <img
@@ -49,25 +49,30 @@ function ChatWindow() {
                     : "/default-avatar.png"
                 }
                 alt={chat.receiverInfo.name}
-                className="w-10 h-10 rounded-full mr-2"
+                className="min-w-[20px] min-h-[20px] max-w-[40px] max-h-[40px] rounded-full"
               />
-              <span className="text-orange-500 dark:text-white">
-                {chat.receiverInfo.name}
-              </span>
+              <div className="flex flex-col gap-1">
+                <p className="text-ellipsis truncate font-bold text-base">
+                  {chat.receiverInfo.name}
+                </p>
+                <p className="italic font-light text-ellipsis truncate text-sm text-gray-500">
+                  {chat.messages[chat.messages.length - 1].message_text}
+                </p>
+              </div>
             </div>
           ))}
       </div>
 
       {/* Phần nội dung chat */}
-      <div className="col-span-9 bg-light-modal-popup dark:bg-dark-modal-popup shadow-lg rounded-md  ">
+      <div className=" col-span-9">
         {selectedChat ? (
-          <div className="h-[90%]">
+          <div className="h-full max-h-[85vh] min-h-[85vh]">
             <ChatPanel receiverInfo={selectedChat.receiverInfo} />
           </div>
         ) : (
-          <div className="text-clip italic font-light text-light-primary-text dark:text-dark-primary-text">
-            Select a chat
-          </div>
+          <h1 className="text-center font-bold text-heading uppercase ">
+            Chọn một hội thoại để bắt đầu trò chuyện
+          </h1>
         )}
       </div>
     </div>

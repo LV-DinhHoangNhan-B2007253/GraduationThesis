@@ -13,9 +13,9 @@ function ProductSelectTable({
       <table className="min-w-full border border-gray-300">
         <thead className="bg-transparent">
           <tr>
-            <th className="border px-4 py-2">Select</th>
-            <th className="border px-4 py-2">Product Name</th>
-            <th className="border px-4 py-2">Product Code</th>
+            <th className="border px-4 py-2">Đã chọn</th>
+            <th className="border px-4 py-2">Tên sản phẩm</th>
+            <th className="border px-4 py-2">Mã sản phẩm</th>
           </tr>
         </thead>
         <tbody>

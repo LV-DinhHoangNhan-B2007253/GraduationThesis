@@ -1,5 +1,7 @@
 import useChat from "@/hooks/useChat.hook";
 import { IMessage, ISendMessage } from "@/interfaces/chat.interface";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
@@ -16,6 +18,14 @@ function ChatBox({
     senderId,
     receiverId,
   });
+  // Tạo một ref cho phần tử cuối cùng của danh sách tin nhắn
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    // Cuộn tới tin nhắn mới nhất mỗi khi messagese thay đổi
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messagese]);
 
   const handleSendMessage = () => {
     if (message.trim() && senderId && receiverId) {
@@ -38,7 +48,7 @@ function ChatBox({
 
   return (
     <div>
-      <div className="max-h-[300px] overflow-y-auto">
+      <div className="max-h-[400px] overflow-y-auto w-[400px] ">
         {messagese.map((msg, index) => (
           <div
             key={index}
@@ -49,33 +59,40 @@ function ChatBox({
             }`}
           >
             <div
-              className={`p-2 rounded-lg max-w-xs ${
+              className={`p-2 rounded-lg w-[200px] ${
                 msg.sender_id === senderId?.toString()
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-300 text-black"
+                  ? "bg-secondary-500 text-white"
+                  : "bg-card-bg "
               }`}
             >
-              <p className="font-semibold">{msg.sender_name}</p>
-              <p>{msg.message_text}</p>
-              <span className="text-xs text-gray-500">
-                {new Date(msg.timestamp).toLocaleTimeString()}
-              </span>
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm italic font-bold">{msg.sender_name}</p>
+                <p className="text-xs text-label">
+                  {new Date(msg.timestamp).toLocaleTimeString()}
+                </p>
+              </div>
+              <p className="w-full text-wrap tracking-wider text-base mt-2">
+                {msg.message_text}
+              </p>
             </div>
           </div>
         ))}
+
+        {/* Phần tử này để tự động cuộn tới */}
+        <div ref={messagesEndRef} />
       </div>
-      <div className="flex items-center p-2 border-t border-gray-300">
+      <div className="flex items-center p-2 border-t border-borderb">
         <input
-          className="flex-1 p-2 border border-gray-300 rounded-lg"
+          className="flex-1 p-2 border border-borderb rounded-lg bg-input text-input-text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type a message"
+          placeholder="Nhập tin nhắn"
         />
         <button
           onClick={handleSendMessage}
-          className="ml-2 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+          className="ml-2 p-2 bg-secondary-400 text-white rounded-lg transition"
         >
-          Send
+          <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </div>
     </div>

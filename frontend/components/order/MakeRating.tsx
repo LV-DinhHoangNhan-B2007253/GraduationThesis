@@ -5,6 +5,9 @@ import { IOrder } from "@/interfaces/order.interface";
 import { IProduct } from "@/interfaces/product.interface";
 import { GetOneProduct } from "@/services/product.service";
 import { CreateProductRating } from "@/services/rating.service";
+import { faAirbnb } from "@fortawesome/free-brands-svg-icons";
+import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
 function MakeRating({
@@ -19,12 +22,10 @@ function MakeRating({
   );
 
   const [content, setContent] = useState<string>("");
-  const [rating, setRating] = useState<number>(0);
-  const handleRatingChange = (newRating: number) => {
-    setRating(newRating);
-  };
+
   const [reviewImg, setReviewImg] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [isCheckConfirm, setIsCheckConfirm] = useState<boolean>(true);
 
   // Hàm để xử lý chọn file ảnh
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,22 +48,17 @@ function MakeRating({
 
   const handleCreateReview = async () => {
     try {
-      // Validate the form fields
-      if (rating === 0 || content.trim() === "") {
-        alert("Please provide a rating and review content.");
-        return;
-      }
-
       const newForm = new FormData();
       newForm.append("user_id", userId);
       newForm.append("product_id", productId);
       newForm.append("content", content);
-      newForm.append("rating", rating.toString());
+      // newForm.append("rating", rating.toString());
       reviewImg.forEach((img) => newForm.append("review_img", img));
 
       console.log(newForm);
 
       await CreateProductRating(newForm);
+      setIsCheckConfirm(false);
     } catch (error) {
       console.log(error);
     }
@@ -111,6 +107,7 @@ function MakeRating({
               <textarea
                 name="content"
                 id="content"
+                required
                 placeholder="Write your thoughts here..."
                 cols={10}
                 className="w-full p-4 border-gray-200 dark:border-gray-800 border rounded-md bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text"
@@ -159,54 +156,44 @@ function MakeRating({
               </div>
             ) : (
               <div>
-                <label
-                  htmlFor="fileInput"
-                  className="flex items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer my-2 relative"
-                >
-                  <span className="text-gray-500">Click to upload images</span>
-                  <input
-                    id="fileInput"
-                    type="file"
-                    multiple
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    className="opacity-0 absolute top-0 bottom-0 left-0 right-0"
-                  />
-                </label>
+                <div className="flex-1">
+                  <label
+                    htmlFor="fileInput"
+                    className="flex items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer my-2 relative"
+                  >
+                    <span className="text-gray-500">
+                      Click to upload images
+                    </span>
+                    <input
+                      id="fileInput"
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      className="opacity-0 absolute top-0 bottom-0 left-0 right-0"
+                    />
+                  </label>
+                </div>
               </div>
             )}
-          </div>
-          {/* rating */}
-          <div className="product-rating flex flex-col items-center">
-            <h2 className="text-2xl font-bold mb-4">Rate this product</h2>
-            <div className="stars flex gap-2 mb-4">
-              {Array.from({ length: 5 }, (_, index) => {
-                const starValue = index + 1; // Giá trị tương ứng với mỗi sao (1-5)
-                return (
-                  <span
-                    key={index}
-                    onClick={() => handleRatingChange(starValue)} // Khi click vào sao thì thay đổi điểm đánh giá
-                    className={`cursor-pointer text-4xl ${
-                      starValue <= rating ? "text-yellow-500" : "text-gray-300"
-                    }`}
-                  >
-                    ★
-                  </span>
-                );
-              })}
+            <div>
+              {isCheckConfirm ? (
+                <button
+                  className="p-3 rounded-lg text-center bg-gray-500 text-white font-bold duration-200 transition-all uppercase text-small sm:text-sm "
+                  onClick={handleCreateReview}
+                >
+                  <FontAwesomeIcon icon={faAirbnb} />
+                </button>
+              ) : (
+                <button
+                  disabled={!isCheckConfirm}
+                  className="p-3 rounded-lg text-center bg-green-700  text-white font-bold duration-200 transition-all uppercase text-small sm:text-sm  "
+                  onClick={() => setIsCheckConfirm(false)}
+                >
+                  <FontAwesomeIcon icon={faCheck} />
+                </button>
+              )}
             </div>
-            <p className="text-lg font-medium">
-              Your rating: {rating} star{rating > 1 ? "s" : ""}
-            </p>
-          </div>
-
-          <div className="flex justify-end items-center">
-            <button
-              className="p-1 rounded-lg text-center bg-indigo-500 text-white font-bold hover:bg-indigo-700 duration-200 transition-all uppercase text-small sm:text-sm"
-              onClick={handleCreateReview}
-            >
-              Confirm
-            </button>
           </div>
         </div>
       ) : (

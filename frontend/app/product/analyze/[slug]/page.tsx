@@ -102,34 +102,7 @@ function AnalyzeProduct(props: any) {
               <span className="ml-2 font-bold text-2xl">{product.instock}</span>
             </div>
           </div>
-          {/* lượt bình luận theo số sao */}
-          <div className="my-5 py-5  border-b" data-aos="fade-left">
-            <h2 className="text-xl font-semibold text-orange-800 dark:text-blue-800 tracking-widest font-serif uppercase">
-              Rating Distribution:
-            </h2>
-            <ul className="mt-2 ">
-              {Object.entries(product.ratingDistribution).map(
-                ([stars, count]) => (
-                  <li
-                    key={stars}
-                    className="grid grid-cols-6 items-center justify-center"
-                  >
-                    <div className="flex items-center col-span-1 col-start-3">
-                      {/* Hiển thị số sao bằng biểu tượng ngôi sao */}
-                      {[...Array(parseInt(stars))].map((_, index) => (
-                        <span key={index} className="text-yellow-500 ">
-                          ⭐
-                        </span>
-                      ))}
-                    </div>
-                    <span className="font-semibold  col-span-1 col-start-4">
-                      {count} reviews
-                    </span>
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
+          {/* số lượng tốt, thường,xấu */}
           {/* bình luận được phân loại */}
           <div data-aos="fade-up">
             <ClassifyComment comments={product.comments} />

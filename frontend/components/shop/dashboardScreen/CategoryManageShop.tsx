@@ -13,6 +13,7 @@ import AddProductToCategoryForm from "../form/AddProductToCategoryForm";
 import { IProduct } from "@/interfaces/product.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
+import ListCardSekelecton from "@/components/skelecton/ListCardSekelecton";
 
 function CategoryManageShop() {
   const { userInfo } = useSelector((state: RootState) => state.user);
@@ -82,10 +83,10 @@ function CategoryManageShop() {
         <div className="flex-1">
           <input
             type="text"
-            placeholder="Search by category name"
+            placeholder="tìm danh mục theo tên"
             value={searchTerm}
             onChange={(e) => handleSearch(e.target.value)}
-            className=" outline-none shadow w-2/3 p-3 rounded-sm text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field"
+            className=" outline-none shadow w-2/3 p-3 rounded-sm bg-input text-input-text"
           />
         </div>
         <div className="flex gap-2">
@@ -93,13 +94,13 @@ function CategoryManageShop() {
             onClick={handleOpenCreateForm}
             className="p-2   text-center hover:opacity-85 rounded-sm bg-orange-600 text-white hover:rounded-xl duration-300"
           >
-            New +
+            Thêm danh mục mới +
           </button>
           <button
             onClick={handleOpenAddForm}
             className="p-2   text-center hover:opacity-85 rounded-sm bg-indigo-800 text-white hover:rounded-xl duration-300"
           >
-            Add product into
+            Thểm sản phẩm vào danh mục
           </button>
 
           <button
@@ -140,7 +141,7 @@ function CategoryManageShop() {
           <CategoryTable categories={searchCatgories} />
         </div>
       ) : (
-        <SpinnerLoader />
+        <ListCardSekelecton />
       )}
     </div>
   );

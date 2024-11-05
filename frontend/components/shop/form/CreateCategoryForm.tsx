@@ -67,28 +67,30 @@ function CreateCategoryForm({
   };
 
   return (
-    <div className="w-full h-full p-4 bg-light-modal-popup dark:bg-dark-card-bg rounded-md shadow-lg">
-      <h2 className="text-xl font-semibold mb-4">Create New Category</h2>
+    <div className="w-full h-full p-4  rounded-md shadow-lg bg-card-bg">
+      <h2 className="text-xl font-semibold mb-4 text-center text-heading uppercase">
+        Tạo danh mục mới
+      </h2>
       <form onSubmit={handleSubmit}>
         {/* Nhập tên */}
         <div className="mb-4">
-          <label className="text-light-primary-text dark:text-dark-primary-text block  text-sm font-bold mb-2">
-            Name
+          <label className="text-label block  text-sm font-bold mb-2">
+            Tên danh mục
           </label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border bg-input text-input-text border-primary-border rounded outline-none"
             required
           />
         </div>
 
         {/* Chọn hình ảnh banner */}
         <div className="mb-4">
-          <label className="text-light-primary-text dark:text-dark-primary-text block  text-sm font-bold mb-2">
-            Banner
+          <label className="text-label block  text-sm font-bold mb-2">
+            Thêm hình ảnh
           </label>
           <input
             type="file"
@@ -128,13 +130,13 @@ function CreateCategoryForm({
             onClick={handleClearForm}
             className="bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400"
           >
-            Close
+            Hủy
           </button>
           <button
             type="submit"
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
           >
-            Create{" "}
+            Tạo{" "}
           </button>
         </div>
       </form>

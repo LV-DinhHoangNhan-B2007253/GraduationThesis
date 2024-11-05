@@ -55,7 +55,7 @@ function AddProductToCategoryForm({
   };
 
   return (
-    <div className="w-full h-full bg-light-modal-popup dark:bg-dark-card-bg rounded-md shadow-lg p-1">
+    <div className="w-full h-full bg-card-bg rounded-md shadow-lg p-1">
       {/* top */}
       <div>
         <div className="flex justify-end items-center">
@@ -66,21 +66,20 @@ function AddProductToCategoryForm({
             X
           </button>
         </div>
-        <h2 className="text-lg font-semibold mb-4 text-center">
-          Add products to category
+        <h2 className="text-lg font-semibold mb-4 text-center uppercase text-heading">
+          Thêm sản phẩm vào danh mục
         </h2>
       </div>
       <div>
         {/* Danh sách danh mục */}
         {categories ? (
           <div className="mb-4">
-            <h3 className="font-medium">Select Category:</h3>
             <select
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded bg-input text-input-text"
               value={selectedCategory || ""}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
-              <option value="">-- Select Category --</option>
+              <option value="">-- Chọn một danh mục --</option>
               {categories.map((category) => (
                 <option key={category._id} value={category._id}>
                   {category.name}
@@ -89,14 +88,14 @@ function AddProductToCategoryForm({
             </select>
           </div>
         ) : (
-          <p>Create new ccategory pls!</p>
+          <p>Chưa có sẵn danh mục, vui lòng tạo danh mục mới!</p>
         )}
 
         {/* Danh sách sản phẩm */}
         <div className="flex flex-col justify-between">
           {products ? (
             <div className=" w-full">
-              <h3 className="font-medium">Select products:</h3>
+              {/* <h3 className="font-medium">Chọn danh mục:</h3> */}
               <div className="  h-[65vh]">
                 <ProductSelectTable
                   onSelectProduct={handleProductSelect}
@@ -105,7 +104,7 @@ function AddProductToCategoryForm({
               </div>
             </div>
           ) : (
-            <p> Create new product pls!</p>
+            <p> Chưa có sản phẩm, vui lòng tạo thêm sản phẩm mới!</p>
           )}
         </div>
 
@@ -114,7 +113,7 @@ function AddProductToCategoryForm({
           onClick={handleSubmit}
           className="bg-blue-500 w-full text-white  rounded hover:bg-blue-600"
         >
-          Add
+          Thêm
         </button>
       </div>
     </div>

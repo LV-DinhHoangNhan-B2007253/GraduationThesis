@@ -22,7 +22,7 @@ import { AOSInit } from "@/components/aos";
 config.autoAddCss = false;
 
 // fonts
-const basker = Gowun_Batang({
+const basker = Inria_Sans({
   subsets: ["latin"],
   weight: "400",
   style: ["normal"],

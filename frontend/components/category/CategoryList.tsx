@@ -22,8 +22,8 @@ function CategoryList({ categories }: { categories: ICategory[] }) {
 
   return (
     <div>
-      <h1 className="py-4 uppercase font-light bg-light-modal-popup dark:bg-dark-modal-popup px-2">
-        Catgories
+      <h1 className="tracking-widest my-5 uppercase font-bold text-base sm:text-2xl text-heading">
+        Danh Mục
       </h1>
       <div className="grid grid-cols-10   bg-light-modal-popup dark:bg-dark-modal-popup ">
         {temptList.map((category) => (
@@ -34,17 +34,17 @@ function CategoryList({ categories }: { categories: ICategory[] }) {
       </div>
       {loadMore ? (
         <button
-          className="w-full p-3 text-center hover:underline hover:font-bold hover:tracking-widest"
+          className="w-full p-3 text-center  hover:font-bold hover:tracking-widest text-secondary-500 hover:text-accent transition-all duration-250"
           onClick={handleHidden}
         >
-          hidden
+          Ẩn Bớt
         </button>
       ) : (
         <button
-          className="w-full p-3 text-center hover:underline hover:font-bold hover:tracking-widest"
+          className="w-full p-3 text-center  hover:font-bold hover:tracking-widest text-secondary-500 hover:text-accent transition-all duration-250"
           onClick={handleLoadMore}
         >
-          more
+          Xem Tất Cả
         </button>
       )}
     </div>

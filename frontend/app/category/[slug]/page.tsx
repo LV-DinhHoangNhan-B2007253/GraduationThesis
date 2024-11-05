@@ -31,8 +31,8 @@ function ProductsByCategory(props: any) {
   return (
     <MainLayout>
       <div className="px-4 sm:px-8">
-        <h1 className="py-4 text-2xl tracking-widest uppercase sm:text-6xl text-light-primary-text dark:text-dark-primary-text ">
-          {categoryProducts?.name} Furniture
+        <h1 className="py-4 text-2xl tracking-widest uppercase sm:text-6xl text-heading ">
+          {categoryProducts?.name}
         </h1>
         {products?.length !== 0 ? (
           <section className="min-h-screen">
@@ -40,8 +40,10 @@ function ProductsByCategory(props: any) {
           </section>
         ) : (
           <div className="flex justify-center items-center flex-col gap-3 p-4 w-full h-screen bg-light-modal-popup dark:bg-dark-modal-popup my-2">
-            <p className="font-bold text-3xl">Oops!</p>
-            <p className="font-mono">Nothing here</p>
+            <p className="font-bold text-3xl text-secondary-50">Hmmmm..!</p>
+            <p className="font-mono text-secondary-50">
+              Danh Mục Hiện Tại Có Vẻ Chưa Có Sản Phẩm
+            </p>
           </div>
         )}
       </div>

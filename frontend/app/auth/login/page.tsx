@@ -43,28 +43,25 @@ function Login() {
   };
 
   return (
-    <section className="flex justify-center items-center h-screen">
-      <div className="bg-light-modal-popup dark:bg-dark-modal-popup rounded-lg  sm:min-w-[640px] w-[90%] sm:max-w-[640px] px-4 sm:px-10 py-4 sm:py-14 shadow-lg">
+    <section className="flex justify-center items-center h-screen ">
+      <div className=" rounded-lg  sm:min-w-[640px] w-[90%] sm:max-w-[640px] px-4 sm:px-10 py-4 sm:py-14 shadow-lg bg-card-bg">
         <div>
-          <h1 className="text-light-primary-text dark:text-dark-primary-text font-bold text-2xl sm:text-3xl text-center">
-            Sign In
+          <h1 className=" font-bold text-2xl sm:text-3xl text-center text-primary-600">
+            Đăng Nhập
           </h1>
-          <p className="text-center text-light-primary-text dark:text-dark-primary-text text-sm sm:text-base my-4">
-            Don't have an account?
+          <p className="text-center text-secondary-700 sm:text-base my-4">
+            Bạn chưa có tài khoản?
             <Link
               href={"/auth/register"}
-              className="mx-1 font-bold text-light-text-link-color dark:text-dark-link"
+              className="mx-1 font-bold hover:text-accent"
             >
-              Register
+              Đăng ký tại đây
             </Link>
           </p>
           <form onSubmit={handleLogin} className="sm:px-3">
             <div className="my-3">
-              <label
-                htmlFor="email"
-                className="text-light-primary-text dark:text-dark-primary-text block text-small sm:text-base hover:text-light-active dark:hover:text-dark-active hover:cursor-pointer my-1 sm:my-2"
-              >
-                Your Email
+              <label htmlFor="email" className=" c">
+                Địa chỉ Email
               </label>
               <input
                 onChange={handleChange}
@@ -72,16 +69,17 @@ function Login() {
                 type="email"
                 id="email"
                 name="email"
-                className="w-full px-2 py-3 rounded-sm text-light-input-text dark:text-dark-input-text placeholder:text-light-input-placeholder dark:placeholder:text-dark-input-placeholder bg-light-input-field dark:bg-dark-input-field border border-light-input-border dark:border-dark-input-border my-1"
+                placeholder="nguyenvana@gmail.com"
+                className="w-full px-2 py-3 rounded-sm border  my-1 bg-input text-input-text"
               />
             </div>
             <div className="my-3">
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="text-light-primary-text dark:text-dark-primary-text block text-small sm:text-base hover:text-light-active dark:hover:text-dark-active hover:cursor-pointer my-1 sm:my-2"
+                  className="block text-small sm:text-base hover:cursor-pointer my-1 sm:my-2 text-label"
                 >
-                  Password
+                  Mật khẩu
                 </label>
                 <FontAwesomeIcon
                   icon={passwordVisible ? faEye : faEyeLowVision}
@@ -96,7 +94,7 @@ function Login() {
                 tabIndex={2}
                 id="password"
                 name="password"
-                className="w-full px-2 py-3 rounded-sm text-light-input-text dark:text-dark-input-text placeholder:text-light-input-placeholder dark:placeholder:text-dark-input-placeholder bg-light-input-field dark:bg-dark-input-field border border-light-input-border dark:border-dark-input-border my-1"
+                className="w-full px-2 py-3 rounded-sm border  my-1 bg-input text-input-text"
               />
             </div>
             <div className="flex justify-center">
@@ -105,7 +103,7 @@ function Login() {
                 disabled={!isFormValid}
                 className={`text-center text-light-btn-text ${
                   isFormValid
-                    ? "bg-light-btn-bg dark:bg-dark-bg-btn cursor-pointer"
+                    ? " cursor-pointer bg-primary-500 hover:bg-secondary-500"
                     : "bg-gray-400 cursor-not-allowed"
                 } py-2 px-1 rounded-[40px] w-[50%] sm:w-full mt-4`}
               >
@@ -116,11 +114,11 @@ function Login() {
         </div>
         <div>
           <div className="flex items-center">
-            <div className="flex-grow border-t border-light-card-border dark:border-dark-border"></div>
+            <div className="flex-grow border-t "></div>
             <span className="px-4 text-light-primary-text dark:text-dark-primary-text">
-              Or
+              Hoặc
             </span>
-            <div className="flex-grow border-t  border-light-card-border dark:border-dark-border"></div>
+            <div className="flex-grow border-t "></div>
           </div>
           <div className="flex justify-center mt-4 sm:mt-8">
             <GoogleButton />

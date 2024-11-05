@@ -61,7 +61,7 @@ export class Product extends Document {
 
     // loại của sản phẩm -> dùng hỗ trợ cho việc tìm kiếm
 
-    @Prop({ required: true })
+    @Prop({ default: "" })
     type: string
 }
 

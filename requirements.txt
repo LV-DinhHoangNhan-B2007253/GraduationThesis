@@ -5,7 +5,6 @@ scikit-learn
 transformers
 flask
 underthesea
-torch
 Flask-Cors      
 scikit-learn   
 numpy          
@@ -14,4 +13,4 @@ flask_restful
 joblib
 fastapi
 uvicorn
-
+numpy

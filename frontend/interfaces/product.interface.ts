@@ -52,15 +52,20 @@ export interface IUpdateProductForm {
     isOutStanding: boolean
 }
 
+export interface IClassedComment {
+    comment: string,
+    label: number
+}
 
 export interface IAnalyzeProduct {
     _id: string;
     name: string;
     sku: string;
     sold_quantity: number;
-    averageRating: number;
     ratingCount: number;
     comments: string[]; // Mảng chỉ chứa nội dung bình luận
-    ratingDistribution: { [key: number]: number };
     instock: number // Đếm số lượng đánh giá theo từng số sao
+    goodCount: number,
+    badCount: number,
+    neutralCount: number,
 }

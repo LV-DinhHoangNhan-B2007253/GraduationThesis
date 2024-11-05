@@ -129,12 +129,21 @@ function OrderInfoCard({
         </div>
       ) : status === "shipped" && userAction === true ? (
         <div className="flex justify-end items-center my-4">
-          <button
-            onClick={() => setIsOpenRating(true)}
-            className="px-4 py-2 text-center bg-green-700  transition duration-300 ease-in-out text-white uppercase hover:bg-green-500"
-          >
-            Rating
-          </button>
+          {isOpenRating ? (
+            <button
+              onClick={() => setIsOpenRating(!isOpenRating)}
+              className="px-4 py-2 text-center bg-green-700  transition duration-300 ease-in-out text-white uppercase hover:bg-green-500"
+            >
+              Close
+            </button>
+          ) : (
+            <button
+              onClick={() => setIsOpenRating(!isOpenRating)}
+              className="px-4 py-2 text-center bg-green-700  transition duration-300 ease-in-out text-white uppercase hover:bg-green-500"
+            >
+              Rating
+            </button>
+          )}
         </div>
       ) : status === "canceled" && userAction === true ? (
         <div className="flex justify-end items-center my-4">

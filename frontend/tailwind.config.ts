@@ -23,91 +23,49 @@ const config: Config = {
       },
       colors: {
 
-        // light
-        "light-primary-text": "#333333",
 
-        "light-bg": "#FAFAFA",
-
-        'light-modal-popup': '#ffffff',
-        'light-sidetab': '#ECECEC',
-        'light-element-border': '#DDDDDD',
-        'light-text-link-color': '#3A6EA5 ',
-
-        'light-btn-bg': '#007BFF ',
-        'light-btn-bg-second': '#F0F0F0 ',
-        'light-btn-hover': '#0069D9 ',
-        'light-btn-text': '#FFFFFF',
-
-        'light-input-field': '#FFFFFF ',
-        'light-input-border': '#D1D8E0',
-        'light-input-placeholder': '#A9A9A9',
-        'light-input-text': '#333333',
-
-        'light-modal-border': '#DDDDDD',
-
-        'light-navbar-bg': '#ffffff ',
-        'light-navbar-text': '#333333',
-        'light-navbar-hover': '#007BFF',
-
-        'light-card-bg': '#FFFFFF',
-        'light-card-shadow': 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
-        'light-card-border': '#E0E0E0',
-
-        'light-footer-bg': '#ffffff ',
-        'light-footer-text': '#666666',
-        'light-footer-link': '#007BFF',
-        'light-active': '#3d405b',
-        'light-sidebar-btn': "#231942",
-        'light-sidebar-btn-text': '#ffffff',
-
-
-        // dark text  
-        "dark-primary-text": "#e0e0e0",
-        'dark-heading': '#f5f5f5',
-        "dark-bg": "#1a1a2e",
-        "dark-border": "#4a4a6a",
-        "dark-modal-popup": "#33334D",
-        'dark-sidetab': '#2F2F45',
-        'dark-bg-btn': '#4B4B6A',
-        'dark-bg-btn-hover': '#06B6D4',
-        'dark-btn-text': '#dddddd',
-        // dark input
-        'dark-input-field': '#2e2e3a',
-        'dark-input-border': '#3B82F6',
-        'dark-input-placeholder': '#9CA3AF',
-        'dark-input-text': '#e0e0e0',
-
-        // dark accent color
-        'dark-hover': '#2563eb',
-        // dark hover active
-        'dark-link': '#f97316',
-        'dark-active': '#7bf1a8',
-        // dark navbar
-        'dark-navbar-bg': '#1A1A2E',
-        'dark-navbar-text': '#ffffff',
-        'dark-navbar-hover': '#3B82F6',
-
-        // dark card
-        'dark-card-bg': '#2B2B3F',
-        'dark-card-shadow': 'rgba(0, 0, 0, 0.25) 0px 4px 12px',
-        'dark-card-border': '#444466',
-
-        // dark footer
-        'dark-footer-bg': '#1A1A40',
-        'dark-footer-text': '#A1A1AA',
-        'dark-footer-link': '#22D3EE',
-        'dark-sidebar-btn': "#edf2f4",
-        'dark-sidebar-btn-text': "#000000",
-
-        // price text and chung
-        'price-text': "#EE4D2D",
-
+        'text': 'var(--text)',
+        'background': 'var(--background)',
+        'primary': 'var(--primary)',
+        'secondary': 'var(--secondary)',
+        'accent': 'var(--accent)',
+        'navbar': 'var(--navbar)',
+        'borderb': 'var(--border-bottom-color)',
+        'heading': 'var(--heading)',
+        'input': 'var(--input)',
+        'input-text': 'var(--input-text)',
+        'label': 'var(--label)',
+        'button-primary': 'var(--button-primary)',
+        'button-warning': 'var(--button-warning)',
+        'button-danger': 'var(--button-danger)',
+        'button-success': 'var(--button-success)',
+        'primary-border': 'var(--primary-border)',
+        'card-bg': 'var(--card-bg)',
+        'product-card': 'var(--product-card)'
 
       },
       fontSize: {
-        base: "16px",
-        small: "14px",
+        sm: '0.750rem',
+        base: '1rem',
+        xl: '1.333rem',
+        '2xl': '1.777rem',
+        '3xl': '2.369rem',
+        '4xl': '3.158rem',
+        '5xl': '4.210rem',
       },
+      fontFamily: {
+        heading: 'Inter',
+        body: 'Inter',
+      },
+      fontWeight: {
+        normal: '400',
+        bold: '700',
+      },
+    },
+  },
+  variants: {
+    extend: {
+      animation: ['group-hover'],
     },
   },
   plugins: [nextui()],

@@ -49,28 +49,6 @@ function Cart() {
     }
   };
 
-  // const groupByShop = (cartItems: ICartItem[]): IShopGroup[] => {
-  //   const grouped = cartItems.reduce<Record<string, IShopGroup>>(
-  //     (acc, item) => {
-  //       if (!acc[item.shop_owner_id]) {
-  //         // Nếu chưa có shop này, khởi tạo với thông tin shop và sản phẩm đầu tiên
-  //         acc[item.shop_owner_id] = {
-  //           shop_owner_id: item.shop_owner_id,
-  //           products: [],
-  //         };
-  //       }
-  //       // Thêm sản phẩm vào danh sách sản phẩm của shop đó
-  //       acc[item.shop_owner_id].products.push(item);
-  //       return acc;
-  //     },
-  //     {}
-  //   );
-
-  //   // Trả về dưới dạng một mảng các đối tượng ShopGroup
-  //   return Object.values(grouped);
-  // };
-  // Hàm nhóm các sản phẩm theo shop_owner_id
-
   const groupByShop = (cartItems: ICartItem[]) => {
     return cartItems.reduce((acc, item) => {
       if (!acc[item.shop_owner_id]) {
@@ -126,11 +104,11 @@ function Cart() {
           {Object.entries(groupedCart).map(([shop_owner_id, items]) => (
             <div key={shop_owner_id} className="shop-group">
               {/* Hiển thị thông tin chi tiết của shop */}
-              <div className=" px-4 py-2 bg-slate-200 flex items-center gap-4">
-                <h3 className="text-black font-bold text-base sm:text-2xl">
+              <div className=" px-4 py-2  flex items-center gap-4 bg-gradient-to-r from from-blue-50 to to-blue-300 dark:from-gray-900 dark:to-gray-500">
+                <h3 className="font-bold text-base sm:text-2xl">
                   {shopDetails[shop_owner_id]?.name || "Loading shop name..."}
                 </h3>
-                <p className="text-black font-light text-sm sm:text-base">
+                <p className=" font-light text-sm sm:text-base">
                   {shopDetails[shop_owner_id]?.shopLocation ||
                     "Loading address..."}
                 </p>
@@ -164,19 +142,19 @@ function Cart() {
               ))}
             </div>
           ))}
+          <div className="sticky bottom-0 flex justify-start gap-10 sm:gap-20 px-3 sm:px-6 py-4 sm:py-8 bg-light-modal-popup dark:bg-dark-modal-popup items-center">
+            <p>({selectedProducts.length} Sản phẩm đã chọn)</p>
+            <button
+              onClick={handleNavigateOrderpage}
+              className="py-2 px-10 bg-button-success hover:bg-secondary-300  uppercase text-center font-bold rounded "
+            >
+              Mua
+            </button>
+          </div>
         </div>
       ) : (
         <EmptyProductList />
       )}
-      <div className="sticky bottom-0 flex justify-start gap-10 sm:gap-20 px-3 sm:px-6 py-4 sm:py-8 bg-light-modal-popup dark:bg-dark-modal-popup items-center">
-        <p>({selectedProducts.length} Products)</p>
-        <button
-          onClick={handleNavigateOrderpage}
-          className="py-2 px-10 bg-orange-600 text-white uppercase text-center font-bold rounded hover:bg-orange-700"
-        >
-          Order
-        </button>
-      </div>
     </MainLayout>
   );
 }

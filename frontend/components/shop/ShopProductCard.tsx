@@ -6,7 +6,7 @@ function ShopProductCard({ product }: { product: IProduct }) {
   return (
     <Link
       href={`/product/${product._id}`}
-      className=" h-full   w-full bg-light-modal-popup dark:bg-dark-modal-popup flex flex-col gap-1 shadow rounded hover:brightness-105 hover:-translate-y-0.5 transition-none ease-in duration-200"
+      className=" h-full   w-full flex flex-col gap-1 shadow rounded hover:brightness-105 hover:-translate-y-0.5 transition-none ease-in duration-200 bg-product-card"
     >
       <div className="w-full max-h-[150px]">
         <img
@@ -24,16 +24,16 @@ function ShopProductCard({ product }: { product: IProduct }) {
           </p>
           <p className="text-price-text font-bold text-center sm:text-end">
             {product.price.toLocaleString()}{" "}
-            <span className="text-sm font-light text-price-text">$</span>
+            <span className="font-bold text-primary-500">$</span>
           </p>
         </div>
         <div className="text-light-primary-text dark:text-dark-primary-text text-small sm:text-sm sm:flex justify-between items-center">
           {product.averageRating === 0 ? (
-            <p>No review</p>
+            <p>chưa có đánh giá</p>
           ) : (
             <p>💬{product.comments.length}</p>
           )}
-          <p>{product.sold_quantity} sold</p>
+          <p>{product.sold_quantity} đã bán</p>
         </div>
       </div>
     </Link>

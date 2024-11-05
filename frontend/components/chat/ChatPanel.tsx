@@ -1,88 +1,20 @@
 import {
-  IChat,
-  IMessage,
   IReceiverInfo,
   ISendMessage,
   ISingleMess,
 } from "@/interfaces/chat.interface";
 import { RootState } from "@/redux/store";
-import {
-  faMicrophone,
-  faMicrophoneLinesSlash,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { io, Socket } from "socket.io-client";
-
-// import SpeechRecognition, {
-//   useSpeechRecognition,
-// } from "react-speech-recognition";
-// phone
-
-// const SpeechRecognition =
-//   typeof window !== "undefined"
-//     ? require("react-speech-recognition").default
-//     : null;
-// const { useSpeechRecognition } =
-//   typeof window !== "undefined"
-//     ? require("react-speech-recognition")
-//     : {
-//         useSpeechRecognition: () => ({
-//           transcript: "",
-//           listening: false,
-//           resetTranscript: () => {},
-//           browserSupportsSpeechRecognition: false,
-//         }),
-//       };
-// //
-
-//
 
 function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
   const { userInfo } = useSelector((state: RootState) => state.user);
   const [inputSendMessage, setInputSendMessage] = useState<any>("");
   const [message, setMessagese] = useState<ISingleMess[]>([]);
-  //
-  // const [isSpeechSupported, setIsSpeechSupported] = useState(false);
-  // const [transcriptText, setTranscriptText] = useState("");
-  // const {
-  //   transcript,
-  //   listening,
-  //   resetTranscript,
-  //   browserSupportsSpeechRecognition,
-  // } = useSpeechRecognition();
-  //voice
-
-  // const startListening = () => {
-  //   if (SpeechRecognition && browserSupportsSpeechRecognition) {
-  //     SpeechRecognition.startListening({ continuous: true, language: "vi-VN" });
-  //   }
-  // };
-
-  // const stopListening = () => {
-  //   if (SpeechRecognition && browserSupportsSpeechRecognition) {
-  //     SpeechRecognition.stopListening();
-  //     resetTranscript();
-  //   }
-  // };
-  //
-  // useEffect(() => {
-  //   if (transcript) {
-  //     inputSendMessage(transcript);
-  //     setTranscriptText(transcript);
-  //   }
-  // }, [transcript]);
-
-  // // //
-
-  // useEffect(() => {
-  //   // Kiểm tra support speech recognition sau khi component mount
-  //   if (typeof window !== "undefined") {
-  //     setIsSpeechSupported(!!SpeechRecognition);
-  //   }
-  // }, []);
-  //
+  // Tham chiếu tới phần tử cuối danh sách tin nhắn để cuộn tới
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
   //   tạo socket
   const socketRef = useRef<Socket | null>(null);
 
@@ -106,6 +38,13 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
       setInputSendMessage(""); // Xóa ô nhập sau khi gửi
     }
   };
+
+  // Auto-scroll tới tin nhắn mới nhất khi `message` thay đổi
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [message]);
 
   useEffect(() => {
     // Khởi tạo socket chỉ nếu chưa có socket kết nối
@@ -144,9 +83,9 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
   }, [receiverInfo._id, userInfo?._id]);
 
   return (
-    <div>
+    <div className="h-full ">
       {/* Hiển thị danh sách tin nhắn */}
-      <div className="max-h-[500px] overflow-y-auto px-3">
+      <div className="overflow-y-auto h-[90%] mx-2">
         {message.length > 0 ? (
           message.map((message: ISingleMess, index: number) => (
             <div
@@ -156,31 +95,39 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
               } `}
             >
               <div
-                className={`inline-block px-4 py-2 rounded-lg ${
+                className={`inline-block min-w-[150px] text-wrap px-4 py-2 rounded-lg ${
                   message.sender_id === userInfo?._id
-                    ? " bg-blue-500 text-white"
-                    : "bg-gray-300 text-black "
+                    ? " bg-secondary-500 text-white"
+                    : "bg-card-bg "
                 }`}
               >
-                <p className="text-sm italic font-light">{`${
-                  message.sender_id === userInfo?._id
-                    ? "You"
-                    : message.sender_name
-                }`}</p>
-                <p className="w-full"> {message.message_text}</p>
-              </div>
-              <div className="text-xs text-gray-500">
-                {new Date(message.timestamp).toLocaleTimeString()}
+                <div className="flex items-center gap-3">
+                  <p className="text-sm italic font-bold">{`${
+                    message.sender_id === userInfo?._id
+                      ? "You"
+                      : message.sender_name
+                  }`}</p>
+                  <p className="text-xs text-label">
+                    {new Date(message.timestamp).toLocaleTimeString()}
+                  </p>
+                </div>
+                <p className="w-full text-wrap tracking-wider text-base mt-2">
+                  {" "}
+                  {message.message_text}
+                </p>
               </div>
             </div>
           ))
         ) : (
-          <div className="text-gray-500">Không có tin nhắn nào.</div>
+          <p className="text-center text-heading uppercase ">
+            Chưa có tin nhắn nào! Trò chuyện ngay thôi.
+          </p>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Ô nhập tin nhắn */}
-      <div className="flex items-center p-2 border-t border-gray-300 dark:border-gray-600">
+      <div className="flex items-center p-2 border-t border-borderb h-[10%]">
         <input
           type="text"
           value={inputSendMessage}
@@ -190,19 +137,13 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
               handleSendMessage();
             }
           }}
-          className="flex-grow border rounded-md p-2"
+          className="flex-grow border rounded-md p-2 bg-input text-input-text"
           placeholder="Nhập tin nhắn..."
         />
-        {/* <div>
-          {isSpeechSupported ? (
-            <FontAwesomeIcon icon={faMicrophone} size="2x" />
-          ) : (
-            <FontAwesomeIcon icon={faMicrophoneLinesSlash} size="2x" />
-          )}
-        </div> */}
+
         <button
           onClick={handleSendMessage}
-          className="ml-2 bg-blue-500 text-white px-4 py-2 rounded-md"
+          className="ml-2 bg-secondary-500 text-white px-4 py-2 rounded-md"
         >
           Gửi
         </button>

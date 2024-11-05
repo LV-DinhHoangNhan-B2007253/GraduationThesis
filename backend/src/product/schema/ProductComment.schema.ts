@@ -21,9 +21,9 @@ export class Comment extends Document {
     @Prop({ default: [] })
     review_img: string[]
 
-    // sau khi người dùng comment -> phân loại comment -> gán nhãn cho cmt
-    @Prop({ default: null })
-    label: number
+    // // sau khi người dùng comment -> phân loại comment -> gán nhãn cho cmt
+    // @Prop({ default: null })
+    // label: number
 }
 
 export const CommentSchema = SchemaFactory.createForClass(Comment);

@@ -26,6 +26,21 @@ function ProductList({ productList }: { productList: IProduct[] | undefined }) {
   let indexOfLastProduct: number = currentPage * productPerPage;
   let indexOfFirstProduct: number = indexOfLastProduct - productPerPage;
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+
+    if (originalProductList) {
+      // Kiểm tra xem originProductList có tồn tại
+      const filteredProducts = originalProductList.filter(
+        (product) =>
+          product.name.toLowerCase().includes(term.toLowerCase()) ||
+          product.sku.toLowerCase().includes(term.toLowerCase())
+      );
+      setCurrentProducts(filteredProducts);
+    }
+  };
+
   useEffect(() => {
     if (productList) {
       setOriginalProductList(productList);
@@ -41,15 +56,6 @@ function ProductList({ productList }: { productList: IProduct[] | undefined }) {
   const handleBack = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
-    }
-  };
-
-  const handleSearch = async () => {
-    try {
-      const result = await SearchProduct(query);
-      setCurrentProducts(result);
-    } catch (error) {
-      toast.error(`${error}`);
     }
   };
 
@@ -85,18 +91,14 @@ function ProductList({ productList }: { productList: IProduct[] | undefined }) {
   return (
     <div>
       <div className="grid grid-cols-6">
-        <div className="flex items-center justify-between col-span-4 mb-2 sm:col-span-4 sm:col-start-1">
+        <div className="flex items-center justify-between col-span-4 mb-2 sm:col-span-3 sm:col-start-1">
           <input
             type="text"
             name="search"
-            className="w-full px-1 py-2 border rounded bg-light-input-field text-light-input-text border-light-input-border dark:text-dark-input-text dark:bg-dark-input-field dark:border-dark-input-border"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <FontAwesomeIcon
-            icon={faSearch}
-            onClick={handleSearch}
-            className="p-3 text-center transition-all border rounded cursor-pointer border-light-input-border dark:border-dark-border hover:bg-dark-bg-btn-hover hover:text-white"
+            placeholder="tìm theo tên hoặc mã sản phẩm"
+            className="w-full px-1 py-1 border outline-none bg-input text-input-text rounded-md"
+            value={searchTerm}
+            onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
         <div className="col-span-1 col-start-6">
@@ -104,10 +106,10 @@ function ProductList({ productList }: { productList: IProduct[] | undefined }) {
             name="filter"
             id="filter"
             value={filterOption}
-            className="w-full px-1 py-2 text-center capitalize border rounded-lg bg-light-modal-popup text-light-primary-text border-light-modal-border dark:bg-dark-modal-popup dark:text-dark-btn-text dark:border-dark-border"
+            className="w-full px-1 py-1 text-center capitalize border rounded-lg bg-input text-input-text hover:bg-accent"
             onChange={handleFilterChange}
           >
-            <option value="all">All</option>
+            <option value="all">Tất cả</option>
             <option value="az">a-z</option>
             <option value="za">z-a</option>
           </select>

@@ -2,6 +2,8 @@
 
 import ChatBox from "@/components/chat/ChatBox";
 import ProductReviewCard from "@/components/review/ProductReviewCard";
+import ListCardSekelecton from "@/components/skelecton/ListCardSekelecton";
+import SingleCardSekelecton from "@/components/skelecton/SingleCardSekelecton";
 import SpinnerLoader from "@/components/Spinner";
 import Spinner from "@/components/Spinner";
 import { IProduct, IUpdateProductForm } from "@/interfaces/product.interface";
@@ -16,7 +18,7 @@ import {
 } from "@/services/product.service";
 import { GetShopInfoByUserId } from "@/services/shop.service";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCircle, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Accordion,
@@ -129,18 +131,6 @@ function ProductDetail(props: any) {
     }));
   };
 
-  // const handleUpdateProduct = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     const data = await UpdateProductInfo(productId, updateProductForm);
-  //     if (data) {
-  //       toast.success(`${data.message}`);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const handleCreateOrder = () => {
     if (orderQuantity > Number(product?.stock_quantity)) {
       toast.warn(
@@ -158,7 +148,7 @@ function ProductDetail(props: any) {
 
   return (
     <MainLayout>
-      <section className="w-full px-4 sm:min-h-screen">
+      <section className="w-full px-4 sm:min-h-screen ">
         {product ? (
           <div className="w-full">
             {/* product info */}
@@ -184,24 +174,24 @@ function ProductDetail(props: any) {
                     ${product.price}
                   </p>
                   <p className="text-[10px] text-light-primary-text dark:text-dark-primary-text font-light uppercase my-3">
-                    SKU: {product.sku}
+                    Mã: {product.sku}
                   </p>
                 </div>
                 <div className="border-b border-light-element-border dark:border-dark-card-border">
                   <div className="flex items-center justify-between">
-                    <p>QTY: {product.stock_quantity}</p>
+                    <p>Số lượng trong kho: {product.stock_quantity}</p>
                     {product.stock_quantity >= 1 ? (
-                      <p>In stock</p>
+                      <p>Trạng thái: Còn hàng</p>
                     ) : (
-                      <p>Sold out</p>
+                      <p>Trạng thái: Hết hàng</p>
                     )}
                   </div>
                   <div>
                     <button
                       onClick={handleAddToCart}
-                      className="w-full p-1 my-3 text-center uppercase transition-all bg-light-btn-bg dark:bg-dark-bg-btn text-light-btn-text dark:text-dark-btn-text hover:bg-green-800"
+                      className="w-full p-1 my-3 text-center uppercase transition-all bg-button-primary hover:bg-accent"
                     >
-                      Add to bag
+                      Thêm vào giỏ hàng
                     </button>
                     <button
                       onClick={handleAddToWishList}
@@ -211,8 +201,8 @@ function ProductDetail(props: any) {
                         icon={faHeart}
                         className="hover:text-pink-700"
                       />
-                      <p className="p-1 hover:text-light-text-link-color dark:hover:text-dark-link hover:underline">
-                        Add to wishlist
+                      <p className="p-1 hover:underline hover:text-accent">
+                        Thêm vào danh sách yêu thích
                       </p>
                     </button>
                   </div>
@@ -222,7 +212,7 @@ function ProductDetail(props: any) {
                     <AccordionItem
                       key="1"
                       aria-label="Description"
-                      title="Description"
+                      title="Về sản phẩm"
                       className="py-2 border-b border-light-element-border dark:border-dark-card-border "
                     >
                       <p className="text-sm text-light-primary-text dark:text-dark-primary-text">
@@ -232,7 +222,7 @@ function ProductDetail(props: any) {
                     <AccordionItem
                       key="2"
                       aria-label="Story"
-                      title="Story"
+                      title="Câu chuyện"
                       className="py-2 border-b border-light-element-border dark:border-dark-card-border"
                     >
                       <p className="text-sm text-light-primary-text dark:text-dark-primary-text">
@@ -250,7 +240,7 @@ function ProductDetail(props: any) {
                     <AccordionItem
                       key="3"
                       aria-label="Warranty"
-                      title="Warranty"
+                      title="Chính sách"
                       className="py-2 border-b border-light-element-border dark:border-dark-card-border"
                     >
                       <p className="text-sm text-light-primary-text dark:text-dark-primary-text">
@@ -265,9 +255,9 @@ function ProductDetail(props: any) {
                 <div className="flex justify-end w-full">
                   <Button
                     onPress={onOpen}
-                    className="flex-1 px-2 py-1 my-3 text-center uppercase transition-all bg-green-900 rounded-sm dark:bg-dark-bg-btn text-light-btn-text dark:text-dark-btn-text hover:bg-green-800"
+                    className="flex-1 px-2 py-1 my-3 text-center uppercase transition-all rounded-sm bg-button-primary hover:bg-accent"
                   >
-                    Shop Now
+                    Mua ngay
                   </Button>
                   <Modal
                     isOpen={isOpen}
@@ -280,7 +270,7 @@ function ProductDetail(props: any) {
                       {(onClose) => (
                         <>
                           <ModalHeader className="flex flex-col gap-1">
-                            Enter Product Quantity
+                            Chọn số lượng sản phẩm
                           </ModalHeader>
                           <ModalBody>
                             <input
@@ -298,32 +288,27 @@ function ProductDetail(props: any) {
                               variant="light"
                               onPress={onClose}
                             >
-                              Cancel
+                              Hủy
                             </Button>
                             <Button
                               color="primary"
                               onPress={onClose}
                               onClick={handleCreateOrder}
                             >
-                              Order
+                              Thanh toán
                             </Button>
                           </ModalFooter>
                         </>
                       )}
                     </ModalContent>
                   </Modal>
-                  {/* <Link href={`/order/createOrder?orderInfo=${productId}-${1}`}>
-                    <button className="flex-1 px-2 py-1 my-3 text-center uppercase transition-all bg-green-900 rounded-sm dark:bg-dark-bg-btn text-light-btn-text dark:text-dark-btn-text hover:bg-green-800">
-                      Shop Now
-                    </button>
-                  </Link> */}
                 </div>
               </div>
             </div>
             {/* shop info + comment wrapper */}
             <div className="sm:mx-20">
               {/* shop info */}
-              <div className="mt-16 flex justify-start gap-4 bg-light-modal-popup p-6 dark:bg-dark-modal-popup text-light-primary-text dark:text-dark-primary-text text-sm sm:text-base">
+              <div className="mt-16 flex justify-start gap-4  p-6 text-sm sm:text-base border border-primary-border rounded bg-card-bg">
                 <div className="w-[100px] ">
                   <img
                     src={shopInfo?.logoUrl}
@@ -334,7 +319,7 @@ function ProductDetail(props: any) {
                 <div className="flex flex-col justify-around gap-2">
                   <p className=" font-bold">{shopInfo?.name}</p>
                   <p className="font-light">
-                    {shopInfo?.isActive ? "Online" : "Offline"}
+                    {shopInfo?.isActive ? "Đang hoạt động" : "Tạm đóng"}
                     <span className="mx-2">
                       <FontAwesomeIcon
                         icon={faCircle}
@@ -344,21 +329,21 @@ function ProductDetail(props: any) {
                   </p>
                   <div className="flex justify-start gap-4">
                     <button
-                      className="capitalize p-2 border border-orange-500 bg-orange-100 text-orange-600"
+                      className="capitalize p-2  bg-orange-100 text-orange-600 hover:bg-accent"
                       onClick={() => setIsChatBox(true)}
                     >
-                      Chat Now
+                      Chat với shop
                     </button>
                     <Link href={`/shop/${shopInfo?._id}`}>
-                      <button className="capitalize p-2 border border-gray-300 bg-light-btn-bg dark:bg-dark-bg-btn dark:text-dark-btn-text text-light-btn-text">
-                        View Shop
+                      <button className="capitalize p-2 bg-light-btn-bg hover:bg-accent bg-button-primary">
+                        Xem shop
                       </button>
                     </Link>
                   </div>
                 </div>
               </div>
               {/* review */}
-              <div className="">
+              <div>
                 {product.comments.map((reviewId, index) => (
                   <ProductReviewCard reviewId={reviewId} key={index} />
                 ))}
@@ -366,7 +351,9 @@ function ProductDetail(props: any) {
             </div>
             {/* related product */}
             <div className="mt-[100px]">
-              <h2 className="py-10 text-2xl sm:text-4xl">Related</h2>
+              <h2 className="py-10 text-2xl sm:text-2xl text-heading">
+                Sản phẩm liên quan
+              </h2>
               <div className="flex justify-around gap-4 overflow-x-auto">
                 {relatedProduct?.map((r, index) => (
                   <div
@@ -391,12 +378,12 @@ function ProductDetail(props: any) {
 
             {/* chat */}
             {isChatbox ? (
-              <div className="fixed bottom-0 right-1 z-20 bg-light-modal-popup p-4 shadow-2xl border border-light-card-border dark:border-dark-border rounded-sm">
+              <div className="fixed bottom-0 right-1 z-[500]  p-2 shadow-violet-500 shadow-2xl border border-primary-border backdrop-blur-2xl rounded">
                 <button
-                  className="w-full text-right hover:text-red-500"
+                  className="  hover:text-red-500 border border-borderb text-secondary-500 p-2 shadow-lg shadow-teal-400 rounded-full"
                   onClick={() => setIsChatBox(false)}
                 >
-                  X
+                  <FontAwesomeIcon icon={faClose} />
                 </button>
                 <ChatBox
                   senderId={userInfo?._id}
@@ -422,7 +409,7 @@ function ProductDetail(props: any) {
               )}
           </div>
         ) : (
-          <SpinnerLoader />
+          <SingleCardSekelecton />
         )}
       </section>
     </MainLayout>

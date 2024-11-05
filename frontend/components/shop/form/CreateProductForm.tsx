@@ -140,7 +140,7 @@ function CreateProductForm({
         onClick={handleClose}
         className="text-red-500 py-4 text-right w-full"
       >
-        Close
+        Hủy
       </button>
       <form
         className="grid grid-cols-2 items-center gap-3"
@@ -150,8 +150,9 @@ function CreateProductForm({
         <div className="col-span-2 grid grid-cols-2 sm:gap-4 gap-2">
           {/* name */}
           <div className="col-span-1">
-            <label htmlFor="productName" className="block">
-              Product name
+            <label htmlFor="productName" className="block text-label">
+              Tên sản phẩm
+              <span className="text-red-500">(*)</span>{" "}
             </label>
             <input
               type="text"
@@ -159,13 +160,15 @@ function CreateProductForm({
               id="productName"
               required
               onChange={handleInputChange}
-              className="w-full border  py-2 rounded-md bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border px-4 focus:border-light-active dark:focus:border-dark-active outline-none"
+              className="w-full border  py-2 rounded-md  px-4  outline-none bg-input text-input-text mt-1"
             />
           </div>
           {/* sku */}
           <div className="col-span-1">
-            <label htmlFor="productSku" className="block">
-              Sku
+            <label htmlFor="productSku" className="block text-label">
+              Mã sản phẩm
+              <span className="text-red-500">(*)</span>
+              {"  "}
             </label>
             <input
               type="text"
@@ -173,13 +176,14 @@ function CreateProductForm({
               id="productSku"
               required
               onChange={handleInputChange}
-              className="w-full border  py-2 rounded-md bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border px-4 focus:border-light-active dark:focus:border-dark-active outline-none"
+              className="w-full border  py-2 rounded-md  px-4  outline-none bg-input text-input-text mt-1"
             />
           </div>
           {/* quantity */}
           <div className="col-span-1">
-            <label htmlFor="productQuantity" className="block">
-              Quantity
+            <label htmlFor="productQuantity" className="block text-label">
+              Số lượng
+              <span className="text-red-500">(*)</span>{" "}
             </label>
             <input
               type="number"
@@ -188,13 +192,14 @@ function CreateProductForm({
               id="productQuantity"
               required
               onChange={handleInputChange}
-              className="w-full border text-center font-bold   py-2 rounded-md bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border px-4 focus:border-light-active dark:focus:border-dark-active outline-none"
+              className="w-full border  py-2 rounded-md  px-4  outline-none bg-input text-input-text mt-1"
             />
           </div>
           {/* price */}
           <div className="col-span-1">
-            <label htmlFor="productPrice" className="block">
-              Price
+            <label htmlFor="productPrice" className="block text-label">
+              Đơn giá
+              <span className="text-red-500">(*)</span>{" "}
             </label>
             <input
               type="text"
@@ -202,13 +207,14 @@ function CreateProductForm({
               id="productPrice"
               required
               onChange={handleInputChange}
-              className="w-full border text-right  py-2 rounded-md bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border px-4 focus:border-light-active dark:focus:border-dark-active outline-none"
+              className="w-full border  py-2 rounded-md  px-4  outline-none bg-input text-input-text mt-1"
             />
           </div>
           {/* type */}
           <div className="col-span-1">
-            <label htmlFor="productPrice" className="block">
-              Type
+            <label htmlFor="productPrice" className="block text-label">
+              Loại
+              <span className="text-red-500">(*)</span>{" "}
             </label>
             <input
               type="text"
@@ -216,23 +222,23 @@ function CreateProductForm({
               id="productType"
               required
               onChange={handleInputChange}
-              className="w-full border  py-2 rounded-md bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border px-4 focus:border-light-active dark:focus:border-dark-active outline-none"
+              className="w-full border  py-2 rounded-md  px-4  outline-none bg-input text-input-text mt-1"
             />
           </div>
           {/* category */}
           <div className="col-span-1">
             <label
               htmlFor="category"
-              className="block p-2 text-light-primary-text dark:text-dark-primary-text text-sm sm:text-base cursor-pointer "
+              className=" p-2  cursor-pointer text-label"
             >
-              Select Category <span className="text-red-500">(*)</span>
+              Chọn danh mục<span className="text-red-500">(*)</span>
             </label>
             {categories && categories.length > 0 ? (
               <select
                 name="category"
                 id="category"
                 onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full border text-center capitalize py-2 rounded-md bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border px-4"
+                className="w-full border  py-2 rounded-md  px-4  outline-none bg-input text-input-text mt-1"
               >
                 {categories.map((item) => (
                   <option value={item._id} key={item._id}>
@@ -241,27 +247,28 @@ function CreateProductForm({
                 ))}
               </select>
             ) : (
-              <p>Please create a category</p>
+              <p>Vui lòng chọn 1 danh mục</p>
             )}
           </div>
           {/* desc */}
           <div className="col-span-2">
-            <label htmlFor="productDesc" className="block">
-              Description
+            <label htmlFor="productDesc" className="block text-label">
+              Mô tả sản ph ẩm
+              <span className="text-red-500">(*)</span>{" "}
             </label>
             <textarea
               name="description"
               id="productDesc"
               required
               onChange={handleInputChange}
-              className="w-full border  py-2 rounded-md bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border px-4 focus:border-light-active dark:focus:border-dark-active outline-none"
+              className="w-full border  py-2 rounded-md  px-4  outline-none bg-input text-input-text mt-1"
             />
           </div>
           {/* imgs */}
           <div className="grid grid-cols-2 col-span-2 gap-2">
             <div className="col-span-2 ">
-              <label htmlFor="productImages" className="block">
-                Add Images
+              <label htmlFor="productImages" className="block text-label">
+                Thêm hình ản h<span className="text-red-500">(*)</span>{" "}
               </label>
               <input
                 name="images"
@@ -271,7 +278,7 @@ function CreateProductForm({
                 required
                 multiple
                 onChange={handleFileChange}
-                className="w-full border  py-2 rounded-md bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text border-light-input-border dark:border-dark-input-border px-4 focus:border-light-active dark:focus:border-dark-active outline-none"
+                className="w-full border  py-2 rounded-md  px-4  outline-none bg-input text-input-text mt-1"
               />
             </div>
             <div className="max-h-[300px] w-full col-span-2 flex items-center justify-start gap-2 ">
@@ -288,10 +295,10 @@ function CreateProductForm({
           </div>
         </div>
         <button
-          className="col-span-2   w-full bg-light-btn-bg dark:bg-dark-bg-btn text-light-btn-text dark:text-dark-btn-text p-2 rounded-md hover:bg-orange-500 transition-all"
+          className="col-span-2   w-full p-2 rounded-md transition-all bg-button-primary hover:bg-button-success"
           type="submit"
         >
-          Create
+          Tạo
         </button>
       </form>
     </section>

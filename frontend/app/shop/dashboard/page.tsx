@@ -74,7 +74,7 @@ function ShopDashboard() {
                 className="text-sm sm:text-base w-[20px]"
               />
             </span>
-            <p className="hidden sm:block">Products</p>
+            <p className="hidden sm:block"> sản phẩm</p>
           </button>
           <button
             className="flex items-center gap-2 px-3 py-2 my-2 justify-start  bg-light-sidebar-btn text-light-sidebar-btn-text dark:bg-dark-sidebar-btn dark:text-dark-sidebar-btn-text text-sm sm:text-base rounded-md w-full hover:opacity-85 hover:scale-105 duration-200 transition-all hover:translate-x-2"
@@ -86,7 +86,7 @@ function ShopDashboard() {
                 className="text-sm sm:text-base w-[20px]"
               />
             </span>
-            <p className="hidden sm:block">Orders</p>
+            <p className="hidden sm:block">Đơn hàng</p>
           </button>
           <button
             className="flex items-center gap-2 px-3 py-2 my-2 justify-start  bg-light-sidebar-btn text-light-sidebar-btn-text dark:bg-dark-sidebar-btn dark:text-dark-sidebar-btn-text text-sm sm:text-base rounded-md w-full hover:opacity-85 hover:scale-105 duration-200 transition-all hover:translate-x-2"
@@ -98,7 +98,7 @@ function ShopDashboard() {
                 className="text-sm sm:text-base w-[20px]"
               />
             </span>
-            <p className="hidden sm:block">Promotions</p>
+            <p className="hidden sm:block">Quảng cáo</p>
           </button>
           <button
             className="flex items-center gap-2 px-3 py-2 my-2 justify-start  bg-light-sidebar-btn text-light-sidebar-btn-text dark:bg-dark-sidebar-btn dark:text-dark-sidebar-btn-text text-sm sm:text-base rounded-md w-full hover:opacity-85 hover:scale-105 duration-200 transition-all hover:translate-x-2"
@@ -110,7 +110,7 @@ function ShopDashboard() {
                 className="text-sm sm:text-base w-[20px]"
               />
             </span>
-            <p className="hidden sm:block">Chat</p>
+            <p className="hidden sm:block">Trò chuyện</p>
           </button>
 
           {/* category */}
@@ -124,7 +124,7 @@ function ShopDashboard() {
                 className="text-sm sm:text-base w-[20px]"
               />
             </span>
-            <p className="hidden sm:block">Category</p>
+            <p className="hidden sm:block">Danh mục</p>
           </button>
         </nav>
         <div className="sm:col-span-10 col-span-full ">{renderComponent()}</div>

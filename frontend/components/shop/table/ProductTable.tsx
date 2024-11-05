@@ -9,26 +9,26 @@ function ProductTable({ products }: { products: IProduct[] }) {
       <table className="min-w-full bg-white shadow-md rounded-lg">
         <thead>
           <tr>
-            <th className="px-4 py-2 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-              Image
+            <th className="px-4 py-2 bg-secondary-200 text-left text-xs font-semibold text-label uppercase tracking-wider">
+              Hình ảnh
             </th>
-            <th className="px-4 py-2 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-              Name
+            <th className="px-4 py-2 bg-secondary-200 text-left text-xs font-semibold text-label uppercase tracking-wider">
+              Tên sản phẩm
             </th>
-            <th className="px-4 py-2 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-              SKU
+            <th className="px-4 py-2 bg-secondary-200 text-left text-xs font-semibold text-label uppercase tracking-wider">
+              Mã sản phẩm
             </th>
-            <th className="px-4 py-2 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-              In Stock
+            <th className="px-4 py-2 bg-secondary-200 text-left text-xs font-semibold text-label uppercase tracking-wider">
+              Số lượng trong kho
             </th>
-            <th className="px-4 py-2 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-              Price
+            <th className="px-4 py-2 bg-secondary-200 text-left text-xs font-semibold text-label uppercase tracking-wider">
+              Đơn giá
             </th>
-            <th className="px-4 py-2 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-              Description
+            <th className="px-4 py-2 bg-secondary-200 text-left text-xs font-semibold text-label uppercase tracking-wider">
+              Mô tả
             </th>
-            <th className="px-4 py-2 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-              Actions
+            <th className="px-4 py-2 bg-secondary-200 text-left text-xs font-semibold text-label uppercase tracking-wider">
+              Thao tác
             </th>
           </tr>
         </thead>

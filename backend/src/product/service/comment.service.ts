@@ -7,27 +7,38 @@ import { responseError } from 'src/utils/normalize.util';
 import { createProductRatingDto } from '../dtos/createProductRatingDto.dto';
 import { ProductService } from './product.service';
 import { UserService } from 'src/auth/service/user.service';
+import { ClassifyService } from 'src/common/classify.service';
 @Injectable()
 export class ProductReviewService {
     constructor(@InjectModel(Comment.name) private CommentModel: Model<Comment>,
         private readonly ProductService: ProductService,
-        private readonly UserService: UserService
+        private readonly UserService: UserService,
+        private readonly classifyService: ClassifyService
     ) { }
 
 
     async CreateProductRating(createRatingForm: createProductRatingDto, imagePaths: string[]) {
         try {
-            console.log(createRatingForm);
-            console.log(imagePaths);
-
-
-            const { product_id, rating } = createRatingForm
+            // console.log(createRatingForm);
+            // console.log(imagePaths);
+            const { product_id, content } = createRatingForm
             // tìm sản phẩm cần đánh giá
             const ratedProduct = await this.ProductService.GetOneProduct(product_id)
+            if (!ratedProduct) {
+                throw new Error("Product not found");
+            }
+            // phân loại comment đầu vào
+            const classedComment = await this.classifyService.LOGISTIC([content]);
+            if (!classedComment || !classedComment[0]?.label) {
+                throw new Error("Classification failed or invalid label");
+            }
+            const label = classedComment[0].label;
+
             // tạo đánh giá mới
             const newReview = new this.CommentModel({
                 ...createRatingForm,
                 review_img: imagePaths,
+                rating: label
 
             })
             await newReview.save()
@@ -36,12 +47,16 @@ export class ProductReviewService {
             // tăng lượt đánh giá và tính lại điểm đánh giá trung bình của sản phẩm
             ratedProduct.ratingCount += 1
 
-            // Tính toán lại điểm đánh giá trung bình
-            // Lấy tổng điểm đánh giá hiện tại và thêm điểm mới vào
-            const totalRating = ratedProduct.averageRating * (ratedProduct.ratingCount - 1) + rating;
-            ratedProduct.averageRating = Math.min(totalRating / ratedProduct.ratingCount, 5); // Giới hạn tối đa là 5
+            // Cập nhật số lượng đánh giá dựa trên label
+            if (label < 3) {
+                ratedProduct.badCount += 1;
+            } else if (label > 3) {
+                ratedProduct.goodCount += 1;
+            } else {
+                ratedProduct.neutralCount += 1;
+            }
             await ratedProduct.save()
-            return { message: "thanks for review" }
+            return { message: "thanks for review", newReview }
         } catch (error) {
             console.log("Create product rating error", error);
 

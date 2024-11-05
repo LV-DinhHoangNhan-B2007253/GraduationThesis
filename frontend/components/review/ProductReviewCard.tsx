@@ -22,38 +22,29 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
   }, [reviewId]);
 
   if (isLoading) {
-    return <div>Loading review...</div>; // Chỉ hiển thị loading khi isLoading = true
+    return <div className="text-center p-4">Loading review...</div>; // Chỉ hiển thị loading khi isLoading = true
   }
 
   if (!review) {
-    return <div>No review found.</div>; // Trường hợp không có review
+    return <div className="text-center p-4">No review found.</div>; // Trường hợp không có review
   }
 
-  // Render số sao tương ứng với điểm rating
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <svg
-        key={index}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill={index < rating ? "currentColor" : "none"}
-        stroke="currentColor"
-        className={`h-5 w-5 ${
-          index < rating ? "text-yellow-500" : "text-gray-300"
-        }`}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M12 17.27l4.15 2.18-1.04-4.56 3.49-3.03-4.62-.4L12 6.42l-1.98 4.84-4.62.4 3.49 3.03-1.04 4.56z"
-        />
-      </svg>
-    ));
+  // Render cảm xúc tương ứng với điểm rating
+  const renderEmotion = (rating: number) => {
+    // Mảng biểu tượng cảm xúc từ 1 đến 5 sao
+    const emotions = ["😡", "😟", "😊", "😘", "😍"];
+
+    // Chọn biểu tượng cảm xúc phù hợp với điểm rating
+    return (
+      <span className="text-2xl">
+        {emotions[rating - 1] || emotions[0]}{" "}
+        {/* Đảm bảo không vượt ngoài mảng */}
+      </span>
+    );
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4 my-1 wf ">
+    <div className=" rounded-lg p-4 my-1 w-full border border-primary-border bg-card-bg ">
       <div className="flex items-start">
         {/* Avatar và thông tin người dùng */}
         <div className="flex-shrink-0">
@@ -72,8 +63,10 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
           {/* Tên và ngày */}
           <div className="flex justify-between items-center">
             <div>
-              <h4 className="text-lg font-semibold">{review.user_name}</h4>
-              <p className="text-sm text-gray-500">
+              <h4 className="text-lg font-semibold text-light-primary-text dark:text-dark-primary-text ">
+                {review.user_name}
+              </h4>
+              <p className="text-sm  text-light-primary-text dark:text-dark-primary-text ">
                 {review.date
                   ? new Date(review.date).toLocaleString()
                   : "No date available"}
@@ -82,13 +75,17 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
 
             {/* Đánh giá sao */}
             <div className="flex items-center">
-              {renderStars(review.rating)}
-              <span className="ml-2 text-gray-600">{review.rating}/5</span>
+              <div>{renderEmotion(review.rating)}</div>
+              {/* <span className="ml-2  text-light-primary-text dark:text-dark-primary-text ">
+                {review.rating}/5w
+              </span> */}
             </div>
           </div>
 
           {/* Nội dung review */}
-          <p className="mt-4 text-gray-700">{review.content}</p>
+          <p className="mt-4 text-light-primary-text dark:text-dark-primary-text ">
+            {review.content}
+          </p>
 
           {/* Hình ảnh review nếu có */}
           {review.review_img && review.review_img.length > 0 && (

@@ -3,6 +3,7 @@
 import ProductCard from "@/components/areaDetail/ProductCard";
 import CategoryList from "@/components/category/CategoryList";
 import ShopProductCard from "@/components/shop/ShopProductCard";
+import ListCardSekelecton from "@/components/skelecton/ListCardSekelecton";
 import { ICategory } from "@/interfaces/category.interface";
 import { IProduct } from "@/interfaces/product.interface";
 import MainLayout from "@/layouts/MainLayout";
@@ -42,10 +43,10 @@ export default function Home() {
     <MainLayout>
       <div className="sm:mx-40 py-2 mx-1">
         {/* recomment */}
-        {recommentedProducts && (
-          <section className="sm:mb-14 mb-4">
-            <h1 className="tracking-widest my-5 uppercase font-bold text-base sm:text-2xl">
-              Top Products
+        {recommentedProducts ? (
+          <section className="sm:mb-14 mb-4" id="outstanding">
+            <h1 className="tracking-widest my-5 uppercase font-bold text-base sm:text-2xl text-heading">
+              Sản Phẩm Nổi Bật
             </h1>
             <div className=" grid sm:grid-cols-4 grid-cols-2  gap-2 ">
               {recommentedProducts.map((product) => (
@@ -55,18 +56,22 @@ export default function Home() {
               ))}
             </div>
           </section>
+        ) : (
+          <ListCardSekelecton />
         )}
         {/* categories */}
-        {categories && (
-          <div>
+        {categories ? (
+          <section id="categories">
             <CategoryList categories={categories} />
-          </div>
+          </section>
+        ) : (
+          <ListCardSekelecton />
         )}
         {/* all product */}
-        {products && (
-          <section>
-            <h1 className="tracking-widest my-5 uppercase font-bold text-base sm:text-2xl text-center py-4 bg-light-modal-popup dark:bg-dark-modal-popup text-orange-600 border-b-4 border-orange-700">
-              daily discover
+        {products ? (
+          <section id="all-product">
+            <h1 className="tracking-widest my-5 uppercase font-bold text-base sm:text-2xl text-center  py-4 text-heading border-b-4 border-primary-700">
+              Khám Phá
             </h1>
             <div className="grid sm:grid-cols-6 grid-cols-4 gap-2">
               {products.slice(0, 24).map((pro) => (
@@ -78,12 +83,14 @@ export default function Home() {
             <div className="flex justify-center items-center">
               <Link
                 href={"/product/all"}
-                className="w-1/3 mt-4 block text-center font-light tracking-widest hover:underline transition-all duration-200 py-3 bg-light-modal-popup dark:bg-dark-modal-popup"
+                className="w-1/3 mt-4 block text-center font-light tracking-widest hover:underline transition-all duration-200 py-3 text-primary-500 hover:text-accent"
               >
-                View all
+                Tất cả sản phẩm
               </Link>
             </div>
           </section>
+        ) : (
+          <ListCardSekelecton />
         )}
       </div>
     </MainLayout>
