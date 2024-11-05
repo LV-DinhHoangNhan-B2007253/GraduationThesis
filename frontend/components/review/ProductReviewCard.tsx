@@ -49,6 +49,7 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
         {/* Avatar và thông tin người dùng */}
         <div className="flex-shrink-0">
           <img
+            loading="lazy"
             className="w-16 h-16 rounded-full object-cover"
             src={
               review.user_avatar && review.user_avatar.trim() !== ""
@@ -92,6 +93,7 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
             <div className="mt-4 grid grid-cols-10 items-center gap-1">
               {review.review_img.map((img, index) => (
                 <img
+                  loading="lazy"
                   key={index}
                   src={img}
                   alt={`Review image ${index}`}

@@ -10,6 +10,7 @@ function CategoryCard({ category }: { category: ICategory }) {
     >
       <div className=" flex justify-center items-center w-full p-1">
         <img
+          loading="lazy"
           src={`${category.banner ? category.banner : "./category.png"}`}
           alt="Category image"
           className=" object-cover sm:max-w-[80px] sm:max-h-[80px] max-w-[30px] max-h-[30px] rounded-full"

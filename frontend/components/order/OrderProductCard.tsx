@@ -33,6 +33,7 @@ function OrderProductCard({ productId, qty, price }: OrderProductCardProps) {
       <div className="sm:flex justify-between items-center px-2 sm:px-4 border-b border-gray-100">
         <div className="flex sm:max-w-[500px] w-full gap-2 sm:gap-4 my-1 items-center">
           <img
+            loading="lazy"
             src={`${product?.images[0]}`}
             alt="Product Image"
             className="w-[50px] sm:w-[100px] object-cover"

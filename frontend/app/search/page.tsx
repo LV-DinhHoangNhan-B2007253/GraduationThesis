@@ -46,6 +46,7 @@ function SearhPage() {
             <section className=" sm:mt-10 my-4 py-4 px-6 bg-light-modal-popup dark:bg-dark-modal-popup shadow rounded flex justify-between items-center">
               <div className=" flex justify-start gap-3 items-center">
                 <img
+                  loading="lazy"
                   src={`${shop.logoUrl}`}
                   alt="Shop logo"
                   className="w-[100px] h-[100px] rounded-full"
@@ -78,7 +79,7 @@ function SearhPage() {
         </div>
       ) : (
         <div className="flex justify-center items-center">
-          <img src="/emptycart.png" alt="" />
+          <img src="/emptycart.png" alt="" loading="lazy" />
         </div>
       )}
     </MainLayout>

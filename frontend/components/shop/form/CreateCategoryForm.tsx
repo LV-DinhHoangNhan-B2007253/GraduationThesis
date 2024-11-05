@@ -102,6 +102,7 @@ function CreateCategoryForm({
           {formData.preview && (
             <div className="mt-2">
               <img
+                loading="lazy"
                 src={formData.preview}
                 alt="Banner preview"
                 className="h-72 w-full object-cover rounded-md mb-2"

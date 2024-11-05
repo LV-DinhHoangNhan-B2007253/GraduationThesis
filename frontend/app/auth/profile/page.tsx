@@ -193,6 +193,7 @@ function Profile() {
                 <div className="flex justify-between items-center py-4">
                   <div className="flex justify-between items-center gap-3">
                     <img
+                      loading="lazy"
                       src={userInfo?.avatarUrl || DefaultImage.src}
                       alt="Avatar"
                       className="w-[95px] rounded-full shadow-md"

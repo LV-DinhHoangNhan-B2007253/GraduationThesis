@@ -116,6 +116,7 @@ function CreateNewShop() {
             <div className="relative w-full h-[400px] hover:brightness-95 duration-200 mb-12">
               {bannerPreview ? (
                 <img
+                  loading="lazy"
                   src={bannerPreview}
                   alt="Banner"
                   className="w-full h-full object-cover "
@@ -137,6 +138,7 @@ function CreateNewShop() {
               <div className="absolute -bottom-[40] left-[120] transform -translate-x-1/2 w-[150px] h-[150px] rounded-full border border-black">
                 {logoPreview ? (
                   <img
+                    loading="lazy"
                     src={logoPreview}
                     alt="Logo"
                     className="w-full h-full object-cover rounded-full"

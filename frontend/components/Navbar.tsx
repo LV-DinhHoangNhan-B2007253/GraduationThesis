@@ -51,7 +51,12 @@ function Navbar() {
             <div className="flex items-center">
               <ThemeSwitch />
               <Link href={"/"} className=" hidden sm:block ">
-                <img src="/icon.png" alt="Home icon" className="w-10" />
+                <img
+                  src="/icon.png"
+                  alt="Home icon"
+                  className="w-10"
+                  loading="lazy"
+                />
               </Link>
             </div>
           </div>
@@ -59,7 +64,12 @@ function Navbar() {
           {/* home icon */}
           <div className="relative flex items-center sm:justify-center sm:hidden flex-1 sm:flex-none justify-start">
             <Link href={"/"} className=" ">
-              <img src="/icon.png" alt="Home icon" className="w-10" />
+              <img
+                src="/icon.png"
+                alt="Home icon"
+                className="w-10"
+                loading="lazy"
+              />
             </Link>
           </div>
           {/* search bar */}

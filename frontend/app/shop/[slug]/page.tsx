@@ -95,6 +95,7 @@ function ShopInfo(props: any) {
         <section id="TopInfo" data-aos="fade-up">
           <div className="relative">
             <img
+              loading="lazy"
               src={shopInfo?.shopBanner}
               alt="Shop banner"
               className=" w-full h-[250px] object-cover "
@@ -102,6 +103,7 @@ function ShopInfo(props: any) {
             <div className="absolute bottom-2 left-8 p-4 backdrop-blur-md">
               <div className="flex justify-start items-center gap-3">
                 <img
+                  loading="lazy"
                   src={shopInfo?.logoUrl}
                   alt="shop logo"
                   className="w-[100px] rounded-full"
@@ -179,6 +181,8 @@ function ShopInfo(props: any) {
             <div key={promo._id} className="my-2">
               <Link href={`/shop/promotion/${promo._id}`}>
                 <img
+                    loading="lazy"
+
                   src={`${promo.promotion_banner}`}
                   alt="Promotion banner"
                   className="w-full h-[500px] object-cover"
@@ -211,6 +215,7 @@ function ShopInfo(props: any) {
         >
           <div className="sm:w-1/2 h-[300px] w-full">
             <img
+              loading="lazy"
               src={shopInfo?.shopBanner}
               alt="shop banner"
               className="w-full h-full object-cover rounded-sm"

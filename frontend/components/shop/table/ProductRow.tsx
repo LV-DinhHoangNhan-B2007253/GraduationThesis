@@ -83,6 +83,7 @@ function ProductRow({ product }: { product: IProduct }) {
       <tr className="hover:opacity-90 cursor-pointer bg-card-bg border-b border-borderb">
         <td className="px-4 py-2 whitespace-nowrap">
           <img
+            loading="lazy"
             src={product.images[0]}
             alt={product.name}
             className="h-12 w-12 object-cover rounded-md"

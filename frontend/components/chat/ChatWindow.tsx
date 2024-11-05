@@ -43,6 +43,7 @@ function ChatWindow() {
               onClick={() => handleChatSelect(chat)}
             >
               <img
+                loading="lazy"
                 src={
                   chat.receiverInfo.avatarUrl != ""
                     ? chat.receiverInfo.avatarUrl

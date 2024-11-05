@@ -90,6 +90,7 @@ function MakeRating({
           {/* product info */}
           <div className="flex justify-start gap-4  my-2">
             <img
+              loading="lazy"
               src={reviewedProduct.images[0]}
               alt="Product image"
               width={100}
@@ -124,6 +125,7 @@ function MakeRating({
                   {previewImages.map((img, index) => (
                     <div key={index} className="w-32 h-32 relative">
                       <img
+                        loading="lazy"
                         src={img}
                         alt={`Selected-${index}`}
                         className="w-full h-full object-cover rounded-lg border-light-card-border dark:border-dark-card-border shadow"

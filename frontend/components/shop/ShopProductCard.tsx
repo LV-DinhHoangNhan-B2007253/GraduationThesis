@@ -10,6 +10,7 @@ function ShopProductCard({ product }: { product: IProduct }) {
     >
       <div className="w-full max-h-[150px]">
         <img
+          loading="lazy"
           src={
             product.images && product.images.length > 0 ? product.images[0] : ""
           }

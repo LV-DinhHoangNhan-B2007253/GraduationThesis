@@ -242,7 +242,7 @@ function PromotionManageShop() {
                         onChange={() => handleProductSelect(product._id)}
                         className="mt-2"
                       />
-                      <img
+                      <img loading="lazy"
                         src={product.images[0]}
                         alt={product.name}
                         className="w-[100px] h-full object-cover rounded"

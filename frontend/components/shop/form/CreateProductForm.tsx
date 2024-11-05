@@ -285,6 +285,7 @@ function CreateProductForm({
               {previewUrls.map((img, index) => (
                 <div key={index}>
                   <img
+                    loading="lazy"
                     src={img}
                     alt={`${img.toString()}`}
                     className="w-[40px] h-[40px] object-cover rounded"

@@ -116,6 +116,7 @@ function PlaceOrder({
               </label>
             </div>
             <img
+              loading="lazy"
               src="/cash.png"
               alt="cash"
               className="w-full h-full object-contain "
@@ -136,6 +137,7 @@ function PlaceOrder({
               </label>
             </div>
             <img
+              loading="lazy"
               src="/vnpay.png"
               alt="cash"
               className="w-full h-full object-contain "
@@ -156,6 +158,7 @@ function PlaceOrder({
               </label>
             </div>
             <img
+              loading="lazy"
               src="/momo.png"
               alt="cash"
               className="w-full h-full object-contain "
@@ -176,6 +179,7 @@ function PlaceOrder({
               </label>
             </div>
             <img
+              loading="lazy"
               src="/zalo.png"
               alt="cash"
               className="w-full h-full object-contain "

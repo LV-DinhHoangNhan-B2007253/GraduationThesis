@@ -52,6 +52,7 @@ function WishlistProductCard({
   return (
     <div className="flex justify-between items-center px-5 py-4 bg-light-modal-popup dark:bg-dark-modal-popup rounded border-b border-gray-100 my-4">
       <img
+        loading="lazy"
         src={`${product?.images[0]}`}
         alt="Product Image"
         className="max-w-[100px] w-full rounded"

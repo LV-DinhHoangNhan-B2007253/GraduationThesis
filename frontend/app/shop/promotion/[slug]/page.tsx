@@ -29,6 +29,7 @@ function page(props: any) {
           <div>
             <div>
               <img
+                loading="lazy"
                 src={`${promotionDetail.promotion_banner}`}
                 alt="Promotion banner"
                 className="w-full sm:h-[400px] h-[300px] object-cover my-3"

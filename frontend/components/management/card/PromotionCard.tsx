@@ -70,6 +70,7 @@ function PromotionCard({ promo }: { promo: IPromotion }) {
         <div>
           {/* Hiển thị banner và cho phép thay đổi */}
           <img
+            loading="lazy"
             src={
               typeof editPromo.promotion_banner === "string"
                 ? editPromo.promotion_banner

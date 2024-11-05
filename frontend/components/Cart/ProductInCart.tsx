@@ -87,6 +87,7 @@ function ProductInCart({
       <div className="flex justify-between gap-2 items-center">
         <div className="flex gap-2 flex-1 items-center">
           <img
+            loading="lazy"
             src={`${product?.images[0]}`}
             alt="Product Image"
             className="w-[80px] h-[80px]"

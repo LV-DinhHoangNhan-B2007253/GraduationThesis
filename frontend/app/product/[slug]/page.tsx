@@ -157,6 +157,7 @@ function ProductDetail(props: any) {
                 <Slider {...settings} className="h-[300px] sm:h-full">
                   {product.images.map((img, index) => (
                     <img
+                      loading="lazy"
                       key={index}
                       src={`${img}`}
                       alt="Product Image"
@@ -311,6 +312,7 @@ function ProductDetail(props: any) {
               <div className="mt-16 flex justify-start gap-4  p-6 text-sm sm:text-base border border-primary-border rounded bg-card-bg">
                 <div className="w-[100px] ">
                   <img
+                    loading="lazy"
                     src={shopInfo?.logoUrl}
                     alt="Shop Logo"
                     className="rounded-full object-cover"
@@ -362,6 +364,7 @@ function ProductDetail(props: any) {
                   >
                     <Link href={`/product/${r._id}`}>
                       <img
+                        loading="lazy"
                         src={`${r.images[0]}`}
                         alt="Related product image"
                         className="w-full h-[200px] object-cover"
