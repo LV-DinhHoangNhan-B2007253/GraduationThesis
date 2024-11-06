@@ -20,7 +20,7 @@ function GoogleButton() {
         className="block"
         color="#f9c74f"
       />
-      <p className="block"> Tiếp tụic bằng tài khoản Google</p>
+      <p className="block"> Tiếp tục bằng tài khoản Google</p>
     </button>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import ProductList from "@/components/areaDetail/ProductList";
+import ListCardSekelecton from "@/components/skelecton/ListCardSekelecton";
 import { IProduct } from "@/interfaces/product.interface";
 import MainLayout from "@/layouts/MainLayout";
 import { GetAllProducts } from "@/services/product.service";
@@ -29,7 +30,7 @@ function AllProduct() {
           <ProductList productList={products} />
         </div>
       ) : (
-        <p>loaiong</p>
+        <ListCardSekelecton />
       )}
     </MainLayout>
   );

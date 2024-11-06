@@ -107,7 +107,7 @@ function Login() {
                     : "bg-gray-400 cursor-not-allowed"
                 } py-2 px-1 rounded-[40px] w-[50%] sm:w-full mt-4`}
               >
-                Login
+                Đăng Nhập
               </button>
             </div>
           </form>

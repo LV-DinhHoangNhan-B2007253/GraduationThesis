@@ -184,7 +184,7 @@ function Navbar() {
                     href={"/auth/login"}
                     className="px-3 py-1 border rounded-md bg-primary-400    hover:bg-accent"
                   >
-                    Login
+                    Đăng nhập
                   </Link>
                 </div>
               </div>
@@ -216,19 +216,19 @@ function Navbar() {
       {/* botom nav */}
       <div className="flex items-center justify-center gap-32 py-1 border-borderb border-b">
         <Link
-          className="text-sm uppercase hover:text-accent text-secondary-400"
+          className="text-sm uppercase hover:text-accent font-bold"
           href={"#outstanding"}
         >
           Nổi bật
         </Link>
         <Link
-          className="text-sm uppercase hover:text-accent text-secondary-400"
+          className="text-sm uppercase hover:text-accent font-bold"
           href={"#all-product"}
         >
           Sản phẩm
         </Link>
         <Link
-          className="text-sm uppercase hover:text-accent text-secondary-400"
+          className="text-sm uppercase hover:text-accent font-bold"
           href={"#categories"}
         >
           Danh mục

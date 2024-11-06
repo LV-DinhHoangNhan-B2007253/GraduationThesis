@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Baskervville, Gowun_Batang, Inria_Sans } from "next/font/google";
+import {
+  Baskervville,
+  Gowun_Batang,
+  Inria_Sans,
+  Open_Sans,
+  Poppins,
+  Quicksand,
+} from "next/font/google";
 // style
 import "@/styles/globals.css";
 // components
@@ -22,7 +29,7 @@ import { AOSInit } from "@/components/aos";
 config.autoAddCss = false;
 
 // fonts
-const basker = Inria_Sans({
+const basker = Quicksand({
   subsets: ["latin"],
   weight: "400",
   style: ["normal"],

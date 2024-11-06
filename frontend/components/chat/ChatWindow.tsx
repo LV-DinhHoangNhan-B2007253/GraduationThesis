@@ -34,7 +34,7 @@ function ChatWindow() {
   return (
     <div className="grid grid-cols-12 h-full max-h-[85vh] min-h-[85vh] gap-1">
       {/* Phần danh sách người dùng chat */}
-      <div className="col-span-3 bg-secondary-300/15 overflow-y-auto h-full">
+      <div className="col-span-3 bg-chat-panel overflow-y-auto h-full">
         {chats &&
           chats.map((chat) => (
             <div

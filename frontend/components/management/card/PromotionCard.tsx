@@ -68,7 +68,7 @@ function PromotionCard({ promo }: { promo: IPromotion }) {
     >
       <div className="flex">
         <div>
-          {/* Hiển thị banner và cho phép thay đổi */}
+          w{/* Hiển thị banner và cho phép thay đổi */}
           <img
             loading="lazy"
             src={

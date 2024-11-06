@@ -4,6 +4,8 @@ import {
   ISingleMess,
 } from "@/interfaces/chat.interface";
 import { RootState } from "@/redux/store";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -83,7 +85,7 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
   }, [receiverInfo._id, userInfo?._id]);
 
   return (
-    <div className="h-full ">
+    <div className="h-full bg-chat-panel">
       {/* Hiển thị danh sách tin nhắn */}
       <div className="overflow-y-auto h-[90%] mx-2">
         {message.length > 0 ? (
@@ -97,8 +99,8 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
               <div
                 className={`inline-block min-w-[150px] text-wrap px-4 py-2 rounded-lg ${
                   message.sender_id === userInfo?._id
-                    ? " bg-secondary-500 text-white"
-                    : "bg-card-bg "
+                    ? " bg-secondary-300 text-white"
+                    : "bg-bot-msg text-black "
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -107,7 +109,7 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
                       ? "You"
                       : message.sender_name
                   }`}</p>
-                  <p className="text-xs text-label">
+                  <p className="text-xs text-gray-500">
                     {new Date(message.timestamp).toLocaleTimeString()}
                   </p>
                 </div>
@@ -127,7 +129,7 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
       </div>
 
       {/* Ô nhập tin nhắn */}
-      <div className="flex items-center p-2 border-t border-borderb h-[10%]">
+      <div className="flex items-center p-2 border-t border-borderb h-[10%] bg-chat-input">
         <input
           type="text"
           value={inputSendMessage}
@@ -143,9 +145,9 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
 
         <button
           onClick={handleSendMessage}
-          className="ml-2 bg-secondary-500 text-white px-4 py-2 rounded-md"
+          className="ml-2 bg-secondary-500 text-white px-4 py-2 rounded-md transition-all duration-200 hover:bg-accent"
         >
-          Gửi
+          <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </div>
     </div>

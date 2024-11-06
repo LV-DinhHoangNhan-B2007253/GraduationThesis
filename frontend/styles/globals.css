@@ -25,6 +25,10 @@
       --primary-border:#e9ecef;
       --card-bg:#f8f9fa;
       --product-card:#edf2f4;
+      --bot-msg:#ffffff;
+      --chat-panel:#f1faee;
+      --chat-input:#e9edc9
+
     }
     .dark {
       --text: #f2f9eb;
@@ -45,6 +49,10 @@
       --card-bg:#1b263b;
       --product-card:#2b2d42;
       --border-bottom-color:#343a40;
+      --bot-msg:#e5e5e5;
+      --chat-panel:#003049;
+      --chat-input:#0f4c5c
+
 
     }
 }

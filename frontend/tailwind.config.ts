@@ -41,7 +41,10 @@ const config: Config = {
         'button-success': 'var(--button-success)',
         'primary-border': 'var(--primary-border)',
         'card-bg': 'var(--card-bg)',
-        'product-card': 'var(--product-card)'
+        'product-card': 'var(--product-card)',
+        'bot-msg': 'var(--bot-msg)',
+        'chat-panel': 'var(--chat-panel)',
+        'chat-input': 'var(--chat-input)'
 
       },
       fontSize: {

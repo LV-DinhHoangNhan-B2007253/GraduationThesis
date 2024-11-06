@@ -4,7 +4,7 @@ import ChatWindow from "@/components/chat/ChatWindow";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { faFacebookMessenger } from "@fortawesome/free-brands-svg-icons";
-import { faMessage } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { button } from "@nextui-org/react";
 import { useState } from "react";
@@ -31,12 +31,14 @@ function MainLayout({ children }: { children: React.ReactNode }) {
       {/* toggle chat window */}
       {isOpenChatWindow ? (
         <div className=" bottom-0 right-0 z-[1000] top-3/4 backdrop-blur-md rounded shadow-md left-1/2 fixed ">
-          <button
-            onClick={() => setIsOpenChatWindow(false)}
-            className="px-4 py-1 w-full text-right bg-secondary-500 text-white hover:text-red-500 font-bold rounded-t-md"
-          >
-            X
-          </button>
+          <div className="flex justify-end bg-chat-input rounded-t-md">
+            <button
+              onClick={() => setIsOpenChatWindow(false)}
+              className=" text-center px-3 hover:text-red-700 text-base "
+            >
+              <FontAwesomeIcon icon={faClose} />
+            </button>
+          </div>
           <div className="">
             <ChatWindow />
           </div>
@@ -57,12 +59,13 @@ function MainLayout({ children }: { children: React.ReactNode }) {
       {isOpenChatbot ? (
         <div className=" bottom-0 right-0 z-[1000] top-3/4 backdrop-blur-md rounded shadow-md left-1/2 fixed ">
           <div className="flex items-center justify-between bg-secondary-500  rounded-t-md px-2 py-2">
-            <p>AikaBot-Chatbot hỗ trợ khách hàng</p>
+            <h1 className="font-bold tracking-widest ">Louis-Bot</h1>
+
             <button
               onClick={() => setIsOpenChatbot(false)}
               className="  text-white hover:text-red-500 font-bold"
             >
-              X
+              <FontAwesomeIcon icon={faClose} />
             </button>
           </div>
           <div className="h-[500px]">
