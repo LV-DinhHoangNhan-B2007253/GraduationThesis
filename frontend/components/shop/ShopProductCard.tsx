@@ -1,4 +1,6 @@
 import { IProduct } from "@/interfaces/product.interface";
+import { faMoneyBill1Wave } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React from "react";
 
@@ -25,16 +27,30 @@ function ShopProductCard({ product }: { product: IProduct }) {
           </p>
           <p className="text-price-text font-bold text-center sm:text-end">
             {product.price.toLocaleString()}{" "}
-            <span className="font-bold text-primary-500">$</span>
+            <span className="text-green-600 font-bold">
+              <FontAwesomeIcon icon={faMoneyBill1Wave} />
+            </span>
           </p>
         </div>
-        <div className="text-light-primary-text dark:text-dark-primary-text text-small sm:text-sm sm:flex justify-between items-center">
+        <div className="text-light-primary-text dark:text-dark-primary-text text-sm sm:text-small sm:flex justify-between items-center">
           {product.averageRating === 0 ? (
-            <p>chưa có đánh giá</p>
+            <p className="text-[8px] sm:text-[10px] font-light">
+              chưa có đánh giá
+            </p>
           ) : (
-            <p>💬{product.comments.length}</p>
+            <p>
+              💬{" "}
+              <span className="font-bold text-sm text-green-600">
+                {product.comments.length}
+              </span>
+            </p>
           )}
-          <p>{product.sold_quantity} đã bán</p>
+          <p className="text-[8px] sm:text-[10px] font-light">
+            <span className="font-bold text-sm text-green-600">
+              {product.sold_quantity}
+            </span>{" "}
+            đã bán
+          </p>
         </div>
       </div>
     </Link>

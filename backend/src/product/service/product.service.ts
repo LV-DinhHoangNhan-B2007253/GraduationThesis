@@ -365,6 +365,8 @@ export class ProductService {
 
     async getAllProductOfShop(shop_id: string): Promise<Product[]> {
         try {
+            console.log(typeof shop_id);
+
             const products = await this.ProductModel.find({ shop_owner_id: new Types.ObjectId(shop_id) })
             return products
         } catch (error) {

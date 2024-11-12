@@ -48,6 +48,11 @@ export class PromotionService {
     async GetPromotionsOfShop(shopId: string): Promise<Promotion[]> {
         try {
             const promos = await this.PromotionModel.find({ shop_id: shopId });
+            console.log(promos);
+            console.log(typeof promos[0].startDate);
+
+
+
             return promos;
         } catch (error) {
             responseError(error);

@@ -29,7 +29,7 @@ function OrderProductCard({ productId, qty, price }: OrderProductCardProps) {
   }, []);
 
   return (
-    <div className=" bg-light-modal-popup dark:bg-dark-modal-popup px-4 sm:px-6 py-4 sm:py-2 font-bold text-small sm:text-base text-light-primary-text dark:text-dark-primary-text rounded-md dark:shadow-md ">
+    <div className=" px-4 sm:px-6 py-4 sm:py-2 font-bold text-small sm:text-base  rounded-md dark:shadow-md bg-card-bg ">
       <div className="sm:flex justify-between items-center px-2 sm:px-4 border-b border-gray-100">
         <div className="flex sm:max-w-[500px] w-full gap-2 sm:gap-4 my-1 items-center">
           <img

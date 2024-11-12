@@ -1,6 +1,7 @@
 "use client";
 
 import CategoryCard from "@/components/category/CategoryCard";
+import ChatBox from "@/components/chat/ChatBox";
 import ShopProductCard from "@/components/shop/ShopProductCard";
 import ShopSaleList from "@/components/shop/ShopSaleList";
 import { IUser } from "@/interfaces/auth.interface";
@@ -8,25 +9,29 @@ import { ICategory } from "@/interfaces/category.interface";
 import { IProduct } from "@/interfaces/product.interface";
 import { IPromotion } from "@/interfaces/promotion.interface";
 import MainLayout from "@/layouts/MainLayout";
+import { RootState } from "@/redux/store";
 import { GetCategoryAndProductByShopId } from "@/services/category.service";
 import { GetAllProductsOfShop } from "@/services/product.service";
 import { GetPromotionsOfShop } from "@/services/promotion.service";
 import { GetShopInfoByUserId } from "@/services/shop.service";
 import { GetUserInfoById } from "@/services/user.service";
-import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleUp, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { UserInfo } from "os";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 function ShopInfo(props: any) {
   const ShopId = props.params.slug;
+  const { userInfo } = useSelector((state: RootState) => state.user);
+
   const [shopInfo, setShopInfo] = useState<IShop | null>(null);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [recommentProducts, setRecommentProducts] = useState<IProduct[]>([]);
   const [shopOwner, setShopOwner] = useState<IUser | null>(null);
   const [promotionList, setPromotionList] = useState<IPromotion[]>([]);
   const [categories, setCategories] = useState<ICategory[]>();
+  const [isChatbox, setIsChatBox] = useState<boolean>(false);
 
   //   dữ liệu cần lấy: thông tin shop, thông tin sản phẩm của shop, thanh điều hướng gồm: nổi bật (khuyến mãi, các sản phẩm ngẫu nhiểu), mục tât cả sản phẩm.
 
@@ -90,7 +95,21 @@ function ShopInfo(props: any) {
 
   return (
     <MainLayout>
-      <div className="sm:mx-48 mt-5 scroll-smooth">
+      <div className="sm:mx-48 mt-5 scroll-smooth relative">
+        {/* chat */}
+        {isChatbox ? (
+          <div className="fixed bottom-0 right-1 z-[500]  p-2 shadow-violet-500 shadow-2xl border border-primary-border backdrop-blur-2xl rounded">
+            <button
+              className="  px-2 py-1 text-center border border-primary-border rounded-sm bg-button-success hover:bg-button-warning text-white hover:text-red-50"
+              onClick={() => setIsChatBox(false)}
+            >
+              <FontAwesomeIcon icon={faClose} />
+            </button>
+            <ChatBox senderId={userInfo?._id} receiverId={shopInfo?.owner} />
+          </div>
+        ) : (
+          <></>
+        )}
         {/* banner logo */}
         <section id="TopInfo" data-aos="fade-up">
           <div className="relative">
@@ -118,7 +137,10 @@ function ShopInfo(props: any) {
                 </div>
               </div>
               <div className="mt-2">
-                <button className="w-full py-1 px-3 text-center bg-transparent border border-green-100 text-base font-bold uppercase hover:bg-green-400 duration-100">
+                <button
+                  onClick={() => setIsChatBox(true)}
+                  className="w-full py-1 px-3 text-center bg-transparent border border-green-100 text-base font-bold uppercase hover:bg-green-400 duration-100"
+                >
                   Chat
                 </button>
               </div>
@@ -128,25 +150,25 @@ function ShopInfo(props: any) {
         {/* nav */}
         <div className="flex justify-around items-center gap-5 text-light-primary-text dark:text-dark-primary-text mt-3 px-2 py-2 bg-light-modal-popup dark:bg-dark-modal-popup backdrop-blur-md ">
           <Link className="hover:text-blue-800 hover:underline" href={"#home"}>
-            Home
+            Trang chủ
           </Link>
           <Link className="hover:text-blue-800 hover:underline" href={"#sale"}>
-            On Sale
+            Đang trong chương trình
           </Link>
           <Link className="hover:text-blue-800 hover:underline" href={"#all"}>
-            All Products
+            Tất cả sản phẩm
           </Link>
           <Link
             className="hover:text-blue-800 hover:underline"
             href={"#contact"}
           >
-            Contact
+            Thông tin liên hệ
           </Link>
         </div>
         {/* recomment products */}
         <section id="home" data-aos="fade-left" className="my-3">
-          <h1 className="text-base sm:text-2xl text-light-primary-text dark:text-dark-primary-text mt-6 tracking-widest font-light">
-            You may also be interested in
+          <h1 className="text-base sm:text-2xl text-heading mt-6 tracking-widest font-light">
+            Có thể bạn sẽ thích
           </h1>
           <div className="grid grid-cols-6 gap-2">
             {recommentProducts.map((product, index) => (
@@ -159,8 +181,8 @@ function ShopInfo(props: any) {
         <>
           {categories && (
             <section>
-              <h1 className="text-base sm:text-2xl text-light-primary-text dark:text-dark-primary-text mt-6 tracking-widest font-light ">
-                Categories
+              <h1 className="text-base sm:text-2xl text-heading mt-6 tracking-widest font-light ">
+                Danh mục
               </h1>
               <div className="grid grid-cols-8 my-3">
                 {categories.map((cate, index) => (
@@ -173,16 +195,15 @@ function ShopInfo(props: any) {
           )}
         </>
         <section id="sale">
-          <h1 className="text-base sm:text-2xl text-light-primary-text dark:text-dark-primary-text mt-6 tracking-widest font-light">
-            Our Programs
+          <h1 className="text-base sm:text-2xl text-heading mt-6 tracking-widest font-light">
+            Chương trình
           </h1>
           {/* promotions  */}
           {promotionList.map((promo, index) => (
             <div key={promo._id} className="my-2">
               <Link href={`/shop/promotion/${promo._id}`}>
                 <img
-                    loading="lazy"
-
+                  loading="lazy"
                   src={`${promo.promotion_banner}`}
                   alt="Promotion banner"
                   className="w-full h-[500px] object-cover"
@@ -193,8 +214,8 @@ function ShopInfo(props: any) {
         </section>
 
         <section id="all">
-          <h1 className="text-base sm:text-2xl text-light-primary-text dark:text-dark-primary-text mt-6 tracking-widest font-light">
-            All Products
+          <h1 className="text-base sm:text-2xl text-heading mt-6 tracking-widest font-light">
+            Tất cả sản phẩm
           </h1>
           <div className="grid grid-cols-4 gap-1">
             {products.map((pro, index) => (

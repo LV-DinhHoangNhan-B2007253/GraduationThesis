@@ -12,7 +12,7 @@ export interface IComment {
     user_name: string,
     user_avatar: string,
     content: string,
-    rating: number,
+    rating: number, // rating -> lable
     review_img: string[]
     date: Date
 }

@@ -2,6 +2,7 @@ import { IPromotion } from "@/interfaces/promotion.interface";
 import { deletePromotion, UpdatePromotion } from "@/services/promotion.service";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import DatePicker from "react-date-picker";
 
 function PromotionCard({ promo }: { promo: IPromotion }) {
   // State để quản lý dữ liệu khi chỉnh sửa
@@ -20,6 +21,14 @@ function PromotionCard({ promo }: { promo: IPromotion }) {
     setEditPromo((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+  // Hàm để cập nhật ngày
+  const handleDateChange = (name: "startDate" | "endDate", date: Date) => {
+    const isoDate = date.toISOString(); // Chuyển ngày thành ISO string
+    setEditPromo((prev) => ({
+      ...prev,
+      [name]: isoDate, // Cập nhật giá trị ngày dưới dạng ISO string
     }));
   };
 
@@ -42,12 +51,15 @@ function PromotionCard({ promo }: { promo: IPromotion }) {
       if (data) {
         toast.success(`${data.message}`);
       }
-    } catch (error) {}
+      console.log(editPromo);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDeletePromotion = async () => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this promotion?"
+      "Bạn chắc chắc muốn xóa quảng cáo này chứ?"
     );
     if (confirmDelete) {
       try {
@@ -64,58 +76,98 @@ function PromotionCard({ promo }: { promo: IPromotion }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className=" p-2 bg-card-bg border border-primary-border rounded-md shadow-xl shadow-cyan-800"
+      className="w-full border border-primary-border h-full p-1 bg-card-bg  shadow rounded-md "
     >
-      <div className="flex">
-        <div>
-          w{/* Hiển thị banner và cho phép thay đổi */}
-          <img
-            loading="lazy"
-            src={
-              typeof editPromo.promotion_banner === "string"
-                ? editPromo.promotion_banner
-                : URL.createObjectURL(editPromo.promotion_banner)
-            }
-            alt="Promotion banner"
-            className="w-full h-[300px] object-cover rounded-t-md"
-          />
-          <div className="flex flex-col px-2">
-            <input
-              type="file"
-              name="promotion_banner"
-              onChange={handleFileChange}
-              className="my-2"
+      <div className="flex gap-2">
+        <div className="">
+          <div className="relative max-h-[200px]">
+            {/* Hiển thị banner và cho phép thay đổi */}
+            <img
+              loading="lazy"
+              src={
+                typeof editPromo.promotion_banner === "string"
+                  ? editPromo.promotion_banner
+                  : URL.createObjectURL(editPromo.promotion_banner)
+              }
+              alt="Promotion banner"
+              className="w-[250px] h-[200px]  border border-primary-border object-cover"
             />
-            <label
-              htmlFor="promotion_banner"
-              className="text-label capitalize text-sm"
+            {/* chọn ảnh */}
+            <div>
+              <input
+                type="file"
+                name="promotion_banner"
+                onChange={handleFileChange}
+                className="w-full h-full  absolute top-0 bottom-0 left-0 right-0   hover:cursor-pointer  opacity-0 bg-gray-800 hover:opacity-5"
+              />
+              <label
+                htmlFor="promotion_banner"
+                className="text-label capitalize text-sm"
+              ></label>
+            </div>
+          </div>
+          <div className="flex justify-around py-2 gap-1">
+            <button
+              type="submit"
+              className="bg-button-success text-white  rounded hover:bg-accent p-1 text-sm w-1/2"
             >
-              Banner quảng cáo
-            </label>
+              Lưu thay đổi
+            </button>
+            <button
+              type="button" // Thay vì type="submit" để không gửi form
+              onClick={handleDeletePromotion} // Gọi hàm xóa
+              className="bg-button-danger text-white rounded hover:bg-accent p-1 text-sm w-1/2"
+            >
+              Xóa quảng cáo
+            </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 flex-1 grid-rows-3 overflow-y-auto">
+        <div className=" flex-1">
           {/* Chỉnh sửa thông tin title */}
-          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
-            <label htmlFor="title" className="text-label capitalize text-sm">
-              Tên chiến dịch quảng cáo:
-            </label>
-            <input
-              type="text"
-              name="title"
-              value={editPromo.title}
-              onChange={handleChange}
-              className="border p-2 rounded w-full bg-input text-input-text h-full"
-              required
-            />
+          <div className="flex gap-1">
+            <div className="flex-1">
+              <label
+                htmlFor="title"
+                className="text-label capitalize text-sm font-bold tracking-widest block my-1"
+              >
+                Tên chiến dịch quảng cáo:
+              </label>
+              <input
+                type="text"
+                name="title"
+                value={editPromo.title}
+                onChange={handleChange}
+                className="w-full p-3 outline-none rounded bg-input text-input-text border border-primary-border"
+                required
+              />
+            </div>
+            {/* Chỉnh sửa discountType */}
+            <div className="">
+              <label
+                htmlFor="discountType"
+                className="text-label capitalize text-sm font-bold tracking-widest block my-1"
+              >
+                Loại giảm giá:
+              </label>
+
+              <select
+                name="discountType"
+                value={editPromo.discountType}
+                onChange={handleChange}
+                className="w-full p-3 outline-none rounded bg-input text-input-text border border-primary-border"
+              >
+                <option value="percentage">Giảm theo phần trăm %</option>
+                <option value="fixed">Giảm theo giá cố định</option>
+              </select>
+            </div>
           </div>
 
           {/* Chỉnh sửa thông tin description */}
-          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
+          <div className="">
             <label
               htmlFor="description"
-              className="text-label capitalize text-sm"
+              className="text-label capitalize text-sm font-bold tracking-widest block my-1"
             >
               Mô tả:
             </label>
@@ -123,80 +175,49 @@ function PromotionCard({ promo }: { promo: IPromotion }) {
               name="description"
               value={editPromo.description}
               onChange={handleChange}
-              className="border p-2 rounded w-full bg-input text-input-text h-full "
+              className="w-full p-4 italic outline-none rounded bg-input text-input-text border border-primary-border"
               required
             />
           </div>
-
-          {/* Chỉnh sửa ngày bắt đầu */}
-          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
-            <label
-              htmlFor="startDate"
-              className="text-label capitalize text-sm"
-            >
-              Ngày bắt đầu:
-            </label>
-            <input
-              type="text"
-              name="startDate"
-              value={editPromo.startDate.split("-").reverse().join("/")} // Giá trị ngày là dạng chuỗi
-              onChange={handleChange}
-              className="border p-2 rounded w-full bg-input text-input-text"
-              required
-            />
-          </div>
-
-          {/* Chỉnh sửa ngày kết thúc */}
-          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
-            <label htmlFor="endDate" className="text-label capitalize text-sm">
-              Ngày kết thúc:
-            </label>
-            <input
-              type="text"
-              name="endDate"
-              value={editPromo.endDate.split("-").reverse().join("/")} // Giá trị ngày là dạng chuỗi
-              onChange={handleChange}
-              className="border p-2 rounded w-full bg-input text-input-text"
-              required
-            />
-          </div>
-          {/* Chỉnh sửa discountType */}
-          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
-            <label
-              htmlFor="discountType"
-              className="text-label capitalize text-sm"
-            >
-              Loại giảm giá:
-            </label>
-
-            <select
-              name="discountType"
-              value={editPromo.discountType}
-              onChange={handleChange}
-              className="border p-2 rounded mt-4 w-full bg-input text-input-text"
-            >
-              <option value="percentage">Giảm theo phần trăm %</option>
-              <option value="fixed">Giảm theo giá cố định</option>
-            </select>
-          </div>
-          <div className="flex flex-col gap-2 px-2 col-span-1  row-span-1">
-            <div className="flex justify-end px-2 mt-4 items-end">
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          <div className="w-full flex justify-center items-center sm:gap-10">
+            {/* Chỉnh sửa ngày bắt đầu */}
+            <div className="w-full">
+              <label
+                htmlFor="startDate"
+                className="text-label capitalize text-sm font-bold tracking-widest block my-1"
               >
-                Lưu thay đổi
-              </button>
-              <button
-                type="button" // Thay vì type="submit" để không gửi form
-                onClick={handleDeletePromotion} // Gọi hàm xóa
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2"
+                Ngày bắt đầu:
+              </label>
+              <DatePicker
+                name="startDate"
+                clearIcon
+                format="dd/MM/yyyy"
+                value={editPromo.startDate} // Giá trị ngày là dạng chuỗi
+                onChange={(date) => handleDateChange("startDate", date as Date)}
+                required
+                className={`w-1/2 h-10 `}
+              />
+            </div>
+
+            {/* Chỉnh sửa ngày kết thúc */}
+            <div className="w-full">
+              <label
+                htmlFor="endDate"
+                className="text-label capitalize text-sm font-bold tracking-widest block my-1"
               >
-                Xóa quảng cáo
-              </button>
+                Ngày kết thúc:
+              </label>
+              <DatePicker
+                name="endDate"
+                clearIcon
+                format="dd/MM/yyyy"
+                value={editPromo.endDate} // Giá trị ngày là dạng chuỗi
+                onChange={(date) => handleDateChange("endDate", date as Date)}
+                required
+                className={`w-1/2 h-10 `}
+              />
             </div>
           </div>
-          {/* Nút submit */}
         </div>
       </div>
     </form>

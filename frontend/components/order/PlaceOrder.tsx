@@ -6,6 +6,7 @@ import { IUser } from "@/interfaces/auth.interface";
 import Link from "next/link";
 import { CreateOrder } from "@/services/order.service";
 import { toast } from "react-toastify";
+import SingleCardSekelecton from "../skelecton/SingleCardSekelecton";
 
 function PlaceOrder({
   order,
@@ -76,13 +77,13 @@ function PlaceOrder({
             </p>
             <Link
               href={`/shop/${shop_id}`}
-              className="text-light-primary-text dark:text-dark-primary-text text-center p-1 border border-orange-300 text-sm sm:text-base"
+              className=" text-center p-1  text-sm  bg-button-success hover:bg-accent"
             >
-              View Shop
+              Xem Shop
             </Link>
           </div>
         ) : (
-          <p>loading..</p>
+          <SingleCardSekelecton />
         )}
       </div>
       {/* products list */}
@@ -100,9 +101,9 @@ function PlaceOrder({
       </ul>
       {/* payment options */}
       <div className="flex flex-col gap-2 justify-between">
-        <h3 className="text-lg font-medium mb-2">Choose payment method</h3>
+        <h3 className="text-lg font-medium mb-2">Phương thức thanh toán</h3>
         <ul className="list-none grid grid-cols-4 gap-4 items-center">
-          <li className="border border-black col-span-1 flex items-center h-[100px] pl-2 rounded">
+          <li className="border border-primary-border col-span-1 bg-card-bg flex items-center h-[100px] pl-2 rounded">
             <div className="w-1/3 flex justify-around items-center gap-4">
               <label className="hover:cursor-pointer font-bold flex items-center gap-2">
                 <input
@@ -122,7 +123,7 @@ function PlaceOrder({
               className="w-full h-full object-contain "
             />
           </li>
-          <li className="border border-black col-span-1 flex items-center h-[100px] pl-2 rounded">
+          <li className="border border-primary-border col-span-1 bg-card-bg flex items-center h-[100px] pl-2 rounded">
             <div className="w-1/3 flex justify-around items-center gap-4">
               <label className="hover:cursor-pointer font-bold flex items-center gap-2">
                 <input
@@ -143,7 +144,7 @@ function PlaceOrder({
               className="w-full h-full object-contain "
             />
           </li>
-          <li className="border border-black col-span-1 flex items-center h-[100px] pl-2 rounded">
+          <li className="border border-primary-border col-span-1 bg-card-bg flex items-center h-[100px] pl-2 rounded">
             <div className="w-1/3 flex justify-around items-center gap-4">
               <label className="hover:cursor-pointer font-bold flex items-center gap-2">
                 <input
@@ -164,7 +165,7 @@ function PlaceOrder({
               className="w-full h-full object-contain "
             />
           </li>
-          <li className="border border-black col-span-1 flex items-center h-[100px] pl-2 rounded">
+          <li className="border border-primary-border col-span-1 bg-card-bg flex items-center h-[100px] pl-2 rounded">
             <div className="w-1/3 flex justify-around items-center gap-4">
               <label className="hover:cursor-pointer font-bold flex items-center gap-2">
                 <input
@@ -187,29 +188,30 @@ function PlaceOrder({
           </li>
         </ul>
         <p className="mt-2">
-          Selected payment method:{" "}
+          Phương thức đã chọn:{" "}
           <strong>{selectedMethod || "Not selected yet"}</strong>
         </p>
       </div>
       {/* order price and info */}
-      <div className="grid grid-cols-4 bg-[#fffefb] dark:bg-dark-card-bg px-2 sm:px-6 py-4 sm:py-8">
+      <div className="grid grid-cols-4 bg-card-bg px-2 sm:px-6 py-4 sm:py-8">
         <div className="col-span-1 col-start-4 flex justify-between items-center">
-          <p className="text-sm  sm:text-base font-bold">Total Price</p>
+          <p className="text-sm  sm:text-base font-bold">Tổng tiền</p>
           <p className="text-base sm:text-3xl text-orange-600 font-bold">
-            {totalPrice}
+            {totalPrice.toLocaleString()}
             <span className="text-small sm:text-xl">$</span>
           </p>
         </div>
         <div className="col-span-4 mt-3 px-5 border-t border-gray-50">
           <div className="py-5  flex justify-between items-center">
             <p className=" col-span-1">
-              Clicking "Place Order" means you agree to abide by our terms
+              Nhấn vào nút "Đặt" có nghĩa là bạn đã đồng ý với các điều khoảng
+              mua hàng của chúng tôi
             </p>
             <button
               onClick={handleCreateOrder}
-              className="text-center bg-orange-600 px-8 py-2 rounded font-bold text-white hover:bg-orange-400 hover:rounded-md"
+              className="text-center bg-button-success px-8 py-2 rounded font-bold text-white hover:bg-orange-400 hover:rounded-md"
             >
-              Place Order
+              Đặt
             </button>
           </div>
         </div>

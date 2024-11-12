@@ -32,7 +32,7 @@ function ChatWindow() {
   };
   //
   return (
-    <div className="grid grid-cols-12 h-full max-h-[85vh] min-h-[85vh] gap-1">
+    <div className="grid grid-cols-12 h-full max-h-[95vh] min-h-[85vh] gap-1">
       {/* Phần danh sách người dùng chat */}
       <div className="col-span-3 bg-chat-panel overflow-y-auto h-full">
         {chats &&
@@ -65,7 +65,7 @@ function ChatWindow() {
       </div>
 
       {/* Phần nội dung chat */}
-      <div className=" col-span-9">
+      <div className=" col-span-9 bg-chat-panel">
         {selectedChat ? (
           <div className="h-full max-h-[85vh] min-h-[85vh]">
             <ChatPanel receiverInfo={selectedChat.receiverInfo} />

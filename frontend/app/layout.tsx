@@ -26,6 +26,8 @@ import "react-toastify/dist/ReactToastify.css";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import MainLayout from "@/layouts/MainLayout";
 import { AOSInit } from "@/components/aos";
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
 config.autoAddCss = false;
 
 // fonts
@@ -39,8 +41,8 @@ const basker = Quicksand({
 
 // metadata
 export const metadata: Metadata = {
-  title: "Furniture Store",
-  description: "Furniture online store",
+  title: "HNE-commerce",
+  description: "HNE-commerce",
   icons: "/icon.png",
 };
 

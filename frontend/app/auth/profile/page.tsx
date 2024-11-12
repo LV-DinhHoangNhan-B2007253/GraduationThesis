@@ -425,7 +425,7 @@ function Profile() {
                       onClick={() => {
                         router.push("/shop/dashboard");
                       }}
-                      className="underline hover:text-accent uppercase text-primary-400"
+                      className="underline hover:text-accent uppercase text-primary-400 mt-3 font-bold"
                     >
                       Quản lí cửa hàng
                     </button>
@@ -434,7 +434,7 @@ function Profile() {
                       onClick={() => {
                         router.push("/admin");
                       }}
-                      className="underline hover:text-accent uppercase text-primary-400"
+                      className="underline hover:text-accent uppercase text-primary-400 mt-3 font-bold"
                     >
                       Trang của quản trị viên
                     </button>
@@ -443,9 +443,9 @@ function Profile() {
                       onClick={() => {
                         router.push("/shop/create");
                       }}
-                      className="underline hover:text-accent uppercase text-primary-400"
+                      className="underline hover:text-accent uppercase text-primary-400 mt-3 font-bold"
                     >
-                      Start Business
+                      Bắt đầu kinh doanh
                     </button>
                   )}
                   <button

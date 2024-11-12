@@ -21,13 +21,13 @@
       --button-primary:#e9f5db;
       --button-warning:#fec23e;
       --button-danger:#e5383b;
-      --button-success:#6fffe9;
+      --button-success:#a7c957;
       --primary-border:#e9ecef;
       --card-bg:#f8f9fa;
-      --product-card:#edf2f4;
+      --product-card:#f6fff8;
       --bot-msg:#ffffff;
-      --chat-panel:#f1faee;
-      --chat-input:#e9edc9
+      --chat-panel:#403d39  ;
+      --chat-input:#252422
 
     }
     .dark {

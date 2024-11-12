@@ -25,11 +25,11 @@ export class Promotion extends Document {
     @Prop()
     promotion_banner: string; //banner khuyến mãi
 
-    @Prop({ default: Date.now() })
-    startDate: string; // ngày bắt đầu
+    @Prop()
+    startDate: Date; // ngày bắt đầu
 
     @Prop()
-    endDate: string; // ngày kết thúc
+    endDate: Date; // ngày kết thúc
 
     @Prop({ type: [Types.ObjectId], ref: 'Product', default: [] }) // danh sách ID sản phẩm áp dụng
     products: Types.ObjectId[];

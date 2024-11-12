@@ -72,10 +72,3 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
 }
 
-/**
- * bài toán cần giải quyết:
- * 1: khi 1 người click vào nút chat thì sẽ lấy id của user hiện tại + với id của người cần chat sau đó gửi đến server qua emit sự kiện tạo room
- * 2: server nhận sự kiện tạo room và thực hiện tạo room giữa 2 client
- * 3:sau khi tạo room thì xử lí tin nhắn: emit sự kiện gửi tin nhắn, lưu tin nhắn vào db, emit lại sự kiện phản hồi tin nhắn mới 
- * 4: client nhận phản hồi và dựa vào id của user hiện tại để hiển thị ra tin nhắn và giao diện kèm theo.
- */

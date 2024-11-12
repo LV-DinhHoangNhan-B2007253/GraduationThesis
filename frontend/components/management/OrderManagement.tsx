@@ -119,7 +119,7 @@ function OrderManagement() {
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value as any)}
-            className="border p-2 mb-4 bg-input text-input-text"
+            className="border px-2 py-2  bg-input text-input-text"
           >
             <option value="most-recent">Mới nhất</option>
             <option value="oldest">Cũ nhất</option>

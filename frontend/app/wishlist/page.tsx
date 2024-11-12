@@ -40,7 +40,7 @@ function WishList() {
   return (
     <MainLayout>
       {productIdList && productIdList.length > 0 ? (
-        <div className="min-h-[80%]">
+        <div className="min-h-[80vh]  mx-20">
           {productIdList.map((id) => (
             <WishlistProductCard
               productId={id}

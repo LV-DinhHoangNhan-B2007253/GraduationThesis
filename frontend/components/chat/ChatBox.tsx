@@ -48,45 +48,60 @@ function ChatBox({
 
   return (
     <div>
-      <div className="max-h-[400px] overflow-y-auto w-[400px] ">
-        {messagese.map((msg, index) => (
-          <div
-            key={index}
-            className={`flex mb-2 ${
-              msg.sender_id === senderId?.toString()
-                ? "justify-end"
-                : "justify-start"
-            }`}
-          >
-            <div
-              className={`p-2 rounded-lg w-[200px] ${
-                msg.sender_id === senderId?.toString()
-                  ? "bg-secondary-500 text-white"
-                  : "bg-card-bg "
-              }`}
-            >
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-sm italic font-bold">{msg.sender_name}</p>
-                <p className="text-xs text-label">
-                  {new Date(msg.timestamp).toLocaleTimeString()}
-                </p>
+      <div className="max-h-[400px] overflow-y-auto w-[400px] min-h-[300px]">
+        {senderId ? (
+          <>
+            {messagese.map((msg, index) => (
+              <div
+                key={index}
+                className={`flex mb-2 ${
+                  msg.sender_id === senderId?.toString()
+                    ? "justify-end"
+                    : "justify-start"
+                }`}
+              >
+                <div
+                  className={`p-2 rounded-lg w-[200px] ${
+                    msg.sender_id === senderId?.toString()
+                      ? "bg-secondary-500 text-white"
+                      : "bg-card-bg "
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-sm italic font-bold">
+                      {msg.sender_name}
+                    </p>
+                    <p className="text-xs text-label">
+                      {new Date(msg.timestamp).toLocaleTimeString()}
+                    </p>
+                  </div>
+                  <p className="w-full text-wrap tracking-wider text-base mt-2">
+                    {msg.message_text}
+                  </p>
+                </div>
               </div>
-              <p className="w-full text-wrap tracking-wider text-base mt-2">
-                {msg.message_text}
-              </p>
-            </div>
-          </div>
-        ))}
+            ))}
+          </>
+        ) : (
+          <p className="text-center italic text-label text-sm">
+            Bạn chưa đăng nhập
+          </p>
+        )}
 
         {/* Phần tử này để tự động cuộn tới */}
         <div ref={messagesEndRef} />
       </div>
       <div className="flex items-center p-2 border-t border-borderb">
         <input
-          className="flex-1 p-2 border border-borderb rounded-lg bg-input text-input-text"
+          className="flex-1 p-2 border border-borderb rounded-lg bg-input text-input-text outline-none"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Nhập tin nhắn"
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+              handleSendMessage();
+            }
+          }}
         />
         <button
           onClick={handleSendMessage}

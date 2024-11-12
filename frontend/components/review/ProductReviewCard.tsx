@@ -1,6 +1,7 @@
 import { IComment } from "@/interfaces/comment.interface";
 import { getCommentOfProduct } from "@/services/product.service";
 import React, { useEffect, useState } from "react";
+import { format } from "date-fns";
 
 function ProductReviewCard({ reviewId }: { reviewId: string }) {
   const [review, setReview] = useState<IComment | null>(null);
@@ -44,13 +45,13 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
   };
 
   return (
-    <div className=" rounded-lg p-4 my-1 w-full border border-primary-border bg-card-bg ">
+    <div className=" rounded-lg p-4 my-1 w-full border border-primary-border bg-card-bg h-full ">
       <div className="flex items-start">
         {/* Avatar và thông tin người dùng */}
         <div className="flex-shrink-0">
           <img
             loading="lazy"
-            className="w-16 h-16 rounded-full object-cover"
+            className="w-10 h-10 rounded-full object-cover"
             src={
               review.user_avatar && review.user_avatar.trim() !== ""
                 ? review.user_avatar
@@ -64,12 +65,12 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
           {/* Tên và ngày */}
           <div className="flex justify-between items-center">
             <div>
-              <h4 className="text-lg font-semibold text-light-primary-text dark:text-dark-primary-text ">
+              <h4 className="text-small text-heading font-bold capitalize ">
                 {review.user_name}
               </h4>
-              <p className="text-sm  text-light-primary-text dark:text-dark-primary-text ">
+              <p className="text-sm  text-label font-light italic ">
                 {review.date
-                  ? new Date(review.date).toLocaleString()
+                  ? format(new Date(review.date).toLocaleString(), "dd/MM/yyyy")
                   : "No date available"}
               </p>
             </div>
@@ -84,20 +85,18 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
           </div>
 
           {/* Nội dung review */}
-          <p className="mt-4 text-light-primary-text dark:text-dark-primary-text ">
-            {review.content}
-          </p>
+          <p className="mt-4 text-small text-label">{review.content}</p>
 
           {/* Hình ảnh review nếu có */}
           {review.review_img && review.review_img.length > 0 && (
-            <div className="mt-4 grid grid-cols-10 items-center gap-1">
-              {review.review_img.map((img, index) => (
+            <div className="flex justify-start gap-3 mt-2">
+              {review.review_img.slice(0, 4).map((img, index) => (
                 <img
                   loading="lazy"
                   key={index}
                   src={img}
                   alt={`Review image ${index}`}
-                  className="col-span-2 sm:col-span-1  w-full object-cover rounded-lg h-full "
+                  className="w-14 h-14 rounded-sm  object-cover"
                 />
               ))}
             </div>

@@ -1,13 +1,69 @@
 version: "3.1"
 
 rules:
+# cơ bản
+  - rule: Bye user
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
 
-- rule: Say goodbye anytime the user says goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - rule: chào user
+    steps:
+      - intent: greet
+      - action: utter_greet
 
-- rule: Say 'I am a bot' anytime the user challenges
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - rule: hello world
+    steps:
+      - intent: hello_world
+      - action: action_hello_world
+
+  - rule: trả lời khi không hiểu ý
+    steps:
+      - intent: nlu_fallback
+      - action: action_fallback
+
+# các itent có câu trả lời cố định
+
+ - rule: chính sách mua hàng
+    steps:
+      - intent: warranty_policy
+      - action: utter_warranty_policy
+
+ - rule: Hướng dẫn mua hàng
+    steps:
+      - intent: buying_guide
+      - action: utter_buying_guide
+
+
+ - rule: Xuất xứ sản phẩm
+    steps:
+      - intent: ask_product_made
+      - action: utter_ask_product_made
+
+ - rule: hỏi về chất liệu
+    steps:
+      - intent: ask_product_material
+      - action: utter_ask_product_material
+
+ - rule: thời gian giao hàng
+    steps:
+      - intent: ask_predict_delivery
+      - action: utter_ask_predict_delivery
+
+ - rule: có phương thức thanh toán nào
+    steps:
+      - intent: ask_payment_methods
+      - action: utter_ask_payment_methods
+
+
+ - rule: Hướng dẫn thanh toán
+    steps:
+      - intent: ask_payment_guide
+      - action: utter_ask_payment_guide
+
+ - rule: Hướng dẫn trả hàng
+    steps:
+      - intent: ask_return_policy
+      - action: utter_ask_return_policy
+
+

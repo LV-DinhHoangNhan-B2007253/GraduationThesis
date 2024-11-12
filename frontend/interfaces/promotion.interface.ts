@@ -7,8 +7,8 @@ export interface IPromotion {
     description: string
     discountType: string
     promotion_banner: File
-    startDate: string
-    endDate: string
+    startDate: Date
+    endDate: Date
     products: string[]
 }
 
@@ -20,7 +20,7 @@ export interface IPromotionDetail {
     description: string
     discountType: string
     promotion_banner: string
-    startDate: string
-    endDate: string
+    startDate: Date
+    endDate: Date
     products: IProduct[]
 }

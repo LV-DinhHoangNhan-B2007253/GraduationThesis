@@ -3,31 +3,86 @@ version: "3.1"
 intents:
   - greet
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-
+  - warranty_policy #chính sách mua hàng -> done
+  - buying_guide # hướng dẫn mua hàng -> done
+  - ask_product_type #hỏi về loại sản phẩm (có mấy loại..)
+  - ask_product_made # xuất xử của sản phẩm -> done
+  - ask_product_price # giá của 1 sản phẩm
+  - ask_product_sale # danh sách sản phẩm đang giảm giá
+  - ask_product_material # hỏi về chất liệu -> done
+  - ask_product_brand #thương hiệu nào
+  - ask_predict_delivery #thời gian giao hàng dự kiến -> done
+  - ask_payment_methods #phường thức thanh toán nào ->done
+  - ask_payment_guide # hỏi về cách thanh toán -> done
+  - ask_return_policy # chính sách trả hàng -> done
+  - ask_cart_quantity # hỏi về số sản phẩm đang có trong giỏ hàng của khách hàng
+  - ask_wishlist_quantity # hỏi về số lượng sản phẩm có trong danh sách yêu thích của khách hàng
+  - ask_cart_products # tên của các sản phẩm có trong giỏ hàng
+  - ask_wishlist_product # tên các sản phẩm có trong wishlist
+  - ask_order_quantity # hỏi về số đơn hàng của khách
+  - ask_order_by_status_pending_quantity # số lượng đơn hàng đang xử lí
+  - ask_order_by_status_delivery_quantity # số đơn đang giao
+  - ask_order_by_status_shipped_quantity # số đơn đã mua
+  - ask_about_categories # có bao nhiêu danh mục
+  - ask_product_quantity_by_category #danh mục này có bao nhiêu sản phẩm
+  - ask_product_where_category # sản phẩm này nằm trong danh mục nào
+  - ask_product_instock # sản phẩm này còn hàng không
+  - ask_product_instock_quantity # sản phẩm này còn bao nhiêu trong kho
+  - ask_product_rating_quantity # sản phẩm này có bao nhiêu lượt đánh giá
+  - ask_product_purchase_quantity # sản phẩm này có bao nhiêu lượt mua
+  - find_products_by_category # danh mục này có sản phẩm nào
+  - find_products_by_price_range # tìm sản phẩm theo giá tiền
+  - find_products_by_name # tìm sản phẩm theo tên
+  - find_product_in_category_by_price # tìm các sản phẩm của 1 danh mục nào đó theo giá tiền từ giá tối thiểu đến giá tối đa
+  - suggest_product_large_area # đề xuất sản phẩm theo không gian lớn
+  - suggest_product_medium_area # đề xuất sản phẩm theo không gian vừa
+  - suggest_product_small_area # đề xuất sản phẩm theo không gian nhỏ
+  - check_instock_product # bắt key là tên hoặc mã sản phẩm để xem là sản phẩm còn hàng không
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
+    - text: "Dạ! Louis xin chào ạ"
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Tạm biệt quý khách"
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  utter_warranty_policy:
+    - text: "Chính sách Mua Hàng HNE-Commerce áp dụng đối với tất cả nhân viên của HNE-Commerce có nhiệm vụ thực hiện các hoạt động mua hàng cho HNE-Commerce hoặc tương tác, trực tiếp hoặc gián tiếp, với bộ phận Mua hàng của HNE-Commerce. Chính sách này cũng áp dụng đối với những người ký kết với HNE-Commerce đại diện thực hiện về việc tiến hành các hoạt động mua hàng cho HNE-Commerce"
+
+  utter_buying_guide:
+    - text: "Để mua hàng, quý khách vui lòng thực hiện theo các bước sau:
+    B1: Chọn sản phẩm cần mua (nếu mua nhiều sản phẩm cùng lúc, quý khách hãy thêm sản phẩm vào giỏ hàng, sau đó vào giỏ hàng và chọn các sản phẩm cần mua).
+    B2: Chọn số lượng sản phẩm cần mua
+    B3: Điền địa chỉ nhận hàng
+    B4: Chọn phương thức thanh toán, phương thức thanh toán mặc định là tiền mặc.
+    B5: Xác nhận lại thông tin đơn hàng, nếu đã chính xác, Bấm nút "Thanh toán" để tiến hành đặt hàng."
+
+  utter_ask_product_made: 
+    - text: "Tất cả sản phẩm hiện có tại HNE-Commerce được sản xuất là lắp đặt tại Ý "
+
+
+  utter_ask_product_material:
+    - text: "Các sản phẩm đều được làm từ vật liệu thân thiện với môi trường như: Vải tái chế, Gỗ ép tái chế, nhựa tái chế và sử dụng các màu nhuộm không ảnh hưởng đến sức khỏe"
+
+  utter_ask_predict_delivery:
+    - text: "Thời gian giao hàng phụ thuộc vào đơn vị vận chuyển và kích thước sản phẩm của bạn mua, thông thường với các sản phẩm nhỏ và vừa, mất 3 đến 5 ngày để giao đến bạn, đối với sản phẩm có kích cở cồng kềnh, sản phâm sẽ được giao từ 6 đến 7 ngày."
+
+  utter_ask_payment_methods:
+    - text: "HNE-Commerce hiện tại có các phương thức thanh toán gồm tiền mặt và thanh toán qua tài khoản ngân hàng."
+
+  utter_ask_payment_guide:
+    - text: "Để thanh toán, quý khách vui vòng làm theo hướng dẫn sau:
+    Đối với phương thức thanh toán bằng tiền mặt, khi nhận được hàng, quý khách vui lòng thanh toán cho người giao hàng.
+    Đối với thanh toán bằng tài khoản ngân hàng (thanh toán trước, nhận hàng sau), quý khách chọn ngân hàng và điền thông tin thẻ để thanh toán."
+  utter_ask_return_policy:
+    - text: "Khi nhận hàng nhưng quý khách không ưng ý, quý khách có thể trả hàng lại, đảm bảo rằng hàng chưa qua sử dụng và còn nguyên vẹn, không chấp nhận sản phẩm đã bị quý khách làm hỏng. Quý khách phải chịu chi phí hoàn trả hàng (chi phí vận chuyển) và trả trực tiếp cho đơn vị vận chuyển. Nếu sản phẩm đang trên đường giao tới bạn, vui lòng liên hệ với người bán để hủy đơn."
+
+# mẫu
+  utter_:
+    - text: ""
+
+
+actions:
+  - action_fallback
 
 session_config:
   session_expiration_time: 60

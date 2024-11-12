@@ -91,37 +91,37 @@ function ProductManageShop() {
         // search and filter
         <div className="relative z-10">
           <div>
-            <div className="flex justify-between items-center mb-5">
+            <div className="flex justify-between items-center mb-5 mt-1">
               {/* search */}
               <div className="flex-1">
                 <input
                   type="text"
-                  placeholder="Search by name or SKU"
+                  placeholder="Tìm sản phẩm theo tên hoặc mã"
                   value={searchTerm}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className=" shadow w-2/3 p-3 rounded-sm text-light-input-text dark:text-dark-input-text bg-light-input-field dark:bg-dark-input-field"
+                  className=" shadow w-2/3 p-3 rounded-sm bg-input text-input-text outline-none"
                 />
               </div>
               {/* filter */}
               <div>
                 <div className="flex justify-around items-center gap-4 px-2">
                   <button
-                    className="text-sm font-light"
+                    className="text-sm font-light text-label hover:text-accent"
                     onClick={() => handleSort("asc")}
                   >
-                    A-Z
+                    sắp xếp theo {`(A-Z)`}
                   </button>
                   <button
-                    className="text-sm font-light"
+                    className="text-sm font-light text-label hover:text-accent"
                     onClick={() => handleSort("desc")}
                   >
-                    Z-A
+                    sắp xếp theo {`(Z-A)`}
                   </button>
                   <button
-                    className="text-sm font-light"
+                    className="text-sm font-light text-label hover:text-accent"
                     onClick={resetSortAndSearch}
                   >
-                    Clear Sort
+                    mặc định
                   </button>
                 </div>
               </div>
@@ -129,14 +129,17 @@ function ProductManageShop() {
             {/* create and refresh btn */}
             <div className="flex items-center justify-between mx-2 my-3">
               <button
-                className="text-center p-3 bg-light-modal-popup dark:bg-dark-modal-popup rounded hover:cursor-pointer hover:bg-orange-400 min-w-[50px] shadow"
+                className="text-center p-2 text-sm hover:rounded-md bg-button-success hover:bg-accent min-w-[50px] shadow"
                 onClick={() => fetchAllProduct()}
               >
-                <FontAwesomeIcon icon={faRefresh} />
+                Làm mới
+                <span className="mx-1">
+                  <FontAwesomeIcon icon={faRefresh} />
+                </span>
               </button>
               <button
                 onClick={() => setIsOpenCreateForm(true)}
-                className="text-center p-3 bg-light-modal-popup dark:bg-dark-modal-popup rounded hover:cursor-pointer hover:bg-orange-400 min-w-[50px] shadow"
+                className="text-center p-2 text-sm hover:rounded-md bg-button-success hover:bg-accent min-w-[50px] shadow"
               >
                 Thêm +
               </button>
@@ -156,7 +159,7 @@ function ProductManageShop() {
             </div>
           </div>
           {/* product table */}
-          <div className="w-full h-full overflow-y-auto">
+          <div className="w-full max-h-screen overflow-y-auto ">
             <ProductTable products={products} />
           </div>
         </div>

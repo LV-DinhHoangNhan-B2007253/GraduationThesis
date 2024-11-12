@@ -125,7 +125,8 @@ function CategoryRow({ category }: { category: ICategory }) {
           {category.name}
         </td>
         <td className="px-4 py-2 whitespace-nowrap">
-          <img loading="lazy"
+          <img
+            loading="lazy"
             src={category.banner}
             alt={category.banner}
             className="h-12 w-12 object-cover rounded-md"

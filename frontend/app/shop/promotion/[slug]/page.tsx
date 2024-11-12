@@ -5,6 +5,8 @@ import { IPromotionDetail } from "@/interfaces/promotion.interface";
 import MainLayout from "@/layouts/MainLayout";
 import { GetPromotionsDetailById } from "@/services/promotion.service";
 import { useEffect, useState } from "react";
+import { format, parse } from "date-fns"; // Thêm dòng này
+import ListCardSekelecton from "@/components/skelecton/ListCardSekelecton";
 
 function page(props: any) {
   const promotionId = props.params.slug;
@@ -34,46 +36,54 @@ function page(props: any) {
                 alt="Promotion banner"
                 className="w-full sm:h-[400px] h-[300px] object-cover my-3"
               />
-              <div className="bg-light-modal-popup dark:bg-dark-modal-popup rounded-lg shadow-lg p-6 max-w-2xl mx-auto my-10">
-                <h1 className="text-center text-4xl font-bold uppercase tracking-widest text-blue-600 mb-4">
+              <div className="">
+                <h1 className="text-heading uppercase text-center text-balance sm:text-3xl my-3 tracking-widest font-bold">
                   {promotionDetail.title}
                 </h1>
 
                 <div className="flex items-center justify-between text-lg text-gray-700 mb-6">
-                  <p className="font-medium text-light-primary-text dark:text-dark-primary-text text-sm sm:text-base">
-                    <span className="text-blue-500">From:</span>{" "}
-                    {new Date(promotionDetail.startDate).toLocaleDateString()}
+                  <p className="font-medium text-sm sm:text-base">
+                    <span className="text-button-success">Từ ngày:</span>{" "}
+                    <span className="text-label font-bold italic">
+                      {format(
+                        new Date(
+                          promotionDetail.startDate
+                        ).toLocaleDateString(),
+                        "dd/MM/yyyy"
+                      )}
+                    </span>
                   </p>
-                  <p className="font-medium text-light-primary-text dark:text-dark-primary-text text-sm sm:text-base">
-                    <span className="text-red-500">To:</span>{" "}
-                    {new Date(promotionDetail.endDate).toLocaleDateString()}
+                  <p className="font-medium  text-sm sm:text-base">
+                    <span className="text-button-warning">Đến ngày:</span>{" "}
+                    <span className="text-label font-bold italic">
+                      {format(
+                        new Date(promotionDetail.endDate).toLocaleDateString(),
+                        "dd/MM/yyyy"
+                      )}
+                    </span>
                   </p>
                 </div>
-
-                <div className="text-center text-gray-600">
-                  <p className=" text-light-primary-text dark:text-dark-primary-text text-sm sm:text-base">
-                    <span className="font-semibold">Note:</span>{" "}
-                    {promotionDetail.description}
+                <div className="flex items-center gap-2">
+                  <span className="text-red-500">{`(*)`}</span>
+                  <p className="text-sm font-light italic text-wrap">
+                    Lưu ý: {promotionDetail.description}
                   </p>
                 </div>
               </div>
             </div>
-            <h1 className="text-base sm:text-2xl text-light-primary-text dark:text-dark-primary-text mt-6 tracking-widest font-light">
-              applicable products
+            <h1 className="text-base sm:text-2xl  mt-6 tracking-widest font-light text-heading">
+              Các sản phẩm được áp dụng trong chương trình
             </h1>
             <div className="grid grid-cols-6 gap-1">
               {promotionDetail.products.map((pro) => (
-                <div
-                  className="col-span-2 sm:col-span-2 my-2"
-                  data-aos="fade-up"
-                >
+                <div className="col-span-2 sm:col-span-2 my-2">
                   <ShopProductCard product={pro} key={pro.sku} />
                 </div>
               ))}
             </div>
           </div>
         ) : (
-          <p>LoadingModuleData..</p>
+          <ListCardSekelecton />
         )}
       </div>
     </MainLayout>

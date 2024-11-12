@@ -4,7 +4,7 @@ export class createPromotionDto {
     description: string
     discountType: string
     promotion_banner: File
-    startDate: string
-    endDate: string
+    startDate: Date
+    endDate: Date
     products: string[]
 }

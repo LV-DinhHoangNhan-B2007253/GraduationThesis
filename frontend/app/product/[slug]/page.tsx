@@ -52,6 +52,7 @@ function ProductDetail(props: any) {
   };
   const productId = props.params.slug;
   const { userInfo } = useSelector((state: RootState) => state.user);
+  const { isLogin } = useSelector((state: RootState) => state.userLoginState);
   const [relatedProduct, setRelatedProduct] = useState<IProduct[]>();
   const [product, setProduct] = useState<IProduct>();
   const [shopInfo, setShopInfo] = useState<IShop | null>(null);
@@ -134,10 +135,12 @@ function ProductDetail(props: any) {
   const handleCreateOrder = () => {
     if (orderQuantity > Number(product?.stock_quantity)) {
       toast.warn(
-        "The quantity purchased has exceeded the quantity of available products"
+        "Số lượng bạn chọn đã vượt quá số lượng sản phẩm sẵn có, vui lòng chọn lại"
       );
     } else if (orderQuantity === 0) {
-      toast.warn("Please select purchase quantity");
+      toast.warn("Vui lòng chọn số lượng bạn muốn mua");
+    } else if (!userInfo || !isLogin) {
+      toast.warn(`Vui lòng đăng nhập`);
     } else {
       router.push(`/order/createOrder?orderInfo=${productId}-${orderQuantity}`);
     }
@@ -320,7 +323,7 @@ function ProductDetail(props: any) {
                 </div>
                 <div className="flex flex-col justify-around gap-2">
                   <p className=" font-bold">{shopInfo?.name}</p>
-                  <p className="font-light">
+                  {/* <p className="font-light">
                     {shopInfo?.isActive ? "Đang hoạt động" : "Tạm đóng"}
                     <span className="mx-2">
                       <FontAwesomeIcon
@@ -328,7 +331,7 @@ function ProductDetail(props: any) {
                         color={shopInfo?.isActive ? "green" : "red"}
                       />
                     </span>
-                  </p>
+                  </p> */}
                   <div className="flex justify-start gap-4">
                     <button
                       className="capitalize p-2  bg-orange-100 text-orange-600 hover:bg-accent"
@@ -345,9 +348,11 @@ function ProductDetail(props: any) {
                 </div>
               </div>
               {/* review */}
-              <div>
+              <div className="max-h-[600px] overflow-y-auto grid grid-rows-3 gap-2">
                 {product.comments.map((reviewId, index) => (
-                  <ProductReviewCard reviewId={reviewId} key={index} />
+                  <div className="row-span-1">
+                    <ProductReviewCard reviewId={reviewId} key={index} />
+                  </div>
                 ))}
               </div>
             </div>
@@ -383,7 +388,7 @@ function ProductDetail(props: any) {
             {isChatbox ? (
               <div className="fixed bottom-0 right-1 z-[500]  p-2 shadow-violet-500 shadow-2xl border border-primary-border backdrop-blur-2xl rounded">
                 <button
-                  className="  hover:text-red-500 border border-borderb text-secondary-500 p-2 shadow-lg shadow-teal-400 rounded-full"
+                  className="  px-2 py-1 text-center border border-primary-border rounded-sm bg-button-success hover:bg-button-warning text-white hover:text-red-50"
                   onClick={() => setIsChatBox(false)}
                 >
                   <FontAwesomeIcon icon={faClose} />
@@ -396,20 +401,6 @@ function ProductDetail(props: any) {
             ) : (
               <></>
             )}
-            {/* edit product by admin */}
-            {userInfo?.role == "owner" &&
-              userInfo.shop_id === product.shop_owner_id && (
-                <div className="mt-8">
-                  <div className="w-full">
-                    <Link
-                      href={`/product/analyze/${productId}`}
-                      className="px-4 py-2 text-center rounded-md bg-cyan-800 hover:bg-green-600 transition duration-300 text-white my-4 w-full block"
-                    >
-                      Analyze
-                    </Link>
-                  </div>
-                </div>
-              )}
           </div>
         ) : (
           <SingleCardSekelecton />

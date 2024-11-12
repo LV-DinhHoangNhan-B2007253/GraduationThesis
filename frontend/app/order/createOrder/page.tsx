@@ -92,16 +92,16 @@ const CreateOrderPage = () => {
     <MainLayout>
       <div className="px-2 sm:px-6">
         <h1 className="text-center font-bold text-base sm:text-3xl tracking-[2rem] uppercase my-3 sm:my-5 py-2 sm:py-4">
-          order
+          Thanh Toán Đơn Hàng
         </h1>
         {/* address */}
-        <div className="px-6 bg-light-modal-popup dark:bg-dark-card-bg">
+        <div className="px-6 ">
           <div className="flex justify-start items-center gap-2 sm:gap-4 py-3 text-base sm:text-2xl text-orange-700 ">
             <FontAwesomeIcon icon={faLocationDot} />
-            <p className="capitalize">delivery address</p>
+            <p className="capitalize">Địa chỉ nhận hàng</p>
           </div>
           <div className="flex items-center py-4 gap-4 sm:gap-8">
-            <div className="font-bold text-black dark:text-dark-primary-text text-sm sm:text-base min-w-[150px]">
+            <div className="font-bold text-sm sm:text-base min-w-[150px]">
               <p className="capitalize my-3 ">
                 <span className="mx-2 ">
                   <FontAwesomeIcon icon={faUser} />
@@ -117,9 +117,9 @@ const CreateOrderPage = () => {
             </div>
             <div className="flex-1 flex items-center gap-2">
               <input
-                className={`border border-light-input-border dark:border-dark-input-border w-full p-2 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text ${
+                className={`border  w-full p-2 bg-input text-input-text  ${
                   !isDisableAddress
-                    ? "outline-blue-500 outline"
+                    ? "outline-blue-500 outline-none"
                     : "outline-none"
                 } rounded`}
                 type="text"
@@ -148,7 +148,7 @@ const CreateOrderPage = () => {
         {/* list order */}
         <div>
           {groupedOrders.map((order) => (
-            <div className="bg-light-modal-popup dark:bg-dark-modal-popup my-4">
+            <div className=" dark:bg-dark-modal-popup my-4">
               <PlaceOrder
                 order={order}
                 key={order.shop_id}

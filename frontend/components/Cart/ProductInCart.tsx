@@ -7,7 +7,7 @@ import {
   UpdateProductQuantityInCart,
 } from "@/services/product.service";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -83,7 +83,7 @@ function ProductInCart({
   }, []);
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 bg-card-bg px-2 py-1">
       <div className="flex justify-between gap-2 items-center">
         <div className="flex gap-2 flex-1 items-center">
           <img
@@ -93,7 +93,7 @@ function ProductInCart({
             className="w-[80px] h-[80px]"
           />
           <Link href={`/product/${product?._id}`}>
-            <p className="text-black font-bold  dark:text-dark-primary-text hover:underline text-wrap text-small sm:text-base truncate hover:text-light-text-link-color dark:hover:text-dark-link ">
+            <p className="  hover:underline text-wrap text-small sm:text-base truncate ">
               {product?.name}
             </p>
           </Link>
@@ -104,24 +104,24 @@ function ProductInCart({
             {product?.price.toLocaleString()}$
           </span>
         </p>
-        <div className="flex justify-around items-center gap-1 ">
+        <div className="flex justify-around items-center gap-1 mx-3">
           <button
-            className="px-2 py-1 border border-light-input-border dark:border-dark-border"
+            className="font-bold mx-1 text-button-success hover:text-accent"
             onClick={decreaseQuantity}
           >
-            -
+            <FontAwesomeIcon icon={faMinus} />
           </button>
           <input
             type="text"
             value={cartItem.quantity}
             disabled
-            className="max-w-[80px] text-center py-1 bg-light-input-field dark:bg-dark-input-field text-light-input-text dark:text-dark-input-text text-small sm:text-base outline-none border border-light-input-border dark:border-dark-input-border font-bold"
+            className="max-w-[80px] text-center py-1 text-sm outline-none border border-light-input-border  font-bold text-primary-400 bg-input "
           />
           <button
-            className="px-2 py-1 border border-light-input-border dark:border-dark-border"
+            className="font-bold mx-1  text-button-success hover:text-accent"
             onClick={increaseQuantity}
           >
-            +
+            <FontAwesomeIcon icon={faPlus} />
           </button>
         </div>
         <div className="flex-1">
@@ -129,12 +129,12 @@ function ProductInCart({
             {((product?.price as number) * cartItem.quantity).toLocaleString()}$
           </p>
         </div>
-        <div className=" flex items-center gap-4">
+        <div className=" flex items-center gap-4 ">
           <Link
             href={`/order/createOrder?orderInfo=${product?._id}-${cartItem.quantity}`}
-            className="px-4 py-2 rounded text-center hover:cursor-pointer uppercase text-sm sm:text-base  bg-button-success hover:bg-secondary-300 transition duration-400"
+            className="p-2 text-sm rounded text-center hover:cursor-pointer uppercase text-white  bg-button-success hover:bg-secondary-300 transition duration-400"
           >
-            Mua ngay
+            Mua
           </Link>
           <button onClick={handleDeleteProductInCart}>
             <FontAwesomeIcon

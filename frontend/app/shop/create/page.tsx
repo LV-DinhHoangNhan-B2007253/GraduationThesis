@@ -98,8 +98,8 @@ function CreateNewShop() {
   };
 
   return (
-    <div className="bg-CreateShopBg  min-h-screen flex justify-center items-center">
-      <div className=" mx-48   w-full mt-10">
+    <div className="bg-CreateShopBg  min-h-screen flex justify-center items-center ">
+      <div className=" mx-48   w-full mt-10 bg-card-bg">
         <div className="bg-light-modal-popup w-full rounded-md  ">
           <div className="px-4 py-2 rounded-md ">
             <FontAwesomeIcon
@@ -123,7 +123,7 @@ function CreateNewShop() {
                 />
               ) : (
                 <div className="w-full h-full bg-gray-900 flex items-center justify-center">
-                  <FontAwesomeIcon icon={faImage} color="white" size="3x" />c
+                  <FontAwesomeIcon icon={faImage} color="white" size="3x" />
                 </div>
               )}
               {/* Input để chọn ảnh banner */}
@@ -135,7 +135,7 @@ function CreateNewShop() {
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               />
               {/* Khung hiển thị logo */}
-              <div className="absolute -bottom-[40] left-[120] transform -translate-x-1/2 w-[150px] h-[150px] rounded-full border border-black">
+              <div className="absolute w-[150px] h-[150px] rounded-full border border-black bottom-0">
                 {logoPreview ? (
                   <img
                     loading="lazy"
@@ -145,7 +145,7 @@ function CreateNewShop() {
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-900 flex items-center justify-center rounded-full border border-gray-300">
-                    <FontAwesomeIcon icon={faImage} color="white" size="2x" />c
+                    <FontAwesomeIcon icon={faImage} color="white" size="2x" />
                   </div>
                 )}
                 {/* Input để chọn ảnh logo */}
@@ -162,9 +162,9 @@ function CreateNewShop() {
               <div className="col-span-1 mx-2">
                 <label
                   htmlFor="name"
-                  className="block text-light-primary-text text-small sm:text-base font-light tracking-widest"
+                  className="block t text-small sm:text-base font-light tracking-widest text-label"
                 >
-                  Brand Name
+                  Tên cửa hàng
                 </label>
                 <input
                   type="text"
@@ -173,13 +173,13 @@ function CreateNewShop() {
                   id="name"
                   tabIndex={1}
                   onChange={handleInputChange}
-                  className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"
+                  className="w-full px-2 py-4 my-2text-sm sm:text-base border rounded-md bg-input text-input-text outline-none"
                 />
               </div>
               <div className="col-span-1 mx-2">
                 <label
                   htmlFor="shopMail"
-                  className="block text-light-primary-text text-small sm:text-base font-light tracking-widest"
+                  className="block t text-small sm:text-base font-light tracking-widest text-label"
                 >
                   Email
                 </label>
@@ -190,15 +190,15 @@ function CreateNewShop() {
                   tabIndex={2}
                   id="shopMail"
                   onChange={handleInputChange}
-                  className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"
+                  className="w-full px-2 py-4 my-2text-sm sm:text-base border rounded-md bg-input text-input-text outline-none"
                 />
               </div>
               <div className="col-span-1 mx-2">
                 <label
                   htmlFor="shopPhone"
-                  className="block text-light-primary-text text-small sm:text-base font-light tracking-widest"
+                  className="block t text-small sm:text-base font-light tracking-widest text-label"
                 >
-                  Phone
+                  Số điện thoại liên hệ
                 </label>
                 <input
                   type="text"
@@ -207,15 +207,15 @@ function CreateNewShop() {
                   required
                   tabIndex={3}
                   onChange={handleInputChange}
-                  className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"
+                  className="w-full px-2 py-4 my-2text-sm sm:text-base border rounded-md bg-input text-input-text outline-none"
                 />
               </div>
               <div className="col-span-2 mx-2">
                 <label
                   htmlFor="shopLocation"
-                  className="block text-light-primary-text text-small sm:text-base font-light tracking-widest"
+                  className="block t text-small sm:text-base font-light tracking-widest text-label"
                 >
-                  Location
+                  Địa chỉ cửa hàng
                 </label>
                 <input
                   type="text"
@@ -224,15 +224,15 @@ function CreateNewShop() {
                   required
                   tabIndex={4}
                   onChange={handleInputChange}
-                  className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"
+                  className="w-full px-2 py-4 my-2text-sm sm:text-base border rounded-md bg-input text-input-text outline-none"
                 />
               </div>
               <div className="col-span-3 mx-2">
                 <label
                   htmlFor="shopLocation"
-                  className="block text-light-primary-text text-small sm:text-base font-light tracking-widest"
+                  className="block t text-small sm:text-base font-light tracking-widest text-label"
                 >
-                  Desription
+                  Mô tả về cửa hàng của bạn
                 </label>
                 <textarea
                   name="description"
@@ -240,7 +240,7 @@ function CreateNewShop() {
                   tabIndex={5}
                   id="description"
                   onChange={handleInputChange}
-                  className="w-full px-2 py-4 my-2 border-light-input-border text-light-input-text text-sm sm:text-base border rounded-md"
+                  className="w-full px-2 py-4 my-2text-sm sm:text-base border rounded-md bg-input text-input-text outline-none"
                 />
               </div>
             </div>

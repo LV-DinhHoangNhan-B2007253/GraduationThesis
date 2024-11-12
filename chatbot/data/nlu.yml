@@ -1,91 +1,153 @@
 version: "3.1"
 
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+# intents cơ bản
+  - intent: greet
+    examples: |
+      - chào
+      - hello
+      - hi
+      - alo
+      - có ai không
+      - he
+      - ê
+      - ey
+      - êy
+      - chao xìn
+      - alo alo
+      - hú
+      - ayzo
 
-- intent: goodbye
-  examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+  - intent: goodbye
+    examples: |
+      - tạm biệt
+      - bái bai
+      - bye
+      - baii
+      - cảm ơn
+      - cảm ơn nha
+      - thanks
+      - ty
+      - hẹn gặp lại
+      - ok
+# intents cố định
+  - intent: warranty_policy
+    examples: |
+    - chính sách mua hàng
 
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+  - intent: buying_guide
+    examples: |
+    - hướng dẫn mua hàng
+ - intent: ask_product_made
+    examples: |
+    - xuất xứ sản phẩm
 
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+  - intent: ask_product_material
+    examples: |
+    - 
 
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+ - intent: ask_predict_delivery
+    examples: |
+    - 
 
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+  - intent: ask_payment_methods
+    examples: |
+    - 
 
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+ - intent: ask_payment_guide
+    examples: |
+    - 
+
+ - intent: ask_return_policy
+    examples: |
+    - 
+# intents với các truy vấn
+  - intent: ask_product_type
+    examples: |
+    - 
+  - intent: ask_product_price
+    examples: |
+    - 
+
+  - intent: ask_product_sale
+    examples: |
+    - 
+  - intent: ask_product_brand
+    examples: |
+    - 
+  - intent: ask_cart_quantity
+    examples: |
+    - 
+  - intent: ask_wishlist_quantity
+    examples: |
+    - 
+  - intent: ask_cart_products
+    examples: |
+    - 
+  - intent: ask_wishlist_product
+    examples: |
+    - 
+  - intent: ask_order_quantity
+    examples: |
+    - 
+  - intent: ask_order_by_status_pending_quantity
+    examples: |
+    - 
+  - intent: ask_order_by_status_delivery_quantity
+    examples: |
+    - 
+  - intent: ask_order_by_status_shipped_quantity
+    examples: |
+    - 
+  - intent: ask_about_categories
+    examples: |
+    - 
+  - intent: ask_product_quantity_by_category
+    examples: |
+    - 
+  - intent: ask_product_where_category
+    examples: |
+    - 
+  - intent: ask_product_instock
+    examples: |
+    - 
+  - intent: ask_product_instock_quantity
+    examples: |
+    - 
+  - intent: ask_product_rating_quantity
+    examples: |
+    - 
+
+  - intent: ask_product_purchase_quantity
+    examples: |
+    - 
+  - intent: find_products_by_category
+    examples: |
+    - 
+  - intent: find_products_by_price_range
+    examples: |
+    - 
+  - intent: find_products_by_name
+    examples: |
+    - 
+- intent: find_product_in_category_by_price
+    examples: |
+    - 
+  - intent: suggest_product_large_area
+    examples: |
+    - 
+  - intent: suggest_product_medium_area
+    examples: |
+    - 
+  - intent: suggest_product_small_area
+    examples: |
+    - 
+
+  - intent: check_instock_product
+    examples: |
+    - 
+  
+  # mẫu
+  # - intent: 
+  #   examples: |
+  #   - 

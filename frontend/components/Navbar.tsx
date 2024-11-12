@@ -137,14 +137,16 @@ function Navbar() {
                         Thông tin
                       </Link>
                     </li>
-                    <li className="w-full border-b border-gray-100 my-2 hover:text-accent">
-                      <Link
-                        href={"/chat"}
-                        className="px-1 py-1 w-full hover:underline"
-                      >
-                        Hội Thoại
-                      </Link>
-                    </li>
+                    {isLogin && (
+                      <li className="w-full border-b border-gray-100 my-2 hover:text-accent">
+                        <Link
+                          href={"/chat"}
+                          className="px-1 py-1 w-full hover:underline"
+                        >
+                          Hội Thoại
+                        </Link>
+                      </li>
+                    )}
                     <li className="w-full border-b border-gray-100 my-2 hover:text-accent">
                       <Link
                         href={"/order/myOrder"}
@@ -154,14 +156,24 @@ function Navbar() {
                       </Link>
                     </li>
                     {userInfo?.role === "owner" ? (
-                      <li className="w-full border-b border-gray-100 my-2 hover:text-accent">
-                        <Link
-                          href={`/shop/${userInfo.shop_id}`}
-                          className="px-1 py-1 w-full hover:underline"
-                        >
-                          Cửa Hàng
-                        </Link>
-                      </li>
+                      <>
+                        <li className="w-full border-b border-gray-100 my-2 hover:text-accent">
+                          <Link
+                            href={`/shop/${userInfo.shop_id}`}
+                            className="px-1 py-1 w-full hover:underline"
+                          >
+                            Cửa Hàng
+                          </Link>
+                        </li>
+                        <li className="w-full border-b border-gray-100 my-2 hover:text-accent">
+                          <Link
+                            href={`/shop/dashboard`}
+                            className="px-1 py-1 w-full hover:underline"
+                          >
+                            Cửa Sổ Quản Lí
+                          </Link>
+                        </li>
+                      </>
                     ) : (
                       userInfo?.role === "admin" && (
                         <li className="w-full border-b border-gray-100 my-2 hover:text-accent">
@@ -191,7 +203,8 @@ function Navbar() {
             )}
           </div>
         </div>
-        <div className="flex justify-center items-center  sm:hidden">
+        {/* mobile search */}
+        <div className="flex justify-center items-center  sm:hidden mb-1">
           <div className="relative w-fit ">
             <input
               value={searchQuery}
@@ -214,7 +227,7 @@ function Navbar() {
       </div>
       {/* place holder */}
       {/* botom nav */}
-      <div className="flex items-center justify-center gap-32 py-1 border-borderb border-b">
+      <div className="flex items-center justify-center sm:gap-32 gap-5 py-1 border-borderb border-b">
         <Link
           className="text-sm uppercase hover:text-accent font-bold"
           href={"#outstanding"}

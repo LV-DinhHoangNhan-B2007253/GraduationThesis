@@ -100,7 +100,7 @@ function Cart() {
   return (
     <MainLayout>
       {Object.keys(groupedCart).length > 0 ? (
-        <div className="min-h-[80%] ">
+        <div className="min-h-[80vh] ">
           {Object.entries(groupedCart).map(([shop_owner_id, items]) => (
             <div key={shop_owner_id} className="shop-group">
               {/* Hiển thị thông tin chi tiết của shop */}

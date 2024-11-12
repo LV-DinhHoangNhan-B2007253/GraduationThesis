@@ -5,6 +5,8 @@ import {
   GetOneProduct,
   RemoveProductInWishList,
 } from "@/services/product.service";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -50,7 +52,7 @@ function WishlistProductCard({
     fetchProductData();
   }, []);
   return (
-    <div className="flex justify-between items-center px-5 py-4 bg-light-modal-popup dark:bg-dark-modal-popup rounded border-b border-gray-100 my-4">
+    <div className="flex justify-between items-center px-5 py-4 rounded border-b border-primary-border bg-card-bg my-4">
       <img
         loading="lazy"
         src={`${product?.images[0]}`}
@@ -64,10 +66,10 @@ function WishlistProductCard({
         {product?.name}
       </Link>
       <button
-        className="px-4 py-2 rounded-md bg-yellow-500 hover:bg-orange-500 text-small text-white uppercase transition duration-250"
+        className="px-4 py-2 rounded-md  text-small transition duration-250 hover:text-button-danger"
         onClick={handleDeleteProductInWishList}
       >
-        Remove
+        <FontAwesomeIcon icon={faTrash} />
       </button>
     </div>
   );

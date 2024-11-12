@@ -1,7 +1,9 @@
+import { RootState } from "@/redux/store";
 import { MessToChatbot } from "@/services/chatbot.service"; // Chatbot API service
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 interface IChatBotMessage {
   text: string;
@@ -10,9 +12,14 @@ interface IChatBotMessage {
 }
 
 function ChatBot() {
+  const { userInfo } = useSelector((state: RootState) => state.user);
+  const { isLogin } = useSelector((state: RootState) => state.userLoginState);
   const [messages, setMessages] = useState<IChatBotMessage[]>([
     {
-      text: "Xin chào, Tôi là Louis. Tôi có thể giúp gì cho bạn?",
+      text:
+        userInfo && isLogin === true
+          ? `Chào bạn ${userInfo.name}! Mình là Louis, nhân viên của sàn HNE-commerce, mình có thể giúp gì cho bạn? Đừng ngần ngại hỏi mình nhé`
+          : "Xin chào quý khách, Mình là Louis, nhân viên của sàn HNE-commerce, mình có thể giúp gì cho bạn? Đừng ngần ngại hỏi mình nhé",
       sender: "bot",
     },
   ]);
@@ -77,7 +84,7 @@ function ChatBot() {
                   className="w-10 h-10 bg-white rounded-full"
                 />
                 <div className="bg-bot-msg text-black inline-block max-w-[80%] p-2 rounded-md min-w-[30%] shadow-sm">
-                  <span className="italic text-sm font-light">Bot</span>
+                  <span className="italic text-sm font-light">Louis</span>
                   <p className="text-left text-wrap text-base">{msg.text}</p>
                 </div>
               </div>
