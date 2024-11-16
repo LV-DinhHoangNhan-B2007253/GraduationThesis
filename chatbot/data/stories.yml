@@ -11,12 +11,7 @@ stories:
       - intent: goodbye
       - action: utter_goodbye
 
-  - story: hello_world
-    steps:
-      - intent: hello_world
-      - action: action_hello_world
-
-- story: warranty_policy
+  - story: warranty_policy
     steps:
       - intent: warranty_policy
       - action: utter_warranty_policy

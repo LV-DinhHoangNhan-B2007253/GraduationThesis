@@ -36,7 +36,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
               onClick={() => setIsOpenChatWindow(false)}
               className=" text-center px-3 hover:text-red-700 text-base "
             >
-              <FontAwesomeIcon icon={faClose} />
+              <FontAwesomeIcon icon={faClose} color="white" />
             </button>
           </div>
           <div className="">
@@ -50,6 +50,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
             size="3x"
             icon={faFacebookMessenger}
             onClick={handleOpenChatWindow}
+            color="blue"
             className="text-blue-600 drop-shadow-2xl hover:cursor-pointer hover:text-blue-800  "
           />
         </div>

@@ -1,7 +1,7 @@
 version: "3.1"
 
 rules:
-# cơ bản
+  # cơ bản
   - rule: Bye user
     steps:
       - intent: goodbye
@@ -12,58 +12,179 @@ rules:
       - intent: greet
       - action: utter_greet
 
-  - rule: hello world
-    steps:
-      - intent: hello_world
-      - action: action_hello_world
-
-  - rule: trả lời khi không hiểu ý
+  - rule: fallback
     steps:
       - intent: nlu_fallback
       - action: action_fallback
 
-# các itent có câu trả lời cố định
+  # các itent có câu trả lời cố định
 
- - rule: chính sách mua hàng
+  - rule: chính sách mua hàng
     steps:
       - intent: warranty_policy
       - action: utter_warranty_policy
 
- - rule: Hướng dẫn mua hàng
+  - rule: Hướng dẫn mua hàng
     steps:
       - intent: buying_guide
       - action: utter_buying_guide
 
-
- - rule: Xuất xứ sản phẩm
+  - rule: Xuất xứ sản phẩm
     steps:
       - intent: ask_product_made
       - action: utter_ask_product_made
 
- - rule: hỏi về chất liệu
+  - rule: hỏi về chất liệu
     steps:
       - intent: ask_product_material
       - action: utter_ask_product_material
 
- - rule: thời gian giao hàng
+  - rule: thời gian giao hàng
     steps:
       - intent: ask_predict_delivery
       - action: utter_ask_predict_delivery
 
- - rule: có phương thức thanh toán nào
+  - rule: có phương thức thanh toán nào
     steps:
       - intent: ask_payment_methods
       - action: utter_ask_payment_methods
 
-
- - rule: Hướng dẫn thanh toán
+  - rule: Hướng dẫn thanh toán
     steps:
       - intent: ask_payment_guide
       - action: utter_ask_payment_guide
 
- - rule: Hướng dẫn trả hàng
+  - rule: Hướng dẫn trả hàng
     steps:
       - intent: ask_return_policy
       - action: utter_ask_return_policy
 
+  #intents co truy van
 
+  - rule: "hỏi về loại sản phẩm "
+    steps:
+      - intent: ask_product_type
+      - action: action_ask_product_type
+
+  - rule: "Giá của sản phẩm"
+    steps:
+      - intent: ask_product_price
+      - action: action_ask_product_price
+
+  - rule: "các sản phẩm đang sale"
+    steps:
+      - intent: ask_product_sale
+      - action: action_ask_product_sale
+  - rule: "thương hiệu sản phẩm"
+    steps:
+      - intent: ask_product_brand
+      - action: action_ask_product_brand
+  - rule: "số lượng sản phẩm đang có trong giỏ hàng"
+    steps:
+      - intent: ask_cart_quantity
+      - action: action_ask_cart_quantity
+
+  - rule: "số lượng sản phẩm đang có trong wishlist"
+    steps:
+      - intent: ask_wishlist_quantity
+      - action: action_ask_wishlist_quantity
+
+  - rule: "tên của các sản phẩm đang có trong giỏ hàng"
+    steps:
+      - intent: ask_cart_products
+      - action: action_ask_cart_products
+
+  - rule: "tên của các sản phẩm đang có trong wishlist"
+    steps:
+      - intent: ask_wishlist_product
+      - action: action_ask_wishlist_product
+  - rule: "số đơn hàng của khách hàng"
+    steps:
+      - intent: ask_order_quantity
+      - action: action_ask_order_quantity
+
+  - rule: "số lượng đơn hàng trạng thái đang xử lí"
+    steps:
+      - intent: ask_order_by_status_pending_quantity
+      - action: action_ask_order_by_status_pending_quantity
+
+  - rule: "số lượng đơn hàng trạng thái đang giao"
+    steps:
+      - intent: ask_order_by_status_delivery_quantity
+      - action: action_ask_order_by_status_delivery_quantity
+
+  - rule: "số lượng đơn hàng đã mua, nhận thành công"
+    steps:
+      - intent: ask_order_by_status_shipped_quantity
+      - action: action_ask_order_by_status_shipped_quantity
+  - rule: "có bao nhiêu danh mục"
+    steps:
+      - intent: ask_about_categories
+      - action: action_ask_about_categories
+
+  - rule: "có bao nhiêu sản phẩm trong danh mục cụ thể"
+    steps:
+      - intent: ask_product_quantity_by_category
+      - action: action_ask_product_quantity_by_category
+
+  - rule: "sản phẩm này nằm trong danh mục nào"
+    steps:
+      - intent: ask_product_where_category
+      - action: action_ask_product_where_category
+
+  - rule: "sản phẩm này còn hàng không"
+    steps:
+      - intent: ask_product_instock
+      - action: action_ask_product_instock
+  - rule: "số lượng sản phẩm còn trong kho là bao nhiêu"
+    steps:
+      - intent: ask_product_instock_quantity
+      - action: action_ask_product_instock_quantity
+
+  - rule: "số lượt đánh giá của một sản phẩm"
+    steps:
+      - intent: ask_product_rating_quantity
+      - action: action_ask_product_rating_quantity
+
+  - rule: "số lượt mua của sản phẩm"
+    steps:
+      - intent: ask_product_purchase_quantity
+      - action: action_ask_product_purchase_quantity
+
+  - rule: "các sản phẩm của 1 danh mục"
+    steps:
+      - intent: find_products_by_category
+      - action: action_find_products_by_category
+  - rule: "tìm sản phẩm theo khoảng giá"
+    steps:
+      - intent: find_products_by_price_range
+      - action: action_find_products_by_price_range
+
+  - rule: "tìm sản phẩm theo tên"
+    steps:
+      - intent: find_products_by_name
+      - action: action_find_products_by_name
+
+  - rule: "tìm sản phẩm của 1 danh mục theo giá"
+    steps:
+      - intent: find_product_in_category_by_price
+      - action: action_find_product_in_category_by_price
+
+  - rule: "đề xuất các sản phẩm cho không gian lớn"
+    steps:
+      - intent: suggest_product_large_area
+      - action: action_suggest_product_large_area
+  - rule: "đề xuất các sản phẩm theo không gian vùa"
+    steps:
+      - intent: suggest_product_medium_area
+      - action: action_suggest_product_medium_area
+
+  - rule: "đề xuất sản phẩm với không gian nhỏ"
+    steps:
+      - intent: suggest_product_small_area
+      - action: action_suggest_product_small_area
+
+  - rule: "kiểm tra 1 sản phẩm còn hàng hay không bằng mã hoặc tên sản phẩm"
+    steps:
+      - intent: check_instock_product
+      - action: action_check_instock_product

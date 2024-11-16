@@ -9,6 +9,7 @@ interface IChatBotMessage {
   text: string;
   sender: "user" | "bot";
   url?: string | null;
+  userId?: string | null;
 }
 
 function ChatBot() {
@@ -46,7 +47,12 @@ function ChatBot() {
       const sendForm = {
         sender: "user",
         message: input,
+        metadata: {
+          userId: userInfo ? userInfo._id : null,
+        },
       };
+      console.log(sendForm);
+
       const response = await MessToChatbot(sendForm);
 
       const botMessage: IChatBotMessage = {

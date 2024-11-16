@@ -15,10 +15,9 @@ app.add_middleware(
     allow_headers=["*"],  # Cho phép tất cả các headers
 )
 
-svm = joblib.load('./saved_models/svm_phoBert_model.pkl')
-knn = joblib.load('./saved_models/knn_phoBert_model.pkl')
-logistic = joblib.load('./saved_models/logistic_phoBert_model.pkl')
-random_forest=joblib.load('./saved_models/random_forest_phoBert_model.pkl')
+svm = joblib.load('./saved_models/svm_phoBert_model4.pkl')
+logistic = joblib.load('./saved_models/logistic_phoBert_model4.pkl')
+random_forest=joblib.load('./saved_models/random_forest_phoBert_model4.pkl')
 
 
 
@@ -29,11 +28,7 @@ def classify_comments_svm(input_data: CommentInput):
     return results.to_dict(orient="records")  # Chuyển DataFrame thành danh sách các dict
     # return predict(input_data)
 
-@app.post("/predict/knn")
-def classify_comments_svm(input_data: CommentInput):
-    results = predict_model(input_data.comments,knn)
-    return results.to_dict(orient="records")  # Chuyển DataFrame thành danh sách các dict
-    # return predict(input_data)
+
 
 
 @app.post("/predict/logistic")
@@ -58,9 +53,9 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)
 
-# SVM Accuracy: 0.5157374100719424
-# Logistic Regression Accuracy: 0.5346223021582733
-# Random Forest Accuracy: 0.4977517985611511
+# SVM Accuracy:0.586897671900379
+# Logistic Regression Accuracy:  0.6069301570113698
+# Random Forest Accuracy:0.5668651867893882
 # KNN Accuracy: 0.4653776978417266
 
 # -> dùng LR làm model chính lúc gọi api

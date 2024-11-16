@@ -3,7 +3,7 @@ from .preprocessing import encode_texts,preprocess_comments
 import joblib
 
 # # các model mới
-phoBert=joblib.load('./saved_models/X_train_phobert.pkl')
+# phoBert=joblib.load('./saved_models/X_train_phobert.pkl')
 
 
 # # # Các hàm dự đoán khác cho SVM và Logistic Regression

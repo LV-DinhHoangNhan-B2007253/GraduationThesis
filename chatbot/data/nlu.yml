@@ -1,7 +1,8 @@
 version: "3.1"
 
 nlu:
-# intents cơ bản
+  # intents cơ bản
+
   - intent: greet
     examples: |
       - chào
@@ -17,6 +18,10 @@ nlu:
       - alo alo
       - hú
       - ayzo
+      - xin chào
+      - bạn ơi
+      - có ai không
+      - hỗ trợ mình với
 
   - intent: goodbye
     examples: |
@@ -30,124 +35,241 @@ nlu:
       - ty
       - hẹn gặp lại
       - ok
-# intents cố định
+  # intents cố định
   - intent: warranty_policy
     examples: |
-    - chính sách mua hàng
-
+      - chính sách mua hàng
+      - chính sách mua hàng ở đây như thế nào
+      - có thể cho tôi biết về chính sách mua hàng không
+      - tôi muốn biết về chính sách khi mua hàng
+      - các điều khoản mua hàng ở đây là gì
   - intent: buying_guide
     examples: |
-    - hướng dẫn mua hàng
- - intent: ask_product_made
+      - hướng dẫn mua hàng
+      - làm thế nào để mua hàng
+      - cần gì để mua hàng
+      - tôi muốn đặt hàng
+      - tôi muốn mua hàng
+      - làm thế nào để mua sản phẩm
+      - hướng dẫn tôi cách đặt hàng với
+      - tôi muốn biết cách mua hàng
+      - quy trình đặt hàng như thế nào
+      - hướng dẫn chi tiết cách đặt hàng giúp tôi
+      - tôi có thể mua hàng bằng cách nào
+      - làm sao để hoàn tất đặt hàng
+      - tôi muốn biết cách thanh toán đơn hàng
+      - cách thức mua hàng trên trang này là gì
+      - tôi cần trợ giúp về cách mua sản phẩm
+      - cách mua hàng và thanh toán ra sao
+      - cần làm gì để hoàn tất quá trình mua hàng
+  - intent: ask_product_made
     examples: |
-    - xuất xứ sản phẩm
-
+      - xuất xứ sản phẩm
+      - các sản phẩm có xuất xứ từ đâu
+      - sản phẩm này có xuất xứ từ đâu
+      - nguồn gốc của sản phẩm này là gì
+      - sản phẩm này được sản xuất ở đâu
+      - sản phẩm này có phải hàng nội địa không
+      - hàng này là của nước nào sản xuất
+      - sản phẩm này có phải hàng nhập khẩu không
+      - tôi muốn biết nơi sản xuất của sản phẩm này
+      - sản phẩm này có phải hàng chính hãng không
+      - nguồn gốc sản phẩm này ở đâu
+      - sản phẩm này đến từ thương hiệu nào
+      - xuất xứ của mặt hàng này là ở đâu
+      - đây có phải là sản phẩm sản xuất trong nước không
+      - sản phẩm này đến từ nước nào
+      - sản phẩm này có xuất xứ rõ ràng không
   - intent: ask_product_material
     examples: |
-    - 
-
- - intent: ask_predict_delivery
+      - Sản phẩm này được làm từ chất liệu gì
+      - Chất liệu của sản phẩm này là gì
+      - Món đồ này làm bằng gì vậy
+      - Sản phẩm này có phải làm từ gỗ không
+      - Chất liệu của sản phẩm có bền không
+      - Sản phẩm này dùng loại vải nào
+      - Chất liệu chính của sản phẩm này là gì
+      - Sản phẩm có phải làm từ thép không
+      - Cái này làm từ nhựa hay kim loại
+      - Chất liệu sản phẩm có thân thiện với môi trường không
+      - Sản phẩm này làm từ da thật hay giả da
+      - Sản phẩm có dùng chất liệu an toàn không
+      - Món đồ này có chống nước không
+      - Cấu trúc chất liệu của sản phẩm như thế nào
+      - Sản phẩm có được làm từ chất liệu cao cấp không
+      - Chất liệu của sản phẩm này có dễ bảo quản không
+      - Cái này có phải làm từ gỗ tự nhiên không
+      - Món đồ này có làm từ vật liệu tái chế không
+      - Sản phẩm này dùng chất liệu nhung hay cotton
+      - Đây là sản phẩm làm từ thủy tinh hay gốm
+  - intent: ask_predict_delivery
     examples: |
-    - 
-
+      - thời gian giao hàng là bao lâu
+      - khi nào tôi sẽ nhận được hàng
+      - mất bao nhiêu thời gian để giao hàng
+      - cửa hàng giao hàng trong bao lâu
+      - tôi có thể nhận hàng trong ngày không
+      - đơn hàng của tôi khi nào sẽ đến
+      - thời gian giao hàng trung bình là bao lâu
+      - khi nào hàng của tôi sẽ được giao tới
+      - bao lâu thì tôi có thể nhận được sản phẩm
+      - cần bao nhiêu thời gian để đơn hàng đến nơi
+      - có giao hàng trong ngày không
+      - cửa hàng có giao nhanh không
+      - thời gian vận chuyển cho sản phẩm này là bao lâu
+      - giao hàng nội thành mất bao lâu
+      - giao hàng ngoại thành mất bao lâu
+      - bao nhiêu ngày thì hàng sẽ tới
+      - khi nào tôi có thể nhận hàng khi đặt hàng
+      - thời gian xử lí và giao hàng là bao lâu
+      - có thể biết thời gian cụ thể giao hàng không
+      - cửa hàng có giao hàng vào cuối tuần không
   - intent: ask_payment_methods
     examples: |
-    - 
+      - Có những phương thức thanh toán nào
+      - Tôi có thể thanh toán bằng cách nào
+      - Ở đây có chấp nhận những hình thức thanh toán nào
+      - Cửa hàng hỗ trợ thanh toán qua những phương thức nào
+      - Có thể thanh toán bằng tiền mặt không
+      - Có thanh toán qua thẻ tín dụng không
+      - Cửa hàng có chấp nhận ví điện tử không
+      - Tôi có thể trả qua MoMo không
+      - Có thể dùng VNPay để thanh toán không
+      - Cửa hàng có chấp nhận thẻ ATM không
+      - Tôi có thể thanh toán qua chuyển khoản không
+      - Phương thức thanh toán online là gì
+      - Có hỗ trợ thanh toán qua PayPal không
+      - Ở đây có hỗ trợ thanh toán khi nhận hàng không  
+      - Tôi muốn biết các lựa chọn thanh toán.
+      - Có thể thanh toán bằng ZaloPay không
+      - Có phương thức nào thanh toán trả góp không
+      - Cửa hàng có chấp nhận thanh toán quốc tế không
+      - Tôi có thể dùng thẻ ghi nợ để thanh toán không
+      - Có những hình thức thanh toán trực tuyến nào
 
- - intent: ask_payment_guide
+  - intent: ask_payment_guide
     examples: |
-    - 
+      - Hướng dẫn tôi cách thanh toán
+      - Tôi có thể thanh toán như thế nào
+      - Cách thanh toán cho đơn hàng là gì
+      - Các bước thanh toán ở đây là gì
+      - Tôi muốn biết cách thức thanh toán khi mua hàng
+      - Thanh toán online như thế nào
+      - Tôi có thể thanh toán khi nhận hàng không
+      - Cửa hàng có chấp nhận thanh toán thẻ không
+      - Hướng dẫn chi tiết về cách thanh toán
+      - Có hỗ trợ thanh toán qua ví điện tử không
+      - Làm sao để thanh toán qua VNPay
+      - Phương thức thanh toán nào được chấp nhận ở đây
+      - Tôi cần trợ giúp về việc thanh toán
+      - Có thể thanh toán bằng chuyển khoản ngân hàng không?
+      - Làm sao để kiểm tra thanh toán đã thành công chưa
+  - intent: ask_return_policy
+    examples: |
+      - mua hàng ở đây có được đổi trả không
+      - khi mua hàng có hỗ trợ đổi trả không
+      - điều kiện để hoàn tiền là gì
+      - cửa hàng có hỗ trợ đổi trả hay không
+      - nếu không hài lòng, tôi có thể trả hàng không
+      - mua hàng ở đây có được hỗ trợ gì không
+      - tôi muốn biết chi tiết về chính sách hoàn trả
+      - khi nào tôi được hoàn tiền nếu trả hàng
+      - có được đổi hàng sau khi mua không
+      - có hỗ trợ kiểm tra sản phẩm trước khi nhận hàng không
+      - tôi được kiểm tra sản phẩm trước không
+      - quy định đổi trả hàng như thế nào
+      - tôi muốn trả hàng
+      - làm thế nào để trả hàng
+      - tôi có thể trả hàng không
 
- - intent: ask_return_policy
-    examples: |
-    - 
-# intents với các truy vấn
+  # intents với các truy vấn
   - intent: ask_product_type
     examples: |
-    - 
+      - test
+      - kiem tra
   - intent: ask_product_price
     examples: |
-    - 
+      -
 
   - intent: ask_product_sale
     examples: |
-    - 
+      -
   - intent: ask_product_brand
     examples: |
-    - 
+      -
   - intent: ask_cart_quantity
     examples: |
-    - 
+      -
   - intent: ask_wishlist_quantity
     examples: |
-    - 
+      -
   - intent: ask_cart_products
     examples: |
-    - 
+      -
   - intent: ask_wishlist_product
     examples: |
-    - 
+      -
   - intent: ask_order_quantity
     examples: |
-    - 
+      -
   - intent: ask_order_by_status_pending_quantity
     examples: |
-    - 
+      -
   - intent: ask_order_by_status_delivery_quantity
     examples: |
-    - 
+      -
   - intent: ask_order_by_status_shipped_quantity
     examples: |
-    - 
+      -
   - intent: ask_about_categories
     examples: |
-    - 
+      -
   - intent: ask_product_quantity_by_category
     examples: |
-    - 
+      -
   - intent: ask_product_where_category
     examples: |
-    - 
+      -
   - intent: ask_product_instock
     examples: |
-    - 
+      -
   - intent: ask_product_instock_quantity
     examples: |
-    - 
+      -
   - intent: ask_product_rating_quantity
     examples: |
-    - 
+      -
 
   - intent: ask_product_purchase_quantity
     examples: |
-    - 
+      -
   - intent: find_products_by_category
     examples: |
-    - 
+      -
   - intent: find_products_by_price_range
     examples: |
-    - 
+      -
   - intent: find_products_by_name
     examples: |
-    - 
-- intent: find_product_in_category_by_price
+      -
+  - intent: find_product_in_category_by_price
     examples: |
-    - 
+      -
   - intent: suggest_product_large_area
     examples: |
-    - 
+      -
   - intent: suggest_product_medium_area
     examples: |
-    - 
+      -
   - intent: suggest_product_small_area
     examples: |
-    - 
+      -
 
   - intent: check_instock_product
     examples: |
-    - 
-  
+      -
+
   # mẫu
-  # - intent: 
+  # - intent:
   #   examples: |
-  #   - 
+  #   -

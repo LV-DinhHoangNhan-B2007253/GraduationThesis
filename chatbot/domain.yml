@@ -49,16 +49,16 @@ responses:
     - text: "Chính sách Mua Hàng HNE-Commerce áp dụng đối với tất cả nhân viên của HNE-Commerce có nhiệm vụ thực hiện các hoạt động mua hàng cho HNE-Commerce hoặc tương tác, trực tiếp hoặc gián tiếp, với bộ phận Mua hàng của HNE-Commerce. Chính sách này cũng áp dụng đối với những người ký kết với HNE-Commerce đại diện thực hiện về việc tiến hành các hoạt động mua hàng cho HNE-Commerce"
 
   utter_buying_guide:
-    - text: "Để mua hàng, quý khách vui lòng thực hiện theo các bước sau:
-    B1: Chọn sản phẩm cần mua (nếu mua nhiều sản phẩm cùng lúc, quý khách hãy thêm sản phẩm vào giỏ hàng, sau đó vào giỏ hàng và chọn các sản phẩm cần mua).
-    B2: Chọn số lượng sản phẩm cần mua
-    B3: Điền địa chỉ nhận hàng
-    B4: Chọn phương thức thanh toán, phương thức thanh toán mặc định là tiền mặc.
-    B5: Xác nhận lại thông tin đơn hàng, nếu đã chính xác, Bấm nút "Thanh toán" để tiến hành đặt hàng."
+    - text: |
+        Để mua hàng, quý khách vui lòng thực hiện theo các bước sau:
+        B1: Chọn sản phẩm cần mua (nếu mua nhiều sản phẩm cùng lúc, quý khách hãy thêm sản phẩm vào giỏ hàng, sau đó vào giỏ hàng và chọn các sản phẩm cần mua).
+        B2: Chọn số lượng sản phẩm cần mua
+        B3: Điền địa chỉ nhận hàng
+        B4: Chọn phương thức thanh toán, phương thức thanh toán mặc định là tiền mặc.
+        B5: Xác nhận lại thông tin đơn hàng, nếu đã chính xác, Bấm nút "Thanh toán" để tiến hành đặt hàng.
 
-  utter_ask_product_made: 
+  utter_ask_product_made:
     - text: "Tất cả sản phẩm hiện có tại HNE-Commerce được sản xuất là lắp đặt tại Ý "
-
 
   utter_ask_product_material:
     - text: "Các sản phẩm đều được làm từ vật liệu thân thiện với môi trường như: Vải tái chế, Gỗ ép tái chế, nhựa tái chế và sử dụng các màu nhuộm không ảnh hưởng đến sức khỏe"
@@ -70,19 +70,56 @@ responses:
     - text: "HNE-Commerce hiện tại có các phương thức thanh toán gồm tiền mặt và thanh toán qua tài khoản ngân hàng."
 
   utter_ask_payment_guide:
-    - text: "Để thanh toán, quý khách vui vòng làm theo hướng dẫn sau:
-    Đối với phương thức thanh toán bằng tiền mặt, khi nhận được hàng, quý khách vui lòng thanh toán cho người giao hàng.
-    Đối với thanh toán bằng tài khoản ngân hàng (thanh toán trước, nhận hàng sau), quý khách chọn ngân hàng và điền thông tin thẻ để thanh toán."
+    - text: |
+        Để thanh toán, quý khách vui vòng làm theo hướng dẫn sau:
+        Đối với phương thức thanh toán bằng tiền mặt, khi nhận được hàng, quý khách vui lòng thanh toán cho người giao hàng.
+        Đối với thanh toán bằng tài khoản ngân hàng (thanh toán trước, nhận hàng sau), quý khách chọn ngân hàng và điền thông tin thẻ để thanh toán.
   utter_ask_return_policy:
-    - text: "Khi nhận hàng nhưng quý khách không ưng ý, quý khách có thể trả hàng lại, đảm bảo rằng hàng chưa qua sử dụng và còn nguyên vẹn, không chấp nhận sản phẩm đã bị quý khách làm hỏng. Quý khách phải chịu chi phí hoàn trả hàng (chi phí vận chuyển) và trả trực tiếp cho đơn vị vận chuyển. Nếu sản phẩm đang trên đường giao tới bạn, vui lòng liên hệ với người bán để hủy đơn."
-
-# mẫu
-  utter_:
-    - text: ""
-
+    - text: |
+        Khi nhận hàng nhưng quý khách không ưng ý, quý khách có thể trả hàng lại, đảm bảo rằng hàng chưa qua sử dụng và còn nguyên vẹn, không chấp nhận sản phẩm đã bị quý khách làm hỏng. Quý khách phải chịu chi phí hoàn trả hàng (chi phí vận chuyển) và trả trực tiếp cho đơn vị vận chuyển. Nếu sản phẩm đang trên đường giao tới bạn, vui lòng liên hệ với người bán để hủy đơn.
 
 actions:
   - action_fallback
+  - action_ask_product_type
+  - action_ask_product_price
+  - action_ask_product_sale
+  - action_ask_product_brand
+  - action_ask_cart_quantity
+  - action_ask_wishlist_quantity
+  - action_ask_cart_products
+  - action_ask_wishlist_product
+  - action_ask_order_quantity
+  - action_ask_order_by_status_pending_quantity
+  - action_ask_order_by_status_delivery_quantity
+  - action_ask_order_by_status_shipped_quantity
+  - action_ask_about_categories
+  - action_ask_product_quantity_by_category
+  - action_ask_product_where_category
+  - action_ask_product_instock
+  - action_ask_product_instock_quantity
+  - action_ask_product_rating_quantity
+  - action_ask_product_purchase_quantity
+  - action_find_products_by_category
+  - action_find_products_by_price_range
+  - action_find_products_by_name
+  - action_find_product_in_category_by_price
+  - action_suggest_product_large_area
+  - action_suggest_product_medium_area
+  - action_suggest_product_small_area
+  - action_check_instock_product
+
+# slots:
+#   userId:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: custom
+
+entities:
+  - product_name
+  - category_name
+  - from_price
+  - to_price
 
 session_config:
   session_expiration_time: 60
