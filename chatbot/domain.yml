@@ -10,19 +10,19 @@ intents:
   - ask_product_price # giá của 1 sản phẩm
   - ask_product_sale # danh sách sản phẩm đang giảm giá
   - ask_product_material # hỏi về chất liệu -> done
-  - ask_product_brand #thương hiệu nào
+  - ask_product_brand #thương hiệu nào -> done
   - ask_predict_delivery #thời gian giao hàng dự kiến -> done
   - ask_payment_methods #phường thức thanh toán nào ->done
   - ask_payment_guide # hỏi về cách thanh toán -> done
   - ask_return_policy # chính sách trả hàng -> done
-  - ask_cart_quantity # hỏi về số sản phẩm đang có trong giỏ hàng của khách hàng
+  - ask_cart_quantity # hỏi về số sản phẩm đang có trong giỏ hàng của khách hàng -> DONE
   - ask_wishlist_quantity # hỏi về số lượng sản phẩm có trong danh sách yêu thích của khách hàng
-  - ask_cart_products # tên của các sản phẩm có trong giỏ hàng
-  - ask_wishlist_product # tên các sản phẩm có trong wishlist
-  - ask_order_quantity # hỏi về số đơn hàng của khách
-  - ask_order_by_status_pending_quantity # số lượng đơn hàng đang xử lí
-  - ask_order_by_status_delivery_quantity # số đơn đang giao
-  - ask_order_by_status_shipped_quantity # số đơn đã mua
+  - ask_cart_products # tên của các sản phẩm có trong giỏ hàng -> DONE
+  - ask_wishlist_product # tên các sản phẩm có trong wishlist -> DONE
+  - ask_order_quantity # hỏi về số đơn hàng của khách -> DONE
+  - ask_order_by_status_pending_quantity # số lượng đơn hàng đang xử lí -> DONE
+  - ask_order_by_status_delivery_quantity # số đơn đang giao -> DONE
+  - ask_order_by_status_shipped_quantity # số đơn đã mua -> DONE
   - ask_about_categories # có bao nhiêu danh mục
   - ask_product_quantity_by_category #danh mục này có bao nhiêu sản phẩm
   - ask_product_where_category # sản phẩm này nằm trong danh mục nào
@@ -32,7 +32,7 @@ intents:
   - ask_product_purchase_quantity # sản phẩm này có bao nhiêu lượt mua
   - find_products_by_category # danh mục này có sản phẩm nào
   - find_products_by_price_range # tìm sản phẩm theo giá tiền
-  - find_products_by_name # tìm sản phẩm theo tên
+  - find_products_by_name # tìm sản phẩm theo tên -> DONE
   - find_product_in_category_by_price # tìm các sản phẩm của 1 danh mục nào đó theo giá tiền từ giá tối thiểu đến giá tối đa
   - suggest_product_large_area # đề xuất sản phẩm theo không gian lớn
   - suggest_product_medium_area # đề xuất sản phẩm theo không gian vừa
@@ -108,18 +108,22 @@ actions:
   - action_suggest_product_small_area
   - action_check_instock_product
 
-# slots:
-#   userId:
-#     type: text
-#     influence_conversation: false
-#     mappings:
-#       - type: custom
-
+slots:
+  product_name:
+    type: text # Slot để lưu giá trị thực thể product_name
+    influence_conversation: false # Không ảnh hưởng trực tiếp đến luồng hội thoại
+    mappings:
+      - type: from_entity
+        entity: product_name
 entities:
   - product_name
   - category_name
   - from_price
   - to_price
+
+# synonyms:
+#   bàn trang trí: bàn
+#   bàn học sinh: bàn
 
 session_config:
   session_expiration_time: 60

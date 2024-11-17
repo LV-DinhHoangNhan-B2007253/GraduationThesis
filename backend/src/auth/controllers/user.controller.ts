@@ -20,6 +20,8 @@ export class UserController {
 
     @Get('/getOne/:_id')
     GetOneUser(@Param() userId: string) {
+        console.log(userId);
+
         return this.userService.getUserInfoById(userId)
     }
 

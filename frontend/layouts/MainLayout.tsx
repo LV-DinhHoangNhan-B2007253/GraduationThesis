@@ -7,7 +7,7 @@ import { faFacebookMessenger } from "@fortawesome/free-brands-svg-icons";
 import { faClose, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { button } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   const [isOpenChatWindow, setIsOpenChatWindow] = useState<boolean>(false);
@@ -16,12 +16,40 @@ function MainLayout({ children }: { children: React.ReactNode }) {
   const handleOpenChatWindow = () => {
     setIsOpenChatWindow(true);
     setIsOpenChatbot(false);
+    sessionStorage.setItem("isOpenChatWindow", JSON.stringify(true));
+    sessionStorage.setItem("isOpenChatbot", JSON.stringify(false));
   };
 
   const handleOpenChatBot = () => {
     setIsOpenChatWindow(false);
     setIsOpenChatbot(true);
+    sessionStorage.setItem("isOpenChatWindow", JSON.stringify(false));
+    sessionStorage.setItem("isOpenChatbot", JSON.stringify(true));
   };
+
+  const handleCloseChatWindow = () => {
+    setIsOpenChatWindow(false);
+    sessionStorage.setItem("isOpenChatWindow", JSON.stringify(false));
+  };
+
+  const handleCloseChatBot = () => {
+    setIsOpenChatbot(false);
+    sessionStorage.setItem("isOpenChatbot", JSON.stringify(false));
+  };
+
+  useEffect(() => {
+    // Check sessionStorage for saved state
+    const savedChatWindowState = sessionStorage.getItem("isOpenChatWindow");
+    const savedChatbotState = sessionStorage.getItem("isOpenChatbot");
+
+    if (savedChatWindowState) {
+      setIsOpenChatWindow(JSON.parse(savedChatWindowState));
+    }
+    if (savedChatbotState) {
+      setIsOpenChatbot(JSON.parse(savedChatbotState));
+    }
+  }, []);
+
   return (
     <div className="relative">
       <Navbar />
@@ -33,7 +61,8 @@ function MainLayout({ children }: { children: React.ReactNode }) {
         <div className=" bottom-0 right-0 z-[1000] top-3/4 backdrop-blur-md rounded shadow-md left-1/2 fixed ">
           <div className="flex justify-end bg-chat-input rounded-t-md">
             <button
-              onClick={() => setIsOpenChatWindow(false)}
+              // onClick={() => setIsOpenChatWindow(false)}
+              onClick={handleCloseChatWindow}
               className=" text-center px-3 hover:text-red-700 text-base "
             >
               <FontAwesomeIcon icon={faClose} color="white" />
@@ -63,7 +92,8 @@ function MainLayout({ children }: { children: React.ReactNode }) {
             <h1 className="font-bold tracking-widest ">Louis-Bot</h1>
 
             <button
-              onClick={() => setIsOpenChatbot(false)}
+              // onClick={() => setIsOpenChatbot(false)}
+              onClick={handleCloseChatBot}
               className="  text-white hover:text-red-500 font-bold"
             >
               <FontAwesomeIcon icon={faClose} />

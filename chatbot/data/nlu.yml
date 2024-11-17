@@ -185,8 +185,57 @@ nlu:
   # intents với các truy vấn
   - intent: ask_product_type
     examples: |
-      - test
-      - kiem tra
+      - "Trên website có bao nhiêu loại sản phẩm nội thất?"
+      - "Các loại sản phẩm trên cửa hàng của bạn gồm những gì?"
+      - "Shop có mấy loại đồ nội thất?"
+      - "Bạn có thể cho tôi biết website có bao nhiêu dòng sản phẩm không?"
+      - "Trên website có bao nhiêu loại sản phẩm nội thất?"
+      - "Có tất cả bao nhiêu danh mục nội thất trên trang?"
+      - "Website của bạn có phân loại sản phẩm không?"
+      - "Có những loại mặt hàng nào trên website?"
+      - "Nội thất trên shop có chia thành các loại không?"
+      - "Tôi muốn biết có mấy dòng sản phẩm nội thất trên trang."
+      - "Các loại sản phẩm nội thất trên cửa hàng là gì?"
+      - "Bạn có bao nhiêu loại đồ nội thất?"
+      - "Website bán mấy loại mặt hàng?"
+      - "Shop của bạn cung cấp bao nhiêu loại sản phẩm?"
+      - "Có phân loại sản phẩm theo danh mục không?"
+      - "Sản phẩm của bạn được chia thành bao nhiêu loại?"
+      - "Có mấy nhóm sản phẩm nội thất?"
+      - "Tôi muốn biết có mấy danh mục nội thất được bán?"
+      - "Website có cung cấp danh sách các loại sản phẩm không?"
+      - "Danh mục sản phẩm nội thất gồm những gì?"
+      - "Trang web này có mấy loại sản phẩm nội thất?"
+      - "Có thể cho tôi biết các dòng sản phẩm nội thất không?"
+      - "Shop bán những loại mặt hàng nội thất nào?"
+      - "Tôi cần biết có bao nhiêu loại sản phẩm trên trang."
+      - "Cửa hàng có bao nhiêu nhóm sản phẩm nội thất?"
+      - "Có phân loại sản phẩm theo từng danh mục không?"
+      - "Sản phẩm nội thất của bạn được chia thành mấy loại?"
+      - "Có tất cả bao nhiêu danh mục sản phẩm nội thất?"
+      - "Danh sách các loại mặt hàng nội thất gồm những gì?"
+      - "Website của bạn có mấy loại nội thất?"
+      - "Có mấy danh mục sản phẩm trên trang web?"
+      - "Các loại đồ nội thất được bán là gì?"
+      - "Website của bạn phân loại sản phẩm như thế nào?"
+      - "Shop có những nhóm sản phẩm nào?"
+      - "Nội thất của bạn được chia thành bao nhiêu loại?"
+      - "Danh mục sản phẩm nội thất của bạn gồm gì?"
+      - "Bạn bán bao nhiêu loại mặt hàng nội thất?"
+      - "Trang này có mấy danh mục sản phẩm?"
+      - "Có thể cho biết các dòng sản phẩm nội thất không?"
+      - "Danh mục sản phẩm được phân chia thế nào?"
+      - "Tôi muốn xem danh sách các loại sản phẩm nội thất."
+      - "Bạn có mấy loại nội thất?"
+      - "Danh sách sản phẩm nội thất trên website gồm gì?"
+      - "Có thể cho biết có bao nhiêu nhóm sản phẩm nội thất không?"
+      - "Có danh sách các loại sản phẩm không?"
+      - "Shop của bạn bán những loại mặt hàng nào?"
+      - "Website có phân loại các mặt hàng nội thất không?"
+      - "Có bao nhiêu dòng sản phẩm nội thất trên trang?"
+      - "Nội thất được chia thành bao nhiêu nhóm sản phẩm?"
+      - "Có thể cho biết các loại sản phẩm trên website không?"
+      - "Website của bạn có bán mấy loại đồ nội thất?"
   - intent: ask_product_price
     examples: |
       -
@@ -196,34 +245,315 @@ nlu:
       -
   - intent: ask_product_brand
     examples: |
-      -
-  - intent: ask_cart_quantity
-    examples: |
-      -
-  - intent: ask_wishlist_quantity
-    examples: |
-      -
+      - "Thương hiệu sản phẩm này là gì? "
+      - "Bạn có thể cho tôi biết thương hiệu của sản phẩm này không? "
+      - "Sản phẩm này được sản xuất bởi công ty nào? "
+      - "Thương hiệu của món hàng này là gì? "
+      - "Đây là sản phẩm của thương hiệu nào? "
+      - "Ai là nhà sản xuất của sản phẩm này? "
+      - "Sản phẩm này đến từ thương hiệu nào vậy? "
+      - "Bạn có thể chia sẻ thông tin về thương hiệu của sản phẩm này không? "
+      - "Thương hiệu sản phẩm này có nổi tiếng không? "
+      - "Sản phẩm này của thương hiệu nào vậy? "
+      - "Đây là món hàng của thương hiệu gì vậy? "
+      - "Sản phẩm này có phải của [tên thương hiệu] không? "
+      - "Tôi muốn biết thông tin về thương hiệu của sản phẩm này. "
+      - "Bạn có biết sản phẩm này đến từ thương hiệu nào không? "
+      - "Tôi đang tìm kiếm sản phẩm của thương hiệu nào? Bạn có thể giúp tôi không? "
+      - "Có phải sản phẩm này của [tên thương hiệu] không? "
+      - "Thương hiệu đứng sau sản phẩm này là gì? "
+      - "Thương hiệu sản phẩm này có uy tín không? "
+      - "Mình muốn biết sản phẩm này là của thương hiệu nào? "
+      - "Có phải sản phẩm này của một thương hiệu nổi tiếng không? "
+      - "Có thông tin nào về thương hiệu của sản phẩm này không? "
+      - "Bạn có thể giới thiệu cho tôi thương hiệu của sản phẩm này không? "
+      - "Đâu là thương hiệu sản xuất sản phẩm này? "
+      - "Đây là sản phẩm của công ty nào vậy? "
+      - "Tôi muốn tìm hiểu thêm về thương hiệu của sản phẩm này. "
+      - "Sản phẩm này có phải của thương hiệu [tên thương hiệu] không? "
+      - "Sản phẩm này của công ty nào sản xuất vậy? "
+      - "Bạn có thể cung cấp tên thương hiệu của sản phẩm này không? "
+      - "Có thông tin nào về thương hiệu sản phẩm này không? "
+      - "Sản phẩm này của thương hiệu nào, có uy tín không?                         "
   - intent: ask_cart_products
     examples: |
-      -
+      - "Tôi có những sản phẩm nào trong giỏ hàng?"
+      - "Giỏ hàng của tôi hiện tại có những món gì?"
+      - "Có sản phẩm nào trong giỏ hàng của tôi không?"
+      - "Có bao nhiêu món trong giỏ hàng của tôi?"
+      - "Tôi muốn xem lại những sản phẩm đã thêm vào giỏ hàng."
+      - "Giỏ hàng của tôi có những sản phẩm gì?"
+      - "Tôi có thể xem các sản phẩm trong giỏ hàng không?"
+      - "Có sản phẩm nào trong giỏ hàng tôi đã chọn không?"
+      - "Trong giỏ hàng của tôi có những mặt hàng nào?"
+      - "Tôi đã thêm những sản phẩm nào vào giỏ hàng rồi?"
+      - "Sản phẩm nào đang có trong giỏ hàng của tôi?"
+      - "Giỏ hàng của tôi đang có bao nhiêu sản phẩm?"
+      - "Tôi có thể kiểm tra lại giỏ hàng không?"
+      - "Có những món hàng nào trong giỏ hàng của tôi?"
+      - "Giỏ hàng của tôi hiện tại có gì?"
+      - "Sản phẩm nào tôi đã thêm vào giỏ hàng vậy?"
+      - "Có thể cho tôi biết những sản phẩm tôi đã chọn trong giỏ hàng không?"
+      - "Giỏ hàng của tôi có chứa sản phẩm nào không?"
+      - "Tôi muốn biết các sản phẩm có trong giỏ hàng của tôi."
+      - "Có thể cho tôi xem danh sách sản phẩm trong giỏ hàng không?"
+      - "Giỏ hàng của tôi có những món nào chưa được thanh toán?"
+      - "Tôi muốn xem lại giỏ hàng của mình."
+      - "Sản phẩm nào tôi đã chọn nhưng chưa thanh toán?"
+      - "Tôi đã thêm những món gì vào giỏ hàng rồi?"
+      - "Giỏ hàng của tôi có các sản phẩm gì cần thanh toán không?"
+      - "Có bao nhiêu sản phẩm trong giỏ hàng của tôi hiện tại?"
+      - "Những sản phẩm nào đang có trong giỏ hàng của tôi?"
+      - "Giỏ hàng của tôi có món gì mới không?"
+      - "Giỏ hàng hiện tại của tôi có những sản phẩm nào?"
+      - "Tôi có thể xem lại giỏ hàng để biết các sản phẩm đã chọn không?       "
+  - intent: ask_wishlist_quantity
+    examples: |
+      - "Tôi có bao nhiêu sản phẩm trong danh sách yêu thích?"
+      - "Số lượng sản phẩm yêu thích của tôi là bao nhiêu?"
+      - "Danh sách yêu thích của tôi hiện có mấy món?"
+      - "Có thể cho tôi biết tôi đã yêu thích bao nhiêu sản phẩm không?"
+      - "Hiện tại danh sách yêu thích của tôi có bao nhiêu sản phẩm?"
+      - "Tôi muốn kiểm tra số lượng sản phẩm trong danh sách yêu thích."
+      - "Tôi đã thêm mấy món vào danh sách yêu thích?"
+      - "Số món đồ nội thất yêu thích của tôi là bao nhiêu?"
+      - "Danh sách yêu thích hiện có bao nhiêu món đồ?"
+      - "Làm sao để biết tôi đã lưu bao nhiêu món vào danh sách yêu thích?"
+      - "Danh sách yêu thích của tôi chứa bao nhiêu sản phẩm?"
+      - "Hãy cho tôi biết tổng số lượng sản phẩm trong danh sách yêu thích của tôi."
+      - "Tôi muốn biết mình đã thêm bao nhiêu món vào danh sách yêu thích."
+      - "Có mấy sản phẩm trong danh sách yêu thích của tôi?"
+      - "Danh sách yêu thích có tất cả bao nhiêu món?"
+      - "Tôi đã lưu trữ bao nhiêu sản phẩm yêu thích?"
+      - "Hiện giờ tôi có mấy món trong danh sách yêu thích?"
+      - "Tôi muốn biết tổng cộng có bao nhiêu sản phẩm trong danh sách yêu thích của tôi."
+      - "Hãy kiểm tra và cho tôi biết số lượng món đồ trong danh sách yêu thích."
+      - "Tôi có thể biết hiện tại danh sách yêu thích của tôi có bao nhiêu món không?      "
+  - intent: ask_cart_quantity
+    examples: |
+      - "Trong giỏ hàng của tôi hiện có bao nhiêu sản phẩm?"
+      - "Tôi có mấy món hàng trong giỏ?"
+      - "Giỏ hàng của tôi có bao nhiêu sản phẩm?"
+      - "Có thể kiểm tra giúp tôi số lượng hàng trong giỏ được không?"
+      - "Tôi đã thêm bao nhiêu sản phẩm vào giỏ hàng?"
+      - "Giỏ hàng của tôi đang có mấy món đồ?"
+      - "Hiện tại giỏ hàng có bao nhiêu mặt hàng?"
+      - "Tôi muốn biết giỏ hàng đang có bao nhiêu sản phẩm."
+      - "Trong giỏ của tôi có mấy món nội thất?"
+      - "Số lượng sản phẩm trong giỏ hàng của tôi là bao nhiêu?"
+      - "Kiểm tra giùm tôi giỏ hàng có mấy sản phẩm."
+      - "Tôi đã đặt bao nhiêu món vào giỏ?"
+      - "Có thể cho tôi biết giỏ hàng đang có mấy món không?"
+      - "Hiện tại tôi có bao nhiêu sản phẩm trong giỏ hàng?"
+      - "Giỏ hàng của tôi có chứa bao nhiêu món đồ?"
+      - "Tôi đã thêm mấy món vào giỏ hàng rồi?"
+      - "Giỏ hàng bây giờ có bao nhiêu sản phẩm?"
+      - "Có thể kiểm tra số lượng hàng trong giỏ không?"
+      - "Tôi muốn biết giỏ hàng đang có bao nhiêu sản phẩm."
+      - "Trong giỏ của tôi có bao nhiêu mặt hàng?"
+      - "Hiện tại tôi đã thêm mấy món vào giỏ?"
+      - "Giỏ hàng có mấy sản phẩm rồi nhỉ?"
+      - "Tôi muốn kiểm tra số lượng hàng trong giỏ."
+      - "Hiện tại giỏ hàng có bao nhiêu món đồ?"
+      - "Có thể cho tôi biết giỏ hàng có mấy món không?"
+      - "Sản phẩm trong giỏ hàng của tôi là bao nhiêu cái?"
+      - "Tôi có bao nhiêu món trong giỏ hàng?"
+      - "Giỏ hàng bây giờ đang chứa bao nhiêu sản phẩm?"
+      - "Số lượng sản phẩm trong giỏ hàng là bao nhiêu?"
+      - "Hiện tại giỏ hàng của tôi có bao nhiêu món?"
+      - "Tôi đã thêm bao nhiêu mặt hàng vào giỏ?"
+      - "Có mấy món đồ trong giỏ của tôi?"
+      - "Bạn kiểm tra giúp tôi giỏ hàng có mấy món."
+      - "Trong giỏ của tôi có bao nhiêu đồ nội thất?"
+      - "Số lượng sản phẩm tôi đã chọn trong giỏ là bao nhiêu?"
+      - "Tôi có mấy sản phẩm trong giỏ?"
+      - "Kiểm tra giỏ hàng giúp tôi, có mấy món rồi?"
+      - "Hiện giỏ hàng đang có mấy món?"
+      - "Số lượng mặt hàng trong giỏ của tôi là bao nhiêu?"
+      - "Tôi đã đặt bao nhiêu sản phẩm vào giỏ hàng?"
+      - "Bạn có thể cho tôi biết giỏ hàng của tôi chứa mấy sản phẩm không?"
+      - "Giỏ hàng có mấy món nội thất rồi?"
+      - "Có bao nhiêu món đồ tôi đã thêm vào giỏ?"
+      - "Giỏ hàng hiện đang chứa bao nhiêu sản phẩm?"
+      - "Sản phẩm trong giỏ hàng của tôi đang là bao nhiêu món?"
+      - "Tôi có thể kiểm tra số lượng món đồ trong giỏ không?"
+      - "Giỏ hàng của tôi hiện tại có bao nhiêu món?"
+      - "Trong giỏ tôi có mấy món rồi?"
+      - "Tôi muốn biết số lượng sản phẩm hiện trong giỏ hàng."
+      - "Giỏ hàng của tôi đang có bao nhiêu món nội thất?                    "
   - intent: ask_wishlist_product
     examples: |
-      -
+      - "Tôi muốn xem danh sách yêu thích của mình."
+      - "Có thể hiển thị danh sách yêu thích của tôi không?"
+      - "Hãy cho tôi biết tôi đã thêm gì vào danh sách yêu thích."
+      - "Tôi có những sản phẩm nào trong danh sách yêu thích?"
+      - "Kiểm tra danh sách yêu thích giúp tôi."
+      - "Tôi muốn biết danh sách yêu thích của mình."
+      - "Hãy hiển thị các mặt hàng yêu thích của tôi."
+      - "Tôi đã thêm những sản phẩm nào vào danh sách yêu thích?"
+      - "Danh sách yêu thích của tôi hiện tại có gì?"
+      - "Hãy cho tôi biết các mặt hàng yêu thích của tôi."
+
   - intent: ask_order_quantity
     examples: |
-      -
+      - Số lượng đơn hàng của tôi là bao nhiêu?
+      - Tôi có bao nhiêu đơn hàng?
+      - Có bao nhiêu đơn hàng trong tài khoản của tôi?
+      - Tổng số đơn hàng của tôi là bao nhiêu?
+      - Tôi đã đặt bao nhiêu đơn hàng?
+      - Tôi đã đặt bao nhiêu đơn hàng trong tháng này?
+      - Đơn hàng của tôi hiện có bao nhiêu cái?
+      - Số lượng đơn hàng chưa giao của tôi là bao nhiêu?
+      - Tôi đã mua bao nhiêu sản phẩm qua các đơn hàng?
+      - Có bao nhiêu đơn hàng mà tôi đã đặt trong năm nay?
+      - Số lượng đơn hàng tôi đã thực hiện là bao nhiêu?
+      - Tôi có bao nhiêu đơn hàng trong lịch sử của mình?
+      - Tổng cộng tôi đã đặt bao nhiêu đơn hàng?
+      - Tôi đã đặt bao nhiêu đơn hàng trong tuần này?
+      - Bao nhiêu đơn hàng tôi đã mua trong tháng này?
+      - Tổng số đơn hàng của tôi trong năm nay là bao nhiêu?
+      - Tôi đã thực hiện bao nhiêu đơn hàng từ khi đăng ký tài khoản?
+      - Số lượng đơn hàng tôi đã hoàn thành là bao nhiêu?
+      - Có bao nhiêu đơn hàng chưa được xử lý của tôi?
+      - Tôi đã đặt bao nhiêu đơn hàng trong tuần qua?
+      - Bao nhiêu đơn hàng tôi đã thanh toán?
+      - Tôi đã có bao nhiêu đơn hàng đang trong quá trình giao?
+      - Tổng số đơn hàng mà tôi đã thực hiện là bao nhiêu?
+      - Bao nhiêu đơn hàng tôi đã mua trong tháng trước?
+      - Tôi đã đặt bao nhiêu đơn hàng cho sản phẩm này?
+      - Tôi có bao nhiêu đơn hàng đang mở?
+      - Tổng cộng tôi đã mua bao nhiêu món hàng qua các đơn hàng?
+      - Có bao nhiêu đơn hàng của tôi đã được xác nhận?
+      - Bao nhiêu đơn hàng của tôi đã được gửi đi?
+      - Tôi đã đặt bao nhiêu đơn hàng trong thời gian gần đây?
   - intent: ask_order_by_status_pending_quantity
     examples: |
-      -
+      - Có bao nhiêu đơn hàng của tôi đang chờ xác nhận?
+      - Số lượng đơn hàng chờ xác nhận của tôi là bao nhiêu?
+      - Đơn hàng chờ xác nhận của tôi có bao nhiêu cái?
+      - Tôi có bao nhiêu đơn hàng đang chờ xác nhận?
+      - Số lượng đơn hàng chưa xác nhận của tôi là bao nhiêu?
+      - Có bao nhiêu đơn hàng của tôi đang trong trạng thái chờ xác nhận?
+      - Tổng số đơn hàng đang chờ xác nhận của tôi là bao nhiêu?
+      - Đơn hàng chờ xác nhận của tôi hiện tại là bao nhiêu?
+      - Bạn có thể cho tôi biết có bao nhiêu đơn hàng của tôi đang chờ xác nhận không?
+      - Có bao nhiêu đơn hàng chưa xác nhận của tôi?
+      - Số lượng đơn hàng tôi đang đợi xác nhận là bao nhiêu?
+      - Bao nhiêu đơn hàng của tôi đang ở trạng thái chờ xác nhận?
+      - Hiện tại, có bao nhiêu đơn hàng của tôi đang chờ xác nhận?
+      - Tôi muốn biết có bao nhiêu đơn hàng chờ xác nhận của tôi.
+      - Số lượng đơn hàng tôi đã đặt và đang chờ xác nhận là bao nhiêu?
+      - Đơn hàng của tôi đang chờ xác nhận có bao nhiêu?
+      - Bạn có thể cho tôi biết số lượng đơn hàng tôi cần xác nhận không?
+      - Số lượng đơn hàng của tôi chưa được xác nhận hiện tại là bao nhiêu?
+      - Bao nhiêu đơn hàng của tôi cần phải xác nhận?
+      - Số đơn hàng của tôi đang chờ xác nhận là bao nhiêu?
+      - Có bao nhiêu đơn hàng của tôi đang đợi xác nhận?
+      - Các đơn hàng của tôi chưa xác nhận là bao nhiêu cái?
+      - Tình trạng đơn hàng của tôi đang chờ xác nhận là bao nhiêu?
+      - Có bao nhiêu đơn hàng tôi đang chờ xác nhận?
+      - Bao nhiêu đơn hàng đang chờ xác nhận của tôi?
+      - Số lượng đơn hàng chưa xác nhận mà tôi đang có là bao nhiêu?
+      - Đơn hàng chờ xác nhận của tôi hiện có bao nhiêu?
+      - Hiện tại có bao nhiêu đơn hàng của tôi đang chờ xác nhận?
+      - Đơn hàng tôi đã đặt và đang chờ xác nhận có bao nhiêu cái?
+      - Bạn có thể cho tôi biết số lượng đơn hàng tôi đã đặt đang chờ xác nhận không?
   - intent: ask_order_by_status_delivery_quantity
     examples: |
-      -
+      - Số lượng đơn hàng của tôi đang giao là bao nhiêu?
+      - Tôi có bao nhiêu đơn hàng đang trên đường giao?
+      - Có bao nhiêu đơn hàng đang được giao cho tôi?
+      - Đơn hàng nào của tôi đang trong quá trình giao?
+      - Hiện tại tôi có bao nhiêu đơn hàng đang giao?
+      - Bao nhiêu đơn hàng của tôi hiện đang được vận chuyển?
+      - Số lượng đơn hàng đang giao cho tôi là bao nhiêu?
+      - Đơn hàng nào của tôi đang được chuyển đến?
+      - Số đơn hàng tôi đang nhận là bao nhiêu?
+      - Tôi có bao nhiêu đơn hàng đang vận chuyển?
+      - Tôi đã có bao nhiêu đơn hàng đang trong quá trình giao?
+      - Đơn hàng nào của tôi đang được giao?
+      - Hiện tại có bao nhiêu đơn hàng của tôi đang trên đường đến?
+      - Có bao nhiêu đơn hàng của tôi đang được giao ở thời điểm này?
+      - Số lượng đơn hàng hiện đang vận chuyển là bao nhiêu?
+      - Tôi đã có bao nhiêu đơn hàng đang được giao đến?
+      - Tôi có bao nhiêu đơn hàng chưa đến nơi?
+      - Bao nhiêu đơn hàng tôi đã đặt đang trong quá trình giao?
+      - Số đơn hàng đang vận chuyển của tôi là bao nhiêu?
+      - Hiện có bao nhiêu đơn hàng của tôi đang được giao đến nơi?
+      - Có bao nhiêu đơn hàng tôi đã đặt đang trên đường giao?
+      - Bao nhiêu đơn hàng tôi đang nhận được hiện tại?
+      - Đơn hàng nào của tôi hiện đang được giao?
+      - Số lượng đơn hàng đang chuyển đến tôi là bao nhiêu?
+      - Tôi có bao nhiêu đơn hàng đang được giao tới tôi?
+      - Hiện tại tôi có bao nhiêu đơn hàng chưa đến nơi?
+      - Bao nhiêu đơn hàng của tôi đã được gửi đi nhưng chưa đến nơi?
+      - Số lượng đơn hàng đang được giao từ cửa hàng cho tôi là bao nhiêu?
+      - Tôi đã đặt bao nhiêu đơn hàng mà đang trên đường giao?
+      - Có bao nhiêu đơn hàng của tôi đang chờ giao?
   - intent: ask_order_by_status_shipped_quantity
     examples: |
-      -
+      - Số lượng đơn hàng của tôi đã được giao là bao nhiêu?
+      - Tôi đã nhận bao nhiêu đơn hàng rồi?
+      - Đơn hàng nào của tôi đã được giao?
+      - Hiện tại tôi có bao nhiêu đơn hàng đã giao?
+      - Bao nhiêu đơn hàng của tôi đã được giao thành công?
+      - Tôi đã có bao nhiêu đơn hàng được giao?
+      - Số lượng đơn hàng đã giao cho tôi là bao nhiêu?
+      - Có bao nhiêu đơn hàng của tôi đã được gửi đi và giao?
+      - Tôi đã nhận bao nhiêu đơn hàng từ cửa hàng?
+      - Đơn hàng nào của tôi đã hoàn thành việc giao?
+      - Bao nhiêu đơn hàng của tôi đã được giao đến nơi?
+      - Tất cả đơn hàng của tôi đã giao được bao nhiêu cái?
+      - Tôi đã có bao nhiêu đơn hàng được giao thành công?
+      - Số đơn hàng tôi đã nhận được là bao nhiêu?
+      - Hiện tôi đã có bao nhiêu đơn hàng hoàn thành giao hàng?
+      - Bao nhiêu đơn hàng của tôi đã được giao và hoàn tất?
+      - Số lượng đơn hàng tôi đã nhận từ nhà cung cấp là bao nhiêu?
+      - Tôi đã có bao nhiêu đơn hàng được chuyển đến và đã giao?
+      - Bao nhiêu đơn hàng tôi đã nhận cho đến nay?
+      - Số lượng đơn hàng đã giao cho tôi là bao nhiêu?
+      - Tôi đã nhận xong bao nhiêu đơn hàng?
+      - Bao nhiêu đơn hàng đã giao đến tay tôi rồi?
+      - Số đơn hàng tôi đã nhận được từ lần mua gần nhất là bao nhiêu?
+      - Tôi đã có bao nhiêu đơn hàng hoàn tất giao hàng?
+      - Hiện tại tôi đã có bao nhiêu đơn hàng được giao hoàn tất?
+      - Bao nhiêu đơn hàng của tôi đã được giao thành công và hoàn tất?
+      - Tôi đã nhận bao nhiêu đơn hàng từ ngày mua?
+      - Hiện tại, tôi đã nhận được bao nhiêu đơn hàng rồi?
+      - Số lượng đơn hàng đã giao cho tôi trong tháng này là bao nhiêu?
+      - Tôi đã nhận bao nhiêu đơn hàng cho đến bây giờ?
   - intent: ask_about_categories
     examples: |
-      -
+      - Cửa hàng có bao nhiêu danh mục sản phẩm?
+      - Có bao nhiêu danh mục trong cửa hàng hiện tại?
+      - Cửa hàng có bao nhiêu danh mục?
+      - Số lượng danh mục sản phẩm trong cửa hàng là bao nhiêu?
+      - Bạn có thể cho tôi biết có bao nhiêu danh mục trong cửa hàng không?
+      - Số lượng các danh mục sản phẩm hiện tại là bao nhiêu?
+      - Cửa hàng của bạn có bao nhiêu danh mục?
+      - Bạn có thể cho tôi biết cửa hàng có bao nhiêu danh mục sản phẩm không?
+      - Cửa hàng có tất cả bao nhiêu danh mục?
+      - Hiện tại cửa hàng của bạn có bao nhiêu danh mục?
+      - Số lượng danh mục trong cửa hàng bạn hiện tại là bao nhiêu?
+      - Có bao nhiêu loại danh mục trong cửa hàng?
+      - Bạn có thể liệt kê tất cả các danh mục trong cửa hàng không?
+      - Số lượng các danh mục hiện tại trong cửa hàng của bạn là bao nhiêu?
+      - Cửa hàng có bao nhiêu loại danh mục khác nhau?
+      - Có bao nhiêu danh mục trong hệ thống của bạn?
+      - Bạn có thể cho tôi biết các danh mục hiện tại trong cửa hàng không?
+      - Số lượng danh mục mà cửa hàng cung cấp là bao nhiêu?
+      - Cửa hàng bạn có bao nhiêu danh mục sản phẩm?
+      - Số lượng các danh mục mà bạn đang có là bao nhiêu?
+      - Cửa hàng có bao nhiêu danh mục khác nhau?
+      - Có bao nhiêu danh mục sản phẩm hiện có trong cửa hàng?
+      - Bạn có thể cho tôi biết danh mục của cửa hàng có bao nhiêu loại không?
+      - Cửa hàng của bạn hiện tại có bao nhiêu loại danh mục?
+      - Các danh mục trong cửa hàng bạn có bao nhiêu loại?
+      - Bạn có thể cho tôi biết tổng số danh mục trong cửa hàng không?
+      - Bạn có thể cho tôi biết số lượng danh mục có trong cửa hàng không?
+      - Hiện tại có bao nhiêu danh mục trong cửa hàng của bạn?
+      - Số lượng danh mục có trong cửa hàng là bao nhiêu?
+      - Cửa hàng của bạn có bao nhiêu danh mục và đó là những danh mục nào?
   - intent: ask_product_quantity_by_category
     examples: |
       -
@@ -251,7 +581,147 @@ nlu:
       -
   - intent: find_products_by_name
     examples: |
-      -
+      - Tôi muốn mua [bàn học](product_name)
+      - Hãy tìm cho tôi [ghế sofa](product_name)
+      - Tôi đang tìm [tủ quần áo](product_name)
+      - Có [bàn ăn](product_name) nào không?
+      - Làm ơn tìm giúp tôi [kệ sách](product_name)
+      - Tôi cần [giường ngủ](product_name)
+      - Tôi đang cần [ghế gaming](product_name)
+      - Có [đèn bàn](product_name) nào không?
+      - Tôi muốn đặt mua [bàn làm việc](product_name)
+      - Bạn có thể tìm [bàn cafe](product_name) cho tôi không?
+      - Hãy tìm [tủ giày](product_name) cho tôi
+      - Tôi muốn xem các mẫu [sofa góc](product_name)
+      - Tôi cần mua [bàn học sinh](product_name)
+      - Có [kệ tivi](product_name) nào phù hợp không?
+      - Tôi muốn xem các mẫu [bàn trang điểm](product_name)
+      - Bạn có thể tìm [ghế ăn](product_name) giúp tôi không?
+      - Tôi đang tìm [giá sách](product_name) cho phòng khách
+      - Có thể tìm giúp tôi [bàn họp](product_name) không?
+      - Tôi đang cần [ghế xoay văn phòng](product_name)
+      - Làm ơn tìm [bàn tròn](product_name) giúp tôi
+      - Tôi cần mua [tủ hồ sơ](product_name)
+      - Có [sofa bed](product_name) nào đẹp không?
+      - Tôi đang tìm [bàn kính](product_name) hiện đại
+      - Tôi muốn mua [ghế bar](product_name)
+      - Hãy tìm [tủ lạnh mini](product_name) giúp tôi
+      - Tôi cần [giá treo quần áo](product_name) gấp
+      - Bạn có mẫu [ghế thư giãn](product_name) nào không?
+      - Tôi muốn xem [ghế bập bênh](product_name)
+      - Có [bàn chân sắt](product_name) nào đẹp không?
+      - Tôi đang cần [giá để đồ](product_name)
+      - Tôi muốn tìm [ghế dài](product_name) cho phòng khách
+      - Có [bàn góc](product_name) nào phù hợp không?
+      - Tôi cần mua [tủ kính](product_name)
+      - Làm ơn tìm [bàn gấp](product_name) cho tôi
+      - Hãy tìm [sofa da](product_name) giúp tôi
+      - Tôi muốn đặt mua [ghế massage](product_name)
+      - Có [bàn chữ L](product_name) nào không?
+      - Tôi đang tìm [tủ rượu](product_name) cho phòng ăn
+      - Bạn có thể tìm [kệ để đồ](product_name) giúp tôi không?
+      - Tôi muốn xem các mẫu [giường tầng](product_name)
+      - Có [bàn ăn gỗ](product_name) nào không?
+      - Tôi muốn mua [gương trang trí](product_name)
+      - Hãy tìm cho tôi [gương phòng ngủ](product_name)
+      - Tôi đang tìm [gương đứng](product_name)
+      - Có [gương soi toàn thân](product_name) nào không?
+      - Tôi cần mua [gương phòng tắm](product_name)
+      - Tìm giúp tôi [gương trang điểm](product_name)
+      - Có [gương treo tường](product_name) nào đẹp không?
+      - Tôi muốn tìm [gương khung gỗ](product_name)
+      - Hãy giúp tôi tìm [gương khung kim loại](product_name)
+      - Tôi cần [gương tròn](product_name) để trang trí phòng khách
+      - Tôi muốn mua [gương phòng khách](product_name)
+      - Bạn có [gương sáng bóng](product_name) không?
+      - Tôi đang tìm [gương phòng ngủ hiện đại](product_name)
+      - Có [gương nghệ thuật](product_name) nào cho phòng khách không?
+      - Tìm cho tôi [gương có đèn LED](product_name) để trang điểm
+      - Bạn có [gương cổ điển](product_name) không?
+      - Tôi muốn mua [gương phòng tắm đẹp](product_name)
+      - Tôi đang cần [gương đứng lớn](product_name)
+      - Tìm cho tôi [gương phòng khách sang trọng](product_name)
+      - Bạn có [gương hiện đại](product_name) không?
+      - Tôi muốn mua [gối ôm](product_name)
+      - Hãy tìm cho tôi [gối ngủ](product_name)
+      - Tôi đang tìm [gối bông](product_name)
+      - Có [gối cao su](product_name) nào không?
+      - Tìm giúp tôi [gối lông vũ](product_name)
+      - Tôi muốn mua [gối tựa lưng](product_name)
+      - Có [gối memory foam](product_name) nào không?
+      - Tôi cần mua [gối điều chỉnh độ cao](product_name)
+      - Tôi đang cần [gối cho người đau lưng](product_name)
+      - Tìm cho tôi [gối bông gòn](product_name)
+      - Tôi muốn mua [gối đệm](product_name) để ngồi lâu
+      - Hãy giúp tôi tìm [gối ngủ cao cấp](product_name)
+      - Bạn có [gối cho trẻ em](product_name) không?
+      - Tôi cần mua [gối chống trào ngược](product_name)
+      - Tìm giúp tôi [gối chống đau cổ](product_name)
+      - Tôi muốn tìm [gối làm việc](product_name)
+      - Có [gối bông ép](product_name) nào không?
+      - Tôi đang cần [gối bông tựa lưng](product_name)
+      - Tìm cho tôi [gối văn phòng](product_name)
+      - Bạn có [gối mềm](product_name) không?
+      - Tôi muốn mua [bình hoa](product_name)
+      - Hãy tìm cho tôi [bình thủy tinh](product_name)
+      - Tôi đang tìm [bình gốm](product_name)
+      - Có [bình giữ nhiệt](product_name) nào không?
+      - Tìm giúp tôi [bình nước](product_name) tiện dụng
+      - Tôi cần mua [bình đựng trà](product_name)
+      - Bạn có [bình xịt](product_name) nào không?
+      - Tôi muốn mua [bình rượu](product_name) để tặng bạn bè
+      - Tìm cho tôi [bình thủy tinh cao cấp](product_name)
+      - Tôi đang cần [bình đựng nước nóng](product_name)
+      - Bạn có [bình đựng cà phê](product_name) không?
+      - Tôi muốn tìm [bình giữ nhiệt cho văn phòng](product_name)
+      - Tìm cho tôi [bình đựng nước sạch](product_name)
+      - Tôi cần mua [bình hoa trang trí](product_name)
+      - Bạn có [bình trà](product_name) đẹp không?
+      - Tôi muốn mua [bình nước uống](product_name) cho gia đình
+      - Có [bình nước inox](product_name) nào không?
+      - Tìm cho tôi [bình thủy tinh cho quầy bar](product_name)
+      - Tôi đang tìm [bình gốm sứ](product_name) để trang trí
+      - Bạn có [bình sứ](product_name) nào không?
+      - Tôi muốn mua [thảm trang trí](product_name) cho phòng khách
+      - Hãy tìm cho tôi [thảm lót sàn](product_name)
+      - Tôi đang tìm [thảm phòng ngủ](product_name)
+      - Có [thảm cao su](product_name) nào không?
+      - Tìm giúp tôi [thảm trải sàn](product_name) mềm mại
+      - Tôi cần mua [thảm cầu thang](product_name)
+      - Bạn có [thảm trang trí phòng khách](product_name) không?
+      - Tôi muốn mua [thảm lông](product_name) cho phòng ngủ
+      - Tìm cho tôi [thảm có họa tiết](product_name) đẹp
+      - Tôi đang cần [thảm sợi tổng hợp](product_name)
+      - Bạn có [thảm chống trượt](product_name) không?
+      - Tôi muốn tìm [thảm tự nhiên](product_name)
+      - Tìm cho tôi [thảm lót phòng ăn](product_name)
+      - Tôi cần mua [thảm yoga](product_name)
+      - Bạn có [thảm bàn ăn](product_name) không?
+      - Tôi muốn mua [thảm dệt kim](product_name)
+      - Có [thảm phòng khách đẹp](product_name) nào không?
+      - Tôi muốn tìm [thảm ngoài trời](product_name)
+      - Tìm cho tôi [thảm lót ghế](product_name)
+      - Tôi đang tìm [thảm sofa](product_name) cho phòng khách
+      - Tôi muốn mua [đèn trang trí](product_name) cho phòng khách
+      - Hãy tìm cho tôi [đèn ngủ](product_name)
+      - Tôi đang tìm [đèn bàn](product_name) để làm việc
+      - Có [đèn cây](product_name) nào không?
+      - Tìm giúp tôi [đèn chùm](product_name) cho phòng ăn
+      - Tôi cần mua [đèn led](product_name) tiết kiệm điện
+      - Bạn có [đèn thả trần](product_name) không?
+      - Tôi muốn mua [đèn ngoài trời](product_name)
+      - Tìm cho tôi [đèn phòng tắm](product_name)
+      - Tôi đang cần [đèn bàn học](product_name)
+      - Bạn có [đèn sáng màu](product_name) không?
+      - Tôi muốn tìm [đèn cổ điển](product_name) cho phòng khách
+      - Tìm cho tôi [đèn trang trí phòng ngủ](product_name)
+      - Tôi cần mua [đèn LED thông minh](product_name)
+      - Bạn có [đèn LED màu sắc](product_name) không?
+      - Tôi muốn mua [đèn chiếu sáng](product_name) cho văn phòng
+      - Có [đèn phòng khách](product_name) nào đẹp không?
+      - Tôi muốn tìm [đèn phòng ăn](product_name) kiểu hiện đại
+      - Tìm cho tôi [đèn treo tường](product_name)
+      - Tôi đang tìm [đèn di động](product_name) tiện lợi
   - intent: find_product_in_category_by_price
     examples: |
       -

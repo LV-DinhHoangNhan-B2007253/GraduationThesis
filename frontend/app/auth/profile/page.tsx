@@ -170,6 +170,9 @@ function Profile() {
   const handleLogout = async () => {
     // clear token
     localStorage.removeItem("accessToken");
+    sessionStorage.removeItem("chatMessages");
+    sessionStorage.setItem("isOpenChatWindow", JSON.stringify(false));
+    sessionStorage.setItem("isOpenChatbot", JSON.stringify(false));
     // dispatch store
     dispatch(setNullInfo());
     // update login state
