@@ -15,3 +15,93 @@ stories:
     steps:
       - intent: warranty_policy
       - action: utter_warranty_policy
+
+  - story: hỏi loại sản phẩm
+    steps:
+      - intent: ask_product_type
+      - action: action_ask_product_type
+
+  - story: hỏi thương hiệu sản phẩm
+    steps:
+      - intent: ask_product_brand
+      - action: action_ask_product_brand
+
+  - story: hỏi số lượng trong giỏ hàng
+    steps:
+      - intent: ask_cart_quantity
+      - action: action_ask_cart_quantity
+
+  - story: hỏi số lượng trong danh sách yêu thích
+    steps:
+      - intent: ask_wishlist_quantity
+      - action: action_ask_wishlist_quantity
+
+  - story: hỏi các sản phẩm trong giỏ hàng
+    steps:
+      - intent: ask_cart_products
+      - action: action_ask_cart_products
+
+  - story: hỏi sản phẩm trong danh sách yêu thích
+    steps:
+      - intent: ask_wishlist_product
+      - action: action_ask_wishlist_product
+
+  - story: hỏi số lượng đơn hàng
+    steps:
+      - intent: ask_order_quantity
+      - action: action_ask_order_quantity
+
+  - story: hỏi số lượng đơn hàng đang chờ xử lý
+    steps:
+      - intent: ask_order_by_status_pending_quantity
+      - action: action_ask_order_by_status_pending_quantity
+
+  - story: hỏi số lượng đơn hàng đang vận chuyển
+    steps:
+      - intent: ask_order_by_status_delivery_quantity
+      - action: action_ask_order_by_status_delivery_quantity
+
+  - story: hỏi số lượng đơn hàng đã giao
+    steps:
+      - intent: ask_order_by_status_shipped_quantity
+      - action: action_ask_order_by_status_shipped_quantity
+
+  - story: hỏi về danh mục sản phẩm
+    steps:
+      - intent: ask_about_categories
+      - action: action_ask_about_categories
+
+  - story: tìm sản phẩm theo danh mục
+    steps:
+      - intent: find_products_by_category
+      - action: action_find_products_by_category
+
+  - story: tìm sản phẩm theo khoảng giá
+    steps:
+      - intent: find_products_by_price_range
+      - action: action_find_products_by_price_range
+
+  - story: tìm sản phẩm theo tên
+    steps:
+      - intent: find_products_by_name
+      - action: action_find_products_by_name
+
+  - story: gợi ý sản phẩm cho khu vực lớn
+    steps:
+      - intent: suggest_product_large_area
+      - action: action_suggest_product_large_area
+
+  - story: gợi ý sản phẩm cho khu vực vừa
+    steps:
+      - intent: suggest_product_medium_area
+      - action: action_suggest_product_medium_area
+
+  - story: gợi ý sản phẩm cho khu vực nhỏ
+    steps:
+      - intent: suggest_product_small_area
+      - action: action_suggest_product_small_area
+
+  - story: hướng dẫn mua hàng
+    steps:
+      - intent: buying_guide
+      - action: utter_buying_guide

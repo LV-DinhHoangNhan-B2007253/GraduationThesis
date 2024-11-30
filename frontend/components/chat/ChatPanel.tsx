@@ -85,7 +85,7 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
   }, [receiverInfo._id, userInfo?._id]);
 
   return (
-    <div className="h-full bg-chat-panel">
+    <div className="h-full border-l border-gray-500">
       {/* Hiển thị danh sách tin nhắn */}
       <div className="overflow-y-auto h-[90%] mx-2">
         {message.length > 0 ? (
@@ -99,8 +99,8 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
               <div
                 className={`inline-block min-w-[150px] text-wrap px-4 py-2 rounded-lg ${
                   message.sender_id === userInfo?._id
-                    ? " bg-secondary-300 text-white"
-                    : "bg-bot-msg text-black "
+                    ? " bg-blue-500 text-white"
+                    : "text-white bg-gray-600 "
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -109,7 +109,7 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
                       ? "You"
                       : message.sender_name
                   }`}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-200">
                     {new Date(message.timestamp).toLocaleTimeString()}
                   </p>
                 </div>
@@ -121,7 +121,7 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
             </div>
           ))
         ) : (
-          <p className="text-center text-heading uppercase ">
+          <p className="text-center text-white uppercase ">
             Chưa có tin nhắn nào! Trò chuyện ngay thôi.
           </p>
         )}
@@ -129,7 +129,7 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
       </div>
 
       {/* Ô nhập tin nhắn */}
-      <div className="flex items-center p-2 border-t border-borderb h-[10%] bg-chat-input">
+      <div className="flex items-center p-2 border-t border-borderb h-[10%] bg-gray-600">
         <input
           type="text"
           value={inputSendMessage}
@@ -139,7 +139,7 @@ function ChatPanel({ receiverInfo }: { receiverInfo: IReceiverInfo }) {
               handleSendMessage();
             }
           }}
-          className="flex-grow border rounded-md p-2 bg-input text-input-text"
+          className="flex-grow border rounded-md p-2 bg-gray-800 text-white outline-none"
           placeholder="Nhập tin nhắn..."
         />
 

@@ -34,12 +34,12 @@ function ChatWindow() {
   return (
     <div className="grid grid-cols-12 h-full max-h-[95vh] min-h-[85vh] gap-1">
       {/* Phần danh sách người dùng chat */}
-      <div className="col-span-3 bg-chat-panel overflow-y-auto h-full">
+      <div className="col-span-3 bg-black overflow-y-auto h-full">
         {chats &&
           chats.map((chat) => (
             <div
               key={chat.receiverInfo._id}
-              className="flex items-center gap-1 w-full bg-secondary-200 px-2 py-1 mb-1 hover:bg-secondary-400 cursor-pointer rounded-sm"
+              className="flex items-center gap-1 w-full bg-black px-2 py-1 mb-1 hover:bg-secondary-400 cursor-pointer rounded-sm"
               onClick={() => handleChatSelect(chat)}
             >
               <img
@@ -53,10 +53,10 @@ function ChatWindow() {
                 className="min-w-[20px] min-h-[20px] max-w-[40px] max-h-[40px] rounded-full"
               />
               <div className="flex flex-col gap-1">
-                <p className="text-ellipsis truncate font-bold text-base">
+                <p className="text-ellipsis truncate font-bold text-base text-white">
                   {chat.receiverInfo.name}
                 </p>
-                <p className="italic font-light text-ellipsis truncate text-sm text-gray-500">
+                <p className="italic font-light text-ellipsis truncate text-sm text-gray-300">
                   {chat.messages[chat.messages.length - 1].message_text}
                 </p>
               </div>
@@ -65,13 +65,13 @@ function ChatWindow() {
       </div>
 
       {/* Phần nội dung chat */}
-      <div className=" col-span-9 bg-chat-panel">
+      <div className=" col-span-9 bg-black">
         {selectedChat ? (
           <div className="h-full max-h-[85vh] min-h-[85vh]">
             <ChatPanel receiverInfo={selectedChat.receiverInfo} />
           </div>
         ) : (
-          <h1 className="text-center font-bold text-heading uppercase ">
+          <h1 className="text-center font-bold text-white uppercase ">
             Chọn một hội thoại để bắt đầu trò chuyện
           </h1>
         )}

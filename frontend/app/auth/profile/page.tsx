@@ -403,9 +403,14 @@ function Profile() {
                   <Tooltip content="Save profile">
                     <button
                       onClick={handleSubmitForm}
+                      disabled={isEdit ? true : false}
                       aria-label="submit"
                       type="submit"
-                      className="sm:col-start-2 sm:col-span-1 w-[30%] sm:w-full text-center  py-2 rounded-md hover:bg-secondary-500 transition-all hover:translate-x-3  cursor-pointer bg-button-primary"
+                      className={`sm:col-start-2 sm:col-span-1 w-[30%] sm:w-full text-center  py-2 rounded-md  ${
+                        !isEdit
+                          ? "bg-button-primary cursor-pointer hover:bg-secondary-500 transition-all hover:translate-x-3  "
+                          : "bg-gray-500 cursor-not-allowed"
+                      }`}
                     >
                       Lưu
                     </button>
@@ -455,7 +460,7 @@ function Profile() {
                     className="float-right p-2 hover:text-accent"
                     onClick={handleLogout}
                   >
-                    <FontAwesomeIcon icon={faArrowRightFromBracket} size="1x" />
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" />
                   </button>
                 </div>
               </div>

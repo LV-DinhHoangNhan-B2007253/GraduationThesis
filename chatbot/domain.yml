@@ -7,8 +7,6 @@ intents:
   - buying_guide # hướng dẫn mua hàng -> done
   - ask_product_type #hỏi về loại sản phẩm (có mấy loại..)
   - ask_product_made # xuất xử của sản phẩm -> done
-  - ask_product_price # giá của 1 sản phẩm
-  - ask_product_sale # danh sách sản phẩm đang giảm giá
   - ask_product_material # hỏi về chất liệu -> done
   - ask_product_brand #thương hiệu nào -> done
   - ask_predict_delivery #thời gian giao hàng dự kiến -> done
@@ -24,20 +22,12 @@ intents:
   - ask_order_by_status_delivery_quantity # số đơn đang giao -> DONE
   - ask_order_by_status_shipped_quantity # số đơn đã mua -> DONE
   - ask_about_categories # có bao nhiêu danh mục
-  - ask_product_quantity_by_category #danh mục này có bao nhiêu sản phẩm
-  - ask_product_where_category # sản phẩm này nằm trong danh mục nào
-  - ask_product_instock # sản phẩm này còn hàng không
-  - ask_product_instock_quantity # sản phẩm này còn bao nhiêu trong kho
-  - ask_product_rating_quantity # sản phẩm này có bao nhiêu lượt đánh giá
-  - ask_product_purchase_quantity # sản phẩm này có bao nhiêu lượt mua
   - find_products_by_category # danh mục này có sản phẩm nào
   - find_products_by_price_range # tìm sản phẩm theo giá tiền
   - find_products_by_name # tìm sản phẩm theo tên -> DONE
-  - find_product_in_category_by_price # tìm các sản phẩm của 1 danh mục nào đó theo giá tiền từ giá tối thiểu đến giá tối đa
   - suggest_product_large_area # đề xuất sản phẩm theo không gian lớn
   - suggest_product_medium_area # đề xuất sản phẩm theo không gian vừa
   - suggest_product_small_area # đề xuất sản phẩm theo không gian nhỏ
-  - check_instock_product # bắt key là tên hoặc mã sản phẩm để xem là sản phẩm còn hàng không
 responses:
   utter_greet:
     - text: "Dạ! Louis xin chào ạ"
@@ -81,8 +71,6 @@ responses:
 actions:
   - action_fallback
   - action_ask_product_type
-  - action_ask_product_price
-  - action_ask_product_sale
   - action_ask_product_brand
   - action_ask_cart_quantity
   - action_ask_wishlist_quantity
@@ -93,20 +81,12 @@ actions:
   - action_ask_order_by_status_delivery_quantity
   - action_ask_order_by_status_shipped_quantity
   - action_ask_about_categories
-  - action_ask_product_quantity_by_category
-  - action_ask_product_where_category
-  - action_ask_product_instock
-  - action_ask_product_instock_quantity
-  - action_ask_product_rating_quantity
-  - action_ask_product_purchase_quantity
   - action_find_products_by_category
   - action_find_products_by_price_range
   - action_find_products_by_name
-  - action_find_product_in_category_by_price
   - action_suggest_product_large_area
   - action_suggest_product_medium_area
   - action_suggest_product_small_area
-  - action_check_instock_product
 
 slots:
   product_name:
@@ -115,6 +95,28 @@ slots:
     mappings:
       - type: from_entity
         entity: product_name
+
+  category_name:
+    type: text # Slot để lưu giá trị thực thể category_name
+    influence_conversation: false # Không ảnh hưởng trực tiếp đến luồng hội thoại
+    mappings:
+      - type: from_entity
+        entity: category_name
+  from_price:
+    type: float # Định dạng số thực cho giá
+    influence_conversation: false
+    initial_value: 0 # Giá trị mặc định là 0
+    mappings:
+      - type: from_entity
+        entity: from_price
+
+  to_price:
+    type: float # Định dạng số thực cho giá
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: to_price
+
 entities:
   - product_name
   - category_name

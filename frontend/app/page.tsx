@@ -37,7 +37,6 @@ export default function Home() {
   useEffect(() => {
     fetchData();
   }, []);
-  // slider setting
 
   return (
     <MainLayout>

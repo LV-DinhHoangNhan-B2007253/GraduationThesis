@@ -1,0 +1,245 @@
+{
+  "ask_order_by_status_pending_quantity": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 30,
+    "confused_with": {
+      "ask_order_by_status_delivery_quantity": 16,
+      "ask_order_quantity": 13,
+      "buying_guide": 1
+    }
+  },
+  "buying_guide": {
+    "precision": 0.9444444444444444,
+    "recall": 1.0,
+    "f1-score": 0.9714285714285714,
+    "support": 17,
+    "confused_with": {}
+  },
+  "ask_wishlist_product": {
+    "precision": 0.9090909090909091,
+    "recall": 1.0,
+    "f1-score": 0.9523809523809523,
+    "support": 10,
+    "confused_with": {}
+  },
+  "ask_return_policy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 15,
+    "confused_with": {}
+  },
+  "ask_product_material": {
+    "precision": 0.9090909090909091,
+    "recall": 1.0,
+    "f1-score": 0.9523809523809523,
+    "support": 20,
+    "confused_with": {}
+  },
+  "find_products_by_price_range": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 40,
+    "confused_with": {
+      "find_products_by_name": 40
+    }
+  },
+  "ask_payment_methods": {
+    "precision": 0.9523809523809523,
+    "recall": 1.0,
+    "f1-score": 0.975609756097561,
+    "support": 20,
+    "confused_with": {}
+  },
+  "greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 16,
+    "confused_with": {}
+  },
+  "ask_product_type": {
+    "precision": 0.4909090909090909,
+    "recall": 0.9,
+    "f1-score": 0.6352941176470589,
+    "support": 60,
+    "confused_with": {
+      "find_products_by_name": 6
+    }
+  },
+  "ask_cart_quantity": {
+    "precision": 0.9074074074074074,
+    "recall": 1.0,
+    "f1-score": 0.9514563106796117,
+    "support": 49,
+    "confused_with": {}
+  },
+  "find_products_by_category": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 49,
+    "confused_with": {
+      "find_products_by_name": 31,
+      "ask_product_type": 18
+    }
+  },
+  "ask_payment_guide": {
+    "precision": 1.0,
+    "recall": 0.9333333333333333,
+    "f1-score": 0.9655172413793104,
+    "support": 15,
+    "confused_with": {
+      "ask_payment_methods": 1
+    }
+  },
+  "suggest_product_medium_area": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 15,
+    "confused_with": {
+      "find_products_by_name": 10,
+      "ask_product_type": 2,
+      "ask_product_material": 1
+    }
+  },
+  "ask_order_by_status_delivery_quantity": {
+    "precision": 0.6521739130434783,
+    "recall": 1.0,
+    "f1-score": 0.7894736842105263,
+    "support": 30,
+    "confused_with": {}
+  },
+  "suggest_product_large_area": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 15,
+    "confused_with": {
+      "find_products_by_name": 8,
+      "ask_product_type": 4,
+      "ask_product_material": 1
+    }
+  },
+  "find_products_by_name": {
+    "precision": 0.5708502024291497,
+    "recall": 1.0,
+    "f1-score": 0.7268041237113402,
+    "support": 141,
+    "confused_with": {}
+  },
+  "warranty_policy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "goodbye": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 10,
+    "confused_with": {}
+  },
+  "ask_product_brand": {
+    "precision": 0.9714285714285714,
+    "recall": 0.85,
+    "f1-score": 0.9066666666666667,
+    "support": 40,
+    "confused_with": {
+      "ask_product_made": 5,
+      "find_products_by_name": 1
+    }
+  },
+  "ask_predict_delivery": {
+    "precision": 0.9090909090909091,
+    "recall": 1.0,
+    "f1-score": 0.9523809523809523,
+    "support": 20,
+    "confused_with": {}
+  },
+  "suggest_product_small_area": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 15,
+    "confused_with": {
+      "find_products_by_name": 10,
+      "ask_product_type": 2,
+      "ask_cart_products": 1
+    }
+  },
+  "ask_about_categories": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 30,
+    "confused_with": {
+      "ask_product_type": 30
+    }
+  },
+  "ask_order_quantity": {
+    "precision": 0.6904761904761905,
+    "recall": 1.0,
+    "f1-score": 0.8169014084507042,
+    "support": 29,
+    "confused_with": {}
+  },
+  "ask_cart_products": {
+    "precision": 0.918918918918919,
+    "recall": 0.8717948717948718,
+    "f1-score": 0.8947368421052632,
+    "support": 39,
+    "confused_with": {
+      "ask_cart_quantity": 5
+    }
+  },
+  "ask_product_made": {
+    "precision": 0.7272727272727273,
+    "recall": 1.0,
+    "f1-score": 0.8421052631578948,
+    "support": 16,
+    "confused_with": {}
+  },
+  "ask_wishlist_quantity": {
+    "precision": 1.0,
+    "recall": 0.92,
+    "f1-score": 0.9583333333333334,
+    "support": 25,
+    "confused_with": {
+      "ask_order_by_status_shipped_quantity": 1,
+      "ask_wishlist_product": 1
+    }
+  },
+  "ask_order_by_status_shipped_quantity": {
+    "precision": 0.9666666666666667,
+    "recall": 1.0,
+    "f1-score": 0.983050847457627,
+    "support": 29,
+    "confused_with": {}
+  },
+  "accuracy": 0.7325,
+  "macro avg": {
+    "precision": 0.6488963634314935,
+    "recall": 0.721301044634378,
+    "f1-score": 0.6768341119803083,
+    "support": 800
+  },
+  "weighted avg": {
+    "precision": 0.5936485144969127,
+    "recall": 0.7325,
+    "f1-score": 0.6447786522521082,
+    "support": 800
+  },
+  "micro avg": {
+    "precision": 0.7325,
+    "recall": 0.7325,
+    "f1-score": 0.7325,
+    "support": 800
+  }
+}

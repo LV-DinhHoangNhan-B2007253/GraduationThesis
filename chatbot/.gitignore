@@ -4,3 +4,6 @@ config.yml
 credentials.yml
 tests
 note.txt
+./tensorboard
+
+./models

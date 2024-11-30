@@ -1,0 +1,1714 @@
+[
+  {
+    "text": "Tôi có thể thanh toán khi nhận hàng không",
+    "intent": "ask_payment_guide",
+    "intent_prediction": {
+      "name": "ask_payment_methods",
+      "confidence": 0.5242919325828552
+    }
+  },
+  {
+    "text": "Tôi muốn tìm các loại bàn và ghế, bạn có không?",
+    "intent": "ask_product_type",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Ở đây có bán loại tủ nào không?",
+    "intent": "ask_product_type",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999977350234985
+    }
+  },
+  {
+    "text": "Tôi đang tìm loại sản phẩm cho phòng khách, bạn có không?",
+    "intent": "ask_product_type",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Loại nào đang giảm giá thế?",
+    "intent": "ask_product_type",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi không biết loại nào phù hợp, bạn có thể gợi ý không?",
+    "intent": "ask_product_type",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999997615814209
+    }
+  },
+  {
+    "text": "Loại ghế nào là tốt nhất?",
+    "intent": "ask_product_type",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Sản phẩm này có phải của hãng nội địa không?\"",
+    "intent": "ask_product_brand",
+    "intent_prediction": {
+      "name": "ask_product_made",
+      "confidence": 0.9988409876823425
+    }
+  },
+  {
+    "text": "\"Ghế sofa này được sản xuất ở đâu vậy?\"",
+    "intent": "ask_product_brand",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.7130724191665649
+    }
+  },
+  {
+    "text": "\"Loại ghế này có hãng nào uy tín không?\"",
+    "intent": "ask_product_brand",
+    "intent_prediction": {
+      "name": "ask_product_made",
+      "confidence": 0.40295565128326416
+    }
+  },
+  {
+    "text": "\"Sản phẩm nào tốt hơn, hàng nội hay hàng nhập khẩu?\"",
+    "intent": "ask_product_brand",
+    "intent_prediction": {
+      "name": "ask_product_made",
+      "confidence": 0.7164919972419739
+    }
+  },
+  {
+    "text": "\"Đây có phải là hàng chính hãng không?\"",
+    "intent": "ask_product_brand",
+    "intent_prediction": {
+      "name": "ask_product_made",
+      "confidence": 0.9925296902656555
+    }
+  },
+  {
+    "text": "\"Các sản phẩm ở đây có nguồn gốc rõ ràng chứ?\"                         \"",
+    "intent": "ask_product_brand",
+    "intent_prediction": {
+      "name": "ask_product_made",
+      "confidence": 0.9953879714012146
+    }
+  },
+  {
+    "text": "\"Có bao nhiêu món trong giỏ hàng của tôi?\"",
+    "intent": "ask_cart_products",
+    "intent_prediction": {
+      "name": "ask_cart_quantity",
+      "confidence": 0.9335011839866638
+    }
+  },
+  {
+    "text": "\"Giỏ hàng của tôi đang có bao nhiêu sản phẩm?\"",
+    "intent": "ask_cart_products",
+    "intent_prediction": {
+      "name": "ask_cart_quantity",
+      "confidence": 0.7213823795318604
+    }
+  },
+  {
+    "text": "\"Có bao nhiêu sản phẩm trong giỏ hàng của tôi hiện tại?\"",
+    "intent": "ask_cart_products",
+    "intent_prediction": {
+      "name": "ask_cart_quantity",
+      "confidence": 0.8014985918998718
+    }
+  },
+  {
+    "text": "\"Trong giỏ hàng của tôi có mấy món?\"",
+    "intent": "ask_cart_products",
+    "intent_prediction": {
+      "name": "ask_cart_quantity",
+      "confidence": 0.9957901835441589
+    }
+  },
+  {
+    "text": "\"Làm thế nào để kiểm tra giỏ hàng?\"",
+    "intent": "ask_cart_products",
+    "intent_prediction": {
+      "name": "ask_cart_quantity",
+      "confidence": 0.45182615518569946
+    }
+  },
+  {
+    "text": "\"Làm thế nào để kiểm tra số lượng sản phẩm đã lưu?\"",
+    "intent": "ask_wishlist_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_shipped_quantity",
+      "confidence": 0.23349732160568237
+    }
+  },
+  {
+    "text": "\"Danh sách yêu thích của tôi còn chỗ trống không?\"",
+    "intent": "ask_wishlist_quantity",
+    "intent_prediction": {
+      "name": "ask_wishlist_product",
+      "confidence": 0.8861457109451294
+    }
+  },
+  {
+    "text": "Có bao nhiêu đơn hàng của tôi đang chờ xác nhận?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.8531407713890076
+    }
+  },
+  {
+    "text": "Số lượng đơn hàng chờ xác nhận của tôi là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.9506256580352783
+    }
+  },
+  {
+    "text": "Đơn hàng chờ xác nhận của tôi có bao nhiêu cái?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.9902504682540894
+    }
+  },
+  {
+    "text": "Tôi có bao nhiêu đơn hàng đang chờ xác nhận?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.9560630321502686
+    }
+  },
+  {
+    "text": "Số lượng đơn hàng chưa xác nhận của tôi là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.9983494281768799
+    }
+  },
+  {
+    "text": "Có bao nhiêu đơn hàng của tôi đang trong trạng thái chờ xác nhận?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.8882715106010437
+    }
+  },
+  {
+    "text": "Tổng số đơn hàng đang chờ xác nhận của tôi là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.6322013139724731
+    }
+  },
+  {
+    "text": "Đơn hàng chờ xác nhận của tôi hiện tại là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.6619104743003845
+    }
+  },
+  {
+    "text": "Bạn có thể cho tôi biết có bao nhiêu đơn hàng của tôi đang chờ xác nhận không?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.878413200378418
+    }
+  },
+  {
+    "text": "Có bao nhiêu đơn hàng chưa xác nhận của tôi?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.9976242184638977
+    }
+  },
+  {
+    "text": "Số lượng đơn hàng tôi đang đợi xác nhận là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.5012702941894531
+    }
+  },
+  {
+    "text": "Bao nhiêu đơn hàng của tôi đang ở trạng thái chờ xác nhận?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.9026728272438049
+    }
+  },
+  {
+    "text": "Hiện tại, có bao nhiêu đơn hàng của tôi đang chờ xác nhận?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.9904119372367859
+    }
+  },
+  {
+    "text": "Tôi muốn biết có bao nhiêu đơn hàng chờ xác nhận của tôi.",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.8605802059173584
+    }
+  },
+  {
+    "text": "Số lượng đơn hàng tôi đã đặt và đang chờ xác nhận là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.7430483102798462
+    }
+  },
+  {
+    "text": "Đơn hàng của tôi đang chờ xác nhận có bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.8461654782295227
+    }
+  },
+  {
+    "text": "Bạn có thể cho tôi biết số lượng đơn hàng tôi cần xác nhận không?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "buying_guide",
+      "confidence": 0.4070506989955902
+    }
+  },
+  {
+    "text": "Số lượng đơn hàng của tôi chưa được xác nhận hiện tại là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.9153794646263123
+    }
+  },
+  {
+    "text": "Bao nhiêu đơn hàng của tôi cần phải xác nhận?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.9846134185791016
+    }
+  },
+  {
+    "text": "Số đơn hàng của tôi đang chờ xác nhận là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.9534568786621094
+    }
+  },
+  {
+    "text": "Có bao nhiêu đơn hàng của tôi đang đợi xác nhận?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.9059975743293762
+    }
+  },
+  {
+    "text": "Các đơn hàng của tôi chưa xác nhận là bao nhiêu cái?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.9987055063247681
+    }
+  },
+  {
+    "text": "Tình trạng đơn hàng của tôi đang chờ xác nhận là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.9318186640739441
+    }
+  },
+  {
+    "text": "Có bao nhiêu đơn hàng tôi đang chờ xác nhận?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.9586498737335205
+    }
+  },
+  {
+    "text": "Bao nhiêu đơn hàng đang chờ xác nhận của tôi?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.8444291353225708
+    }
+  },
+  {
+    "text": "Số lượng đơn hàng chưa xác nhận mà tôi đang có là bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.5332633852958679
+    }
+  },
+  {
+    "text": "Đơn hàng chờ xác nhận của tôi hiện có bao nhiêu?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.9470414519309998
+    }
+  },
+  {
+    "text": "Hiện tại có bao nhiêu đơn hàng của tôi đang chờ xác nhận?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.9904119372367859
+    }
+  },
+  {
+    "text": "Đơn hàng tôi đã đặt và đang chờ xác nhận có bao nhiêu cái?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_quantity",
+      "confidence": 0.6700007915496826
+    }
+  },
+  {
+    "text": "Bạn có thể cho tôi biết số lượng đơn hàng tôi đã đặt đang chờ xác nhận không?",
+    "intent": "ask_order_by_status_pending_quantity",
+    "intent_prediction": {
+      "name": "ask_order_by_status_delivery_quantity",
+      "confidence": 0.8752335906028748
+    }
+  },
+  {
+    "text": "Cửa hàng có bao nhiêu danh mục sản phẩm?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9994587302207947
+    }
+  },
+  {
+    "text": "Có bao nhiêu danh mục trong cửa hàng hiện tại?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.977415144443512
+    }
+  },
+  {
+    "text": "Cửa hàng có bao nhiêu danh mục?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9993649125099182
+    }
+  },
+  {
+    "text": "Số lượng danh mục sản phẩm trong cửa hàng là bao nhiêu?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9679287672042847
+    }
+  },
+  {
+    "text": "Bạn có thể cho tôi biết có bao nhiêu danh mục trong cửa hàng không?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.997379720211029
+    }
+  },
+  {
+    "text": "Số lượng các danh mục sản phẩm hiện tại là bao nhiêu?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9986581802368164
+    }
+  },
+  {
+    "text": "Cửa hàng của bạn có bao nhiêu danh mục?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9997872710227966
+    }
+  },
+  {
+    "text": "Bạn có thể cho tôi biết cửa hàng có bao nhiêu danh mục sản phẩm không?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9998243451118469
+    }
+  },
+  {
+    "text": "Cửa hàng có tất cả bao nhiêu danh mục?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9991126656532288
+    }
+  },
+  {
+    "text": "Hiện tại cửa hàng của bạn có bao nhiêu danh mục?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9993316531181335
+    }
+  },
+  {
+    "text": "Số lượng danh mục trong cửa hàng bạn hiện tại là bao nhiêu?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.969594419002533
+    }
+  },
+  {
+    "text": "Có bao nhiêu loại danh mục trong cửa hàng?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.999887228012085
+    }
+  },
+  {
+    "text": "Bạn có thể liệt kê tất cả các danh mục trong cửa hàng không?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9982420206069946
+    }
+  },
+  {
+    "text": "Số lượng các danh mục hiện tại trong cửa hàng của bạn là bao nhiêu?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9944242835044861
+    }
+  },
+  {
+    "text": "Cửa hàng có bao nhiêu loại danh mục khác nhau?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9999722242355347
+    }
+  },
+  {
+    "text": "Có bao nhiêu danh mục trong hệ thống của bạn?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9981626868247986
+    }
+  },
+  {
+    "text": "Bạn có thể cho tôi biết các danh mục hiện tại trong cửa hàng không?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9982501864433289
+    }
+  },
+  {
+    "text": "Số lượng danh mục mà cửa hàng cung cấp là bao nhiêu?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9951730370521545
+    }
+  },
+  {
+    "text": "Cửa hàng bạn có bao nhiêu danh mục sản phẩm?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9998946189880371
+    }
+  },
+  {
+    "text": "Số lượng các danh mục mà bạn đang có là bao nhiêu?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9812171459197998
+    }
+  },
+  {
+    "text": "Cửa hàng có bao nhiêu danh mục khác nhau?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9992094039916992
+    }
+  },
+  {
+    "text": "Có bao nhiêu danh mục sản phẩm hiện có trong cửa hàng?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9795671105384827
+    }
+  },
+  {
+    "text": "Bạn có thể cho tôi biết danh mục của cửa hàng có bao nhiêu loại không?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9999696016311646
+    }
+  },
+  {
+    "text": "Cửa hàng của bạn hiện tại có bao nhiêu loại danh mục?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9999635219573975
+    }
+  },
+  {
+    "text": "Các danh mục trong cửa hàng bạn có bao nhiêu loại?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9999699592590332
+    }
+  },
+  {
+    "text": "Bạn có thể cho tôi biết tổng số danh mục trong cửa hàng không?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9978098273277283
+    }
+  },
+  {
+    "text": "Bạn có thể cho tôi biết số lượng danh mục có trong cửa hàng không?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9964901804924011
+    }
+  },
+  {
+    "text": "Hiện tại có bao nhiêu danh mục trong cửa hàng của bạn?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9928817749023438
+    }
+  },
+  {
+    "text": "Số lượng danh mục có trong cửa hàng là bao nhiêu?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9422510862350464
+    }
+  },
+  {
+    "text": "Cửa hàng của bạn có bao nhiêu danh mục và đó là những danh mục nào?",
+    "intent": "ask_about_categories",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9997814297676086
+    }
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục sofas.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9936395287513733
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục ghế sofa dài không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9969742298126221
+    }
+  },
+  {
+    "text": "Hãy cho tôi xem các sản phẩm trong danh mục Bàn để tivi.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.998779833316803
+    }
+  },
+  {
+    "text": "Có sản phẩm trong danh mục Bàn nhỏ không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9997103810310364
+    }
+  },
+  {
+    "text": "Các sản phẩm trong danh mục Bàn trưng bày là gì?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9996138215065002
+    }
+  },
+  {
+    "text": "Tôi cần tìm sản phẩm trong danh mục bàn cà phê.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Cho tôi xem các ghế trong danh mục ghế.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục tủ không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.99992835521698
+    }
+  },
+  {
+    "text": "Hãy giới thiệu các sản phẩm trong danh mục tủ và kệ sách.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9974754452705383
+    }
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục bàn phòng ăn.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9998797178268433
+    }
+  },
+  {
+    "text": "Có sản phẩm nào trong danh mục ghế ăn không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9991437196731567
+    }
+  },
+  {
+    "text": "Bạn có tủ đựng bát đĩa nào không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục ghế ăn dài.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.87782883644104
+    }
+  },
+  {
+    "text": "Hãy cho tôi xem các sản phẩm trong danh mục ghế quầy bar.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9914094805717468
+    }
+  },
+  {
+    "text": "Tôi đang tìm sản phẩm trong danh mục giường ngủ.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999997615814209
+    }
+  },
+  {
+    "text": "Bạn có tủ và rương quần áo không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Có sản phẩm trong danh mục tủ đầu giường không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9997434020042419
+    }
+  },
+  {
+    "text": "Tôi cần tìm đồ để giường trong cửa hàng.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục nệm và lò xo không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9993776679039001
+    }
+  },
+  {
+    "text": "Hãy cho tôi xem các ghế ngoài trời.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục sofa ngoài trời.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9993106126785278
+    }
+  },
+  {
+    "text": "Bạn có sofa dài ngoài trời không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Hãy giới thiệu sản phẩm trong danh mục nghế nằm ngoài trời.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9932428002357483
+    }
+  },
+  {
+    "text": "Có sản phẩm trong danh mục đèn chùm không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.7791900634765625
+    }
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục đèn thả.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9084742665290833
+    }
+  },
+  {
+    "text": "Bạn có chậu và bình hoa nào không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Hãy cho tôi xem các sản phẩm trong danh mục trang trí tường và cửa.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9816309809684753
+    }
+  },
+  {
+    "text": "Tôi đang tìm gương trong cửa hàng.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm gối không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục thảm sàn.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9888842105865479
+    }
+  },
+  {
+    "text": "Có sản phẩm trong danh mục thảm trải vườn không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9389352202415466
+    }
+  },
+  {
+    "text": "Tôi cần tìm sản phẩm trong danh mục thảm hiệu suất.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.968186616897583
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục bàn làm việc không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9998486042022705
+    }
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục ghế văn phòng.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.6186382174491882
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục tủ hồ sơ không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999866485595703
+    }
+  },
+  {
+    "text": "Cho tôi xem các sản phẩm trong danh mục sofas.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9948476552963257
+    }
+  },
+  {
+    "text": "Tôi đang tìm sản phẩm trong danh mục ghế.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999990463256836
+    }
+  },
+  {
+    "text": "Có sản phẩm nào trong danh mục bàn nhỏ không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9944300055503845
+    }
+  },
+  {
+    "text": "Tôi muốn biết về các sản phẩm trong danh mục bàn phòng ăn.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9962963461875916
+    }
+  },
+  {
+    "text": "Hãy cho tôi biết có gì trong danh mục tủ và kệ sách.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999995231628418
+    }
+  },
+  {
+    "text": "Bạn có bàn làm việc nào trong danh mục bàn làm việc không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi đang tìm ghế trong danh mục ghế văn phòng.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Có ghế nào trong danh mục ghế ăn không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Có tủ đựng bát đĩa trong danh mục tủ đựng bát đĩa không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm trong danh mục ghế ăn dài.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi muốn mua sản phẩm trong danh mục sofa dài ngoài trời.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.999997615814209
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục ghế ngoài trời không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Có sản phẩm trong danh mục đèn thả không?",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9384294748306274
+    }
+  },
+  {
+    "text": "Tôi muốn tìm các sản phẩm trong danh mục thảm sàn.",
+    "intent": "find_products_by_category",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.999500036239624
+    }
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm sofa có giá từ 0 đến 500.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999613761901855
+    }
+  },
+  {
+    "text": "Cho tôi xem các sản phẩm ghế sofa dài trong khoảng giá 1000 đến 3000000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tìm các sản phẩm bàn cà phê có giá từ 2000 đến 1000000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm ghế nào có giá từ 0 đến 200 không?",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Liệt kê các sản phẩm bàn làm việc có giá trong khoảng từ 5000 đến 1500000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9989438652992249
+    }
+  },
+  {
+    "text": "Hãy tìm các sản phẩm nệm có giá từ 0 đến 1000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9936787486076355
+    }
+  },
+  {
+    "text": "Cho tôi các sản phẩm giường ngủ có giá trị từ 10000 trở lên.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi muốn tìm các sản phẩm tủ trong khoảng giá 1000 đến 100000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm sofa ngoài trời nào có giá từ 0 đến 200000?",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm ghế quầy bar có giá từ 1000 đến 1000000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Hiển thị các sản phẩm tủ và kệ sách có giá từ 0 đến 1000000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999985694885254
+    }
+  },
+  {
+    "text": "Tìm các sản phẩm bàn phòng ăn có giá từ 5000 đến 30000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm giường ngủ nào có giá từ 1000 đến 2000?",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Cho tôi danh sách sản phẩm sofa dài ngoài trời có giá trong khoảng 0 đến 500000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Hiển thị các sản phẩm ghế ăn có giá từ 2000 đến 2000000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999098777770996
+    }
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm ghế văn phòng có giá từ 5000 đến 50000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tìm sản phẩm đèn thả với giá trong khoảng từ 10000 đến 50000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Liệt kê các sản phẩm ghế ăn dài có giá từ 2000 đến 30000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999998807907104
+    }
+  },
+  {
+    "text": "Cho tôi xem các sản phẩm gương có giá từ 3000 trở lên.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tìm các sản phẩm chậu hoa có giá trị từ 0 đến 200.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm sofa nào có giá từ 0 đến 10000 không?",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Hiển thị tất cả sản phẩm sofa ngoài trời có giá từ 10000 đến 1000000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999995231628418
+    }
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm bàn làm việc có giá từ 1000 đến 20000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Liệt kê sản phẩm tủ hồ sơ trong khoảng giá từ 0 đến 20000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Cho tôi xem các sản phẩm sofa dài có giá từ 10000 đến 50000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999961853027344
+    }
+  },
+  {
+    "text": "Tìm sản phẩm đèn chùm trong khoảng giá từ 5000 đến 10000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999984502792358
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm thảm sàn nào giá từ 10000 đến 50000 không?",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Liệt kê tất cả sản phẩm bàn ăn có giá từ 0 đến 2000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm ghế ngoài trời có giá từ 5000 đến 3000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Hãy cho tôi xem sản phẩm ghế quầy bar có giá từ 20000 đến 10000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm sofa nào có giá từ 10000 đến 5000 không?",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Liệt kê các sản phẩm bàn cà phê trong khoảng giá từ 1000 đến 3000000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm nệm có giá từ 300000 đến 50000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999997615814209
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm sofa dài ngoài trời trong khoảng giá từ 0 đến 100000?",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Hiển thị các sản phẩm ghế văn phòng có giá từ 500 đến 20000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Cho tôi xem sản phẩm bàn phòng ăn có giá từ 2000 đến 5000000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Liệt kê các sản phẩm gương trong khoảng giá 10 đến 5000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tìm các sản phẩm thảm trải vườn có giá từ 0 đến 10000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Bạn có sản phẩm bàn để tivi nào có giá từ 1000 đến 1000 không?",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "Tìm sản phẩm sofa có giá từ 5000 đến 2000.",
+    "intent": "find_products_by_price_range",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Tôi cần tìm sản phẩm phù hợp cho không gian rộng.\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Có sản phẩm nào thích hợp cho phòng khách lớn không?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Bạn có thể gợi ý nội thất cho một khu vực lớn được không?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9928361773490906
+    }
+  },
+  {
+    "text": "\"Tôi đang tìm ghế sofa cho phòng rộng, có loại nào phù hợp không?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Gợi ý giúp tôi những món đồ cho không gian rộng rãi nhé.\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "ask_product_material",
+      "confidence": 0.5025977492332458
+    }
+  },
+  {
+    "text": "\"Phòng của tôi khá rộng, nên chọn đồ nội thất như thế nào?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.935695469379425
+    }
+  },
+  {
+    "text": "\"Bạn có sản phẩm nào phù hợp với khu vực diện tích lớn không?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Nhà tôi có không gian lớn, cần gợi ý đồ trang trí.\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Tôi muốn mua tủ lớn cho phòng rộng, có sản phẩm nào gợi ý không?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Tìm giúp tôi bàn ăn phù hợp cho không gian lớn được không?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Đối với khu vực rộng, bạn có sản phẩm gì tốt không?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.5345669984817505
+    }
+  },
+  {
+    "text": "\"Căn phòng của tôi khá rộng, nên chọn sản phẩm gì?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "ask_cart_products",
+      "confidence": 0.9920765161514282
+    }
+  },
+  {
+    "text": "\"Những món đồ nào sẽ hợp với không gian lớn trong nhà tôi?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "ask_predict_delivery",
+      "confidence": 0.658100962638855
+    }
+  },
+  {
+    "text": "\"Gợi ý cho tôi những sản phẩm nội thất dùng trong phòng lớn.\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9748026728630066
+    }
+  },
+  {
+    "text": "\"Bạn có thể tư vấn sản phẩm phù hợp với diện tích phòng lớn không?\"",
+    "intent": "suggest_product_large_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Bạn có thể đề xuất sản phẩm phù hợp với diện tích vừa không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "ask_product_made",
+      "confidence": 0.5608011484146118
+    }
+  },
+  {
+    "text": "\"Khu vực nhà tôi không quá nhỏ cũng không quá lớn, bạn có món gì hợp không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999827146530151
+    }
+  },
+  {
+    "text": "\"Tôi đang tìm đồ nội thất cho phòng kích thước vừa phải, bạn có gợi ý nào không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Phòng tôi ở mức trung bình, có sản phẩm nào phù hợp không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Bạn có thể tư vấn món đồ nào cho không gian vừa phải được không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "ask_product_material",
+      "confidence": 0.5660286545753479
+    }
+  },
+  {
+    "text": "\"Có sản phẩm nội thất nào hợp với căn phòng trung bình không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9971680045127869
+    }
+  },
+  {
+    "text": "\"Không gian tôi ở dạng vừa, nên chọn món đồ nào đây?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "ask_cart_products",
+      "confidence": 0.35860833525657654
+    }
+  },
+  {
+    "text": "\"Tôi cần tìm một chiếc tủ cho khu vực vừa phải, bạn có đề xuất gì không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Có ghế sofa nào phù hợp với diện tích phòng trung bình không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Tôi muốn mua đồ nội thất cho phòng không lớn lắm nhưng không quá nhỏ, có không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Nhà tôi kích thước trung bình, bạn gợi ý vài sản phẩm phù hợp nhé.\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999974966049194
+    }
+  },
+  {
+    "text": "\"Phòng của tôi không quá rộng, nhưng cũng không nhỏ, có sản phẩm nào phù hợp không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.999990701675415
+    }
+  },
+  {
+    "text": "\"Bạn tư vấn giúp tôi nội thất cho diện tích vừa được không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.5595136284828186
+    }
+  },
+  {
+    "text": "\"Khu vực tôi ở kích thước vừa, nên dùng đồ nội thất nào?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.7161327004432678
+    }
+  },
+  {
+    "text": "\"Tôi muốn biết món đồ nào hợp với phòng vừa phải, bạn có thể gợi ý không?\"",
+    "intent": "suggest_product_medium_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9997746348381042
+    }
+  },
+  {
+    "text": "\"Phòng tôi khá nhỏ, bạn có thể gợi ý sản phẩm nào không?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.6908977031707764
+    }
+  },
+  {
+    "text": "\"Có đồ nội thất nào phù hợp với không gian hạn chế không?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.4352286458015442
+    }
+  },
+  {
+    "text": "\"Tôi đang tìm đồ cho một căn phòng nhỏ, bạn tư vấn giúp nhé.\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Căn nhà tôi diện tích khiêm tốn, nên chọn sản phẩm gì?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "ask_cart_products",
+      "confidence": 0.989302933216095
+    }
+  },
+  {
+    "text": "\"Bạn có thể giới thiệu món đồ nào tiết kiệm không gian không?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "ask_product_brand",
+      "confidence": 0.5722352266311646
+    }
+  },
+  {
+    "text": "\"Không gian nhà tôi rất nhỏ, bạn nghĩ tôi nên mua gì?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.5731794238090515
+    }
+  },
+  {
+    "text": "\"Có đồ nội thất nào tối ưu cho khu vực hẹp không?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "ask_product_type",
+      "confidence": 0.9983237385749817
+    }
+  },
+  {
+    "text": "\"Tôi cần tìm bàn ghế nhỏ gọn cho căn phòng nhỏ, bạn có không?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Nhà tôi chật, có sản phẩm nào hợp lý không?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9931303858757019
+    }
+  },
+  {
+    "text": "\"Không gian nhỏ thì nên mua gì để không bị chật chội?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "ask_predict_delivery",
+      "confidence": 0.8136386275291443
+    }
+  },
+  {
+    "text": "\"Bạn có món đồ nào dành cho phòng có diện tích nhỏ không?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Tôi muốn tìm sản phẩm nội thất nhỏ gọn cho nhà tôi, bạn gợi ý giúp.\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 0.9999998807907104
+    }
+  },
+  {
+    "text": "\"Phòng tôi bé quá, bạn tư vấn sản phẩm nào phù hợp nhé.\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Đồ nội thất nào phù hợp với phòng nhỏ nhưng vẫn đầy đủ tiện ích?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "\"Có gợi ý nào cho đồ nội thất tiết kiệm diện tích không?\"",
+    "intent": "suggest_product_small_area",
+    "intent_prediction": {
+      "name": "find_products_by_name",
+      "confidence": 1.0
+    }
+  }
+]

@@ -236,13 +236,17 @@ nlu:
       - "Nội thất được chia thành bao nhiêu nhóm sản phẩm?"
       - "Có thể cho biết các loại sản phẩm trên website không?"
       - "Website của bạn có bán mấy loại đồ nội thất?"
-  - intent: ask_product_price
-    examples: |
-      -
+      - Loại sản phẩm nào bạn đang có?
+      - Tôi muốn tìm các loại bàn và ghế, bạn có không?
+      - Các sản phẩm trong cửa hàng thuộc loại nào vậy?
+      - Bạn có thể liệt kê loại sản phẩm không?
+      - Ở đây có bán loại tủ nào không?
+      - Tôi đang tìm loại sản phẩm cho phòng khách, bạn có không?
+      - Có những loại đồ nội thất nào trong danh sách?
+      - Loại nào đang giảm giá thế?
+      - Tôi không biết loại nào phù hợp, bạn có thể gợi ý không?
+      - Loại ghế nào là tốt nhất?
 
-  - intent: ask_product_sale
-    examples: |
-      -
   - intent: ask_product_brand
     examples: |
       - "Thương hiệu sản phẩm này là gì? "
@@ -274,7 +278,17 @@ nlu:
       - "Sản phẩm này của công ty nào sản xuất vậy? "
       - "Bạn có thể cung cấp tên thương hiệu của sản phẩm này không? "
       - "Có thông tin nào về thương hiệu sản phẩm này không? "
-      - "Sản phẩm này của thương hiệu nào, có uy tín không?                         "
+      - "Sản phẩm này của thương hiệu nào, có uy tín không?
+      - "Sản phẩm này có phải của hãng nội địa không?"
+      - "Tôi cần biết thêm thông tin về sản phẩm này."
+      - "Ghế sofa này được sản xuất ở đâu vậy?"
+      - "Có thương hiệu nào giảm giá không?"
+      - "Loại ghế này có hãng nào uy tín không?"
+      - "Sản phẩm nào tốt hơn, hàng nội hay hàng nhập khẩu?"
+      - "Tôi muốn tìm bàn làm việc của một thương hiệu nổi tiếng."
+      - "Đây có phải là hàng chính hãng không?"
+      - "Thương hiệu này có chính sách bảo hành không?"
+      - "Các sản phẩm ở đây có nguồn gốc rõ ràng chứ?"                         "
   - intent: ask_cart_products
     examples: |
       - "Tôi có những sản phẩm nào trong giỏ hàng?"
@@ -306,7 +320,16 @@ nlu:
       - "Những sản phẩm nào đang có trong giỏ hàng của tôi?"
       - "Giỏ hàng của tôi có món gì mới không?"
       - "Giỏ hàng hiện tại của tôi có những sản phẩm nào?"
-      - "Tôi có thể xem lại giỏ hàng để biết các sản phẩm đã chọn không?       "
+      - "Tôi có thể xem lại giỏ hàng để biết các sản phẩm đã chọn không?"
+      - "Trong giỏ hàng của tôi có mấy món?"
+      - "Làm thế nào để kiểm tra giỏ hàng?"
+      - "Các sản phẩm trong giỏ hàng của tôi có được giảm giá không?"
+      - "Làm sao để xem chi tiết sản phẩm trong giỏ hàng?"
+      - "Tôi có thể xóa sản phẩm nào đó khỏi giỏ hàng không?"
+      - "Giỏ hàng hiện tại của tôi có đầy không?"
+      - "Tôi muốn biết tổng giá trị các sản phẩm trong giỏ hàng."
+      - "Giỏ hàng của tôi có sản phẩm nào bị hết hàng không?"
+      - "Các sản phẩm trong giỏ có được áp dụng khuyến mãi không?"
   - intent: ask_wishlist_quantity
     examples: |
       - "Tôi có bao nhiêu sản phẩm trong danh sách yêu thích?"
@@ -328,7 +351,12 @@ nlu:
       - "Hiện giờ tôi có mấy món trong danh sách yêu thích?"
       - "Tôi muốn biết tổng cộng có bao nhiêu sản phẩm trong danh sách yêu thích của tôi."
       - "Hãy kiểm tra và cho tôi biết số lượng món đồ trong danh sách yêu thích."
-      - "Tôi có thể biết hiện tại danh sách yêu thích của tôi có bao nhiêu món không?      "
+      - "Tôi có thể biết hiện tại danh sách yêu thích của tôi có bao nhiêu món không?"
+      - "Danh sách yêu thích của tôi có bao nhiêu món?"
+      - "Làm thế nào để kiểm tra số lượng sản phẩm đã lưu?"
+      - "Tôi đã thêm mấy sản phẩm vào danh sách yêu thích rồi?"
+      - "Tổng số sản phẩm trong danh sách của tôi là bao nhiêu?"
+      - "Danh sách yêu thích của tôi còn chỗ trống không?"
   - intent: ask_cart_quantity
     examples: |
       - "Trong giỏ hàng của tôi hiện có bao nhiêu sản phẩm?"
@@ -417,7 +445,6 @@ nlu:
       - Có bao nhiêu đơn hàng chưa được xử lý của tôi?
       - Tôi đã đặt bao nhiêu đơn hàng trong tuần qua?
       - Bao nhiêu đơn hàng tôi đã thanh toán?
-      - Tôi đã có bao nhiêu đơn hàng đang trong quá trình giao?
       - Tổng số đơn hàng mà tôi đã thực hiện là bao nhiêu?
       - Bao nhiêu đơn hàng tôi đã mua trong tháng trước?
       - Tôi đã đặt bao nhiêu đơn hàng cho sản phẩm này?
@@ -554,31 +581,101 @@ nlu:
       - Hiện tại có bao nhiêu danh mục trong cửa hàng của bạn?
       - Số lượng danh mục có trong cửa hàng là bao nhiêu?
       - Cửa hàng của bạn có bao nhiêu danh mục và đó là những danh mục nào?
-  - intent: ask_product_quantity_by_category
-    examples: |
-      -
-  - intent: ask_product_where_category
-    examples: |
-      -
-  - intent: ask_product_instock
-    examples: |
-      -
-  - intent: ask_product_instock_quantity
-    examples: |
-      -
-  - intent: ask_product_rating_quantity
-    examples: |
-      -
 
-  - intent: ask_product_purchase_quantity
-    examples: |
-      -
   - intent: find_products_by_category
     examples: |
-      -
+      - Tôi muốn xem các sản phẩm trong danh mục [sofas](category_name).
+      - Bạn có sản phẩm trong danh mục [ghế sofa dài](category_name) không?
+      - Hãy cho tôi xem các sản phẩm trong danh mục [Bàn để tivi](category_name).
+      - Có sản phẩm trong danh mục [Bàn nhỏ](category_name) không?
+      - Các sản phẩm trong danh mục [Bàn trưng bày](category_name) là gì?
+      - Tôi cần tìm sản phẩm trong danh mục [bàn cà phê](category_name).
+      - Cho tôi xem các ghế trong danh mục [ghế](category_name).
+      - Bạn có sản phẩm trong danh mục [tủ](category_name) không?
+      - Hãy giới thiệu các sản phẩm trong danh mục [tủ và kệ sách](category_name).
+      - Tôi muốn xem các sản phẩm trong danh mục [bàn phòng ăn](category_name).
+      - Có sản phẩm nào trong danh mục [ghế ăn](category_name) không?
+      - Bạn có [tủ đựng bát đĩa](category_name) nào không?
+      - Tôi muốn xem các sản phẩm trong danh mục [ghế ăn dài](category_name).
+      - Hãy cho tôi xem các sản phẩm trong danh mục [ghế quầy bar](category_name).
+      - Tôi đang tìm sản phẩm trong danh mục [giường ngủ](category_name).
+      - Bạn có [tủ và rương quần áo](category_name) không?
+      - Có sản phẩm trong danh mục [tủ đầu giường](category_name) không?
+      - Tôi cần tìm [đồ để giường](category_name) trong cửa hàng.
+      - Bạn có sản phẩm trong danh mục [nệm và lò xo](category_name) không?
+      - Hãy cho tôi xem các [ghế ngoài trời](category_name).
+      - Tôi muốn xem các sản phẩm trong danh mục [sofa ngoài trời](category_name).
+      - Bạn có [sofa dài ngoài trời](category_name) không?
+      - Hãy giới thiệu sản phẩm trong danh mục [nghế nằm ngoài trời](category_name).
+      - Có sản phẩm trong danh mục [đèn chùm](category_name) không?
+      - Tôi muốn xem các sản phẩm trong danh mục [đèn thả](category_name).
+      - Bạn có [chậu và bình hoa](category_name) nào không?
+      - Hãy cho tôi xem các sản phẩm trong danh mục [trang trí tường và cửa](category_name).
+      - Tôi đang tìm [gương](category_name) trong cửa hàng.
+      - Bạn có sản phẩm [gối](category_name) không?
+      - Tôi muốn xem các sản phẩm trong danh mục [thảm sàn](category_name).
+      - Có sản phẩm trong danh mục [thảm trải vườn](category_name) không?
+      - Tôi cần tìm sản phẩm trong danh mục [thảm hiệu suất](category_name).
+      - Bạn có sản phẩm trong danh mục [bàn làm việc](category_name) không?
+      - Tôi muốn xem các sản phẩm trong danh mục [ghế văn phòng](category_name).
+      - Bạn có sản phẩm trong danh mục [tủ hồ sơ](category_name) không?
+      - Cho tôi xem các sản phẩm trong danh mục [sofas](category_name).
+      - Tôi đang tìm sản phẩm trong danh mục [ghế](category_name).
+      - Có sản phẩm nào trong danh mục [bàn nhỏ](category_name) không?
+      - Tôi muốn biết về các sản phẩm trong danh mục [bàn phòng ăn](category_name).
+      - Hãy cho tôi biết có gì trong danh mục [tủ và kệ sách](category_name).
+      - Bạn có bàn làm việc nào trong danh mục [bàn làm việc](category_name) không?
+      - Tôi đang tìm ghế trong danh mục [ghế văn phòng](category_name).
+      - Có ghế nào trong danh mục [ghế ăn](category_name) không?
+      - Có tủ đựng bát đĩa trong danh mục [tủ đựng bát đĩa](category_name) không?
+      - Tôi muốn tìm sản phẩm trong danh mục [ghế ăn dài](category_name).
+      - Tôi muốn mua sản phẩm trong danh mục [sofa dài ngoài trời](category_name).
+      - Tôi muốn xem các sản phẩm trong danh mục [sofa ngoài trời](category_name).
+      - Bạn có sản phẩm trong danh mục [ghế ngoài trời](category_name) không?
+      - Có sản phẩm trong danh mục [đèn thả](category_name) không?
+      - Tôi muốn tìm các sản phẩm trong danh mục [thảm sàn](category_name).
   - intent: find_products_by_price_range
     examples: |
-      -
+      - Tôi muốn xem các sản phẩm [sofa](product_name) có giá từ [0](from_price) đến [500](to_price).
+      - Cho tôi xem các sản phẩm [ghế sofa dài](product_name) trong khoảng giá [1000](from_price) đến [3000000](to_price).
+      - Tìm các sản phẩm [bàn cà phê](product_name) có giá từ [2000](from_price) đến [1000000](to_price).
+      - Bạn có sản phẩm [ghế](product_name) nào có giá từ [0](from_price) đến [200](to_price) không?
+      - Liệt kê các sản phẩm [bàn làm việc](product_name) có giá trong khoảng từ [5000](from_price) đến [1500000](to_price).
+      - Hãy tìm các sản phẩm [nệm](product_name) có giá từ [0](from_price) đến [1000](to_price).
+      - Cho tôi các sản phẩm [giường ngủ](product_name) có giá trị từ [10000](from_price) trở lên.
+      - Tôi muốn tìm các sản phẩm [tủ](product_name) trong khoảng giá [1000](from_price) đến [100000](to_price).
+      - Bạn có sản phẩm [sofa ngoài trời](product_name) nào có giá từ [0](from_price) đến [200000](to_price)?
+      - Tôi muốn tìm sản phẩm [ghế quầy bar](product_name) có giá từ [1000](from_price) đến [1000000](to_price).
+      - Hiển thị các sản phẩm [tủ và kệ sách](product_name) có giá từ [0](from_price) đến [1000000](to_price).
+      - Tìm các sản phẩm [bàn phòng ăn](product_name) có giá từ [5000](from_price) đến [30000](to_price).
+      - Bạn có sản phẩm [giường ngủ](product_name) nào có giá từ [1000](from_price) đến [2000](to_price)?
+      - Cho tôi danh sách sản phẩm [sofa dài ngoài trời](product_name) có giá trong khoảng [0](from_price) đến [500000](to_price).
+      - Hiển thị các sản phẩm [ghế ăn](product_name) có giá từ [2000](from_price) đến [2000000](to_price).
+      - Tôi muốn tìm sản phẩm [ghế văn phòng](product_name) có giá từ [5000](from_price) đến [50000](to_price).
+      - Tìm sản phẩm [đèn thả](product_name) với giá trong khoảng từ [10000](from_price) đến [50000](to_price).
+      - Liệt kê các sản phẩm [ghế ăn dài](product_name) có giá từ [2000](from_price) đến [30000](to_price).
+      - Cho tôi xem các sản phẩm [gương](product_name) có giá từ [3000](from_price) trở lên.
+      - Tìm các sản phẩm [chậu hoa](product_name) có giá trị từ [0](from_price) đến [200](to_price).
+      - Bạn có sản phẩm [sofa](product_name) nào có giá từ [0](from_price) đến [10000](to_price) không?
+      - Hiển thị tất cả sản phẩm [sofa ngoài trời](product_name) có giá từ [10000](from_price) đến [1000000](to_price).
+      - Tôi muốn xem các sản phẩm [bàn làm việc](product_name) có giá từ [1000](from_price) đến [20000](to_price).
+      - Liệt kê sản phẩm [tủ hồ sơ](product_name) trong khoảng giá từ [0](from_price) đến [20000](to_price).
+      - Cho tôi xem các sản phẩm [sofa dài](product_name) có giá từ [10000](from_price) đến [50000](to_price).
+      - Tìm sản phẩm [đèn chùm](product_name) trong khoảng giá từ [5000](from_price) đến [10000](to_price).
+      - Bạn có sản phẩm [thảm sàn](product_name) nào giá từ [10000](from_price) đến [50000](to_price) không?
+      - Liệt kê tất cả sản phẩm [bàn ăn](product_name) có giá từ [0](from_price) đến [2000](to_price).
+      - Tôi muốn tìm sản phẩm [ghế ngoài trời](product_name) có giá từ [5000](from_price) đến [3000](to_price).
+      - Hãy cho tôi xem sản phẩm [ghế quầy bar](product_name) có giá từ [20000](from_price) đến [10000](to_price).
+      - Bạn có sản phẩm [sofa](product_name) nào có giá từ [10000](from_price) đến [5000](to_price) không?
+      - Liệt kê các sản phẩm [bàn cà phê](product_name) trong khoảng giá từ [1000](from_price) đến [3000000](to_price).
+      - Tôi muốn tìm sản phẩm [nệm](product_name) có giá từ [300000](from_price) đến [50000](to_price).
+      - Bạn có sản phẩm [sofa dài ngoài trời](product_name) trong khoảng giá từ [0](from_price) đến [100000](to_price)?
+      - Hiển thị các sản phẩm [ghế văn phòng](product_name) có giá từ [500](from_price) đến [20000](to_price).
+      - Cho tôi xem sản phẩm [bàn phòng ăn](product_name) có giá từ [2000](from_price) đến [5000000](to_price).
+      - Liệt kê các sản phẩm [gương](product_name) trong khoảng giá [10](from_price) đến [5000](to_price).
+      - Tìm các sản phẩm [thảm trải vườn](product_name) có giá từ [0](from_price) đến [10000](to_price).
+      - Bạn có sản phẩm [bàn để tivi](product_name) nào có giá từ [1000](from_price) đến [1000](to_price) không?
+      - Tìm sản phẩm [sofa](product_name) có giá từ [5000](from_price) đến [2000](to_price).
   - intent: find_products_by_name
     examples: |
       - Tôi muốn mua [bàn học](product_name)
@@ -722,24 +819,55 @@ nlu:
       - Tôi muốn tìm [đèn phòng ăn](product_name) kiểu hiện đại
       - Tìm cho tôi [đèn treo tường](product_name)
       - Tôi đang tìm [đèn di động](product_name) tiện lợi
-  - intent: find_product_in_category_by_price
-    examples: |
-      -
+
   - intent: suggest_product_large_area
     examples: |
-      -
+      - "Tôi cần tìm sản phẩm phù hợp cho không gian rộng."
+      - "Có sản phẩm nào thích hợp cho phòng khách lớn không?"
+      - "Bạn có thể gợi ý nội thất cho một khu vực lớn được không?"
+      - "Tôi đang tìm ghế sofa cho phòng rộng, có loại nào phù hợp không?"
+      - "Gợi ý giúp tôi những món đồ cho không gian rộng rãi nhé."
+      - "Phòng của tôi khá rộng, nên chọn đồ nội thất như thế nào?"
+      - "Bạn có sản phẩm nào phù hợp với khu vực diện tích lớn không?"
+      - "Nhà tôi có không gian lớn, cần gợi ý đồ trang trí."
+      - "Tôi muốn mua tủ lớn cho phòng rộng, có sản phẩm nào gợi ý không?"
+      - "Tìm giúp tôi bàn ăn phù hợp cho không gian lớn được không?"
+      - "Đối với khu vực rộng, bạn có sản phẩm gì tốt không?"
+      - "Căn phòng của tôi khá rộng, nên chọn sản phẩm gì?"
+      - "Những món đồ nào sẽ hợp với không gian lớn trong nhà tôi?"
+      - "Gợi ý cho tôi những sản phẩm nội thất dùng trong phòng lớn."
+      - "Bạn có thể tư vấn sản phẩm phù hợp với diện tích phòng lớn không?"
   - intent: suggest_product_medium_area
     examples: |
-      -
+      - "Bạn có thể đề xuất sản phẩm phù hợp với diện tích vừa không?"
+      - "Khu vực nhà tôi không quá nhỏ cũng không quá lớn, bạn có món gì hợp không?"
+      - "Tôi đang tìm đồ nội thất cho phòng kích thước vừa phải, bạn có gợi ý nào không?"
+      - "Phòng tôi ở mức trung bình, có sản phẩm nào phù hợp không?"
+      - "Bạn có thể tư vấn món đồ nào cho không gian vừa phải được không?"
+      - "Có sản phẩm nội thất nào hợp với căn phòng trung bình không?"
+      - "Không gian tôi ở dạng vừa, nên chọn món đồ nào đây?"
+      - "Tôi cần tìm một chiếc tủ cho khu vực vừa phải, bạn có đề xuất gì không?"
+      - "Có ghế sofa nào phù hợp với diện tích phòng trung bình không?"
+      - "Tôi muốn mua đồ nội thất cho phòng không lớn lắm nhưng không quá nhỏ, có không?"
+      - "Nhà tôi kích thước trung bình, bạn gợi ý vài sản phẩm phù hợp nhé."
+      - "Phòng của tôi không quá rộng, nhưng cũng không nhỏ, có sản phẩm nào phù hợp không?"
+      - "Bạn tư vấn giúp tôi nội thất cho diện tích vừa được không?"
+      - "Khu vực tôi ở kích thước vừa, nên dùng đồ nội thất nào?"
+      - "Tôi muốn biết món đồ nào hợp với phòng vừa phải, bạn có thể gợi ý không?"
   - intent: suggest_product_small_area
     examples: |
-      -
-
-  - intent: check_instock_product
-    examples: |
-      -
-
-  # mẫu
-  # - intent:
-  #   examples: |
-  #   -
+      - "Phòng tôi khá nhỏ, bạn có thể gợi ý sản phẩm nào không?"
+      - "Có đồ nội thất nào phù hợp với không gian hạn chế không?"
+      - "Tôi đang tìm đồ cho một căn phòng nhỏ, bạn tư vấn giúp nhé."
+      - "Căn nhà tôi diện tích khiêm tốn, nên chọn sản phẩm gì?"
+      - "Bạn có thể giới thiệu món đồ nào tiết kiệm không gian không?"
+      - "Không gian nhà tôi rất nhỏ, bạn nghĩ tôi nên mua gì?"
+      - "Có đồ nội thất nào tối ưu cho khu vực hẹp không?"
+      - "Tôi cần tìm bàn ghế nhỏ gọn cho căn phòng nhỏ, bạn có không?"
+      - "Nhà tôi chật, có sản phẩm nào hợp lý không?"
+      - "Không gian nhỏ thì nên mua gì để không bị chật chội?"
+      - "Bạn có món đồ nào dành cho phòng có diện tích nhỏ không?"
+      - "Tôi muốn tìm sản phẩm nội thất nhỏ gọn cho nhà tôi, bạn gợi ý giúp."
+      - "Phòng tôi bé quá, bạn tư vấn sản phẩm nào phù hợp nhé."
+      - "Đồ nội thất nào phù hợp với phòng nhỏ nhưng vẫn đầy đủ tiện ích?"
+      - "Có gợi ý nào cho đồ nội thất tiết kiệm diện tích không?"

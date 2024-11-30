@@ -74,7 +74,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
         </div>
       ) : (
         // messenger icon
-        <div className="fixed bottom-2 left-0 z-[1000] ml-2 mb-2 ">
+        <div className="fixed bottom-2 left-0 z-[1000] ml-2 mb-2 animate-bounce">
           <FontAwesomeIcon
             size="3x"
             icon={faFacebookMessenger}
@@ -106,14 +106,10 @@ function MainLayout({ children }: { children: React.ReactNode }) {
       ) : (
         // chatbot icon
         <div
-          className="fixed bottom-10 left-0 z-[1000] ml-2   bg-primary-100 rounded-full w-12 mb-12 cursor-pointer "
+          className="fixed bottom-10 left-0 z-[1000] ml-2   bg-primary-100 rounded-full w-12 mb-12 cursor-pointer animate-bounce"
           onClick={handleOpenChatBot}
         >
-          <img
-            src="/chatbot.png"
-            alt="Chatbot icon"
-            className="animate-bounce"
-          />
+          <img src="/chatbot.png" alt="Chatbot icon" className="" />
         </div>
       )}
     </div>

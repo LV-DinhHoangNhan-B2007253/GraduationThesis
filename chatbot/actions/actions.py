@@ -2,7 +2,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import requests
-
+from rasa_sdk.events import SlotSet
 api="http://localhost:3001/api"
 
 
@@ -40,35 +40,9 @@ class AskProductType(Action):
 
         return []
 
-class AskProductPrice(Action):
-    
-    def name(self) -> Text:
-        return "action_ask_product_price"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
 
 
-        dispatcher.utter_message(text="action_ask_product_price")
 
-        return []
-
-class AskProductSale(Action):
-    
-    def name(self) -> Text:
-        return "action_ask_product_sale"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
-
-
-        dispatcher.utter_message(text="action_ask_product_sale")
-
-        return []
     
 
 # hỏi về thương hiệu -> done
@@ -472,7 +446,8 @@ class AskOrderByStatusShippedQuantity(Action):
             dispatcher.utter_message(text="Đã có lỗi xảy ra khi lấy thông tin đơn hàng. Vui lòng thử lại sau.")
         
         return []
-    
+
+# bao nhiêu danh mục ->done
 class AskAboutCategories(Action):
     
     def name(self) -> Text:
@@ -481,119 +456,108 @@ class AskAboutCategories(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        categories = requests('http://localhost:3001/api/category/getAll')
+        
+        # Gọi API lấy danh sách các danh mục
+        response = requests.get('http://localhost:3001/api/category/getAll')
+        
+        if response.status_code == 200:
+            categories = response.json()
+            
+            # Tạo mảng danh mục với category_id, name, và product_quantity
+            category_info = []
+            for category in categories:
+                category_id = category.get("_id")
+                name = category.get("name")
+                product_quantity = len(category.get("products", []))  # Đếm số lượng sản phẩm trong mảng products
 
-        dispatcher.utter_message(text="action_ask_about_categories")
+                category_info.append({
+                    "category_id": category_id,
+                    "name": name,
+                    "product_quantity": product_quantity
+                })
 
-        return []
+            # Trả về số lượng danh mục và danh sách các danh mục
+            num_categories = len(categories)
+            message = f"Cửa hàng hiện có {num_categories} danh mục"
+            
+            # Tạo thông điệp và dữ liệu JSON theo yêu cầu
+            json_message = {
+                "category": category_info  # Trả về mảng danh mục
+            }
+
+            dispatcher.utter_message(text=message, json_message=json_message)
+            return []
+        else:
+            # Nếu không gọi API thành công
+            dispatcher.utter_message(text="Không thể lấy danh mục sản phẩm hiện tại. Vui lòng thử lại sau.")
+            return []
     
-    
-class AskProductQuantityByCategory(Action):
-    
-    def name(self) -> Text:
-        return "action_ask_product_quantity_by_category"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
-
-
-        dispatcher.utter_message(text="action_ask_product_quantity_by_category")
-
-        return []
-    
-class AskProductWhereCategory(Action):
-    
-    def name(self) -> Text:
-        return "action_ask_product_where_category"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
-
-
-        dispatcher.utter_message(text="action_ask_product_where_category")
-
-        return []
-    
-class AskProductInStock(Action):
-    
-    def name(self) -> Text:
-        return "action_ask_product_instock"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
-
-
-        dispatcher.utter_message(text="action_ask_product_instock")
-
-        return []
-    
-class AskProductInStockQuantity(Action):
-    
-    def name(self) -> Text:
-        return "action_ask_product_instock_quantity"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
-
-
-        dispatcher.utter_message(text="action_ask_product_instock_quantity")
-
-        return []
-    
-    
-class AskProductRatingQuantity(Action):
-    
-    def name(self) -> Text:
-        return "action_ask_product_rating_quantity"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
-
-
-        dispatcher.utter_message(text="action_ask_product_rating_quantity")
-
-        return []
-    
-class AskProductPurchaseQuantity(Action):
-    
-    def name(self) -> Text:
-        return "action_ask_product_purchase_quantity"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
-
-
-        dispatcher.utter_message(text="action_ask_product_purchase_quantity")
-
-        return []
-    
+ 
+# liệt kê các sản phẩm theo danh mục -> done
 class FindProductsByCategory(Action):
-    
+
     def name(self) -> Text:
         return "action_find_products_by_category"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
 
-
-        dispatcher.utter_message(text="action_find_products_by_category")
+        # Lấy tên danh mục từ entity category_name
+        category_name = tracker.get_slot("category_name")
+        
+        # Gọi API lấy tất cả danh mục
+        response = requests.get('http://localhost:3001/api/category/getAll')
+        
+        if response.status_code == 200:
+            categories = response.json()
+            # Tìm danh mục theo tên
+            category = next((cat for cat in categories if cat["name"].lower() == category_name.lower()), None)
+            
+            if category:
+                # Tìm các sản phẩm theo danh mục
+                product_ids = category.get("products", [])
+                products = []
+                
+                # Lấy thông tin sản phẩm từ API bằng ID
+                for product_id in product_ids:
+                    product_response = requests.get(f'http://localhost:3001/api/product/get/{product_id}')
+                    
+                    if product_response.status_code == 200:
+                        product_data = product_response.json()
+                        # Lấy tên, giá và hình ảnh đầu tiên của sản phẩm
+                        product_name = product_data.get("name", "Không xác định")
+                        product_price = product_data.get("price", "N/A")
+                        proId= product_data.get("_id", None)
+                        product_url = product_data.get("images", [None])[0]  # Lấy hình ảnh đầu tiên
+                        
+                        # Thêm sản phẩm vào danh sách
+                        products.append({
+                            "name": product_name,
+                            "price": product_price,
+                            "url": product_url,
+                            "product_id":proId
+                        })
+                    
+                # Trả về danh sách sản phẩm nếu tìm thấy
+                if products:
+                    # Tạo thông điệp trả về với thông tin danh mục và sản phẩm
+                    message = f"Dưới đây là các sản phẩm trong danh mục {category_name}:"
+                    
+                    # Trả về JSON chứa danh sách sản phẩm
+                    json_message = {
+                        "product": products  # Trả về danh sách sản phẩm
+                    }
+                    dispatcher.utter_message(text=message, json_message=json_message)
+                else:
+                    dispatcher.utter_message(text=f"Không tìm thấy sản phẩm nào trong danh mục {category_name}.")
+            else:
+                dispatcher.utter_message(text=f"Không tìm thấy danh mục {category_name}.")
+        else:
+            dispatcher.utter_message(text="Lỗi khi lấy danh mục từ API.")
 
         return []
-    
+
 class FindProductsByPriceRange(Action):
     
     def name(self) -> Text:
@@ -602,13 +566,75 @@ class FindProductsByPriceRange(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
+        
+        # Lấy giá trị từ các slot
+        product_name = tracker.get_slot("product_name")  # Tên sản phẩm
+        from_price = tracker.get_slot("from_price")      # Giá bắt đầu
+        to_price = tracker.get_slot("to_price")          # Giá kết thúc
+        print(f"tên sản phẩm: {product_name}, giá đầu: {from_price}, giá cuối: {to_price}")
 
+        # Nếu không có giá trị from_price hoặc to_price thì gán giá mặc định
+        from_price = float(from_price) if from_price else 0.0
+        
+        # Kiểm tra và ép kiểu to_price thành float nếu có, nếu không có gán là vô cùng
+        if to_price:
+            to_price = float(to_price)
+        else:
+            to_price = float('inf')  # Gán giá trị vô cùng nếu không có to_price
 
-        dispatcher.utter_message(text="action_find_products_by_price_range")
+        # Bước 1: Lấy tất cả các sản phẩm từ API
+        response = requests.get("http://localhost:3001/api/product/getAll")
+        if response.status_code != 200:
+            dispatcher.utter_message(text="Có lỗi xảy ra khi lấy danh sách sản phẩm.")
+            return []
+
+        products = response.json()  # Dữ liệu sản phẩm từ API
+
+        # Bước 2: Lọc các sản phẩm theo khoảng giá và tên sản phẩm nếu có
+        filtered_products = []
+
+        for product in products:
+            product_price = float(product.get("price", 0))  # Đảm bảo giá là kiểu float
+            product_name_check = product.get("name", "").lower()
+
+            # Kiểm tra giá và tên sản phẩm
+            if (from_price <= product_price <= to_price):
+                # Nếu có tên sản phẩm, kiểm tra xem tên có chứa chuỗi tìm kiếm (match gần đúng)
+                if product_name:
+                    if product_name.lower() in product_name_check:
+                        product_url = product.get("images", [None])[0]  # Lấy hình ảnh đầu tiên
+
+                        # Chỉ thêm sản phẩm vào kết quả nếu có hình ảnh
+                        if product_url:
+                            filtered_products.append({
+                                "name": product.get("name", "Không xác định"),
+                                "price": product_price,
+                                "url": product_url,
+                                "product_id": product.get("_id")
+                            })
+                else:
+                    # Nếu không có tên sản phẩm, chỉ cần lọc theo khoảng giá
+                    product_url = product.get("images", [None])[0]  # Lấy hình ảnh đầu tiên
+
+                    # Chỉ thêm sản phẩm vào kết quả nếu có hình ảnh
+                    if product_url:
+                        filtered_products.append({
+                            "name": product.get("name", "Không xác định"),
+                            "price": product_price,
+                            "url": product_url,
+                            "product_id": product.get("_id")
+                        })
+
+        # Bước 3: Trả về thông tin sản phẩm dưới dạng JSON
+        if filtered_products:
+            json_message = {
+                "product": filtered_products  # Trả về danh sách sản phẩm
+            }
+            dispatcher.utter_message(text="Dưới đây là các sản phẩm tìm thấy:", json_message=json_message)
+        else:
+            dispatcher.utter_message(text="Không có sản phẩm nào phù hợp với yêu cầu của bạn.")
 
         return []
-  
 # tìm sản phẩm bằng tên -> done    
 class FindProductsByName(Action):
 
@@ -672,20 +698,7 @@ class FindProductsByName(Action):
 
         return []
     
-class FindProductsInCategoryByPrice(Action):
-    
-    def name(self) -> Text:
-        return "action_find_product_in_category_by_price"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
-
-
-        dispatcher.utter_message(text="action_find_product_in_category_by_price")
-
-        return []
     
 
 class SuggestProductLargeArea(Action):
@@ -733,17 +746,3 @@ class SuggestProductSmallArea(Action):
 
         return []
     
-class CheckInstockProduct(Action):
-    
-    def name(self) -> Text:
-        return "action_check_instock_product"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_id = tracker.latest_message.get('metadata', {}).get('userId', None)
-
-
-        dispatcher.utter_message(text="action_check_instock_product")
-
-        return []

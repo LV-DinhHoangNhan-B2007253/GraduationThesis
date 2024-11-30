@@ -66,15 +66,6 @@ rules:
       - intent: ask_product_type
       - action: action_ask_product_type
 
-  - rule: "Giá của sản phẩm"
-    steps:
-      - intent: ask_product_price
-      - action: action_ask_product_price
-
-  - rule: "các sản phẩm đang sale"
-    steps:
-      - intent: ask_product_sale
-      - action: action_ask_product_sale
   - rule: "thương hiệu sản phẩm"
     steps:
       - intent: ask_product_brand
@@ -122,35 +113,6 @@ rules:
       - intent: ask_about_categories
       - action: action_ask_about_categories
 
-  - rule: "có bao nhiêu sản phẩm trong danh mục cụ thể"
-    steps:
-      - intent: ask_product_quantity_by_category
-      - action: action_ask_product_quantity_by_category
-
-  - rule: "sản phẩm này nằm trong danh mục nào"
-    steps:
-      - intent: ask_product_where_category
-      - action: action_ask_product_where_category
-
-  - rule: "sản phẩm này còn hàng không"
-    steps:
-      - intent: ask_product_instock
-      - action: action_ask_product_instock
-  - rule: "số lượng sản phẩm còn trong kho là bao nhiêu"
-    steps:
-      - intent: ask_product_instock_quantity
-      - action: action_ask_product_instock_quantity
-
-  - rule: "số lượt đánh giá của một sản phẩm"
-    steps:
-      - intent: ask_product_rating_quantity
-      - action: action_ask_product_rating_quantity
-
-  - rule: "số lượt mua của sản phẩm"
-    steps:
-      - intent: ask_product_purchase_quantity
-      - action: action_ask_product_purchase_quantity
-
   - rule: "các sản phẩm của 1 danh mục"
     steps:
       - intent: find_products_by_category
@@ -165,11 +127,6 @@ rules:
       - intent: find_products_by_name
       - action: action_find_products_by_name
 
-  - rule: "tìm sản phẩm của 1 danh mục theo giá"
-    steps:
-      - intent: find_product_in_category_by_price
-      - action: action_find_product_in_category_by_price
-
   - rule: "đề xuất các sản phẩm cho không gian lớn"
     steps:
       - intent: suggest_product_large_area
@@ -183,8 +140,3 @@ rules:
     steps:
       - intent: suggest_product_small_area
       - action: action_suggest_product_small_area
-
-  - rule: "kiểm tra 1 sản phẩm còn hàng hay không bằng mã hoặc tên sản phẩm"
-    steps:
-      - intent: check_instock_product
-      - action: action_check_instock_product

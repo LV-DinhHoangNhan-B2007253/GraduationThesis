@@ -1,0 +1,2545 @@
+[
+  {
+    "text": "Tôi muốn tìm các loại bàn và ghế, bạn có không?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 21,
+        "confidence_entity": 0.9739584922790527,
+        "value": "loại",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 22,
+        "end": 25,
+        "confidence_entity": 0.867371678352356,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Ở đây có bán loại tủ nào không?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 13,
+        "end": 17,
+        "confidence_entity": 0.9304736256599426,
+        "value": "loại",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 18,
+        "end": 20,
+        "confidence_entity": 0.989362895488739,
+        "value": "tủ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi đang tìm loại sản phẩm cho phòng khách, bạn có không?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 13,
+        "end": 21,
+        "confidence_entity": 0.536823570728302,
+        "value": "loại sản",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Loại nào đang giảm giá thế?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 14,
+        "end": 18,
+        "confidence_entity": 0.5740773677825928,
+        "value": "giảm",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 19,
+        "end": 22,
+        "confidence_entity": 0.9990187883377075,
+        "value": "giá",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi không biết loại nào phù hợp, bạn có thể gợi ý không?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 15,
+        "end": 19,
+        "confidence_entity": 0.9309180974960327,
+        "value": "loại",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Loại ghế nào là tốt nhất?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 5,
+        "end": 8,
+        "confidence_entity": 0.9920696020126343,
+        "value": "ghế",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Ghế sofa này được sản xuất ở đâu vậy?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 5,
+        "end": 9,
+        "confidence_entity": 0.9469192624092102,
+        "value": "sofa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Loại ghế này có hãng nào uy tín không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 6,
+        "end": 9,
+        "confidence_entity": 0.9216229915618896,
+        "value": "ghế",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Tôi muốn tìm bàn làm việc của một thương hiệu nổi tiếng.\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 14,
+        "end": 17,
+        "confidence_entity": 0.9469955563545227,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục sofas.",
+    "entities": [
+      {
+        "start": 41,
+        "end": 46,
+        "value": "sofas",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục ghế sofa dài không?",
+    "entities": [
+      {
+        "start": 31,
+        "end": 43,
+        "value": "ghế sofa dài",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Hãy cho tôi xem các sản phẩm trong danh mục Bàn để tivi.",
+    "entities": [
+      {
+        "start": 44,
+        "end": 55,
+        "value": "Bàn để tivi",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 51,
+        "end": 55,
+        "confidence_entity": 0.8605623841285706,
+        "value": "tivi",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Có sản phẩm trong danh mục Bàn nhỏ không?",
+    "entities": [
+      {
+        "start": 27,
+        "end": 34,
+        "value": "Bàn nhỏ",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Các sản phẩm trong danh mục Bàn trưng bày là gì?",
+    "entities": [
+      {
+        "start": 28,
+        "end": 41,
+        "value": "Bàn trưng bày",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi cần tìm sản phẩm trong danh mục bàn cà phê.",
+    "entities": [
+      {
+        "start": 36,
+        "end": 46,
+        "value": "bàn cà phê",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 21,
+        "end": 26,
+        "confidence_entity": 0.8755197525024414,
+        "value": "trong",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 36,
+        "end": 39,
+        "confidence_entity": 0.9813313484191895,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Cho tôi xem các ghế trong danh mục ghế.",
+    "entities": [
+      {
+        "start": 35,
+        "end": 38,
+        "value": "ghế",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 19,
+        "confidence_entity": 0.9991610050201416,
+        "value": "ghế",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục tủ không?",
+    "entities": [
+      {
+        "start": 31,
+        "end": 33,
+        "value": "tủ",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Hãy giới thiệu các sản phẩm trong danh mục tủ và kệ sách.",
+    "entities": [
+      {
+        "start": 43,
+        "end": 56,
+        "value": "tủ và kệ sách",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục bàn phòng ăn.",
+    "entities": [
+      {
+        "start": 41,
+        "end": 53,
+        "value": "bàn phòng ăn",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 41,
+        "end": 44,
+        "confidence_entity": 0.9896562099456787,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Có sản phẩm nào trong danh mục ghế ăn không?",
+    "entities": [
+      {
+        "start": 31,
+        "end": 37,
+        "value": "ghế ăn",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Bạn có tủ đựng bát đĩa nào không?",
+    "entities": [
+      {
+        "start": 7,
+        "end": 22,
+        "value": "tủ đựng bát đĩa",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 7,
+        "end": 22,
+        "confidence_entity": 0.5769277215003967,
+        "value": "tủ đựng bát đĩa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục ghế ăn dài.",
+    "entities": [
+      {
+        "start": 41,
+        "end": 51,
+        "value": "ghế ăn dài",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Hãy cho tôi xem các sản phẩm trong danh mục ghế quầy bar.",
+    "entities": [
+      {
+        "start": 44,
+        "end": 56,
+        "value": "ghế quầy bar",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 48,
+        "end": 56,
+        "confidence_entity": 0.8651041388511658,
+        "value": "quầy bar",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi đang tìm sản phẩm trong danh mục giường ngủ.",
+    "entities": [
+      {
+        "start": 37,
+        "end": 47,
+        "value": "giường ngủ",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 37,
+        "end": 43,
+        "confidence_entity": 0.7932727336883545,
+        "value": "giường",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có tủ và rương quần áo không?",
+    "entities": [
+      {
+        "start": 7,
+        "end": 26,
+        "value": "tủ và rương quần áo",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 7,
+        "end": 26,
+        "confidence_entity": 0.9809937477111816,
+        "value": "tủ và rương quần áo",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Có sản phẩm trong danh mục tủ đầu giường không?",
+    "entities": [
+      {
+        "start": 27,
+        "end": 40,
+        "value": "tủ đầu giường",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 27,
+        "end": 29,
+        "confidence_entity": 0.7902042865753174,
+        "value": "tủ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi cần tìm đồ để giường trong cửa hàng.",
+    "entities": [
+      {
+        "start": 12,
+        "end": 24,
+        "value": "đồ để giường",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 12,
+        "end": 17,
+        "confidence_entity": 0.901560366153717,
+        "value": "đồ để",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 18,
+        "end": 24,
+        "confidence_entity": 0.9879491329193115,
+        "value": "giường",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục nệm và lò xo không?",
+    "entities": [
+      {
+        "start": 31,
+        "end": 43,
+        "value": "nệm và lò xo",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Hãy cho tôi xem các ghế ngoài trời.",
+    "entities": [
+      {
+        "start": 20,
+        "end": 34,
+        "value": "ghế ngoài trời",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 20,
+        "end": 34,
+        "confidence_entity": 0.9980541467666626,
+        "value": "ghế ngoài trời",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục sofa ngoài trời.",
+    "entities": [
+      {
+        "start": 41,
+        "end": 56,
+        "value": "sofa ngoài trời",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Bạn có sofa dài ngoài trời không?",
+    "entities": [
+      {
+        "start": 7,
+        "end": 26,
+        "value": "sofa dài ngoài trời",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 7,
+        "end": 21,
+        "confidence_entity": 0.994703471660614,
+        "value": "sofa dài ngoài",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Hãy giới thiệu sản phẩm trong danh mục nghế nằm ngoài trời.",
+    "entities": [
+      {
+        "start": 39,
+        "end": 58,
+        "value": "nghế nằm ngoài trời",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Có sản phẩm trong danh mục đèn chùm không?",
+    "entities": [
+      {
+        "start": 27,
+        "end": 35,
+        "value": "đèn chùm",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục đèn thả.",
+    "entities": [
+      {
+        "start": 41,
+        "end": 48,
+        "value": "đèn thả",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 41,
+        "end": 44,
+        "confidence_entity": 0.7919904589653015,
+        "value": "đèn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có chậu và bình hoa nào không?",
+    "entities": [
+      {
+        "start": 7,
+        "end": 23,
+        "value": "chậu và bình hoa",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 12,
+        "end": 14,
+        "confidence_entity": 0.4918743371963501,
+        "value": "và",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 15,
+        "end": 23,
+        "confidence_entity": 0.8673593401908875,
+        "value": "bình hoa",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Hãy cho tôi xem các sản phẩm trong danh mục trang trí tường và cửa.",
+    "entities": [
+      {
+        "start": 44,
+        "end": 66,
+        "value": "trang trí tường và cửa",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 54,
+        "end": 59,
+        "confidence_entity": 0.6037295460700989,
+        "value": "tường",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi đang tìm gương trong cửa hàng.",
+    "entities": [
+      {
+        "start": 13,
+        "end": 18,
+        "value": "gương",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 13,
+        "end": 28,
+        "confidence_entity": 0.9791383147239685,
+        "value": "gương trong cửa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm gối không?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 19,
+        "value": "gối",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 19,
+        "confidence_entity": 0.9990130662918091,
+        "value": "gối",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục thảm sàn.",
+    "entities": [
+      {
+        "start": 41,
+        "end": 49,
+        "value": "thảm sàn",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 41,
+        "end": 45,
+        "confidence_entity": 0.5134089589118958,
+        "value": "thảm",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Có sản phẩm trong danh mục thảm trải vườn không?",
+    "entities": [
+      {
+        "start": 27,
+        "end": 41,
+        "value": "thảm trải vườn",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 27,
+        "end": 31,
+        "confidence_entity": 0.6587921380996704,
+        "value": "thảm",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi cần tìm sản phẩm trong danh mục thảm hiệu suất.",
+    "entities": [
+      {
+        "start": 36,
+        "end": 50,
+        "value": "thảm hiệu suất",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 36,
+        "end": 40,
+        "confidence_entity": 0.7743817567825317,
+        "value": "thảm",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục bàn làm việc không?",
+    "entities": [
+      {
+        "start": 31,
+        "end": 43,
+        "value": "bàn làm việc",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm trong danh mục ghế văn phòng.",
+    "entities": [
+      {
+        "start": 41,
+        "end": 54,
+        "value": "ghế văn phòng",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục tủ hồ sơ không?",
+    "entities": [
+      {
+        "start": 31,
+        "end": 39,
+        "value": "tủ hồ sơ",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 21,
+        "confidence_entity": 0.531430184841156,
+        "value": "trong",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 31,
+        "end": 33,
+        "confidence_entity": 0.9974029660224915,
+        "value": "tủ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Cho tôi xem các sản phẩm trong danh mục sofas.",
+    "entities": [
+      {
+        "start": 40,
+        "end": 45,
+        "value": "sofas",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi đang tìm sản phẩm trong danh mục ghế.",
+    "entities": [
+      {
+        "start": 37,
+        "end": 40,
+        "value": "ghế",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Có sản phẩm nào trong danh mục bàn nhỏ không?",
+    "entities": [
+      {
+        "start": 31,
+        "end": 38,
+        "value": "bàn nhỏ",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi muốn biết về các sản phẩm trong danh mục bàn phòng ăn.",
+    "entities": [
+      {
+        "start": 45,
+        "end": 57,
+        "value": "bàn phòng ăn",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Hãy cho tôi biết có gì trong danh mục tủ và kệ sách.",
+    "entities": [
+      {
+        "start": 38,
+        "end": 51,
+        "value": "tủ và kệ sách",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 44,
+        "end": 46,
+        "confidence_entity": 0.7979155778884888,
+        "value": "kệ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có bàn làm việc nào trong danh mục bàn làm việc không?",
+    "entities": [
+      {
+        "start": 39,
+        "end": 51,
+        "value": "bàn làm việc",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 7,
+        "end": 19,
+        "confidence_entity": 0.8786440491676331,
+        "value": "bàn làm việc",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Tôi đang tìm ghế trong danh mục ghế văn phòng.",
+    "entities": [
+      {
+        "start": 32,
+        "end": 45,
+        "value": "ghế văn phòng",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 13,
+        "end": 31,
+        "confidence_entity": 0.8484004735946655,
+        "value": "ghế trong danh mục",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Có ghế nào trong danh mục ghế ăn không?",
+    "entities": [
+      {
+        "start": 26,
+        "end": 32,
+        "value": "ghế ăn",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 3,
+        "end": 6,
+        "confidence_entity": 0.997077465057373,
+        "value": "ghế",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 26,
+        "end": 29,
+        "confidence_entity": 0.4198727011680603,
+        "value": "ghế",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Có tủ đựng bát đĩa trong danh mục tủ đựng bát đĩa không?",
+    "entities": [
+      {
+        "start": 34,
+        "end": 49,
+        "value": "tủ đựng bát đĩa",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 3,
+        "end": 29,
+        "confidence_entity": 0.4151313006877899,
+        "value": "tủ đựng bát đĩa trong danh",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 34,
+        "end": 41,
+        "confidence_entity": 0.9882064461708069,
+        "value": "tủ đựng",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 46,
+        "end": 49,
+        "confidence_entity": 0.6127980351448059,
+        "value": "đĩa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm trong danh mục ghế ăn dài.",
+    "entities": [
+      {
+        "start": 37,
+        "end": 47,
+        "value": "ghế ăn dài",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi muốn mua sản phẩm trong danh mục sofa dài ngoài trời.",
+    "entities": [
+      {
+        "start": 37,
+        "end": 56,
+        "value": "sofa dài ngoài trời",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Bạn có sản phẩm trong danh mục ghế ngoài trời không?",
+    "entities": [
+      {
+        "start": 31,
+        "end": 45,
+        "value": "ghế ngoài trời",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 31,
+        "end": 34,
+        "confidence_entity": 0.7810061573982239,
+        "value": "ghế",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Có sản phẩm trong danh mục đèn thả không?",
+    "entities": [
+      {
+        "start": 27,
+        "end": 34,
+        "value": "đèn thả",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 27,
+        "end": 30,
+        "confidence_entity": 0.872085690498352,
+        "value": "đèn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn tìm các sản phẩm trong danh mục thảm sàn.",
+    "entities": [
+      {
+        "start": 41,
+        "end": 49,
+        "value": "thảm sàn",
+        "entity": "category_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 46,
+        "end": 49,
+        "confidence_entity": 0.7148346304893494,
+        "value": "sàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm sofa có giá từ 0 đến 500.",
+    "entities": [
+      {
+        "start": 26,
+        "end": 30,
+        "value": "sofa",
+        "entity": "product_name"
+      },
+      {
+        "start": 41,
+        "end": 42,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 47,
+        "end": 50,
+        "value": "500",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Cho tôi xem các sản phẩm ghế sofa dài trong khoảng giá 1000 đến 3000000.",
+    "entities": [
+      {
+        "start": 25,
+        "end": 37,
+        "value": "ghế sofa dài",
+        "entity": "product_name"
+      },
+      {
+        "start": 55,
+        "end": 59,
+        "value": "1000",
+        "entity": "from_price"
+      },
+      {
+        "start": 64,
+        "end": 71,
+        "value": "3000000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tìm các sản phẩm bàn cà phê có giá từ 2000 đến 1000000.",
+    "entities": [
+      {
+        "start": 17,
+        "end": 27,
+        "value": "bàn cà phê",
+        "entity": "product_name"
+      },
+      {
+        "start": 38,
+        "end": 42,
+        "value": "2000",
+        "entity": "from_price"
+      },
+      {
+        "start": 47,
+        "end": 54,
+        "value": "1000000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 23,
+        "confidence_entity": 0.8892989754676819,
+        "value": "bàn cà",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm ghế nào có giá từ 0 đến 200 không?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 19,
+        "value": "ghế",
+        "entity": "product_name"
+      },
+      {
+        "start": 34,
+        "end": 35,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 40,
+        "end": 43,
+        "value": "200",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 19,
+        "confidence_entity": 0.681221604347229,
+        "value": "ghế",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Liệt kê các sản phẩm bàn làm việc có giá trong khoảng từ 5000 đến 1500000.",
+    "entities": [
+      {
+        "start": 21,
+        "end": 33,
+        "value": "bàn làm việc",
+        "entity": "product_name"
+      },
+      {
+        "start": 57,
+        "end": 61,
+        "value": "5000",
+        "entity": "from_price"
+      },
+      {
+        "start": 66,
+        "end": 73,
+        "value": "1500000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 21,
+        "end": 24,
+        "confidence_entity": 0.8435338139533997,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Hãy tìm các sản phẩm nệm có giá từ 0 đến 1000.",
+    "entities": [
+      {
+        "start": 21,
+        "end": 24,
+        "value": "nệm",
+        "entity": "product_name"
+      },
+      {
+        "start": 35,
+        "end": 36,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 41,
+        "end": 45,
+        "value": "1000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Cho tôi các sản phẩm giường ngủ có giá trị từ 10000 trở lên.",
+    "entities": [
+      {
+        "start": 21,
+        "end": 31,
+        "value": "giường ngủ",
+        "entity": "product_name"
+      },
+      {
+        "start": 46,
+        "end": 51,
+        "value": "10000",
+        "entity": "from_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 21,
+        "end": 31,
+        "confidence_entity": 0.9359999895095825,
+        "value": "giường ngủ",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn tìm các sản phẩm tủ trong khoảng giá 1000 đến 100000.",
+    "entities": [
+      {
+        "start": 26,
+        "end": 28,
+        "value": "tủ",
+        "entity": "product_name"
+      },
+      {
+        "start": 46,
+        "end": 50,
+        "value": "1000",
+        "entity": "from_price"
+      },
+      {
+        "start": 55,
+        "end": 61,
+        "value": "100000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 26,
+        "end": 28,
+        "confidence_entity": 0.9981855750083923,
+        "value": "tủ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm sofa ngoài trời nào có giá từ 0 đến 200000?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 31,
+        "value": "sofa ngoài trời",
+        "entity": "product_name"
+      },
+      {
+        "start": 46,
+        "end": 47,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 52,
+        "end": 58,
+        "value": "200000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 20,
+        "confidence_entity": 0.9678776264190674,
+        "value": "sofa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm ghế quầy bar có giá từ 1000 đến 1000000.",
+    "entities": [
+      {
+        "start": 22,
+        "end": 34,
+        "value": "ghế quầy bar",
+        "entity": "product_name"
+      },
+      {
+        "start": 45,
+        "end": 49,
+        "value": "1000",
+        "entity": "from_price"
+      },
+      {
+        "start": 54,
+        "end": 61,
+        "value": "1000000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 21,
+        "confidence_entity": 0.9891961812973022,
+        "value": "phẩm",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 22,
+        "end": 37,
+        "confidence_entity": 0.7754172682762146,
+        "value": "ghế quầy bar có",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 42,
+        "end": 44,
+        "confidence_entity": 0.7901282906532288,
+        "value": "từ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Hiển thị các sản phẩm tủ và kệ sách có giá từ 0 đến 1000000.",
+    "entities": [
+      {
+        "start": 22,
+        "end": 35,
+        "value": "tủ và kệ sách",
+        "entity": "product_name"
+      },
+      {
+        "start": 46,
+        "end": 47,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 52,
+        "end": 59,
+        "value": "1000000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 22,
+        "end": 24,
+        "confidence_entity": 0.9853797554969788,
+        "value": "tủ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tìm các sản phẩm bàn phòng ăn có giá từ 5000 đến 30000.",
+    "entities": [
+      {
+        "start": 17,
+        "end": 29,
+        "value": "bàn phòng ăn",
+        "entity": "product_name"
+      },
+      {
+        "start": 40,
+        "end": 44,
+        "value": "5000",
+        "entity": "from_price"
+      },
+      {
+        "start": 49,
+        "end": 54,
+        "value": "30000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 20,
+        "confidence_entity": 0.7726755738258362,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm giường ngủ nào có giá từ 1000 đến 2000?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 26,
+        "value": "giường ngủ",
+        "entity": "product_name"
+      },
+      {
+        "start": 41,
+        "end": 45,
+        "value": "1000",
+        "entity": "from_price"
+      },
+      {
+        "start": 50,
+        "end": 54,
+        "value": "2000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 22,
+        "confidence_entity": 0.9891723394393921,
+        "value": "giường",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Cho tôi danh sách sản phẩm sofa dài ngoài trời có giá trong khoảng 0 đến 500000.",
+    "entities": [
+      {
+        "start": 27,
+        "end": 46,
+        "value": "sofa dài ngoài trời",
+        "entity": "product_name"
+      },
+      {
+        "start": 67,
+        "end": 68,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 73,
+        "end": 79,
+        "value": "500000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Hiển thị các sản phẩm ghế ăn có giá từ 2000 đến 2000000.",
+    "entities": [
+      {
+        "start": 22,
+        "end": 28,
+        "value": "ghế ăn",
+        "entity": "product_name"
+      },
+      {
+        "start": 39,
+        "end": 43,
+        "value": "2000",
+        "entity": "from_price"
+      },
+      {
+        "start": 48,
+        "end": 55,
+        "value": "2000000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm ghế văn phòng có giá từ 5000 đến 50000.",
+    "entities": [
+      {
+        "start": 22,
+        "end": 35,
+        "value": "ghế văn phòng",
+        "entity": "product_name"
+      },
+      {
+        "start": 46,
+        "end": 50,
+        "value": "5000",
+        "entity": "from_price"
+      },
+      {
+        "start": 55,
+        "end": 60,
+        "value": "50000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 22,
+        "end": 29,
+        "confidence_entity": 0.7817906141281128,
+        "value": "ghế văn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tìm sản phẩm đèn thả với giá trong khoảng từ 10000 đến 50000.",
+    "entities": [
+      {
+        "start": 13,
+        "end": 20,
+        "value": "đèn thả",
+        "entity": "product_name"
+      },
+      {
+        "start": 45,
+        "end": 50,
+        "value": "10000",
+        "entity": "from_price"
+      },
+      {
+        "start": 55,
+        "end": 60,
+        "value": "50000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 13,
+        "end": 20,
+        "confidence_entity": 0.9935157299041748,
+        "value": "đèn thả",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Liệt kê các sản phẩm ghế ăn dài có giá từ 2000 đến 30000.",
+    "entities": [
+      {
+        "start": 21,
+        "end": 31,
+        "value": "ghế ăn dài",
+        "entity": "product_name"
+      },
+      {
+        "start": 42,
+        "end": 46,
+        "value": "2000",
+        "entity": "from_price"
+      },
+      {
+        "start": 51,
+        "end": 56,
+        "value": "30000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Cho tôi xem các sản phẩm gương có giá từ 3000 trở lên.",
+    "entities": [
+      {
+        "start": 25,
+        "end": 30,
+        "value": "gương",
+        "entity": "product_name"
+      },
+      {
+        "start": 41,
+        "end": 45,
+        "value": "3000",
+        "entity": "from_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 25,
+        "end": 30,
+        "confidence_entity": 0.9981896281242371,
+        "value": "gương",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tìm các sản phẩm chậu hoa có giá trị từ 0 đến 200.",
+    "entities": [
+      {
+        "start": 17,
+        "end": 25,
+        "value": "chậu hoa",
+        "entity": "product_name"
+      },
+      {
+        "start": 40,
+        "end": 41,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 46,
+        "end": 49,
+        "value": "200",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 25,
+        "confidence_entity": 0.6310596466064453,
+        "value": "chậu hoa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm sofa nào có giá từ 0 đến 10000 không?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 20,
+        "value": "sofa",
+        "entity": "product_name"
+      },
+      {
+        "start": 35,
+        "end": 36,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 41,
+        "end": 46,
+        "value": "10000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 20,
+        "confidence_entity": 0.9336225390434265,
+        "value": "sofa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Hiển thị tất cả sản phẩm sofa ngoài trời có giá từ 10000 đến 1000000.",
+    "entities": [
+      {
+        "start": 25,
+        "end": 40,
+        "value": "sofa ngoài trời",
+        "entity": "product_name"
+      },
+      {
+        "start": 51,
+        "end": 56,
+        "value": "10000",
+        "entity": "from_price"
+      },
+      {
+        "start": 61,
+        "end": 68,
+        "value": "1000000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi muốn xem các sản phẩm bàn làm việc có giá từ 1000 đến 20000.",
+    "entities": [
+      {
+        "start": 26,
+        "end": 38,
+        "value": "bàn làm việc",
+        "entity": "product_name"
+      },
+      {
+        "start": 49,
+        "end": 53,
+        "value": "1000",
+        "entity": "from_price"
+      },
+      {
+        "start": 58,
+        "end": 63,
+        "value": "20000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 26,
+        "end": 29,
+        "confidence_entity": 0.9092789888381958,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Liệt kê sản phẩm tủ hồ sơ trong khoảng giá từ 0 đến 20000.",
+    "entities": [
+      {
+        "start": 17,
+        "end": 25,
+        "value": "tủ hồ sơ",
+        "entity": "product_name"
+      },
+      {
+        "start": 46,
+        "end": 47,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 52,
+        "end": 57,
+        "value": "20000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 22,
+        "confidence_entity": 0.8798111081123352,
+        "value": "tủ hồ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Cho tôi xem các sản phẩm sofa dài có giá từ 10000 đến 50000.",
+    "entities": [
+      {
+        "start": 25,
+        "end": 33,
+        "value": "sofa dài",
+        "entity": "product_name"
+      },
+      {
+        "start": 44,
+        "end": 49,
+        "value": "10000",
+        "entity": "from_price"
+      },
+      {
+        "start": 54,
+        "end": 59,
+        "value": "50000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tìm sản phẩm đèn chùm trong khoảng giá từ 5000 đến 10000.",
+    "entities": [
+      {
+        "start": 13,
+        "end": 21,
+        "value": "đèn chùm",
+        "entity": "product_name"
+      },
+      {
+        "start": 42,
+        "end": 46,
+        "value": "5000",
+        "entity": "from_price"
+      },
+      {
+        "start": 51,
+        "end": 56,
+        "value": "10000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 13,
+        "end": 16,
+        "confidence_entity": 0.9971469044685364,
+        "value": "đèn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm thảm sàn nào giá từ 10000 đến 50000 không?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 24,
+        "value": "thảm sàn",
+        "entity": "product_name"
+      },
+      {
+        "start": 36,
+        "end": 41,
+        "value": "10000",
+        "entity": "from_price"
+      },
+      {
+        "start": 46,
+        "end": 51,
+        "value": "50000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 24,
+        "confidence_entity": 0.7908534407615662,
+        "value": "thảm sàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Liệt kê tất cả sản phẩm bàn ăn có giá từ 0 đến 2000.",
+    "entities": [
+      {
+        "start": 24,
+        "end": 30,
+        "value": "bàn ăn",
+        "entity": "product_name"
+      },
+      {
+        "start": 41,
+        "end": 42,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 47,
+        "end": 51,
+        "value": "2000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm ghế ngoài trời có giá từ 5000 đến 3000.",
+    "entities": [
+      {
+        "start": 22,
+        "end": 36,
+        "value": "ghế ngoài trời",
+        "entity": "product_name"
+      },
+      {
+        "start": 47,
+        "end": 51,
+        "value": "5000",
+        "entity": "from_price"
+      },
+      {
+        "start": 56,
+        "end": 60,
+        "value": "3000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 22,
+        "end": 25,
+        "confidence_entity": 0.9949814677238464,
+        "value": "ghế",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Hãy cho tôi xem sản phẩm ghế quầy bar có giá từ 20000 đến 10000.",
+    "entities": [
+      {
+        "start": 25,
+        "end": 37,
+        "value": "ghế quầy bar",
+        "entity": "product_name"
+      },
+      {
+        "start": 48,
+        "end": 53,
+        "value": "20000",
+        "entity": "from_price"
+      },
+      {
+        "start": 58,
+        "end": 63,
+        "value": "10000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 24,
+        "confidence_entity": 0.6047914624214172,
+        "value": "sản phẩm",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 25,
+        "end": 37,
+        "confidence_entity": 0.9891600012779236,
+        "value": "ghế quầy bar",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 45,
+        "end": 47,
+        "confidence_entity": 0.6954747438430786,
+        "value": "từ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm sofa nào có giá từ 10000 đến 5000 không?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 20,
+        "value": "sofa",
+        "entity": "product_name"
+      },
+      {
+        "start": 35,
+        "end": 40,
+        "value": "10000",
+        "entity": "from_price"
+      },
+      {
+        "start": 45,
+        "end": 49,
+        "value": "5000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 20,
+        "confidence_entity": 0.9336225390434265,
+        "value": "sofa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Liệt kê các sản phẩm bàn cà phê trong khoảng giá từ 1000 đến 3000000.",
+    "entities": [
+      {
+        "start": 21,
+        "end": 31,
+        "value": "bàn cà phê",
+        "entity": "product_name"
+      },
+      {
+        "start": 52,
+        "end": 56,
+        "value": "1000",
+        "entity": "from_price"
+      },
+      {
+        "start": 61,
+        "end": 68,
+        "value": "3000000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 21,
+        "end": 24,
+        "confidence_entity": 0.7185313701629639,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tôi muốn tìm sản phẩm nệm có giá từ 300000 đến 50000.",
+    "entities": [
+      {
+        "start": 22,
+        "end": 25,
+        "value": "nệm",
+        "entity": "product_name"
+      },
+      {
+        "start": 36,
+        "end": 42,
+        "value": "300000",
+        "entity": "from_price"
+      },
+      {
+        "start": 47,
+        "end": 52,
+        "value": "50000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Bạn có sản phẩm sofa dài ngoài trời trong khoảng giá từ 0 đến 100000?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 35,
+        "value": "sofa dài ngoài trời",
+        "entity": "product_name"
+      },
+      {
+        "start": 56,
+        "end": 57,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 62,
+        "end": 68,
+        "value": "100000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 20,
+        "confidence_entity": 0.6718608736991882,
+        "value": "sofa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Hiển thị các sản phẩm ghế văn phòng có giá từ 500 đến 20000.",
+    "entities": [
+      {
+        "start": 22,
+        "end": 35,
+        "value": "ghế văn phòng",
+        "entity": "product_name"
+      },
+      {
+        "start": 46,
+        "end": 49,
+        "value": "500",
+        "entity": "from_price"
+      },
+      {
+        "start": 54,
+        "end": 59,
+        "value": "20000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 22,
+        "end": 25,
+        "confidence_entity": 0.961426854133606,
+        "value": "ghế",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Cho tôi xem sản phẩm bàn phòng ăn có giá từ 2000 đến 5000000.",
+    "entities": [
+      {
+        "start": 21,
+        "end": 33,
+        "value": "bàn phòng ăn",
+        "entity": "product_name"
+      },
+      {
+        "start": 44,
+        "end": 48,
+        "value": "2000",
+        "entity": "from_price"
+      },
+      {
+        "start": 53,
+        "end": 60,
+        "value": "5000000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 21,
+        "end": 24,
+        "confidence_entity": 0.6473226547241211,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Liệt kê các sản phẩm gương trong khoảng giá 10 đến 5000.",
+    "entities": [
+      {
+        "start": 21,
+        "end": 26,
+        "value": "gương",
+        "entity": "product_name"
+      },
+      {
+        "start": 44,
+        "end": 46,
+        "value": "10",
+        "entity": "from_price"
+      },
+      {
+        "start": 51,
+        "end": 55,
+        "value": "5000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 21,
+        "end": 26,
+        "confidence_entity": 0.9977216124534607,
+        "value": "gương",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tìm các sản phẩm thảm trải vườn có giá từ 0 đến 10000.",
+    "entities": [
+      {
+        "start": 17,
+        "end": 31,
+        "value": "thảm trải vườn",
+        "entity": "product_name"
+      },
+      {
+        "start": 42,
+        "end": 43,
+        "value": "0",
+        "entity": "from_price"
+      },
+      {
+        "start": 48,
+        "end": 53,
+        "value": "10000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 26,
+        "confidence_entity": 0.9996203184127808,
+        "value": "thảm trải",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Bạn có sản phẩm bàn để tivi nào có giá từ 1000 đến 1000 không?",
+    "entities": [
+      {
+        "start": 16,
+        "end": 27,
+        "value": "bàn để tivi",
+        "entity": "product_name"
+      },
+      {
+        "start": 42,
+        "end": 46,
+        "value": "1000",
+        "entity": "from_price"
+      },
+      {
+        "start": 51,
+        "end": 55,
+        "value": "1000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 16,
+        "end": 19,
+        "confidence_entity": 0.7128371596336365,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Tìm sản phẩm sofa có giá từ 5000 đến 2000.",
+    "entities": [
+      {
+        "start": 13,
+        "end": 17,
+        "value": "sofa",
+        "entity": "product_name"
+      },
+      {
+        "start": 28,
+        "end": 32,
+        "value": "5000",
+        "entity": "from_price"
+      },
+      {
+        "start": 37,
+        "end": 41,
+        "value": "2000",
+        "entity": "to_price"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 13,
+        "end": 17,
+        "confidence_entity": 0.530184805393219,
+        "value": "sofa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Có sản phẩm nào thích hợp cho phòng khách lớn không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 22,
+        "confidence_entity": 0.6125805974006653,
+        "value": "thích",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Tôi đang tìm ghế sofa cho phòng rộng, có loại nào phù hợp không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 14,
+        "end": 22,
+        "confidence_entity": 0.9882990121841431,
+        "value": "ghế sofa",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "\"Nhà tôi có không gian lớn, cần gợi ý đồ trang trí.\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 18,
+        "end": 26,
+        "confidence_entity": 0.8671913146972656,
+        "value": "gian lớn",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 32,
+        "end": 35,
+        "confidence_entity": 0.9866759181022644,
+        "value": "gợi",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Tôi muốn mua tủ lớn cho phòng rộng, có sản phẩm nào gợi ý không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 14,
+        "end": 20,
+        "confidence_entity": 0.9815768599510193,
+        "value": "tủ lớn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Tìm giúp tôi bàn ăn phù hợp cho không gian lớn được không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 14,
+        "end": 20,
+        "confidence_entity": 0.9223683476448059,
+        "value": "bàn ăn",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "\"Tôi đang tìm đồ nội thất cho phòng kích thước vừa phải, bạn có gợi ý nào không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 14,
+        "end": 35,
+        "confidence_entity": 0.5024546980857849,
+        "value": "đồ nội thất cho phòng",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Tôi cần tìm một chiếc tủ cho khu vực vừa phải, bạn có đề xuất gì không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 22,
+        "confidence_entity": 0.8978849649429321,
+        "value": "chiếc",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 23,
+        "end": 25,
+        "confidence_entity": 0.9975335597991943,
+        "value": "tủ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Có ghế sofa nào phù hợp với diện tích phòng trung bình không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 4,
+        "end": 12,
+        "confidence_entity": 0.9647831320762634,
+        "value": "ghế sofa",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "\"Tôi muốn mua đồ nội thất cho phòng không lớn lắm nhưng không quá nhỏ, có không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 14,
+        "end": 25,
+        "confidence_entity": 0.5629831552505493,
+        "value": "đồ nội thất",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Tôi muốn biết món đồ nào hợp với phòng vừa phải, bạn có thể gợi ý không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 19,
+        "end": 21,
+        "confidence_entity": 0.7813612222671509,
+        "value": "đồ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Tôi đang tìm đồ cho một căn phòng nhỏ, bạn tư vấn giúp nhé.\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 34,
+        "confidence_entity": 0.9782941341400146,
+        "value": "cho một căn phòng",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Tôi cần tìm bàn ghế nhỏ gọn cho căn phòng nhỏ, bạn có không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 13,
+        "end": 16,
+        "confidence_entity": 0.9700301289558411,
+        "value": "bàn",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "product_name",
+        "start": 17,
+        "end": 24,
+        "confidence_entity": 0.6991209983825684,
+        "value": "ghế nhỏ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Bạn có món đồ nào dành cho phòng có diện tích nhỏ không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 12,
+        "end": 14,
+        "confidence_entity": 0.9947079420089722,
+        "value": "đồ",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "\"Có gợi ý nào cho đồ nội thất tiết kiệm diện tích không?\"",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "product_name",
+        "start": 8,
+        "end": 9,
+        "confidence_entity": 0.6145103573799133,
+        "value": "ý",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

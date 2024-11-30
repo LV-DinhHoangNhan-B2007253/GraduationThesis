@@ -33,11 +33,17 @@ function ProductReviewCard({ reviewId }: { reviewId: string }) {
   // Render cảm xúc tương ứng với điểm rating
   const renderEmotion = (rating: number) => {
     // Mảng biểu tượng cảm xúc từ 1 đến 5 sao
-    const emotions = ["😡", "😟", "😊", "😘", "😍"];
+    const emotions = [
+      "Rất không hài lòng😡",
+      "Không hài lòng😟",
+      "Bình thường😊",
+      "Khá hài lòng😘",
+      "Rất hài lòng😍",
+    ];
 
     // Chọn biểu tượng cảm xúc phù hợp với điểm rating
     return (
-      <span className="text-2xl">
+      <span className="font-light  italic text-small">
         {emotions[rating - 1] || emotions[0]}{" "}
         {/* Đảm bảo không vượt ngoài mảng */}
       </span>

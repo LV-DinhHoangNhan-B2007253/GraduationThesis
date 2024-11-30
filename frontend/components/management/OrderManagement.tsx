@@ -136,14 +136,19 @@ function OrderManagement() {
             <thead>
               <tr className="bg-gray-100 dark:bg-gray-800">
                 <th className="border border-gray-300 p-2 text-left">
+                  Khách hàng
+                </th>
+                <th className="border border-gray-300 p-2 text-left">
                   Mã đơn hàng
                 </th>
-                <th className="border border-gray-300 p-2 text-left">Status</th>
                 <th className="border border-gray-300 p-2 text-left">
-                  Trạng thái thanh toán
+                  Mặt hàng
                 </th>
                 <th className="border border-gray-300 p-2 text-left">
                   Phương thức thanh toán
+                </th>
+                <th className="border border-gray-300 p-2 text-left">
+                  Trạng thái
                 </th>
               </tr>
             </thead>
@@ -151,8 +156,8 @@ function OrderManagement() {
               {filteredOrders.map((order) => (
                 <OrderItem
                   key={order._id}
-                  order={order}
-                  getStatusClass={getStatusClass}
+                  orderId={order._id}
+                  // getStatusClass={getStatusClass}
                 />
               ))}
             </tbody>

@@ -1,0 +1,56 @@
+version: "3.1"
+stories:
+- story: sad path 1 (.\venv\Lib\site-packages\rasa\cli\initial_project\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy  # predicted: greet: not good
+  - action: utter_cheer_up  # predicted: action_fallback
+  - action: utter_did_that_help  # predicted: action_fallback
+  - action: action_listen  # predicted: action_fallback
+  - intent: affirm  # predicted: greet: yes
+  - action: utter_happy  # predicted: action_fallback
+  - action: action_listen  # predicted: action_fallback
+- story: sad path 2 (.\venv\Lib\site-packages\rasa\cli\initial_project\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy  # predicted: greet: not good
+  - action: utter_cheer_up  # predicted: action_fallback
+  - action: utter_did_that_help  # predicted: action_fallback
+  - action: action_listen  # predicted: action_fallback
+  - intent: deny  # predicted: greet: not really
+  - action: utter_goodbye  # predicted: action_fallback
+  - action: action_listen  # predicted: action_fallback
+- story: sad path 3 (.\venv\Lib\site-packages\rasa\cli\initial_project\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy  # predicted: greet: very terrible
+  - action: utter_cheer_up  # predicted: action_fallback
+  - action: utter_did_that_help  # predicted: action_fallback
+  - action: action_listen  # predicted: action_fallback
+  - intent: deny  # predicted: greet: no
+  - action: utter_goodbye  # predicted: action_fallback
+  - action: action_listen  # predicted: action_fallback
+- story: bot challenge (.\venv\Lib\site-packages\rasa\cli\initial_project\tests\test_stories.yml)
+  steps:
+  - intent: bot_challenge  # predicted: greet: are you a bot?
+  - action: utter_iamabot  # predicted: action_fallback
+  - action: action_listen  # predicted: action_fallback
+- story: happy path 1 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great  # predicted: greet: amazing
+  - action: utter_happy  # predicted: action_fallback
+  - action: action_listen  # predicted: action_fallback
+- story: happy path 2 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great  # predicted: greet: amazing
+  - action: utter_happy  # predicted: action_fallback
+  - action: action_listen  # predicted: action_fallback
+  - intent: goodbye
+  - action: utter_goodbye

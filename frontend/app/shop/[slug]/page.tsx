@@ -229,50 +229,6 @@ function ShopInfo(props: any) {
           </div>
         </section>
 
-        {/* about shop */}
-        <section
-          id="contact"
-          className="sm:flex justify-start gap-4 py-2 bg-light-modal-popup dark:bg-dark-modal-popup backdrop-blur-md"
-        >
-          <div className="sm:w-1/2 h-[300px] w-full">
-            <img
-              loading="lazy"
-              src={shopInfo?.shopBanner}
-              alt="shop banner"
-              className="w-full h-full object-cover rounded-sm"
-            />
-          </div>
-          <div className="sm:w-1/2 w-full flex flex-col justify-around px-2 text-sm sm:text-base text-light-primary-text dark:text-dark-primary-text tracking-wider">
-            <div className="flex flex-col gap-4 border-b border-gray-400">
-              <div className="">
-                <p>Shop Name: {shopInfo?.name}</p>
-                <p>Shop Email: {shopInfo?.shopMail}</p>
-              </div>
-              <p>{shopInfo?.description}</p>
-            </div>
-            <div>
-              <h3 className="uppercase text-center my-2">
-                Contact Information
-              </h3>
-              <div>
-                <p>Owner: {shopOwner?.name}</p>
-                <p>Email: {shopOwner?.email}</p>
-                {shopOwner?.addresses && (
-                  <div>
-                    <p>
-                      Address: {shopOwner?.addresses?.province?.province_name},
-                      {shopOwner?.addresses?.district?.district_name},
-                      {shopOwner?.addresses?.province.province_name},
-                      {shopOwner?.addresses?.ward.ward_name},
-                      {shopOwner?.addresses?.detail}
-                    </p>
-                  </div>
-                )}
-              </div>
-              <div></div>
-            </div>
-          </div>
-        </section>
         <div className="text-right my-2">
           <Link href={"#"}>
             <FontAwesomeIcon icon={faArrowCircleUp} className="text-base" />
