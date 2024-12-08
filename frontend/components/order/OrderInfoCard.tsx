@@ -113,10 +113,10 @@ function OrderInfoCard({
       <ProdutOfOrderCard orderProducts={order.products} />
 
       <div className="flex justify-around items-center px-4 py-2 flex-wrap capitalize text-light-primary-text dark:text-dark-primary-text text-small sm:text-base">
-        <p>Order Code: {order._id}</p>
-        <p>Order Date: {new Date(order.order_date).toLocaleString()}</p>
-        <p>Total Price: {order.total_price}</p>
-        <p>Status: {status}</p>
+        <p>Mã đơn hàng: {order._id}</p>
+        <p>Ngày đặt: {new Date(order.order_date).toLocaleString()}</p>
+        <p>Tổng tiền: {order.total_price}</p>
+        <p>Trạng thái: {status}</p>
       </div>
       {status === "pending" && userAction === true ? (
         <div className="flex justify-end items-center my-4">
@@ -124,7 +124,7 @@ function OrderInfoCard({
             onClick={handleUserCancelOrder}
             className="px-4 py-2 text-center bg-orange-700 hover:bg-orange-500 transition duration-300 ease-in-out text-white uppercase"
           >
-            Cacel Order
+            Hủy đơn
           </button>
         </div>
       ) : status === "shipped" && userAction === true ? (
@@ -134,14 +134,14 @@ function OrderInfoCard({
               onClick={() => setIsOpenRating(!isOpenRating)}
               className="px-4 py-2 text-center bg-green-700  transition duration-300 ease-in-out text-white uppercase hover:bg-green-500"
             >
-              Close
+              Đóng
             </button>
           ) : (
             <button
               onClick={() => setIsOpenRating(!isOpenRating)}
               className="px-4 py-2 text-center bg-green-700  transition duration-300 ease-in-out text-white uppercase hover:bg-green-500"
             >
-              Rating
+              Đánh giá
             </button>
           )}
         </div>
@@ -151,7 +151,7 @@ function OrderInfoCard({
             // onClick={handleUserCancelOrder}
             className="px-4 py-2 text-center bg-gray-700  transition duration-300 ease-in-out text-white uppercase cursor-not-allowed"
           >
-            Canceled
+            Đã hủy
           </button>
         </div>
       ) : status === "reviewed" && userAction === true ? (
@@ -160,7 +160,7 @@ function OrderInfoCard({
             // onClick={handleUserCancelOrder}
             className="px-4 py-2 text-center bg-gray-700  transition duration-300 ease-in-out text-white uppercase cursor-not-allowed"
           >
-            Reviewed
+            Đã đánh giá
           </button>
         </div>
       ) : (
@@ -170,7 +170,7 @@ function OrderInfoCard({
               // onClick={handleUserCancelOrder}
               className="px-4 py-2 text-center bg-gray-500  transition duration-300 ease-in-out text-white uppercase cursor-not-allowed"
             >
-              Delivery
+              Đang giao
             </button>
           </div>
         )

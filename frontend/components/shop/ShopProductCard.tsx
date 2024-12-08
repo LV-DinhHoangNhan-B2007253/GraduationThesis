@@ -27,9 +27,9 @@ function ShopProductCard({ product }: { product: IProduct }) {
           </p>
           <p className="text-price-text font-bold text-center sm:text-end">
             {product.price.toLocaleString()}{" "}
-            <span className="text-green-600 font-bold">
+            {/* <span className="text-green-600 font-bold">
               <FontAwesomeIcon icon={faMoneyBill1Wave} />
-            </span>
+            </span> */}
           </p>
         </div>
         <div className="text-light-primary-text dark:text-dark-primary-text text-sm sm:text-small sm:flex justify-between items-center">

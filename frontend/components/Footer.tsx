@@ -47,9 +47,11 @@ function Footer() {
       </div>
 
       {/* bottm */}
-      <div className="pb-5 px-10 py-2   flex justify-between items-center">
-        <p className="text-small  ">Graduation Thesis</p>
-        <p className="text-small  ">Furniture Online Store + Chatbot</p>
+      <div className="pb-5 px-10 py-2   flex justify-between items-center bg-input">
+        <p className="text-small text-input-text ">Graduation Thesis</p>
+        <p className="text-small text-input-text ">
+          Furniture Online Store + Chatbot
+        </p>
       </div>
     </div>
   );

@@ -2,8 +2,7 @@
 
 import EmptyProductList from "@/components/EmptyProductList";
 import OrderInfoCard from "@/components/order/OrderInfoCard";
-import OrderProductCard from "@/components/order/OrderProductCard";
-import { IOrder, IOrderedProduct } from "@/interfaces/order.interface";
+import { IOrder } from "@/interfaces/order.interface";
 import MainLayout from "@/layouts/MainLayout";
 import { RootState } from "@/redux/store";
 import { GetOrderOfUser } from "@/services/order.service";
@@ -29,9 +28,9 @@ function MyOrder() {
   }, []);
   return (
     <MainLayout>
-      {orders ? (
+      {orders && orders.length > 0 ? (
         <div className="px-2 py-4  my-2 bg-light-modal-popup dark:bg-dark-card-bg">
-          {orders.map((order) => (
+          {orders.reverse().map((order) => (
             <OrderInfoCard
               order={order}
               key={order._id}

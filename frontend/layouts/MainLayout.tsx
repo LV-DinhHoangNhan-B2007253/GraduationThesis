@@ -58,14 +58,14 @@ function MainLayout({ children }: { children: React.ReactNode }) {
       <Footer />
       {/* toggle chat window */}
       {isOpenChatWindow ? (
-        <div className=" bottom-0 right-0 z-[1000] top-3/4 backdrop-blur-md rounded shadow-md left-1/2 fixed ">
-          <div className="flex justify-end bg-chat-input rounded-t-md">
+        <div className=" bottom-0 right-0 z-[1000] top-3/4  rounded shadow-md left-1/2 fixed ">
+          <div className="flex justify-end bg-blue-400 rounded-t-md">
             <button
               // onClick={() => setIsOpenChatWindow(false)}
               onClick={handleCloseChatWindow}
               className=" text-center px-3 hover:text-red-700 text-base "
             >
-              <FontAwesomeIcon icon={faClose} color="white" />
+              <FontAwesomeIcon icon={faClose} color="blue" />
             </button>
           </div>
           <div className="">

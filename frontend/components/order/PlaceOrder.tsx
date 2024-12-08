@@ -7,6 +7,7 @@ import Link from "next/link";
 import { CreateOrder } from "@/services/order.service";
 import { toast } from "react-toastify";
 import SingleCardSekelecton from "../skelecton/SingleCardSekelecton";
+import { useRouter } from "next/navigation";
 
 function PlaceOrder({
   order,
@@ -17,9 +18,11 @@ function PlaceOrder({
   userInfo: IUser | null;
   address: string | undefined;
 }) {
+  const router = useRouter();
   const { shop_id, products } = order;
   const [shopInfo, setShopInfo] = useState<IShop>();
   const [selectedMethod, setSelectedMethod] = useState<string>("cash");
+  const [isPay, setIsPay] = useState<boolean>(false);
   // Tính tổng giá trị đơn hàng
   const totalPrice = products.reduce((total, product) => {
     return (
@@ -53,9 +56,14 @@ function PlaceOrder({
         shop_id: shop_id,
         shipping_address: address,
       };
+      if (selectedMethod === "vnpay") {
+        const data = await CreateOrder(form);
+        router.push(`http://localhost:8888/order/create_payment_url`);
+      }
       const data = await CreateOrder(form);
       if (data) {
-        toast(`${data.message}`);
+        toast(`Đặt hàng thành công!`);
+        setIsPay(true);
       }
       console.log(form);
     } catch (error) {
@@ -77,7 +85,7 @@ function PlaceOrder({
             </p>
             <Link
               href={`/shop/${shop_id}`}
-              className=" text-center p-1  text-sm  bg-button-success hover:bg-accent"
+              className=" text-center p-2 rounded  text-sm  bg-button-success hover:bg-accent"
             >
               Xem Shop
             </Link>
@@ -103,8 +111,8 @@ function PlaceOrder({
       <div className="flex flex-col gap-2 justify-between">
         <h3 className="text-lg font-medium mb-2">Phương thức thanh toán</h3>
         <ul className="list-none grid grid-cols-4 gap-4 items-center">
-          <li className="border border-primary-border col-span-1 bg-card-bg flex items-center h-[100px] pl-2 rounded">
-            <div className="w-1/3 flex justify-around items-center gap-4">
+          <li className="border border-primary-border col-span-2 bg-card-bg flex items-center h-[100px] pl-2 rounded">
+            <div className="w-2/3 flex justify-around items-center gap-4">
               <label className="hover:cursor-pointer font-bold flex items-center gap-2">
                 <input
                   type="radio"
@@ -113,7 +121,7 @@ function PlaceOrder({
                   checked={selectedMethod === "cash"}
                   onChange={handlePaymentChange}
                 />
-                Cash
+                Thanh toán khi nhận hàng
               </label>
             </div>
             <img
@@ -127,7 +135,7 @@ function PlaceOrder({
             <div className="w-1/3 flex justify-around items-center gap-4">
               <label className="hover:cursor-pointer font-bold flex items-center gap-2">
                 <input
-                  disabled
+                  // disabled
                   type="radio"
                   //   name="paymentMethod"
                   value="vnpay"
@@ -144,6 +152,7 @@ function PlaceOrder({
               className="w-full h-full object-contain "
             />
           </li>
+          {/* 
           <li className="border border-primary-border col-span-1 bg-card-bg flex items-center h-[100px] pl-2 rounded">
             <div className="w-1/3 flex justify-around items-center gap-4">
               <label className="hover:cursor-pointer font-bold flex items-center gap-2">
@@ -185,11 +194,15 @@ function PlaceOrder({
               alt="cash"
               className="w-full h-full object-contain "
             />
-          </li>
+          </li> */}
         </ul>
         <p className="mt-2">
           Phương thức đã chọn:{" "}
-          <strong>{selectedMethod || "Not selected yet"}</strong>
+          <em>
+            {/* Hiện tại website chỉ đang hỗ trợ phương thức thanh toán khi nhận
+            hàng (COD) */}
+            {selectedMethod}
+          </em>
         </p>
       </div>
       {/* order price and info */}
@@ -208,10 +221,13 @@ function PlaceOrder({
               mua hàng của chúng tôi
             </p>
             <button
+              disabled={isPay ? true : false}
               onClick={handleCreateOrder}
-              className="text-center bg-button-success px-8 py-2 rounded font-bold text-white hover:bg-orange-400 hover:rounded-md"
+              className={`text-center ${
+                isPay ? "bg-gray-500" : "bg-button-success"
+              } px-8 py-2 rounded font-bold text-white hover:bg-orange-400 hover:rounded-md`}
             >
-              Đặt
+              {isPay ? "Đã đặt" : "Đặt"}
             </button>
           </div>
         </div>

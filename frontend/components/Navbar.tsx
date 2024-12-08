@@ -88,7 +88,7 @@ function Navbar() {
               >
                 <FontAwesomeIcon
                   icon={faSearch}
-                  className="hover:text-secondary"
+                  className="hover:text-secondary text-white"
                 />
               </button>
             </div>
@@ -127,7 +127,7 @@ function Navbar() {
                   <ul
                     className={`absolute min-w-[150px] top-10 right-0 px-3 py-2 ${
                       toggleAvtNav ? "block" : "hidden"
-                    } z-[4000]  rounded-md border border-borderb backdrop-blur-md`}
+                    } z-[4000]  rounded-md border border-borderb bg-card-bg`}
                   >
                     <li className="w-full border-b border-gray-100 my-2 hover:text-accent">
                       <Link

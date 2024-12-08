@@ -4,9 +4,9 @@ import Link from "next/link";
 
 function EmptyProductList() {
   return (
-    <div className="flex justify-center items-center w-full h-4/5 flex-col gap-10">
+    <div className="flex justify-center items-center w-full flex-col gap-10 h-screen">
       <p className="text-light-primary-text dark:text-dark-primary-text text-base sm:text-4xl tracking-widest uppercase">
-        Giỏ của bạn hiện tại đang trống!.
+        Oops! Sao trống trải vậy ta 🤔.
       </p>
       <Link
         href={"/"}

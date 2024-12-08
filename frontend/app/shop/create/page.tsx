@@ -1,15 +1,12 @@
 "use client";
-
-import MainLayout from "@/layouts/MainLayout";
 import { GetNSetUserInfo } from "@/redux/slices/userInfoSlice";
 import { AppDispatch, RootState } from "@/redux/store";
 import { CreateShop } from "@/services/shop.service";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { stat } from "fs";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
@@ -99,7 +96,7 @@ function CreateNewShop() {
 
   return (
     <div className="bg-CreateShopBg  min-h-screen flex justify-center items-center ">
-      <div className=" mx-48   w-full mt-10 bg-card-bg">
+      <div className=" mx-48 w-full mt-10 bg-card-bg">
         <div className="bg-light-modal-popup w-full rounded-md  ">
           <div className="px-4 py-2 rounded-md ">
             <FontAwesomeIcon
@@ -246,9 +243,9 @@ function CreateNewShop() {
             </div>
             <button
               type="submit"
-              className="w-full text-center bg-dark-bg-btn text-dark-btn-text py-2 uppercase font-bold mt-20 rounded-b-md"
+              className="w-full text-center py-2 uppercase font-bold mt-20  bg-primary-500 hover:bg-secondary-500"
             >
-              create
+              Tạo
             </button>
           </form>
         </div>
